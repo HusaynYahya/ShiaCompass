@@ -110,7 +110,6 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 @media (max-width:600px){.sl{padding-left:0}}
 .slhead{display:flex;justify-content:flex-end}
 .slval{font-family:var(--f-display);font-size:17px;font-weight:800;color:var(--cobalt);min-height:1.3em}
-.qc.untouched .slval{font-family:var(--f-body);font-size:14px;color:var(--muted);font-weight:400}
 .track{position:relative;height:40px}
 .track .stops{position:absolute;left:11px;right:11px;top:50%;height:0;pointer-events:none}
 .track .stops i{position:absolute;top:0;width:11px;height:11px;margin:-5.5px 0 0 -5.5px;background:#fff;border:2px solid var(--line2);transform:rotate(45deg)}
@@ -120,10 +119,6 @@ input.ag::-moz-range-track{height:10px;border-radius:5px;background:var(--line)}
 input.ag::-moz-range-progress{height:10px;border-radius:5px;background:var(--cobalt)}
 input.ag::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;margin-top:-9px;background:var(--saffron);border:3px solid var(--text);border-radius:3px;transform:rotate(45deg)}
 input.ag::-moz-range-thumb{width:22px;height:22px;background:var(--saffron);border:3px solid var(--text);border-radius:3px;transform:rotate(45deg)}
-.qc.untouched input.ag::-webkit-slider-runnable-track{background:var(--line)}
-.qc.untouched input.ag::-moz-range-progress{background:transparent}
-.qc.untouched input.ag::-webkit-slider-thumb{background:#fff;border-color:var(--muted)}
-.qc.untouched input.ag::-moz-range-thumb{background:#fff;border-color:var(--muted)}
 .ticks{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));font-size:13px;color:var(--muted);font-weight:600}
 .ticks span{text-align:center}
 .ticks span:first-child{text-align:left}
@@ -384,7 +379,7 @@ input.ag::-moz-range-thumb{width:22px;height:22px;background:var(--saffron);bord
         <span class="eyebrow" id="tPart">Part 1 of 6</span>
         <h2>How much do you agree?</h2>
         <div class="prog" id="tProg" aria-hidden="true"></div>
-        <div class="trow"><span id="tCount">0 of 36 answered</span><span>Move every slider, even if you leave it near the middle.</span></div>
+        <div class="trow"><span id="tCount">0 of 36 answered</span><span>Each slider starts at Neutral. Move it to show how far you agree or disagree.</span></div>
       </div>
       <div class="qlist" id="qlist"></div>
       <div class="tnav">
@@ -944,9 +939,9 @@ function renderTest(){
     return `<div class="qc ${v===null?"untouched":"done"}" data-q="${j}">
       <div class="qtop"><span class="qn">${String(j+1).padStart(2,"0")}</span><p class="qs" id="qs${j}">${QS[j].t}</p></div>
       <div class="sl">
-        <div class="slhead"><span class="slval" id="qv${j}">${v===null?"Move the slider":levelOf(x)}</span></div>
+        <div class="slhead"><span class="slval" id="qv${j}">${levelOf(x)}</span></div>
         <div class="track"><div class="stops" aria-hidden="true"><i style="left:0%"></i><i style="left:25%"></i><i style="left:50%"></i><i style="left:75%"></i><i style="left:100%"></i></div>
-        <input class="ag" type="range" min="0" max="100" step="1" value="${x}" id="q${j}" aria-labelledby="qs${j}" aria-valuetext="${v===null?"Not answered":levelOf(x)}" style="--p:${x}%"></div>
+        <input class="ag" type="range" min="0" max="100" step="1" value="${x}" id="q${j}" aria-labelledby="qs${j}" aria-valuetext="${levelOf(x)}" style="--p:${x}%"></div>
         <div class="ticks" aria-hidden="true"><span>Strongly disagree</span><span>Disagree</span><span>Neutral</span><span>Agree</span><span>Strongly agree</span></div>
       </div></div>`;}).join("");
   idxs.forEach(j=>{
@@ -966,12 +961,16 @@ function updateTestNav(){
   $("tCount").textContent=`${total} of ${QS.length} answered`;
   document.querySelectorAll("#tProg i").forEach((b,j)=>b.classList.toggle("on",answers[j]!==null));
   $("tBack").disabled=page===0;
-  $("tNext").disabled=left>0;
+  $("tNext").disabled=false;
   $("tNext").innerHTML=page===PAGES-1?"See my insights →":"Next →";
-  $("tHint").textContent=left?`${left} left on this page`:"";
+  $("tHint").textContent=left?`${left} still at Neutral`:"";
 }
-$("tBack").addEventListener("click",()=>{if(page>0){page--;saveLocal();renderTest();window.scrollTo(0,0);}});
+function fillPage(){ // sliders left untouched count as Neutral
+  const start=page*PER; for(let j=start;j<Math.min(start+PER,QS.length);j++) if(answers[j]===null) answers[j]=50;
+}
+$("tBack").addEventListener("click",()=>{if(page>0){fillPage();page--;saveLocal();renderTest();window.scrollTo(0,0);}});
 $("tNext").addEventListener("click",()=>{
+  fillPage();
   if(page<PAGES-1){page++;saveLocal();renderTest();window.scrollTo(0,0);}
   else{ score(); saveLocal(); if(communityOn&&getShare()) submitShare().catch(()=>{}); go("insights"); }
 });
