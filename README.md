@@ -14,9 +14,10 @@ A second, optional part adds nine more axes, inspired by the [12Axes](https://12
 
 - **About you**: six optional, unscored questions (gender, age band, family roots, country, marja', attendance), asked once before whichever part is taken first
 - **Part 1 · Belief and method**: 36 statements (12 per spectrum, some reverse-worded), answered on sliders from "Strongly disagree" to "Strongly agree"
-- **Part 2 · Society and politics**: 36 statements (4 per axis, half reverse-worded) plus 6 unscored habit questions (what you play in the car, which class you'd join, mut'ah, and so on) that are there to find patterns
+- **Part 2 · Society and politics**: 36 statements (4 per axis, half reverse-worded) plus 8 unscored questions about habits and experience (what you play in the car, which class you'd join, mut'ah, how often you question God's existence, whether the problem of evil unsettles you, and so on) that are there to find patterns
 - **Insights**: for part 1, your position on each spectrum and what it means, the strongest case from the other side, reading and practices that tend to go with your position, related beliefs, and your closest scholars. For part 2, a two-pole percentage bar per axis (12Axes style) and the scholars closest to you on those questions
-- **Two 3D compasses**: part 1's cube of 42 scholars (Modernist ↔ Traditionalist × Minimalist ↔ Maximalist × Rationalist ↔ Scripturalist), and part 2's cube of the 21 scholars with documented positions (Liberal ↔ Conservative × Quietist ↔ Activist × Pluralist ↔ Exclusivist). Both have your pin, filters by region and period, flat Front / Side / Top views, and clickable axis labels
+- **Two 3D compasses**: part 1's cube of 43 scholars (Modernist ↔ Traditionalist × Minimalist ↔ Maximalist × Rationalist ↔ Scripturalist), and part 2's cube of the 19 scholars with documented positions (Liberal ↔ Conservative × Quietist ↔ Activist × Philosophical ↔ Anti-philosophical). Both have your pin, filters by region and period, flat Front / Side / Top views, and clickable axis labels
+- **Share card**: a downloadable image of part 1's three spectrums, your four strongest part 2 leanings and your closest scholars, ready to post. Scholar portraits come from `img/scholars/<id>.jpg` if you add them (see `img/scholars/README.md`); otherwise each scholar gets an initials tile
 - **Glossary**: 53 Arabic terms, also available as tap-to-define pop-ups throughout
 
 ## Running it

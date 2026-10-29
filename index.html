@@ -323,6 +323,13 @@ input.ag::-moz-range-thumb{width:22px;height:22px;background:var(--saffron);bord
 .saveact{display:flex;flex-direction:column;gap:10px;min-width:0}
 .btn.danger{color:var(--rubric);border-color:var(--rubric)}
 .btn.danger:hover{background:#FBE9E6}
+/* share card */
+.sharecard{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,380px);gap:24px 40px;align-items:start;background:#fff;border:2px solid var(--text);border-radius:14px;padding:clamp(20px,3vw,32px)}
+@media (max-width:860px){.sharecard{grid-template-columns:minmax(0,1fr)}}
+.sharecard .shead{display:flex;flex-direction:column;gap:10px}
+.sharecard h2{font-size:clamp(26px,3vw,34px)}
+.sharecard p{color:var(--ink2)}
+#cardImg{width:100%;height:auto;border:2px solid var(--text);border-radius:12px;box-shadow:0 6px 0 var(--text);background:var(--bg);min-height:200px}
 /* part 2 colour scheme: emerald, plum and pomegranate in place of turquoise, cobalt and saffron.
    Applied to the whole page while part 2's test or compass is showing, and to part 2's blocks elsewhere. */
 .theme2{
@@ -404,7 +411,7 @@ body.theme2 #tile .t1{fill:#1E7A55} body.theme2 #tile .t2{fill:#6E2B67} body.the
         <span class="eyebrow">Built on Zoheir Esmail's three spectrums</span>
         <h1>Take the <em>Shia Compass</em> Test</h1>
         <p class="sub">See where you align with traditional and contemporary scholars.</p>
-        <div class="facts"><span><b>2</b> parts, about <b>8</b> minutes each</span><span><b>12</b> axes</span><span><b>2</b> 3D compasses</span><span><b>42</b> scholars, 10th century to today</span></div>
+        <div class="facts"><span><b>2</b> parts, about <b>8</b> minutes each</span><span><b>12</b> axes</span><span><b>2</b> 3D compasses</span><span><b>43</b> scholars, 10th century to today</span></div>
         <div class="cta">
           <button class="btn" data-go="test">Start part 1 →</button>
           <button class="btn ghost" data-go="compass">Explore the compass first</button>
@@ -493,7 +500,7 @@ body.theme2 #tile .t1{fill:#1E7A55} body.theme2 #tile .t2{fill:#6E2B67} body.the
     <div class="method-note">
       <span class="eyebrow">How the placements were made</span>
       <p>The three spectrums come from Zoheir Esmail's post, which draws on Shaykh Dr Vinay Khetia's framing. The scholars' positions are approximate readings of what each is best known for in their published work and in the secondary literature; the post itself places no one. Every placement is contestable, since most scholars hold mixed positions and changed over a lifetime. A position says nothing about piety or correctness.</p>
-      <p>Part 2's nine axes are inspired by the 12Axes political test and adapted to questions Shia communities argue about. On the society and politics compass, only scholars whose positions on those questions are documented are placed, and those placements are rougher than part 1's: they read public stances on politics, social life and other religions, which few scholars set out systematically.</p>
+      <p>Part 2's nine axes are inspired by the 12Axes political test and adapted to questions Shia communities argue about. On the society and politics compass, only scholars whose positions on those questions are documented are placed, and those placements are rougher than part 1's: they read public stances on politics, social life and philosophy, which few scholars set out systematically.</p>
       <p>Your answers are stored only in your own browser on this device (its local storage), so the test resumes where you left off and your results are there when you come back. They are only sent anywhere if you choose to share them anonymously on the insights page. A result code for each part lets you carry your answers to another device yourself. "Clear my data" on the insights page removes everything.</p>
       <p>The test is a self-reflection tool, not a validated measure. The reading, activity and belief suggestions on the insights page describe tendencies among people with similar views, not predictions about you.</p>
     </div>
@@ -623,6 +630,9 @@ const S=[
  {id:"sistani",n:"Ayatollah al-Sistani",s:"al-Sistani",d:"b. 1930",era:"contemporary",reg:"iraq",city:"Najaf",role:"Marja'",m:.55,i:.35,e:-.2,
   k:"The most widely followed marja' of the Najaf seminary, which is known for a cautious Usuli method.",
   w:"Placed as representative of the mainstream Usuli centre that Esmail says cannot be pigeonholed."},
+ {id:"khamenei",n:"Ayatollah Ali Khamenei",s:"Khamenei",d:"d. 2026",era:"contemporary",reg:"iran",city:"Mashhad, Qom, Tehran",role:"Supreme Leader of Iran 1989–2026; President 1981–89",m:.45,i:.5,e:-.3,
+  k:"Studied in Mashhad and from 1958 in Qom under Burujerdi and Khomeini. He was President of Iran from 1981 to 1989 and Supreme Leader from 1989 until he was killed in an Israeli airstrike on Tehran on 28 February 2026. Qom's Society of Seminary Teachers declared him a marja' in 1994, though several senior ayatollahs did not recognise it.",
+  w:"A mainstream Usuli jurist in Khomeini's line, whose main scholarly fields were usul al-fiqh and Quranic exegesis. Traditional in law, while giving answers to new questions, such as permitting third-party donation in fertility treatment (1999). He sits near the mainstream centre."},
  {id:"vahid",n:"Ayatollah Vahid Khorasani",s:"Vahid Khorasani",d:"b. 1921",era:"contemporary",reg:"iran",city:"Qum",role:"Marja'",m:.8,i:.75,e:.1,
   k:"Known for strong emphasis on the station of the Imams and of Lady Fatima, and on Fatimiyya commemoration.",
   w:"Traditional and maximalist, while remaining Usuli in method."},
@@ -741,6 +751,8 @@ const QS=[
 ];
 const LEVELS=[[12.5,"Strongly disagree"],[37.5,"Disagree"],[62.5,"Neutral"],[87.5,"Agree"],[101,"Strongly agree"]];
 const levelOf=x=>LEVELS.find(([t])=>x<t)[1];
+const FLEVELS=[[12.5,"Not at all"],[37.5,"Rarely"],[62.5,"Sometimes"],[87.5,"Often"],[101,"Always"]];
+const lvl=(q,x)=>(q&&q.f?FLEVELS:LEVELS).find(([t])=>x<t)[1];
 
 const BANDS={
  m:[["Strongly modernist","You think modern ethical insight should actively shape how religious rulings are read. Like Soroush, Shabestari or Kadivar, you treat classical rulings as answers to the questions of their own time, and ask what justice requires now."],
@@ -840,7 +852,7 @@ const ABOUT=[
  {id:"age",t:"How old are you?",o:["Under 18","18–24","25–34","35–44","45–59","60 or over"]},
  {id:"roots",t:"Where are your family's roots mostly from?",o:["Iraq","Iran","Lebanon","The Gulf (Bahrain, Kuwait, Saudi Arabia…)","Pakistan or India","Khoja or East Africa","Afghanistan","I'm a convert","Somewhere else"]},
  {id:"live",t:"Where do you live now?",o:["United Kingdom","Elsewhere in Europe","North America","Australia or New Zealand","Middle East","South Asia","Africa","Somewhere else"]},
- {id:"marja",t:"Whose rulings do you mainly follow (taqlid)?",o:["Sayyid al-Sistani","Sayyid Khamenei","Another marja'","I'm not sure","I don't follow a marja'"]},
+ {id:"marja",t:"Whose rulings do you mainly follow (taqlid)?",o:["Sayyid al-Sistani","Sayyid Ali Khamenei","Another marja'","I'm not sure","I don't follow a marja'"]},
  {id:"attend",t:"Outside Muharram and Ramadan, how often do you go to a mosque or centre?",o:["Weekly or more","A few times a month","A few times a year","Rarely or never"]}
 ];
 /* Part 2 statements: [axis, k, text]. k=+1: agreeing pushes toward the right-hand (pos) pole. */
@@ -888,15 +900,17 @@ const HABITS=[
  {id:"class",t:"Your local centre starts a weekly evening class. Which one would you sign up for?",o:["Tafsir of the Quran","Philosophy or 'irfan","Fiqh for everyday life","Islamic history","Akhlaq and self-development"]},
  {id:"mutah",t:"Mut'ah, temporary marriage, is a legitimate option for young Muslims today."},
  {id:"practice",t:"Which of these is most a part of your week?",o:["Du'a Kumayl","Ziyarat Ashura","Reading the Quran","Night prayer (salat al-layl)","None of these regularly"]},
+ {id:"doubt",t:"You question the existence of God.",f:1},
  {id:"source",t:"Where do you get most of your religious learning?",o:["Majalis and talks at the centre","YouTube, Instagram or TikTok","Books","Podcasts","Family"]},
- {id:"journey",t:"Which journey would you most like to make next?",o:["The Arbaeen walk to Karbala","Hajj or Umrah","Ziyara in Mashhad","Ziyara in Najaf","Sayyida Zaynab, Damascus"]}
+ {id:"journey",t:"Which journey would you most like to make next?",o:["The Arbaeen walk to Karbala","Hajj or Umrah","Ziyara in Mashhad","Ziyara in Najaf","Sayyida Zaynab, Damascus"]},
+ {id:"evil",t:"The problem of evil, why a good God allows suffering, unsettles you.",f:1}
 ];
 /* Fixed order (result codes depend on it): one statement per axis in turn, with a habit question after every sixth. */
 const Q2=(()=>{
   const order=["c","w","pl","u","r","s","p","g","a"], out=[], seen={};
   const rounds=Math.max(...order.map(a=>Q2BANK[a].length));
   for(let r=0;r<rounds;r++) order.forEach(a=>{const q=Q2BANK[a][r]; if(q){seen[a]=(seen[a]||0)+1; out.push({a,k:q[0],t:q[1],id:a+seen[a]});}});
-  HABITS.forEach((h,j)=>out.splice(Math.min(out.length,(j+1)*7-1),0,{a:null,k:0,t:h.t,id:h.id,o:h.o||null}));
+  HABITS.forEach((h,j)=>out.splice(Math.min(out.length,(j+1)*7-1),0,{a:null,k:0,t:h.t,id:h.id,o:h.o||null,f:h.f||0}));
   return out;
 })();
 /*P2-END*/
@@ -904,6 +918,7 @@ const Q2=(()=>{
    c: liberal(-1)..conservative(+1) · w: quietist(-1)..activist(+1) · pl: pluralist(-1)..exclusivist(+1) · p: philosophical(-1)..anti-philosophical(+1), null = not placed */
 const POL={
  khomeini:{c:.7,w:.95,pl:.55,p:-.85,why:"Developed and led the theory of wilayat al-faqih, the clearest activist position. Socially conservative, and a philosopher and mystic by training."},
+ khamenei:{c:.6,w:.95,pl:.45,p:null,why:"Led the Islamic Republic as Supreme Leader for almost 37 years under wilayat al-faqih, the clearest activist position after Khomeini's. In 2010 he issued a fatwa forbidding insults to figures revered by Sunnis, to ease Sunni–Shia tensions. Socially conservative: a 1996 ruling opposed teaching music in schools. Not placed on the philosophy axis, since his position on it isn't documented here."},
  khoei:{c:.6,w:-.75,pl:.55,p:.1,why:"The leading Najaf marja' of his era. He held that a jurist's guardianship is limited, and kept the seminary out of politics: the classic quietist position."},
  sistani:{c:.55,w:-.45,pl:.3,p:0,why:"Usually described as quietist, since he does not support clerical rule. But he has intervened at decisive moments, such as insisting on an elected body to write Iraq's constitution in 2003–04 and calling for volunteers against ISIS in 2014."},
  sadr:{c:.5,w:.75,pl:.4,p:-.6,why:"A founder of Islamic political activism in Iraq who wrote on Islamic government and economics, and was executed by the Ba'ath regime in 1980. Philosophically trained (Our Philosophy)."},
@@ -912,9 +927,9 @@ const POL={
  fadlallah:{c:-.25,w:.45,pl:-.35,p:-.3,why:"Politically engaged, and an independent marja' in his later years. Known for dialogue with Christians and for progressive rulings on women."},
  mutahhari:{c:.5,w:.7,pl:-.1,p:-.75,why:"A leading thinker of the 1979 revolution. In Divine Justice he argued that sincere non-Muslims who never truly met the truth may still be saved. A philosopher in Tabataba'i's circle."},
  tabatabai:{c:.6,w:-.3,pl:.3,p:-.9,why:"Kept largely out of politics and devoted himself to philosophy and Quranic exegesis."},
- shariati:{c:-.45,w:.7,pl:-.1,p:null,why:"Saw Shiism as a revolutionary ideology and inspired many of the 1979 revolution's young activists, while criticising the clergy's authority."},
+ shariati:{c:-.45,w:.7,pl:-.1,p:.3,why:"Saw Shiism as a revolutionary ideology and inspired many of the 1979 revolution's young activists, while criticising the clergy's authority. He criticised Greek and Avicennan philosophy and the seminaries' heavy emphasis on it, though he was no scripturalist."},
  shirazi:{c:.75,w:.45,pl:.7,p:null,why:"Politically active, he proposed rule by a council of maraji' rather than a single jurist. His movement is known for its emphasis on the Imams and on public commemoration."},
- vahid:{c:.85,w:-.2,pl:.7,p:null,why:"A senior Qum marja' known for teaching and devotional emphasis rather than political roles, and socially conservative."},
+ vahid:{c:.85,w:-.2,pl:.7,p:.75,why:"A senior Qum marja' known for teaching and devotional emphasis rather than political roles, and socially conservative. A student of Mirza Mahdi Isfahani, founder of the school of separation (Tafkik), he regards philosophy as a useless discipline and urges seminary students to study the Quran and hadith instead."},
  javadi:{c:.65,w:.7,pl:.4,p:-.9,why:"A long-standing defender of wilayat al-faqih who led Friday prayers in Qum for years, and a leading philosopher of the Sadrian school."},
  shahroudi:{c:.55,w:.85,pl:.5,p:-.2,why:"Served the Islamic Republic at the highest levels, heading the judiciary and the Expediency Council, while overseeing some penal reforms."},
  mohseni:{c:.5,w:.4,pl:.4,p:0,why:"Founded an Afghan Shia political movement and was active in Afghan politics after 2001, while remaining a traditional jurist."},
@@ -1194,10 +1209,10 @@ function cardHTML({set,j,q}){
   const x=v===null?50:v;
   return `<div class="qc ${v===null?"untouched":"done"}">${head}
       <div class="sl">
-        <div class="slhead">${!q.a&&set!=="p1"?`<span class="qtag">Not scored</span>`:""}<span class="slval" id="qv${uid}">${levelOf(x)}</span></div>
+        <div class="slhead">${!q.a&&set!=="p1"?`<span class="qtag">Not scored</span>`:""}<span class="slval" id="qv${uid}">${lvl(q,x)}</span></div>
         <div class="track"><div class="stops" aria-hidden="true"><i style="left:0%"></i><i style="left:25%"></i><i style="left:50%"></i><i style="left:75%"></i><i style="left:100%"></i></div>
-        <input class="ag" type="range" min="0" max="100" step="1" value="${x}" id="q${uid}" data-set="${set}" data-j="${j}" aria-labelledby="qs${uid}" aria-valuetext="${levelOf(x)}" style="--p:${x}%"></div>
-        <div class="ticks" aria-hidden="true"><span>Strongly disagree</span><span>Disagree</span><span>Neutral</span><span>Agree</span><span>Strongly agree</span></div>
+        <input class="ag" type="range" min="0" max="100" step="1" value="${x}" id="q${uid}" data-set="${set}" data-j="${j}" aria-labelledby="qs${uid}" aria-valuetext="${lvl(q,x)}" style="--p:${x}%"></div>
+        <div class="ticks" aria-hidden="true">${(q.f?FLEVELS:LEVELS).map(l=>`<span>${l[1]}</span>`).join("")}</div>
       </div></div>`;
 }
 function renderTest(){
@@ -1206,15 +1221,16 @@ function renderTest(){
   $("tTitle").textContent=onAbout?"First, a little about you":part===1?"How much do you agree?":"Where do you stand?";
   $("tNote").textContent=onAbout?"These aren't scored, and you can skip any of them. They're asked only once, and only used to find patterns if you choose to share your results."
     :part===1?"Each slider starts at Neutral. Move it to show how far you agree or disagree."
-    :"Each slider starts at Neutral. A few questions about your habits are multiple choice and aren't scored.";
+    :"Each slider starts in the middle. A few questions about your habits and experience aren't scored: they help find patterns.";
   $("tProg").innerHTML=onAbout?ABOUT.map((_,j)=>`<i class="${about[j]!==null?"on":""} page"></i>`).join("")
     :Q.map((_,j)=>`<i class="${A[j]!==null?"on":""} ${j>=start&&j<start+PER?"page":""}"></i>`).join("");
   const items=curItems();
   $("qlist").innerHTML=items.map(cardHTML).join("");
   $("qlist").querySelectorAll("input.ag").forEach(inp=>{
     const arr=arrOf(inp.dataset.set), j=+inp.dataset.j, card=inp.closest(".qc"), uid=inp.dataset.set+"_"+j;
+    const qq=(inp.dataset.set==="about"?ABOUT:inp.dataset.set==="p1"?QS:Q2)[j];
     const set=()=>{arr[j]=Number(inp.value);card.classList.remove("untouched");card.classList.add("done");
-      const lv=levelOf(arr[j]); $("qv"+uid).textContent=lv; inp.setAttribute("aria-valuetext",lv); inp.style.setProperty("--p",inp.value+"%"); updateTestNav(); saveSoon();};
+      const lv=lvl(qq,arr[j]); $("qv"+uid).textContent=lv; inp.setAttribute("aria-valuetext",lv); inp.style.setProperty("--p",inp.value+"%"); updateTestNav(); saveSoon();};
     inp.addEventListener("input",set); inp.addEventListener("change",set);
     inp.addEventListener("pointerdown",()=>setTimeout(set,0));
     inp.addEventListener("keydown",e=>{if(["ArrowLeft","ArrowRight","ArrowUp","ArrowDown","Home","End","PageUp","PageDown"].includes(e.key)) setTimeout(set,0);});
@@ -1337,13 +1353,13 @@ function part2HTML(){
   return `<section class="p2 theme2" id="q2res">
     <div class="p2head"><span class="eyebrow">Your result · part 2</span><h2>Society and politics</h2>
       <p class="sum">${lead}</p>
-      <p class="note">Each bar splits 100% between the two poles: 50/50 is the middle. Based on your answers to 36 statements; the six habit questions aren't scored.</p>
+      <p class="note">Each bar splits 100% between the two poles: 50/50 is the middle. Based on your answers to 36 statements; the eight questions about your habits and experience aren't scored.</p>
       <div class="cta"><button class="btn" id="toCube2">See your pin on the society and politics compass →</button><button class="btn ghost" id="retake2">Retake part 2</button></div></div>
     <div class="ax12">${GROUPS2.map(([g,ks])=>`<div class="axg"><span class="eyebrow">${g}</span>${ks.map(axRow).join("")}</div>`).join("")}</div>
     <section class="align">
       <span class="eyebrow">On these questions</span>
       <h2>Scholars closest to you</h2>
-      <p class="intro">Based on social life, religion and politics, other religions and, where placed, philosophy. Only the ${ranked.length} scholars whose positions on these questions are documented are included.</p>
+      <p class="intro">Based on social life, religion and politics, philosophy (where placed) and other religions. Only the ${ranked.length} scholars whose positions on these questions are documented are included.</p>
       <div class="alist" data-mode="soc">${ranked.slice(0,6).map(row).join("")}</div>
     </section>
   </section>`;
@@ -1351,17 +1367,121 @@ function part2HTML(){
 function ctaHTML(p){
   const started=(p===1?answers:answers2).some(a=>a!==null);
   return p===1
-    ?`<section class="pcta"><div><span class="eyebrow">Part 1 · Belief and method</span><h2>Where you stand on Esmail's three spectrums</h2><p>Modern questions, Imamology and method, with your pin among 42 scholars in the 3D compass. 36 statements, about 8 minutes.</p></div><div class="cta"><button class="btn" data-go="test">${started?"Continue part 1 →":"Start part 1 →"}</button></div></section>`
-    :`<section class="pcta theme2" id="q2res"><div><span class="eyebrow">Part 2 · Society and politics</span><h2>Nine more axes</h2><p>Social life, religion and politics, other religions, Sunni–Shia relations, ritual, the state, wider society, philosophy and religious authority, with a second 3D compass. 42 questions, about 8 minutes.</p></div><div class="cta"><button class="btn" data-go="test2">${started?"Continue part 2 →":"Start part 2 →"}</button></div></section>`;
+    ?`<section class="pcta"><div><span class="eyebrow">Part 1 · Belief and method</span><h2>Where you stand on Esmail's three spectrums</h2><p>Modern questions, Imamology and method, with your pin among 43 scholars in the 3D compass. 36 statements, about 8 minutes.</p></div><div class="cta"><button class="btn" data-go="test">${started?"Continue part 1 →":"Start part 1 →"}</button></div></section>`
+    :`<section class="pcta theme2" id="q2res"><div><span class="eyebrow">Part 2 · Society and politics</span><h2>Nine more axes</h2><p>Social life, religion and politics, philosophy, other religions, Sunni–Shia relations, ritual, the state, wider society and religious authority, with a second 3D compass. 44 questions, about 8 minutes.</p></div><div class="cta"><button class="btn" data-go="test2">${started?"Continue part 2 →":"Start part 2 →"}</button></div></section>`;
+}
+/* ================= SHARE CARD ================= */
+/* A portrait image (1080 wide, Instagram-friendly) drawn on a canvas: where you sit on each axis and your closest scholars.
+   Scholar portraits: put your own images (that you have the right to use) at img/scholars/<id>.jpg next to index.html,
+   for example img/scholars/sistani.jpg. Any scholar without one gets a tile with their initials in their region colour. */
+const PHOTO_DIR="img/scholars/";
+const photoCache={};
+function loadPhoto(id){
+  if(!(id in photoCache)) photoCache[id]=new Promise(res=>{ const im=new Image(); im.onload=()=>res(im); im.onerror=()=>res(null); im.src=PHOTO_DIR+id+".jpg"; });
+  return photoCache[id];
+}
+const REGHEX={iraq:"#1D3FA6",iran:"#C47F0A",lebanon:"#0E7C80",arabia:"#7A4CC2",afghanistan:"#C23B6B",west:"#4B6478"};
+function initials(s){ const w=s.s.replace(/^(al-|Ayatollah |Allama |Shaykh |Sayyid )/,"").replace(/[^A-Za-z\s'-]/g,"").split(/[\s-]+/).filter(x=>x&&!/^(al|el|of|the)$/i.test(x)); return ((w[0]||"?")[0]+(w.length>1?w[w.length-1][0]:"")).toUpperCase(); }
+async function drawCard(){
+  const W=1080, PAD=64, F1='"Bricolage Grotesque","Segoe UI",system-ui,sans-serif', F2='"Source Sans 3","Segoe UI",system-ui,sans-serif';
+  try{ await Promise.all([document.fonts.load('800 40px "Bricolage Grotesque"'),document.fonts.load('600 20px "Source Sans 3"'),document.fonts.load('700 30px "Reem Kufi"')]); }catch(_){}
+  const near1=user?S.map(s=>({s,d:dist(s,user)})).sort((a,b)=>a.d-b.d).slice(0,user2?3:5):[];
+  const near2=user2?Object.keys(POL).map(id=>({s:SID[id],d:dist2(id,user2)})).sort((a,b)=>a.d-b.d).slice(0,3):[];
+  const photos={}; await Promise.all([...near1,...near2].map(async o=>{photos[o.s.id]=await loadPhoto(o.s.id);}));
+  const top2=user2?K2.slice().sort((a,b)=>Math.abs(user2[b])-Math.abs(user2[a])).slice(0,4):[];   // the four strongest leanings
+  const rows2=Math.ceil(top2.length/2);
+  const H=150+(user?150+3*92+60+near1.length*92:0)+(user2?90+rows2*92+60+near2.length*92:0)+(user&&user2?40:0)+90;
+  const cv=document.createElement("canvas"); cv.width=W; cv.height=H; const g=cv.getContext("2d");
+  const INK="#0B2233";
+  g.fillStyle="#F6F9FA"; g.fillRect(0,0,W,H);
+  // tile band
+  const band=(y,c1,c2,c3,bg)=>{ g.fillStyle=bg; g.fillRect(0,y,W,40); for(let x=0;x<W;x+=40){ const cx=x+20,cy=y+20;
+    g.fillStyle=c1; g.beginPath(); g.moveTo(cx,cy-15); g.lineTo(cx+5,cy-5); g.lineTo(cx+15,cy); g.lineTo(cx+5,cy+5); g.lineTo(cx,cy+15); g.lineTo(cx-5,cy+5); g.lineTo(cx-15,cy); g.lineTo(cx-5,cy-5); g.closePath(); g.fill();
+    g.fillStyle=c2; g.save(); g.translate(cx,cy); g.rotate(Math.PI/4); g.fillRect(-6,-6,12,12); g.restore();
+    g.fillStyle=c3; g.beginPath(); g.arc(cx,cy,3,0,7); g.fill(); } };
+  band(0,"#0E7C80","#1D3FA6","#E0A42A",INK);
+  const txt=(t,x,y,font,col,align)=>{ g.font=font; g.fillStyle=col; g.textAlign=align||"left"; g.fillText(t,x,y); };
+  const fit=(t,font,max)=>{ g.font=font; if(g.measureText(t).width<=max) return t; while(t.length>3&&g.measureText(t+"…").width>max) t=t.slice(0,-1); return t+"…"; };
+  let y=110;
+  txt("MY SHIA COMPASS",PAD,y,`700 26px ${F2}`,"#0E6E72"); txt("بوصلة",W-PAD,y,`700 30px "Reem Kufi",serif`,"#0E6E72","right");
+  y+=40;
+  const scholarRows=(list,dfn,accent)=>{ list.forEach(o=>{ const r=34, cx=PAD+r, cy=y+r, m=match(dfn(o));
+      g.save(); g.beginPath(); g.arc(cx,cy,r,0,7); g.closePath(); g.clip();
+      const im=photos[o.s.id];
+      if(im){ const sc=Math.max(2*r/im.width,2*r/im.height); g.drawImage(im,cx-im.width*sc/2,cy-im.height*sc/2,im.width*sc,im.height*sc); }
+      else { g.fillStyle=REGHEX[o.s.reg]; g.fillRect(cx-r,cy-r,2*r,2*r); g.font=`800 26px ${F1}`; g.fillStyle="#fff"; g.textAlign="center"; g.fillText(initials(o.s),cx,cy+9); }
+      g.restore(); g.lineWidth=3; g.strokeStyle=INK; g.beginPath(); g.arc(cx,cy,r,0,7); g.stroke();
+      txt(fit(o.s.n,`800 30px ${F1}`,600),PAD+2*r+22,y+30,`800 30px ${F1}`,INK);
+      txt(`${REG[o.s.reg].n} · ${o.s.d}`,PAD+2*r+22,y+60,`500 21px ${F2}`,"#3D5566");
+      txt(m+"%",W-PAD,y+34,`800 34px ${F1}`,accent,"right");
+      g.fillStyle="#DCE4EA"; g.fillRect(W-PAD-170,y+50,170,10); g.fillStyle=accent; g.fillRect(W-PAD-170,y+50,170*m/100,10);
+      y+=92; }); };
+  const twoPole=(x0,bw,yy,neg,pos,v,cNeg,cPos,name)=>{ const r=Math.round((v+1)*50);
+      txt(fit(name,`800 24px ${F1}`,bw),x0,yy,`800 24px ${F1}`,INK);
+      txt(`${neg} ${100-r}%`,x0,yy+30,`600 20px ${F2}`,"#3D5566"); txt(`${r}% ${pos}`,x0+bw,yy+30,`600 20px ${F2}`,"#3D5566","right");
+      g.fillStyle=cNeg; g.fillRect(x0,yy+42,bw*(100-r)/100,14); g.fillStyle=cPos; g.fillRect(x0+bw*(100-r)/100,yy+42,bw*r/100,14);
+      g.lineWidth=2.5; g.strokeStyle=INK; g.strokeRect(x0,yy+42,bw,14); g.fillStyle="#fff"; g.fillRect(x0+bw/2-1,yy+42,2,14); };
+  if(user){
+    const [an]=archetype(user);
+    txt("PART 1 · BELIEF AND METHOD",PAD,y,`700 22px ${F2}`,"#3D5566"); y+=62;
+    txt(fit(an,`800 64px ${F1}`,W-2*PAD),PAD,y,`800 64px ${F1}`,INK); y+=48;
+    const cols={m:"#0E7C80",i:"#1D3FA6",e:"#9A6304"};
+    AXK.forEach(a=>{ const v=user[a], bw=W-2*PAD, x=PAD+bw*(v+1)/2;
+      txt(AX[a].name,PAD,y+16,`800 24px ${F1}`,INK);
+      txt(AX[a].neg,PAD,y+46,`600 21px ${F2}`,"#3D5566"); txt(AX[a].pos,W-PAD,y+46,`600 21px ${F2}`,"#3D5566","right");
+      g.fillStyle="#DCE4EA"; g.fillRect(PAD,y+58,bw,12); g.fillStyle=cols[a]; g.fillRect(PAD,y+58,x-PAD,12);
+      g.save(); g.translate(x,y+64); g.rotate(Math.PI/4); g.fillStyle="#E0A42A"; g.fillRect(-12,-12,24,24); g.lineWidth=3.5; g.strokeStyle=INK; g.strokeRect(-12,-12,24,24); g.restore();
+      y+=92; });
+    y+=22; txt("CLOSEST SCHOLARS",PAD,y,`700 22px ${F2}`,"#0E6E72"); y+=22;
+    scholarRows(near1,o=>o.d,"#0E7C80");
+  }
+  if(user2){
+    if(user){ y+=10; g.fillStyle="#B9C7D1"; g.fillRect(PAD,y,W-2*PAD,3); y+=30; }
+    txt("PART 2 · SOCIETY AND POLITICS · STRONGEST LEANINGS",PAD,y,`700 22px ${F2}`,"#6E2B67"); y+=50;
+    const cw=(W-2*PAD-48)/2;
+    top2.forEach((a,k)=>{ const col=k%2, row=Math.floor(k/2); twoPole(PAD+col*(cw+48),cw,y+row*92,AX2[a].neg,AX2[a].pos,user2[a],"#1E7A55","#D8613A",AX2[a].name); });
+    y+=rows2*92+20; txt("CLOSEST ON THESE QUESTIONS",PAD,y,`700 22px ${F2}`,"#6E2B67"); y+=22;
+    scholarRows(near2,o=>o.d,"#6E2B67");
+  }
+  // footer
+  y=H-66; txt("Take the test: husaynyahya.github.io/ShiaCompass",PAD,y+8,`700 24px ${F2}`,INK);
+  band(H-40,"#1E7A55","#6E2B67","#D8613A","#2B1630");
+  return cv;
+}
+async function renderShareCard(){
+  const img=$("cardImg"); if(!img) return;
+  const cv=await drawCard(); img.src=cv.toDataURL("image/png");
+  const blob=await new Promise(r=>cv.toBlob(r,"image/png"));
+  const file=blob&&new File([blob],"shia-compass.png",{type:"image/png"});
+  const dl=$("dlCard"), sh=$("shareCard");
+  if(dl) dl.onclick=async()=>{
+    const msg=$("cardMsg"); if(msg) msg.textContent="";
+    if(inFrame){   // inside a Claude page the viewer's app handles saving, and asks the viewer first
+      const dcap=window.claude&&window.claude.use?await window.claude.use("downloads").catch(()=>null):null;
+      if(!dcap){ if(msg) msg.textContent="Saving isn't available here. Press and hold the image (or right-click it) to save it."; return; }
+      try{ await dcap.save({filename:"shia-compass.png",data:blob}); }
+      catch(e){ if(msg&&e&&e.code!=="declined") msg.textContent=e.code==="rate_limited"?"A save is already waiting for you to confirm.":"Saving isn't available here. Press and hold the image (or right-click it) to save it."; }
+      return;
+    }
+    const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="shia-compass.png"; document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},1000); };
+  if(sh){ const can=!!(file&&navigator.canShare&&navigator.canShare({files:[file]})); sh.hidden=!can;
+    sh.onclick=async()=>{ try{ await navigator.share({files:[file],title:"My Shia Compass",text:"Where I sit on the Shia Compass. Take the test: https://husaynyahya.github.io/ShiaCompass/"}); }catch(_){} }; }
 }
 function renderInsights(){
   const box=$("v-insights");
-  if(!user&&!user2){ box.innerHTML=`<div class="chead"><span class="eyebrow">03 · Insights</span><h1>Take the test first</h1><p>Your insights appear here once you've finished part 1 (36 statements on belief and method) or part 2 (42 questions on society and politics).</p><div class="cta" style="margin-top:14px"><button class="btn" data-go="test">Start part 1 →</button><button class="btn ghost" data-go="test2">Start part 2 →</button></div></div>`; return; }
+  if(!user&&!user2){ box.innerHTML=`<div class="chead"><span class="eyebrow">03 · Insights</span><h1>Take the test first</h1><p>Your insights appear here once you've finished part 1 (36 statements on belief and method) or part 2 (44 questions on society and politics).</p><div class="cta" style="margin-top:14px"><button class="btn" data-go="test">Start part 1 →</button><button class="btn ghost" data-go="test2">Start part 2 →</button></div></div>`; return; }
   const codes=[]; if(user) codes.push(["Part 1",encodeCode()]); if(user2) codes.push(["Part 2",encodeCode2()]);
   box.innerHTML=`
    <div class="ins">
     ${user?part1HTML():ctaHTML(1)}
     ${user2?part2HTML():ctaHTML(2)}
+    <section class="sharecard" aria-label="Share your result">
+      <div class="shead"><span class="eyebrow">Share</span><h2>Your result card</h2>
+        <p>An image of where you sit on part 1's three spectrums and your four strongest part 2 leanings, with the scholars closest to you. Post it or send it to friends.</p>
+        <div class="cta"><button class="btn" id="dlCard" type="button">Download image</button><button class="btn ghost" id="shareCard" type="button" hidden>Share…</button></div>
+        <p class="cmsg" id="cardMsg" role="status"></p><p class="muted" style="font-size:14px">On a phone, you can also press and hold the image to save it.</p></div>
+      <img id="cardImg" alt="Your Shia Compass result card">
+    </section>
     ${communityOn?`<section class="community" id="community" aria-label="Compare with others"></section>`:""}
     <section class="savebox" aria-label="Your data">
       <div class="savehead">
@@ -1395,6 +1515,7 @@ function renderInsights(){
     clearLocal(); go("home");
   });
   if(communityOn) renderCommunity();
+  renderShareCard();
   box.querySelectorAll("[data-sch]").forEach(b=>b.addEventListener("click",()=>{mode=b.closest('[data-mode="soc"]')?"soc":"core";drawer={type:"scholar",id:b.dataset.sch};go("compass");}));
   box.querySelectorAll("[data-meth]").forEach(b=>b.addEventListener("click",()=>{const [a,p]=b.dataset.meth.split(":");mode="core";drawer={type:"method",a,p};go("compass");}));
   box.querySelectorAll("[data-ax2m]").forEach(b=>b.addEventListener("click",()=>{const [a,p]=b.dataset.ax2m.split(":");mode="soc";drawer={type:"axis2",a,p};go("compass");}));
@@ -1457,12 +1578,12 @@ const MODES={
    legend:"Dot colour = region · dashed circle = mainstream Usuli centre · dotted saffron line = the deepest divide",
    chips:["Modern × Imamology","Method × Imamology","Modern × Method"],
    hint:{iso:"Drag to turn · arrow keys work too",front:"Front: modern questions across, Imamology up. Method is depth.",side:"Side: method across (rationalist left), Imamology up. Modern questions is depth.",top:"Top: modern questions across, method up (scripturalist top). Imamology is depth."}},
- soc:{keys:["c","w","pl"], ax:k=>AX2[k], list:()=>S.filter(s=>POL[s.id]), pos:s=>({m:POL[s.id].c,i:POL[s.id].w,e:POL[s.id].pl}), me:()=>user2&&{m:user2.c,i:user2.w,e:user2.pl},
+ soc:{keys:["c","w","p"], ax:k=>AX2[k], list:()=>S.filter(s=>POL[s.id]&&POL[s.id].p!==null), pos:s=>({m:POL[s.id].c,i:POL[s.id].w,e:POL[s.id].p}), me:()=>user2&&{m:user2.c,i:user2.w,e:user2.p},
    title:"Society and politics", lab:"Society and politics",
-   desc:`The second compass. Left to right is <b style="color:var(--text)">Liberal ↔ Conservative</b> on social life, bottom to top is <b style="color:var(--text)">Quietist ↔ Activist</b> on religion and politics, and front to back is <b style="color:var(--text)">Pluralist ↔ Exclusivist</b> on other religions. Only the ${Object.keys(POL).length} scholars whose positions on these questions are documented are placed, and their placements are approximate.`,
-   legend:"Dot colour = region · placements on these axes are approximate readings of each scholar's public positions",
-   chips:["Social life × Politics","Other religions × Politics","Social life × Other religions"],
-   hint:{iso:"Drag to turn · arrow keys work too",front:"Front: social life across, religion and politics up. Other religions is depth.",side:"Side: other religions across (pluralist left), politics up. Social life is depth.",top:"Top: social life across, other religions up (exclusivist top). Politics is depth."}}
+   desc:`The second compass. Left to right is <b style="color:var(--text)">Liberal ↔ Conservative</b> on social life, bottom to top is <b style="color:var(--text)">Quietist ↔ Activist</b> on religion and politics, and front to back is <b style="color:var(--text)">Philosophical ↔ Anti-philosophical</b> on philosophy and mysticism. Only the ${Object.keys(POL).filter(id=>POL[id].p!==null).length} scholars whose positions on all three are documented are placed, and their placements are approximate.`,
+   legend:"Dot colour = region · placements on these axes are approximate readings of each scholar's public positions · Khamenei, al-Shirazi and al-Ghizzi aren't shown: no documented position on philosophy",
+   chips:["Social life × Politics","Philosophy × Politics","Social life × Philosophy"],
+   hint:{iso:"Drag to turn · arrow keys work too",front:"Front: social life across, religion and politics up. Philosophy is depth.",side:"Side: philosophy across (philosophical left), politics up. Social life is depth.",top:"Top: social life across, philosophy up (anti-philosophical top). Politics is depth."}}
 };
 let mode="core";
 const MD=()=>MODES[mode], cp=s=>MD().pos(s), me=()=>MD().me();
@@ -1554,7 +1675,7 @@ function renderDrawer(){
       ${user?`<span class="sec">Match with you</span><p>${match(dist(s,user))}%</p>`:""}
       ${leans?`<span class="sec">Methods they lean on</span><div class="figs">${leans}</div>`:""}`;
     } else {
-      const P=POL[s.id], ks=["c","w","pl"].concat(P.p===null?[]:["p"]);
+      const P=POL[s.id], ks=["c","w","p","pl"].filter(k=>P[k]!==null);
       h=`${back}
       <span class="eyebrow"><i class="dot" style="background:var(--r-${s.reg})"></i>${REG[s.reg].n} · ${s.city}</span>
       <h3>${s.n}</h3><span class="meta">${s.d} · ${ERA[s.era]} · ${s.role}</span>
@@ -1574,7 +1695,7 @@ function renderDrawer(){
       <button class="btn ghost small" style="align-self:flex-start;margin-top:6px" data-meth="${drawer.a}:${opp}">The opposite view: ${METHOD[drawer.a][opp].t} →</button>`;
   } else if(drawer.type==="axis2"){const A=AX2[drawer.a], neg=drawer.p==="neg", opp=neg?"pos":"neg";
     const onCube=MODES.soc.keys.includes(drawer.a);
-    const figs=onCube||drawer.a==="p"?Object.keys(POL).filter(id=>POL[id][drawer.a]!==null&&(neg?POL[id][drawer.a]<=-.3:POL[id][drawer.a]>=.3)).sort((x,y)=>neg?POL[x][drawer.a]-POL[y][drawer.a]:POL[y][drawer.a]-POL[x][drawer.a]).slice(0,6):[];
+    const figs=onCube||["c","w","p","pl"].includes(drawer.a)?Object.keys(POL).filter(id=>POL[id][drawer.a]!==null&&(neg?POL[id][drawer.a]<=-.3:POL[id][drawer.a]>=.3)).sort((x,y)=>neg?POL[x][drawer.a]-POL[y][drawer.a]:POL[y][drawer.a]-POL[x][drawer.a]).slice(0,6):[];
     h=`${back}
       <span class="eyebrow">${A.g} · ${A.name}</span><h3>${neg?A.neg:A.pos}</h3>
       <p style="font-size:16px">${A.d}</p>

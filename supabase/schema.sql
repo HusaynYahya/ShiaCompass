@@ -4,7 +4,7 @@
 --
 -- Design:
 --   * One row per browser that chooses to share, keyed by a random token kept in that browser.
---   * Part 1 (36 statements) and part 2 (42 questions) are both optional; a row holds whichever were finished.
+--   * Part 1 (36 statements) and part 2 (44 questions) are both optional; a row holds whichever were finished.
 --   * The table is locked: the public (anon) key cannot read or write it directly.
 --   * The page can only call three functions:
 --       submit_result      add or update this browser's result (needs its token)
@@ -30,8 +30,12 @@ alter table public.results add column if not exists answers   smallint[] check (
 alter table public.results add column if not exists about     smallint[] check (
   about is null or (array_ndims(about) = 1 and cardinality(about) = 6 and 0 <= all (about) and 10 >= all (about)));
 alter table public.results add column if not exists answers2  smallint[] check (
-  answers2 is null or (array_ndims(answers2) = 1 and cardinality(answers2) = 42 and 0 <= all (answers2) and 100 >= all (answers2)));
+  answers2 is null or (array_ndims(answers2) = 1 and cardinality(answers2) = 44 and 0 <= all (answers2) and 100 >= all (answers2)));
 alter table public.results add column if not exists scores2   jsonb    check (scores2 is null or jsonb_typeof(scores2) = 'object');
+-- Keep the part 2 length check current if an older version of this script created it with a different length.
+alter table public.results drop constraint if exists results_answers2_check;
+alter table public.results add constraint results_answers2_check check (
+  answers2 is null or (array_ndims(answers2) = 1 and cardinality(answers2) = 44 and 0 <= all (answers2) and 100 >= all (answers2))) not valid;  -- not valid: rows saved under the older 42-question version are kept as they are
 -- Older installs made these NOT NULL; part 1 is now optional.
 alter table public.results alter column m drop not null, alter column i drop not null, alter column e drop not null,
   alter column archetype drop not null, alter column answers drop not null;
