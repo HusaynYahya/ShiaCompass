@@ -681,7 +681,7 @@ const QS=[
  {a:"i",k:1,t:"Ziyarat al-Jami'a al-Kabira describes the Imams' station accurately and should be taken at face value."},
  {a:"e",k:-1,t:"Usul al-fiqh, the theory of jurisprudence, is necessary to derive rulings correctly."}
 ];
-const LEVELS=[[12.5,"Not at all"],[37.5,"Slightly"],[62.5,"Somewhat"],[87.5,"Mostly"],[101,"Completely"]];
+const LEVELS=[[12.5,"Strongly disagree"],[37.5,"Disagree"],[62.5,"Neutral"],[87.5,"Agree"],[101,"Strongly agree"]];
 const levelOf=x=>LEVELS.find(([t])=>x<t)[1];
 
 const BANDS={
@@ -947,7 +947,7 @@ function renderTest(){
         <div class="slhead"><span class="slval" id="qv${j}">${v===null?"Move the slider":levelOf(x)}</span></div>
         <div class="track"><div class="stops" aria-hidden="true"><i style="left:0%"></i><i style="left:25%"></i><i style="left:50%"></i><i style="left:75%"></i><i style="left:100%"></i></div>
         <input class="ag" type="range" min="0" max="100" step="1" value="${x}" id="q${j}" aria-labelledby="qs${j}" aria-valuetext="${v===null?"Not answered":levelOf(x)}" style="--p:${x}%"></div>
-        <div class="ticks" aria-hidden="true"><span>Not at all</span><span>Slightly</span><span>Somewhat</span><span>Mostly</span><span>Completely</span></div>
+        <div class="ticks" aria-hidden="true"><span>Strongly disagree</span><span>Disagree</span><span>Neutral</span><span>Agree</span><span>Strongly agree</span></div>
       </div></div>`;}).join("");
   idxs.forEach(j=>{
     const inp=$("q"+j), card=inp.closest(".qc");

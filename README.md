@@ -10,7 +10,7 @@ A single-page web app built on the three spectrums Zoheir Esmail set out in his 
 
 ## What it does
 
-- **Test**: 36 statements (12 per spectrum, some reverse-worded), answered on sliders from "Not at all" to "Completely"
+- **Test**: 36 statements (12 per spectrum, some reverse-worded), answered on sliders from "Strongly disagree" to "Strongly agree"
 - **Insights**: your position on each spectrum and what it means, the strongest case from the other side, reading and practices that tend to go with your position, related beliefs, and your closest scholars by match percentage
 - **3D Compass**: a rotatable cube of 42 scholars from the 10th century to today, with your pin, filters by region (Iraq, Iran, Lebanon, Arabia & Gulf, Afghanistan, the West) and period, flat Front / Side / Top views, and clickable axis labels that explain the method behind each viewpoint
 - **Glossary**: 44 Arabic terms, also available as tap-to-define pop-ups throughout
