@@ -284,6 +284,49 @@ input.ag::-moz-range-thumb{width:22px;height:22px;background:var(--saffron);bord
 .gitem dt .ar{color:var(--teal-d);font-size:17px}
 .gitem dd{margin:4px 0 0;color:var(--ink2);font-size:15px}
 .gitem.flash{border-color:var(--saffron);background:var(--saffron-t)}
+/* community */
+.community{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:20px 40px;background:#fff;border:2px solid var(--text);border-radius:14px;padding:clamp(20px,3vw,32px);box-shadow:0 6px 0 var(--cobalt)}
+@media (max-width:860px){.community{grid-template-columns:minmax(0,1fr)}}
+.community .chd{display:flex;flex-direction:column;gap:8px}
+.community .chd h2{font-size:clamp(26px,3vw,34px)}
+.community .chd p{color:var(--ink2)}
+.community code{font-family:var(--f-mono);font-size:13px;background:var(--cobalt-t);padding:1px 6px;border-radius:4px;word-break:break-all}
+.cside{display:flex;flex-direction:column;gap:12px;min-width:0}
+.what{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;font-size:15.5px}
+.what li{padding-left:18px;position:relative}
+.what li::before{content:"";position:absolute;left:2px;top:.55em;width:8px;height:8px;background:var(--teal);transform:rotate(45deg)}
+.chk{display:flex;gap:12px;align-items:flex-start;font-size:15.5px;font-weight:600;background:var(--cobalt-t);border-radius:10px;padding:12px 14px;cursor:pointer}
+.chk input{width:22px;height:22px;margin:1px 0 0;flex:none;accent-color:var(--cobalt)}
+.cmsg{font-size:14.5px;color:var(--ink2);min-height:1.2em}
+.notice summary{cursor:pointer;font-weight:600;color:var(--teal-d);font-size:15px;min-height:32px;display:flex;align-items:center}
+.nbody{display:flex;flex-direction:column;gap:8px;font-size:14.5px;color:var(--ink2);padding:6px 0 2px;max-width:70ch}
+.cout{grid-column:1/-1;border-top:2px solid var(--line);padding-top:16px;display:flex;flex-direction:column;gap:10px}
+.cout h3{font-size:22px}
+.cres{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:860px){.cres{grid-template-columns:minmax(0,1fr)}}
+.cres li{background:var(--bg);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:2px;font-size:16px}
+.cres .ax{font-size:12.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--teal-d)}
+.bigbar .tr .cavg{position:absolute;top:-7px;bottom:-7px;width:4px;margin-left:-2px;background:var(--text);border-radius:2px;z-index:2}
+/* saving */
+.resume{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;background:#fff;border:2px solid var(--text);border-radius:12px;padding:14px 16px;box-shadow:0 4px 0 var(--teal);max-width:660px}
+.resume .rk{font-size:12.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--teal-d);width:100%}
+.resume .rt{flex:1 1 220px;font-size:17px}
+.restore{max-width:660px;font-size:15px}
+.restore summary{cursor:pointer;font-weight:600;color:var(--teal-d);min-height:32px;display:flex;align-items:center}
+.restoreform{display:flex;flex-direction:column;gap:8px;padding-top:6px}
+.restoreform label,.saveact label{font-size:14px;font-weight:700}
+.rrow{display:flex;gap:8px;flex-wrap:wrap}
+.rrow input{flex:1 1 220px;min-width:0;min-height:44px;border:2px solid var(--line2);border-radius:8px;padding:0 12px;font-family:var(--f-mono);font-size:14px;color:var(--text);background:#fff}
+.rrow input:focus{border-color:var(--cobalt);outline:none}
+.rmsg{font-size:14px;color:var(--ink2);min-height:1.2em}
+.savebox{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px 40px;align-items:end;background:var(--teal-t);border-radius:14px;padding:clamp(20px,3vw,32px)}
+@media (max-width:860px){.savebox{grid-template-columns:minmax(0,1fr)}}
+.savehead{display:flex;flex-direction:column;gap:8px}
+.savehead h2{font-size:clamp(26px,3vw,34px)}
+.savehead p{color:var(--ink2);max-width:58ch}
+.saveact{display:flex;flex-direction:column;gap:10px;min-width:0}
+.btn.danger{color:var(--rubric);border-color:var(--rubric)}
+.btn.danger:hover{background:#FBE9E6}
 .method-note{font-size:14.5px;color:var(--muted);max-width:80ch;margin-top:40px;display:flex;flex-direction:column;gap:8px;border-top:2px solid var(--line);padding-top:20px}
 </style>
 </head>
@@ -309,17 +352,26 @@ input.ag::-moz-range-thumb{width:22px;height:22px;background:var(--saffron);bord
         <span class="eyebrow">Built on Zoheir Esmail's three spectrums</span>
         <h1>Take the <em>Shia Compass</em> Test</h1>
         <p class="sub">See where you align with traditional and contemporary scholars.</p>
-        <div class="facts"><span><b>36</b> statements</span><span>about <b>8</b> minutes</span><span><b>3</b> spectrums</span><span><b>39</b> scholars, 10th century to today</span></div>
+        <div class="facts"><span><b>36</b> statements</span><span>about <b>8</b> minutes</span><span><b>3</b> spectrums</span><span><b>40</b> scholars, 10th century to today</span></div>
         <div class="cta">
           <button class="btn" data-go="test">Start the test →</button>
           <button class="btn ghost" data-go="compass">Explore the compass first</button>
         </div>
+        <div id="resume" class="resume" hidden></div>
         <div class="spectra" aria-label="The three spectrums">
           <div class="spec"><span class="num" aria-hidden="true">١</span><h3>Modernist ↔ Traditionalist</h3><p>How far modern questions about women, minorities and rights should reshape religious conclusions.</p></div>
           <div class="spec"><span class="num" aria-hidden="true">٢</span><h3>Minimalist ↔ Maximalist</h3><p>What an Imam is: a divinely guided scholar and leader, or a cosmic intermediary with wilaya takwiniyya.</p></div>
           <div class="spec"><span class="num" aria-hidden="true">٣</span><h3>Rationalist ↔ Scripturalist</h3><p>Whether reason or the transmitted texts come first. Esmail calls this the root of the other two.</p></div>
         </div>
-        <p class="credit">Framing from <a href="https://www.instagram.com/p/DeeCwwuDXzv/" target="_blank" rel="noopener">Zoheir Esmail's post</a> (14 October 2026), after Shaykh Dr Vinay Khetia's Shia Research Institute podcast. Your answers stay in this page and aren't saved or sent anywhere.</p>
+        <p class="credit">Framing from <a href="https://www.instagram.com/p/DeeCwwuDXzv/" target="_blank" rel="noopener">Zoheir Esmail's post</a> (14 October 2026), after Shaykh Dr Vinay Khetia's Shia Research Institute podcast. Your answers are saved only in this browser, so you can pick up where you left off. They are never sent anywhere.</p>
+        <details class="restore">
+          <summary>Have a result code from another device?</summary>
+          <form id="restoreForm" class="restoreform">
+            <label for="restoreIn">Paste your result code</label>
+            <div class="rrow"><input id="restoreIn" type="text" autocomplete="off" spellcheck="false" placeholder="SC1-…"><button class="btn small" type="submit">Restore</button></div>
+            <p id="restoreMsg" class="rmsg" role="status"></p>
+          </form>
+        </details>
       </div>
       <svg id="hero" viewBox="0 0 520 520" aria-hidden="true"></svg>
     </div>
@@ -384,6 +436,7 @@ input.ag::-moz-range-thumb{width:22px;height:22px;background:var(--saffron);bord
     <div class="method-note">
       <span class="eyebrow">How the placements were made</span>
       <p>The three spectrums come from Zoheir Esmail's post, which draws on Shaykh Dr Vinay Khetia's framing. The scholars' positions are approximate readings of what each is best known for in their published work and in the secondary literature; the post itself places no one. Every placement is contestable, since most scholars hold mixed positions and changed over a lifetime. A position says nothing about piety or correctness.</p>
+      <p>Your answers are stored only in your own browser on this device (its local storage), so the test resumes where you left off and your result is there when you come back. They are never sent to a server. A result code lets you carry your answers to another device yourself. "Clear my data" on the insights page removes everything.</p>
       <p>The test is a self-reflection tool, not a validated measure. The reading, activity and belief suggestions on the insights page describe tendencies among people with similar views, not predictions about you.</p>
     </div>
   </section>
@@ -391,6 +444,19 @@ input.ag::-moz-range-thumb{width:22px;height:22px;background:var(--saffron);bord
 
 <script>
 (function(){
+/* ===== Community results (optional) =====================================================
+   Leave url and key empty and the site works exactly as before, saving only in the browser.
+   To turn on anonymous sharing: create a Supabase project, run supabase/schema.sql in its
+   SQL Editor, then paste the Project URL and the publishable (or legacy anon) key below.
+   Both are designed to be public. Never paste the secret / service_role key here.        */
+const COMMUNITY={
+  url:"",      // e.g. "https://abcdefghijklmnop.supabase.co"
+  key:"",      // e.g. "sb_publishable_..." (or the legacy "eyJ..." anon public key)
+  owner:"[YOUR NAME OR ORGANISATION]",
+  contact:"[YOUR CONTACT EMAIL]",
+  region:"[DATA REGION, e.g. London (eu-west-2)]"
+};
+const CONSENT_VERSION="c1";
 const $=id=>document.getElementById(id);
 const reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const NS="http://www.w3.org/2000/svg";
@@ -487,6 +553,9 @@ const S=[
  {id:"fadlallah",n:"Muhammad Husayn Fadlallah",s:"Fadlallah",d:"d. 2010",era:"contemporary",reg:"lebanon",city:"Beirut",role:"Marja'",m:-.35,i:-.35,e:-.45,
   k:"A reformist marja' who questioned some historical narrations and popular practices, and took progressive positions on women.",
   w:"Modernist-leaning, minimalist-leaning and rationalist. Several fellow maraji' contested his views."},
+ {id:"shahroudi",n:"Sayyid Mahmoud Hashemi Shahroudi",s:"Hashemi Shahroudi",d:"d. 2018",era:"contemporary",reg:"iran",city:"Born in Najaf; Qum, Tehran",role:"Marja'; head of Iran's judiciary 1999–2009",m:.35,i:.35,e:-.4,
+  k:"A student of Muhammad Baqir al-Sadr in Najaf who wrote up al-Sadr's lectures on legal theory (Buhuth fi 'ilm al-usul) and founded the Encyclopedia of Islamic Fiqh. He headed Iran's judiciary from 1999 to 2009, chaired the Expediency Council, and declared himself a marja' in 2010.",
+  w:"A rationalist Usuli in al-Sadr's line, and traditional in law. He also took on modern questions in Qara'at fiqhiyya mu'asara, and as head of the judiciary oversaw a 2002 moratorium on stoning and proposed replacing some prison sentences with social penalties. That puts him on the traditional side of the centre rather than at the pole."},
  {id:"mohseni",n:"Muhammad Asif Mohseni",s:"Mohseni",d:"d. 2019",era:"contemporary",reg:"afghanistan",city:"Kabul",role:"Marja'; hadith critic",m:.35,i:-.35,e:-.2,
   k:"Mashra'at Bihar al-Anwar graded the reports in Bihar al-Anwar and found a large share weak.",
   w:"Traditional in law, but his strict hadith criticism prunes many maximalist reports: Esmail's 'new methods in hadith criticism'."},
@@ -697,6 +766,170 @@ document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest
 /* ================= TEST ================= */
 const PER=6, PAGES=Math.ceil(QS.length/PER);
 let answers=new Array(QS.length).fill(null), page=0, user=null;
+
+/* ---- saving: this browser only (localStorage), plus a portable result code ---- */
+const KEY="shia-compass:v1";
+let saveT=null;
+function saveLocal(){
+  clearTimeout(saveT);
+  try{ localStorage.setItem(KEY,JSON.stringify({v:1,answers,page,done:!!user,savedAt:new Date().toISOString()})); }catch(_){}
+  renderResume();
+}
+function saveSoon(){ clearTimeout(saveT); saveT=setTimeout(saveLocal,250); }
+function loadLocal(){
+  try{
+    const d=JSON.parse(localStorage.getItem(KEY)||"null");
+    if(!d||!Array.isArray(d.answers)||d.answers.length!==QS.length) return;
+    answers=d.answers.map(a=>a===null||a===undefined||isNaN(a)?null:Math.max(0,Math.min(100,Math.round(Number(a)))));
+    page=Math.min(PAGES-1,Math.max(0,d.page|0));
+    if(d.done&&answers.every(a=>a!==null)) score();
+  }catch(_){}
+}
+function clearLocal(){
+  try{ localStorage.removeItem(KEY); }catch(_){}
+  answers=new Array(QS.length).fill(null); page=0; user=null; renderResume();
+}
+const B64="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
+function encodeCode(){
+  let bits=answers.map(a=>(a===null?127:Math.round(a)).toString(2).padStart(7,"0")).join("");
+  while(bits.length%6) bits+="0";
+  let s=""; for(let i=0;i<bits.length;i+=6) s+=B64[parseInt(bits.slice(i,i+6),2)];
+  return "SC1-"+s;
+}
+function decodeCode(str){
+  const c=String(str||"").trim().replace(/\s+/g,"");
+  const m=/^SC1-([A-Za-z0-9_-]+)$/.exec(c); if(!m) return null;
+  const need=Math.ceil(QS.length*7/6); if(m[1].length!==need) return null;
+  const bits=[...m[1]].map(ch=>B64.indexOf(ch).toString(2).padStart(6,"0")).join("");
+  const out=[];
+  for(let j=0;j<QS.length;j++){ const v=parseInt(bits.slice(j*7,j*7+7),2); if(v===127) out.push(null); else if(v<=100) out.push(v); else return null; }
+  return out;
+}
+function restoreFrom(arr){
+  answers=arr; user=null;
+  const firstGap=answers.findIndex(a=>a===null);
+  page=firstGap<0?PAGES-1:Math.floor(firstGap/PER);
+  if(firstGap<0) score();
+  saveLocal();
+  return firstGap<0;
+}
+function renderResume(){
+  const box=$("resume"); if(!box) return;
+  const n=answers.filter(a=>a!==null).length;
+  if(user){
+    box.innerHTML=`<span class="rk">Saved on this device</span><span class="rt">Your result: <b>${archetype(user)[0]}</b></span><button class="btn small" data-go="insights">View your insights →</button>`;
+    box.hidden=false;
+  } else if(n>0){
+    box.innerHTML=`<span class="rk">Saved on this device</span><span class="rt">You've answered <b>${n} of ${QS.length}</b> statements.</span><button class="btn small" data-go="test">Continue the test →</button>`;
+    box.hidden=false;
+  } else box.hidden=true;
+}
+const inFrame=(()=>{try{return window.self!==window.top;}catch(_){return true;}})();
+
+/* ---- community results: opt-in, anonymous, via Supabase RPC functions only ---- */
+const communityOn=!!(COMMUNITY.url&&COMMUNITY.key)&&!inFrame;
+const SHARE_KEY="shia-compass:share";
+function getShare(){ try{ return JSON.parse(localStorage.getItem(SHARE_KEY)||"null"); }catch(_){ return null; } }
+function setShare(v){ try{ if(v) localStorage.setItem(SHARE_KEY,JSON.stringify(v)); else localStorage.removeItem(SHARE_KEY); }catch(_){} }
+function newToken(){
+  if(window.crypto&&crypto.randomUUID) return crypto.randomUUID();
+  const b=crypto.getRandomValues(new Uint8Array(16)); b[6]=(b[6]&15)|64; b[8]=(b[8]&63)|128;
+  const h=[...b].map(x=>x.toString(16).padStart(2,"0")).join("");
+  return `${h.slice(0,8)}-${h.slice(8,12)}-${h.slice(12,16)}-${h.slice(16,20)}-${h.slice(20)}`;
+}
+async function rpc(fn,body){
+  const headers={"Content-Type":"application/json","apikey":COMMUNITY.key};
+  if(!COMMUNITY.key.startsWith("sb_")) headers.Authorization="Bearer "+COMMUNITY.key; // legacy anon keys only
+  const r=await fetch(COMMUNITY.url.replace(/\/+$/,"")+"/rest/v1/rpc/"+fn,{method:"POST",headers,body:JSON.stringify(body||{})});
+  if(!r.ok) throw new Error("HTTP "+r.status);
+  const t=await r.text(); return t?JSON.parse(t):null;
+}
+async function submitShare(){
+  if(!user) return;
+  const s=getShare()||{token:newToken()};
+  await rpc("submit_result",{p_token:s.token,p_m:+user.m.toFixed(4),p_i:+user.i.toFixed(4),p_e:+user.e.toFixed(4),
+    p_answers:answers.map(a=>Math.round(a)),p_archetype:archetype(user)[0],p_consent:CONSENT_VERSION});
+  setShare({token:s.token,consent:CONSENT_VERSION,at:new Date().toISOString()});
+}
+async function removeShare(){ const s=getShare(); if(!s) return; await rpc("delete_result",{p_token:s.token}); setShare(null); }
+const htmlEsc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function noticeHTML(){
+  return `<details class="notice"><summary>Read the full privacy notice</summary><div class="nbody">
+    <p><b>Who runs this.</b> ${htmlEsc(COMMUNITY.owner)}. Contact: ${htmlEsc(COMMUNITY.contact)}.</p>
+    <p><b>What is stored, only if you agree.</b> Your 36 answers, your three scores and result name, the date, and a random sharing ID created by your browser. Not your name, email, account or device details.</p>
+    <p><b>Why.</b> To show anonymous comparisons on this site, and so the site owner can study overall patterns. Shared results are only ever shown as totals, and only once at least 5 people have shared. They are never sold or used to identify you.</p>
+    <p><b>Legal basis.</b> Your explicit consent under UK GDPR Article 9(2)(a), because answers about faith can reveal religious beliefs.</p>
+    <p><b>Where.</b> In a Supabase database hosted in ${htmlEsc(COMMUNITY.region)}. Supabase may keep short-lived technical logs, such as IP addresses, for security.</p>
+    <p><b>How long.</b> Until you remove it, or until this project closes, when all shared results are deleted.</p>
+    <p><b>Your rights.</b> Remove your result at any time with the Remove button on the device you shared from; clearing your data on this site removes it too. If you finish the test again on the same device, your shared result is updated to match. If you can't use the button, email the contact above with your sharing ID. You can also complain to the Information Commissioner's Office at ico.org.uk.</p>
+  </div></details>`;
+}
+function renderCommunity(){
+  const box=$("community"); if(!box) return;
+  const s=getShare();
+  if(s){
+    box.innerHTML=`<div class="chd"><span class="eyebrow">Shared anonymously</span><h2>You're in the community results</h2>
+      <p>Your result is part of the totals below. Your sharing ID is <code>${htmlEsc(s.token)}</code>. Keep a note of it if you might ask for your result to be deleted from another device.</p></div>
+      <div class="cside"><div class="cta"><button class="btn ghost small danger" id="unshareBtn" type="button">Remove my result</button></div><p class="cmsg" id="cmsg" role="status"></p>${noticeHTML()}</div>
+      <div class="cout" id="cmpOut"></div>`;
+    const ub=$("unshareBtn");
+    ub.addEventListener("click",async()=>{
+      if(ub.dataset.armed!=="1"){ub.dataset.armed="1";ub.textContent="Tap again to remove it";setTimeout(()=>{ub.dataset.armed="";ub.textContent="Remove my result";},4000);return;}
+      ub.disabled=true; $("cmsg").textContent="Removing…";
+      try{ await removeShare(); renderCommunity(); }
+      catch(_){ ub.disabled=false; $("cmsg").textContent="Couldn't reach the community database. Please try again in a moment."; }
+    });
+  } else {
+    box.innerHTML=`<div class="chd"><span class="eyebrow">Optional</span><h2>Compare yourself with others</h2>
+      <p>Add your result anonymously to see where you sit among everyone who has shared, on all three spectrums.</p></div>
+      <div class="cside">
+        <ul class="what">
+          <li><b>Shared:</b> your 36 answers, your three scores and result name, the date, and a random sharing ID.</li>
+          <li><b>Never shared:</b> your name, email, account or device details.</li>
+          <li><b>Your choice:</b> remove it at any time from this device.</li>
+        </ul>
+        <label class="chk" for="consentChk"><input type="checkbox" id="consentChk"><span>I am 18 or over, and I agree to share my anonymous answers and scores as described here and in the privacy notice.</span></label>
+        <div class="cta"><button class="btn" id="shareBtn" type="button" disabled>Add my result</button></div>
+        <p class="cmsg" id="cmsg" role="status"></p>
+        ${noticeHTML()}
+      </div>
+      <div class="cout" id="cmpOut"></div>`;
+    const chk=$("consentChk"), sb=$("shareBtn");
+    chk.addEventListener("change",()=>{sb.disabled=!chk.checked;});
+    sb.addEventListener("click",async()=>{
+      if(!chk.checked) return;
+      sb.disabled=true; $("cmsg").textContent="Adding your result…";
+      try{ await submitShare(); renderCommunity(); }
+      catch(_){ sb.disabled=false; $("cmsg").textContent="Couldn't reach the community database. Your result is still saved on this device; please try again in a moment."; }
+    });
+  }
+  loadComparison();
+}
+async function loadComparison(){
+  const out=$("cmpOut"); if(!out||!user) return;
+  out.innerHTML=`<p class="muted">Loading community results…</p>`;
+  document.querySelectorAll(".bigbar .cavg").forEach(n=>n.remove());
+  let sum;
+  try{ sum=await rpc("community_summary",{}); }
+  catch(_){ out.innerHTML=`<p class="muted">Couldn't load the community results just now.</p>`; return; }
+  if(!sum||!sum.n||sum.n<5||!sum.hist){ out.innerHTML=`<p class="muted">Comparisons appear once at least 5 people have shared. So far: ${sum&&sum.n?sum.n:0}.</p>`; return; }
+  const rows=AXK.map(a=>{
+    const h=sum.hist[a], v=user[a], b=Math.min(19,Math.max(0,Math.floor((v+1)/2*20)));
+    const below=h.slice(0,b).reduce((x,y)=>x+y,0)+h[b]/2, pct=Math.round(100*below/sum.n);
+    const avg=Number(sum.avg[a]);
+    const tr=document.querySelector(`.meter[data-ax="${a}"] .tr`);
+    if(tr){ const m=document.createElement("span"); m.className="cavg"; m.style.left=((avg+1)*50)+"%"; m.title="Community average"; tr.appendChild(m); }
+    const val=document.querySelector(`.meter[data-ax="${a}"] .val`);
+    if(val) val.textContent=`you ${fmt(v)} · community average ${fmt(avg)}`;
+    const line=pct>=50?`more ${AX[a].pos.toLowerCase()} than ${pct}%`:`more ${AX[a].neg.toLowerCase()} than ${100-pct}%`;
+    return `<li><span class="ax">${AX[a].name}</span><span>You're ${line} of them.</span></li>`;
+  }).join("");
+  out.innerHTML=`<h3>Among the ${sum.n} people who have shared</h3><ul class="cres">${rows}</ul><p class="muted" style="font-size:14px">The dark tick on each spectrum above marks the community average.</p>`;
+}
+async function copyText(text,btn,done){
+  try{ await navigator.clipboard.writeText(text); const o=btn.textContent; btn.textContent=done; setTimeout(()=>btn.textContent=o,1800); return true; }
+  catch(_){ return false; }
+}
 function renderTest(){
   const start=page*PER, idxs=[...Array(PER).keys()].map(j=>start+j).filter(j=>j<QS.length);
   $("tPart").textContent=`Part ${page+1} of ${PAGES}`;
@@ -713,7 +946,7 @@ function renderTest(){
   idxs.forEach(j=>{
     const inp=$("q"+j), card=inp.closest(".qc");
     const set=()=>{answers[j]=Number(inp.value);card.classList.remove("untouched");card.classList.add("done");
-      const lv=levelOf(answers[j]); $("qv"+j).textContent=lv; inp.setAttribute("aria-valuetext",lv); inp.style.setProperty("--p",inp.value+"%"); updateTestNav();};
+      const lv=levelOf(answers[j]); $("qv"+j).textContent=lv; inp.setAttribute("aria-valuetext",lv); inp.style.setProperty("--p",inp.value+"%"); updateTestNav(); saveSoon();};
     inp.addEventListener("input",set); inp.addEventListener("change",set);
     inp.addEventListener("pointerdown",()=>setTimeout(set,0));
     inp.addEventListener("keydown",e=>{if(["ArrowLeft","ArrowRight","ArrowUp","ArrowDown","Home","End","PageUp","PageDown"].includes(e.key)) setTimeout(set,0);});
@@ -731,10 +964,10 @@ function updateTestNav(){
   $("tNext").innerHTML=page===PAGES-1?"See my insights →":"Next →";
   $("tHint").textContent=left?`${left} left on this page`:"";
 }
-$("tBack").addEventListener("click",()=>{if(page>0){page--;renderTest();window.scrollTo(0,0);}});
+$("tBack").addEventListener("click",()=>{if(page>0){page--;saveLocal();renderTest();window.scrollTo(0,0);}});
 $("tNext").addEventListener("click",()=>{
-  if(page<PAGES-1){page++;renderTest();window.scrollTo(0,0);}
-  else{ score(); go("insights"); }
+  if(page<PAGES-1){page++;saveLocal();renderTest();window.scrollTo(0,0);}
+  else{ score(); saveLocal(); if(communityOn&&getShare()) submitShare().catch(()=>{}); go("insights"); }
 });
 function score(){
   const sum={m:0,i:0,e:0},n={m:0,i:0,e:0};
@@ -760,7 +993,7 @@ function renderInsights(){
   const meter=a=>{const v=u[a], b=bandOf(v), [bn,bt]=BANDS[a][b];
     const other=b<2?`<b>The case from the ${AX[a].pos.toLowerCase()} side</b>${OTHER[a].neg}`:b>2?`<b>The case from the ${AX[a].neg.toLowerCase()} side</b>${OTHER[a].pos}`:`<b>The two sides you're balancing</b>${OTHER[a].pos} ${OTHER[a].neg}`;
     const col={m:"var(--teal)",i:"var(--cobalt)",e:"var(--saffron-d)"}[a];
-    return `<div class="meter"><span class="eyebrow"><span class="k" style="color:${col}">${a==="m"?"١":a==="i"?"٢":"٣"}</span>${AX[a].name}</span>
+    return `<div class="meter" data-ax="${a}"><span class="eyebrow"><span class="k" style="color:${col}">${a==="m"?"١":a==="i"?"٢":"٣"}</span>${AX[a].name}</span>
       <div class="bigbar"><div class="ends"><button data-meth="${a}:neg">${AX[a].neg}</button><button data-meth="${a}:pos">${AX[a].pos}</button></div><div class="tr"><span class="fill" style="width:${(v+1)*50}%;background:${col}"></span><b style="left:${(v+1)*50}%"></b></div><div class="val">${fmt(v)}</div></div>
       <h3>${bn}</h3><p>${bt}</p><p class="other">${other}</p></div>`;};
   const tag={m:"Modern questions",i:"Imamology",e:"Method"};
@@ -800,10 +1033,37 @@ function renderInsights(){
       <span class="eyebrow" style="margin-top:18px">Furthest from you</span>
       <div class="alist far">${ranked.slice(-2).reverse().map(o=>row(o)).join("")}</div>
     </section>
+    ${communityOn?`<section class="community" id="community" aria-label="Compare with others"></section>`:""}
+    <section class="savebox" aria-label="Your data">
+      <div class="savehead">
+        <span class="eyebrow">Your data</span>
+        <h2>Saved on this device</h2>
+        <p>Your answers are kept in this browser, so this result is here when you come back. Nothing is sent to a server. To open your result on another device, copy your result code and paste it on the start page there.</p>
+      </div>
+      <div class="saveact">
+        <label for="codeOut">Your result code</label>
+        <div class="rrow"><input id="codeOut" type="text" readonly spellcheck="false"><button class="btn small" id="copyCode" type="button">Copy code</button></div>
+        <div class="cta">${inFrame?"":`<button class="btn ghost small" id="copyLink" type="button">Copy a link to this result</button>`}<button class="btn ghost small danger" id="clearData" type="button">Clear my data</button></div>
+      </div>
+    </section>
    </div>`;
   box.querySelectorAll(".meter p, .sum, .tcol li span:not(.tag)").forEach(linkify);
   $("toCube").addEventListener("click",()=>{drawer={type:"you"};go("compass");});
-  $("retake").addEventListener("click",()=>{answers=new Array(QS.length).fill(null);page=0;user=null;go("test");});
+  $("retake").addEventListener("click",()=>{clearLocal();go("test");});
+  const code=encodeCode();
+  $("codeOut").value=code;
+  $("copyCode").addEventListener("click",async e=>{ if(!await copyText(code,e.currentTarget,"Copied")){ $("codeOut").focus(); $("codeOut").select(); } });
+  const lb=$("copyLink");
+  if(lb){ const link=location.origin+location.pathname+"?r="+encodeURIComponent(code)+"#insights";
+    lb.addEventListener("click",async e=>{ if(!await copyText(link,e.currentTarget,"Link copied")){ $("codeOut").value=link; $("codeOut").focus(); $("codeOut").select(); } }); }
+  const cb=$("clearData");
+  cb.addEventListener("click",()=>{
+    const shared=communityOn&&getShare();
+    if(cb.dataset.armed!=="1"){ cb.dataset.armed="1"; cb.textContent=shared?"Tap again to delete your answers and shared result":"Tap again to delete your answers"; setTimeout(()=>{cb.dataset.armed="";cb.textContent="Clear my data";},4000); return; }
+    if(shared) removeShare().catch(()=>{});
+    clearLocal(); go("home");
+  });
+  if(communityOn) renderCommunity();
   box.querySelectorAll("[data-sch]").forEach(b=>b.addEventListener("click",()=>{drawer={type:"scholar",id:b.dataset.sch};go("compass");}));
   box.querySelectorAll("[data-meth]").forEach(b=>b.addEventListener("click",()=>{const [a,p]=b.dataset.meth.split(":");drawer={type:"method",a,p};go("compass");}));
 }
@@ -1092,6 +1352,21 @@ document.querySelectorAll(".gitem dd").forEach(linkify);
 document.querySelectorAll(".spec p").forEach(linkify);
 
 /* ================= START ================= */
+/* restore: from a ?r= link (static hosting) or the paste-a-code form */
+$("restoreForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  const arr=decodeCode($("restoreIn").value), msg=$("restoreMsg");
+  if(!arr){ msg.textContent="That code wasn't recognised. Check it starts with SC1- and was copied in full."; return; }
+  const complete=restoreFrom(arr);
+  msg.textContent=complete?"Restored. Opening your insights…":"Restored. Taking you back to the test…";
+  setTimeout(()=>go(complete?"insights":"test"),500);
+});
+loadLocal();
+try{
+  const r=new URLSearchParams(location.search).get("r"), arr=r&&decodeCode(r);
+  if(arr){ restoreFrom(arr); history.replaceState(null,"",location.pathname+location.hash); }
+}catch(_){}
+renderResume();
 show(route());
 })();
 </script>
