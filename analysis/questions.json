@@ -1,6 +1,6 @@
 {
- "version": 1,
- "note": "Generated from index.html. Index order matches the answers, about and answers2 arrays stored in the database.",
+ "version": 2,
+ "note": "Generated from index.html. Index order matches the answers, about, answers2 and answers3 arrays stored in the database.",
  "axes": {
   "m": {
    "name": "Modern questions",
@@ -82,6 +82,69 @@
    "pos": "Separate",
    "part": 2,
    "group": "Politics"
+  },
+  "f": {
+   "name": "Faith and doubt",
+   "neg": "Certain",
+   "pos": "Searching",
+   "part": 3,
+   "group": "Faith"
+  },
+  "kb": {
+   "name": "What Karbala means",
+   "neg": "Devotional",
+   "pos": "Revolutionary",
+   "part": 3,
+   "group": "Faith"
+  },
+  "mh": {
+   "name": "Waiting for the Mahdi",
+   "neg": "Patient",
+   "pos": "Active",
+   "part": 3,
+   "group": "Faith"
+  },
+  "io": {
+   "name": "Inner and outer religion",
+   "neg": "Spirit-centred",
+   "pos": "Law-centred",
+   "part": 3,
+   "group": "Practice"
+  },
+  "rl": {
+   "name": "Approach to rulings",
+   "neg": "Lenient",
+   "pos": "Cautious",
+   "part": 3,
+   "group": "Practice"
+  },
+  "mj": {
+   "name": "Majority opinion",
+   "neg": "Independent",
+   "pos": "Mainstream",
+   "part": 3,
+   "group": "Practice"
+  },
+  "rb": {
+   "name": "Money and riba",
+   "neg": "Pragmatic",
+   "pos": "Strict",
+   "part": 3,
+   "group": "Daily life"
+  },
+  "id": {
+   "name": "Community identity",
+   "neg": "Heritage",
+   "pos": "Shared",
+   "part": 3,
+   "group": "Daily life"
+  },
+  "sc": {
+   "name": "Science and scripture",
+   "neg": "Separate",
+   "pos": "Reconciling",
+   "part": 3,
+   "group": "Daily life"
   }
  },
  "about": [
@@ -176,7 +239,8 @@
    "axis": "m",
    "key": 1,
    "text": "The rulings in the classical books of fiqh should be followed today as they are, unless a living marja' rules otherwise.",
-   "type": "slider"
+   "type": "slider",
+   "scale": "agreement"
   },
   {
    "index": 1,
@@ -184,7 +248,8 @@
    "axis": "i",
    "key": 1,
    "text": "The Imams know the unseen, including future events, by God's permission.",
-   "type": "slider"
+   "type": "slider",
+   "scale": "agreement"
   },
   {
    "index": 2,
@@ -192,7 +257,8 @@
    "axis": "e",
    "key": 1,
    "text": "If a reliable hadith seems to conflict with reason, we should accept the hadith and assume our understanding is limited.",
-   "type": "slider"
+   "type": "slider",
+   "scale": "agreement"
   },
   {
    "index": 3,
@@ -200,7 +266,8 @@
    "axis": "m",
    "key": -1,
    "text": "Modern ideas such as human rights and gender equality are good reasons to look again at classical rulings.",
-   "type": "slider"
+   "type": "slider",
+   "scale": "agreement"
   },
   {
    "index": 4,
@@ -208,7 +275,8 @@
    "axis": "i",
    "key": 1,
    "text": "God has given the Imams authority to act within the created world (wilaya takwiniyya).",
-   "type": "slider"
+   "type": "slider",
+   "scale": "agreement"
   },
   {
    "index": 5,
@@ -216,7 +284,8 @@
    "axis": "e",
    "key": -1,
    "text": "Reason can tell us what is just and unjust, independently of revelation.",
-   "type": "slider"
+   "type": "slider",
+   "scale": "agreement"
   },
   {
    "index": 6,
@@ -224,7 +293,8 @@
    "axis": "m",
    "key": 1,
    "text": "A daughter inheriting half of a son's share is a fixed ruling that should not change with social conditions.",
-   "type": "slider"
+   "type": "slider",
+   "scale": "agreement"
   },
   {
    "index": 7,
@@ -232,7 +302,8 @@
    "axis": "i",
    "key": -1,
    "text": "The Imams are best understood as supremely pious, divinely guided scholars and leaders, without powers over creation.",
-   "type": "slider"
+   "type": "slider",
+   "scale": "agreement"
   },
   {
    "index": 8,
@@ -240,7 +311,8 @@
    "axis": "e",
    "key": 1,
    "text": "A single reliable narrator's report is enough to establish a point of belief, not only a legal ruling.",
-   "type": "slider"
+   "type": "slider",
+   "scale": "agreement"
   },
   {
    "index": 9,
@@ -248,7 +320,8 @@
    "axis": "m",
    "key": -1,
    "text": "Many classical rulings reflected the society they were made in, so their purpose matters more than their exact wording.",
-   "type": "slider"
+   "type": "slider",
+   "scale": "agreement"
   },
   {
    "index": 10,
@@ -256,7 +329,8 @@
    "axis": "i",
    "key": 1,
    "text": "Calling directly on an Imam for help, as in 'Ya Ali madad', is legitimate.",
-   "type": "slider"
+   "type": "slider",
+   "scale": "agreement"
   },
   {
    "index": 11,
@@ -264,7 +338,8 @@
    "axis": "e",
    "key": -1,
    "text": "Philosophy and rational theology are essential tools for understanding religion properly.",
-   "type": "slider"
+   "type": "slider",
+   "scale": "agreement"
   },
   {
    "index": 12,
@@ -272,7 +347,8 @@
    "axis": "m",
    "key": 1,
    "text": "The hawza's classical method of ijtihad is enough to answer the questions modern life raises.",
-   "type": "slider"
+   "type": "slider",
+   "scale": "agreement"
   },
   {
    "index": 13,
@@ -280,7 +356,8 @@
    "axis": "i",
    "key": -1,
    "text": "Many narrations describing the Imams' extraordinary powers are probably later exaggerations.",
-   "type": "slider"
+   "type": "slider",
+   "scale": "agreement"
   },
   {
    "index": 14,
@@ -288,7 +365,8 @@
    "axis": "e",
    "key": 1,
    "text": "Greek-influenced philosophy and mysticism have distorted Shia teaching.",
-   "type": "slider"
+   "type": "slider",
+   "scale": "agreement"
   },
   {
    "index": 15,
@@ -296,7 +374,8 @@
    "axis": "m",
    "key": -1,
    "text": "Academic research from universities, including by non-Muslim scholars, should shape how we understand our tradition.",
-   "type": "slider"
+   "type": "slider",
+   "scale": "agreement"
   },
   {
    "index": 16,
@@ -304,7 +383,8 @@
    "axis": "i",
    "key": 1,
    "text": "The Imams were created as lights before the creation of the world.",
-   "type": "slider"
+   "type": "slider",
+   "scale": "agreement"
   },
   {
    "index": 17,
@@ -312,7 +392,8 @@
    "axis": "e",
    "key": -1,
    "text": "A hadith that contradicts clear scientific knowledge should be reinterpreted or set aside.",
-   "type": "slider"
+   "type": "slider",
+   "scale": "agreement"
   },
   {
    "index": 18,
@@ -320,7 +401,8 @@
    "axis": "m",
    "key": 1,
    "text": "Following a living marja' (taqlid) in matters of practice is essential for most believers.",
-   "type": "slider"
+   "type": "slider",
+   "scale": "agreement"
   },
   {
    "index": 19,
@@ -328,7 +410,8 @@
    "axis": "i",
    "key": -1,
    "text": "Imam Husayn's journey to Karbala is best understood through its political and historical circumstances, rather than through his foreknowledge of the outcome.",
-   "type": "slider"
+   "type": "slider",
+   "scale": "agreement"
   },
   {
    "index": 20,
@@ -336,7 +419,8 @@
    "axis": "e",
    "key": 1,
    "text": "The Four Books of hadith are broadly reliable as a whole.",
-   "type": "slider"
+   "type": "slider",
+   "scale": "agreement"
   },
   {
    "index": 21,
@@ -344,7 +428,8 @@
    "axis": "m",
    "key": -1,
    "text": "Women should be able to become maraji' and judges.",
-   "type": "slider"
+   "type": "slider",
+   "scale": "agreement"
   },
   {
    "index": 22,
@@ -352,7 +437,8 @@
    "axis": "i",
    "key": 1,
    "text": "Commemorations such as Muharram majalis and Fatimiyya are central to faith, not just cultural tradition.",
-   "type": "slider"
+   "type": "slider",
+   "scale": "agreement"
   },
   {
    "index": 23,
@@ -360,7 +446,8 @@
    "axis": "e",
    "key": -1,
    "text": "Every hadith should be checked for its chain and its content before being used, even in the famous collections.",
-   "type": "slider"
+   "type": "slider",
+   "scale": "agreement"
   },
   {
    "index": 24,
@@ -368,7 +455,8 @@
    "axis": "m",
    "key": 1,
    "text": "Islam already contains everything a just society needs, so we don't need to borrow ethical frameworks from outside it.",
-   "type": "slider"
+   "type": "slider",
+   "scale": "agreement"
   },
   {
    "index": 25,
@@ -376,7 +464,8 @@
    "axis": "i",
    "key": -1,
    "text": "Accusations of ghuluww against some popular devotional practices are often justified.",
-   "type": "slider"
+   "type": "slider",
+   "scale": "agreement"
   },
   {
    "index": 26,
@@ -384,7 +473,8 @@
    "axis": "e",
    "key": 1,
    "text": "When in doubt, it is better to follow the texts cautiously than to reason your way to a new conclusion.",
-   "type": "slider"
+   "type": "slider",
+   "scale": "agreement"
   },
   {
    "index": 27,
@@ -392,7 +482,8 @@
    "axis": "m",
    "key": -1,
    "text": "Some established practices in our communities are cultural rather than religious, and should be reformed.",
-   "type": "slider"
+   "type": "slider",
+   "scale": "agreement"
   },
   {
    "index": 28,
@@ -400,7 +491,8 @@
    "axis": "i",
    "key": 1,
    "text": "The Imams hear us and can respond when we visit their shrines or address them.",
-   "type": "slider"
+   "type": "slider",
+   "scale": "agreement"
   },
   {
    "index": 29,
@@ -408,7 +500,8 @@
    "axis": "e",
    "key": -1,
    "text": "Islamic philosophers such as Mulla Sadra and Allama Tabataba'i deepen faith rather than threaten it.",
-   "type": "slider"
+   "type": "slider",
+   "scale": "agreement"
   },
   {
    "index": 30,
@@ -416,7 +509,8 @@
    "axis": "m",
    "key": 1,
    "text": "Changes in religious rulings should come only from senior jurists, not from public debate.",
-   "type": "slider"
+   "type": "slider",
+   "scale": "agreement"
   },
   {
    "index": 31,
@@ -424,7 +518,8 @@
    "axis": "i",
    "key": -1,
    "text": "Beliefs about the Imams should rest only on the Quran and on reports that give certainty, not on single narrations.",
-   "type": "slider"
+   "type": "slider",
+   "scale": "agreement"
   },
   {
    "index": 32,
@@ -432,7 +527,8 @@
    "axis": "e",
    "key": 1,
    "text": "Ordinary believers can understand religion directly from the Imams' words, without specialised legal theory.",
-   "type": "slider"
+   "type": "slider",
+   "scale": "agreement"
   },
   {
    "index": 33,
@@ -440,7 +536,8 @@
    "axis": "m",
    "key": -1,
    "text": "Religious knowledge develops over time as human knowledge grows.",
-   "type": "slider"
+   "type": "slider",
+   "scale": "agreement"
   },
   {
    "index": 34,
@@ -448,7 +545,8 @@
    "axis": "i",
    "key": 1,
    "text": "Ziyarat al-Jami'a al-Kabira describes the Imams' station accurately and should be taken at face value.",
-   "type": "slider"
+   "type": "slider",
+   "scale": "agreement"
   },
   {
    "index": 35,
@@ -456,7 +554,8 @@
    "axis": "e",
    "key": -1,
    "text": "Usul al-fiqh, the theory of jurisprudence, is necessary to derive rulings correctly.",
-   "type": "slider"
+   "type": "slider",
+   "scale": "agreement"
   }
  ],
  "part2": [
@@ -786,12 +885,18 @@
   },
   {
    "index": 34,
-   "id": "doubt",
+   "id": "source",
    "axis": null,
    "key": 0,
-   "text": "You question the existence of God.",
-   "type": "slider",
-   "scale": "frequency"
+   "text": "Where do you get most of your religious learning?",
+   "type": "choice",
+   "options": [
+    "Majalis and talks at the centre",
+    "YouTube, Instagram or TikTok",
+    "Books",
+    "Podcasts",
+    "Family"
+   ]
   },
   {
    "index": 35,
@@ -849,21 +954,6 @@
   },
   {
    "index": 41,
-   "id": "source",
-   "axis": null,
-   "key": 0,
-   "text": "Where do you get most of your religious learning?",
-   "type": "choice",
-   "options": [
-    "Majalis and talks at the centre",
-    "YouTube, Instagram or TikTok",
-    "Books",
-    "Podcasts",
-    "Family"
-   ]
-  },
-  {
-   "index": 42,
    "id": "journey",
    "axis": null,
    "key": 0,
@@ -876,15 +966,332 @@
     "Ziyara in Najaf",
     "Sayyida Zaynab, Damascus"
    ]
+  }
+ ],
+ "part3": [
+  {
+   "index": 0,
+   "id": "f1",
+   "axis": "f",
+   "key": 1,
+   "text": "You question the existence of God.",
+   "type": "slider",
+   "scale": "frequency"
   },
   {
-   "index": 43,
-   "id": "evil",
-   "axis": null,
-   "key": 0,
+   "index": 1,
+   "id": "kb1",
+   "axis": "kb",
+   "key": 1,
+   "text": "Ashura is first of all a call to stand against injustice.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 2,
+   "id": "rb1",
+   "axis": "rb",
+   "key": -1,
+   "text": "Taking a conventional mortgage is acceptable if there's no Islamic alternative.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 3,
+   "id": "io1",
+   "axis": "io",
+   "key": 1,
+   "text": "Getting the rulings of prayer right matters more than feeling moved in it.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 4,
+   "id": "mh1",
+   "axis": "mh",
+   "key": 1,
+   "text": "Waiting for the Imam means working to change society now.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 5,
+   "id": "id1",
+   "axis": "id",
+   "key": 1,
+   "text": "Majalis should be in English (or the local language), even if older members lose out.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 6,
+   "id": "rl1",
+   "axis": "rl",
+   "key": 1,
+   "text": "When scholars differ, you take the stricter view.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 7,
+   "id": "sc1",
+   "axis": "sc",
+   "key": 1,
+   "text": "The Quran contains scientific facts that were only discovered recently.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 8,
+   "id": "mj1",
+   "axis": "mj",
+   "key": -1,
+   "text": "You'd follow a ruling held by only a few jurists if your marja' gave it.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 9,
+   "id": "f2",
+   "axis": "f",
+   "key": -1,
+   "text": "Your faith has never seriously been shaken.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 10,
+   "id": "kb2",
+   "axis": "kb",
+   "key": -1,
+   "text": "Weeping for Imam Husayn is valuable in itself, whatever lessons we draw from it.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 11,
+   "id": "rb2",
+   "axis": "rb",
+   "key": 1,
+   "text": "You'd turn down a better-paid job at a conventional bank.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 12,
+   "id": "io2",
+   "axis": "io",
+   "key": -1,
+   "text": "A sincere heart matters more to God than perfect observance of the rules.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 13,
+   "id": "mh2",
+   "axis": "mh",
+   "key": -1,
+   "text": "Until the Imam returns, believers should focus on their own piety rather than trying to change the world.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 14,
+   "id": "id2",
+   "axis": "id",
+   "key": -1,
+   "text": "Keeping your family's language and customs at the centre is part of keeping the faith.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 15,
+   "id": "rl2",
+   "axis": "rl",
+   "key": -1,
+   "text": "Religion is meant to be easy, so it's right to take the lighter ruling when you're allowed to.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 16,
+   "id": "sc2",
+   "axis": "sc",
+   "key": -1,
+   "text": "The Quran is a book of guidance, not science, so it shouldn't be read for scientific facts.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 17,
+   "id": "mj2",
+   "axis": "mj",
+   "key": 1,
+   "text": "If most jurists over the centuries agreed on something, it is very likely right.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 18,
+   "id": "f3",
+   "axis": "f",
+   "key": 1,
    "text": "The problem of evil, why a good God allows suffering, unsettles you.",
    "type": "slider",
    "scale": "frequency"
+  },
+  {
+   "index": 19,
+   "id": "kb3",
+   "axis": "kb",
+   "key": 1,
+   "text": "A majlis that doesn't connect Karbala to injustice today has missed the point.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 20,
+   "id": "rb3",
+   "axis": "rb",
+   "key": 1,
+   "text": "Keeping savings in an interest-paying account is wrong, even if you give the interest away.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 21,
+   "id": "io3",
+   "axis": "io",
+   "key": 1,
+   "text": "You look up rulings (on wudu or khums, say) more often than you read about spirituality or ethics.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 22,
+   "id": "mh3",
+   "axis": "mh",
+   "key": 1,
+   "text": "You think about how your choices might help prepare for the Imam's return.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 23,
+   "id": "id3",
+   "axis": "id",
+   "key": 1,
+   "text": "Shia centres should be run as one community, not by ethnic group (Iraqi, Khoja, Pakistani, Iranian…).",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 24,
+   "id": "rl3",
+   "axis": "rl",
+   "key": 1,
+   "text": "If you're unsure whether something is halal, you avoid it.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 25,
+   "id": "sc3",
+   "axis": "sc",
+   "key": 1,
+   "text": "Scientific discoveries often confirm what the Quran and the Imams taught.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 26,
+   "id": "mj3",
+   "axis": "mj",
+   "key": -1,
+   "text": "A new ruling that breaks with centuries of opinion can still be correct.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 27,
+   "id": "f4",
+   "axis": "f",
+   "key": -1,
+   "text": "You're certain your beliefs are true, and nothing could change that.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 28,
+   "id": "kb4",
+   "axis": "kb",
+   "key": -1,
+   "text": "Imam Husayn's intercession on the Day of Judgement is one of the main reasons to mourn him.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 29,
+   "id": "rb4",
+   "axis": "rb",
+   "key": -1,
+   "text": "Islamic finance is often conventional finance with different labels, so the difference matters less than people think.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 30,
+   "id": "io4",
+   "axis": "io",
+   "key": -1,
+   "text": "Someone can be close to God while being lax about some religious rules.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 31,
+   "id": "mh4",
+   "axis": "mh",
+   "key": -1,
+   "text": "Efforts to hasten the reappearance, or to read today's events as its signs, do more harm than good.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 32,
+   "id": "id4",
+   "axis": "id",
+   "key": -1,
+   "text": "You feel most at home at a centre of people from your own background.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 33,
+   "id": "rl4",
+   "axis": "rl",
+   "key": -1,
+   "text": "You'd eat at a restaurant without checking every ingredient, if the food is probably halal.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 34,
+   "id": "sc4",
+   "axis": "sc",
+   "key": -1,
+   "text": "Science and religion answer different questions, so they can't truly conflict.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 35,
+   "id": "mj4",
+   "axis": "mj",
+   "key": 1,
+   "text": "You'd be uneasy following a marja' known for unusual rulings.",
+   "type": "slider",
+   "scale": "agreement"
   }
  ]
 }

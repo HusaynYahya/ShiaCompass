@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Take the Shia Compass Test: see where you align with traditional and contemporary Shia scholars, on belief and method and on society and politics.">
+<meta name="description" content="Take the Shia Compass Test: see where you align with traditional and contemporary Shia scholars, on belief and method, society and politics, and practice and identity.">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Shia Compass Test</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -323,6 +323,40 @@ input.ag::-moz-range-thumb{width:22px;height:22px;background:var(--saffron);bord
 .saveact{display:flex;flex-direction:column;gap:10px;min-width:0}
 .btn.danger{color:var(--rubric);border-color:var(--rubric)}
 .btn.danger:hover{background:#FBE9E6}
+/* compass controls, tidied */
+.ctabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:22px;max-width:720px}
+.ctab{display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;padding:12px 16px;border:2px solid var(--line2);border-radius:12px;background:#fff;font-family:var(--f-display);font-size:19px;font-weight:800;letter-spacing:-.01em;line-height:1.15}
+.ctab .ctn{font-family:var(--f-body);font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.ctab:hover{border-color:var(--text)}
+.ctab[aria-pressed="true"]{border-color:var(--text);background:var(--text);color:#fff;box-shadow:0 4px 0 var(--cobalt)}
+.ctab[aria-pressed="true"] .ctn{color:var(--saffron)}
+.controls{flex-direction:row;flex-wrap:wrap;align-items:center;gap:12px 22px;padding:12px 16px;margin-top:12px}
+.csel,.cseg{display:flex;align-items:center;gap:10px}
+.controls .lab{min-width:0}
+.csel select{min-height:40px;border:2px solid var(--line2);border-radius:8px;background:#fff;color:var(--text);font:inherit;font-size:15px;font-weight:600;padding:0 32px 0 12px;max-width:260px}
+.csel select:focus{border-color:var(--text);outline:none}
+.segs{display:inline-flex;border:2px solid var(--line2);border-radius:9px;overflow:hidden}
+.segs button{min-height:36px;padding:0 14px;font-size:15px;font-weight:600;border-right:2px solid var(--line2);background:#fff}
+.segs button:last-child{border-right:0}
+.segs button:hover{background:var(--teal-t)}
+.segs button[aria-pressed="true"]{background:var(--text);color:#fff}
+.rlegend{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:14px;color:var(--muted);font-weight:600}
+.rlegend .dot{margin-right:5px}
+.shown .list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;align-items:start}
+.rcol{display:flex;flex-direction:column;gap:12px;min-width:0}
+@media (max-width:760px){.shown .list{grid-template-columns:minmax(0,1fr)}}
+.rgrp{background:#fff;border:2px solid var(--line2);border-radius:12px;padding:12px 14px}
+.rgrp h4{display:flex;align-items:center;font-size:16px;margin-bottom:6px}
+.rgrp h4 span{margin-left:auto;font-family:var(--f-mono);font-size:12px;color:var(--muted);font-weight:500}
+.rgrp ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.rgrp li{display:flex;justify-content:space-between;align-items:baseline;gap:8px;border-top:1px solid var(--line);padding:3px 0}
+.rgrp li:first-child{border-top:0}
+.rgrp li button{font-size:15px;font-weight:600;text-align:left;min-height:30px;border:0;background:none;padding:0}
+.rgrp li button:hover,.rgrp li button[aria-current="true"]{color:var(--teal-d);text-decoration:underline}
+.rgrp li span{font-size:12.5px;color:var(--muted);white-space:nowrap}
+.shown .list button{border:0;min-height:30px;padding:0;background:none}
+.csel{min-width:0}
+@media (max-width:600px){.controls{gap:10px}.csel{flex:1 1 100%}.csel select{flex:1;width:100%;min-width:0;max-width:none}}
 /* share card */
 .sharecard{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,380px);gap:24px 40px;align-items:start;background:#fff;border:2px solid var(--text);border-radius:14px;padding:clamp(20px,3vw,32px)}
 @media (max-width:860px){.sharecard{grid-template-columns:minmax(0,1fr)}}
@@ -339,7 +373,16 @@ input.ag::-moz-range-thumb{width:22px;height:22px;background:var(--saffron);bord
   --bg:#FAF4EF; --text:#2B1630; --ink2:#47304D; --muted:#5C4762; --line:#EADCE2; --line2:#CDB6C3;
   --shadow:0 5px 0 var(--text);
 }
-body.theme2{background:var(--bg);color:var(--text)}
+body.theme2,body.theme3{background:var(--bg);color:var(--text)}
+/* part 3 colour scheme: olive, bronze and gold on parchment */
+.theme3{
+  --teal:#3F6B35; --teal-d:#33582B; --teal-t:#E9F0E2;
+  --cobalt:#7E4E12; --cobalt-d:#653E0D; --cobalt-t:#F5ECDD;
+  --saffron:#C9A227; --saffron-d:#8A6A0C; --saffron-t:#F8F1D8;
+  --bg:#F7F4EA; --text:#1F2A1C; --ink2:#3A4636; --muted:#55604F; --line:#E4DFCC; --line2:#C7C0A6;
+  --shadow:0 5px 0 var(--text);
+}
+body.theme3 #tile .t1{fill:#3F6B35} body.theme3 #tile .t2{fill:#7E4E12} body.theme3 #tile .t3{fill:#C9A227} body.theme3 #tile rect:first-child{fill:#1F2A1C}
 body.theme2 #tile rect:first-child{fill:#2B1630}
 body.theme2 #tile .t1{fill:#1E7A55} body.theme2 #tile .t2{fill:#6E2B67} body.theme2 #tile .t3{fill:#D8613A}
 /* part 2 */
@@ -397,9 +440,10 @@ body.theme2 #tile .t1{fill:#1E7A55} body.theme2 #tile .t2{fill:#6E2B67} body.the
     <button data-go="home"><span class="n">00</span>Start</button>
     <button data-go="test"><span class="n">01</span>Part 1</button>
     <button data-go="test2"><span class="n">02</span>Part 2</button>
-    <button data-go="insights"><span class="n">03</span>Insights</button>
-    <button data-go="compass"><span class="n">04</span>3D Compass</button>
-    <button data-go="terms"><span class="n">05</span>Glossary</button>
+    <button data-go="test3"><span class="n">03</span>Part 3</button>
+    <button data-go="insights"><span class="n">04</span>Insights</button>
+    <button data-go="compass"><span class="n">05</span>3D Compass</button>
+    <button data-go="terms"><span class="n">06</span>Glossary</button>
   </nav>
 </div></div>
 
@@ -411,7 +455,7 @@ body.theme2 #tile .t1{fill:#1E7A55} body.theme2 #tile .t2{fill:#6E2B67} body.the
         <span class="eyebrow">Built on Zoheir Esmail's three spectrums</span>
         <h1>Take the <em>Shia Compass</em> Test</h1>
         <p class="sub">See where you align with traditional and contemporary scholars.</p>
-        <div class="facts"><span><b>2</b> parts, about <b>8</b> minutes each</span><span><b>12</b> axes</span><span><b>2</b> 3D compasses</span><span><b>43</b> scholars, 10th century to today</span></div>
+        <div class="facts"><span><b>3</b> parts, about <b>8</b> minutes each</span><span><b>21</b> axes</span><span><b>2</b> 3D compasses</span><span><b>43</b> scholars, 10th century to today</span></div>
         <div class="cta">
           <button class="btn" data-go="test">Start part 1 →</button>
           <button class="btn ghost" data-go="compass">Explore the compass first</button>
@@ -420,15 +464,16 @@ body.theme2 #tile .t1{fill:#1E7A55} body.theme2 #tile .t2{fill:#6E2B67} body.the
         <div class="spectra" aria-label="The three spectrums">
           <div class="spec"><span class="num" aria-hidden="true">١</span><h3>Modernist ↔ Traditionalist</h3><p>How far modern questions about women, minorities and rights should reshape religious conclusions.</p></div>
           <div class="spec"><span class="num" aria-hidden="true">٢</span><h3>Minimalist ↔ Maximalist</h3><p>What an Imam is: a divinely guided scholar and leader, or a cosmic intermediary with wilaya takwiniyya.</p></div>
-          <div class="spec"><span class="num" aria-hidden="true">٣</span><h3>Rationalist ↔ Scripturalist</h3><p>Whether reason or the transmitted texts come first. Esmail calls this the root of the other two.</p></div>
+          <div class="spec"><span class="num" aria-hidden="true">٣</span><h3>Rationalist ↔ Scripturalist</h3><p>Whether reason or the transmitted texts have the final word when the two seem to pull apart.</p></div>
         </div>
-        <div class="p2card theme2"><span class="num" aria-hidden="true">٢</span><div><span class="eyebrow">Part 2, take it any time</span><h3>Society and politics</h3><p>Nine more axes, inspired by the 12Axes test: social life, religion and politics, other religions, Sunni–Shia relations, ritual, the state, wider society, philosophy and religious authority. Part 2 has its own 3D compass.</p></div><button class="btn small ghost" data-go="test2">Start part 2 →</button></div>
+        <div class="p2card theme2"><span class="num" aria-hidden="true">٢</span><div><span class="eyebrow">Part 2, take it any time</span><h3>Society and politics</h3><p>Social life, religion and politics, philosophy, other religions, Sunni–Shia relations, ritual, the state, wider society and religious authority.</p></div><button class="btn small ghost" data-go="test2">Start part 2 →</button></div>
+        <div class="p2card theme3"><span class="num" aria-hidden="true">٣</span><div><span class="eyebrow">Part 3, take it any time</span><h3>Practice and identity</h3><p>Faith and doubt, what Karbala means, waiting for the Mahdi, inner and outer religion, strict or lenient rulings, the majority view, money and riba, community identity, and science and scripture.</p></div><button class="btn small ghost" data-go="test3">Start part 3 →</button></div>
         <p class="credit">Framing from <a href="https://www.instagram.com/p/DeeCwwuDXzv/" target="_blank" rel="noopener">Zoheir Esmail's post</a> (14 October 2026), after Shaykh Dr Vinay Khetia's Shia Research Institute podcast. Your answers are saved only in this browser, so you can pick up where you left off. They are never sent anywhere.</p>
         <details class="restore">
           <summary>Have a result code from another device?</summary>
           <form id="restoreForm" class="restoreform">
             <label for="restoreIn">Paste your result code</label>
-            <div class="rrow"><input id="restoreIn" type="text" autocomplete="off" spellcheck="false" placeholder="SC1-… or SC2-…"><button class="btn small" type="submit">Restore</button></div>
+            <div class="rrow"><input id="restoreIn" type="text" autocomplete="off" spellcheck="false" placeholder="SC1-…, SC2-… or SC3-…"><button class="btn small" type="submit">Restore</button></div>
             <p id="restoreMsg" class="rmsg" role="status"></p>
           </form>
         </details>
@@ -461,27 +506,25 @@ body.theme2 #tile .t1{fill:#1E7A55} body.theme2 #tile .t2{fill:#6E2B67} body.the
   <!-- COMPASS -->
   <section class="view" id="v-compass" aria-label="3D compass" hidden>
     <div class="chead">
-      <span class="eyebrow">04 · The 3D Compass</span>
+      <span class="eyebrow">05 · The 3D Compass</span>
       <h1 id="cTitle">Where the scholars stand</h1>
       <p id="cDesc">Left to right is <b style="color:var(--text)">Modernist ↔ Traditionalist</b>, bottom to top is <b style="color:var(--text)">Minimalist ↔ Maximalist</b>, and front to back is <b style="color:var(--text)">Rationalist ↔ Scripturalist</b>. Drag to turn the cube. Click a gold axis label to see the method behind that viewpoint, or click a scholar to see why they sit there.</p>
     </div>
+    <div class="ctabs" role="group" aria-label="Which compass">
+      <button class="ctab" data-mode="core" aria-pressed="true"><span class="ctn">Part 1</span>Belief and method</button>
+      <button class="ctab" data-mode="soc" aria-pressed="false"><span class="ctn">Part 2</span>Society and politics</button>
+    </div>
     <div class="controls">
-      <div class="crow" role="group" aria-label="Which compass"><span class="lab">Compass</span>
-        <button class="chip" data-mode="core" aria-pressed="true">Part 1 · Belief and method</button>
-        <button class="chip" data-mode="soc" aria-pressed="false">Part 2 · Society and politics</button>
-      </div>
-      <div class="crow" role="group" aria-label="Region"><span class="lab">Region</span><span id="regChips" style="display:contents"></span></div>
-      <div class="crow" role="group" aria-label="Period"><span class="lab">Period</span><span id="eraChips" style="display:contents"></span></div>
-      <div class="crow" role="group" aria-label="Turn the cube"><span class="lab">View</span>
-        <button class="chip" data-pre="iso" aria-pressed="true">Angled</button>
-        <button class="chip" data-pre="front" aria-pressed="false">Front <small>Modern × Imamology</small></button>
-        <button class="chip" data-pre="side" aria-pressed="false">Side <small>Method × Imamology</small></button>
-        <button class="chip" data-pre="top" aria-pressed="false">Top <small>Modern × Method</small></button>
+      <label class="csel"><span class="lab">Region</span><select id="regSel"></select></label>
+      <label class="csel"><span class="lab">Period</span><select id="eraSel"></select></label>
+      <div class="cseg" role="group" aria-label="Turn the cube"><span class="lab">View</span>
+        <span class="segs"><button data-pre="iso" aria-pressed="true">Angled</button><button data-pre="front" aria-pressed="false">Front</button><button data-pre="side" aria-pressed="false">Side</button><button data-pre="top" aria-pressed="false">Top</button></span>
       </div>
     </div>
     <div class="cmp">
       <div class="cubewrap">
         <svg id="cube" viewBox="0 0 1000 820" tabindex="0" role="img" aria-label="3D compass of scholars. Drag or use arrow keys to turn it."></svg>
+        <div class="rlegend" id="rLegend" aria-label="Dot colours by region"></div>
         <div class="hintrow"><span id="cubeHint">Drag to turn · arrow keys work too</span><span id="cLegend">Dot colour = region · dashed circle = mainstream Usuli centre · dotted saffron line = the deepest divide</span></div>
       </div>
       <aside class="drawer" id="drawer" aria-live="polite"></aside>
@@ -492,7 +535,7 @@ body.theme2 #tile .t1{fill:#1E7A55} body.theme2 #tile .t2{fill:#6E2B67} body.the
   <!-- TERMS -->
   <section class="view" id="v-terms" aria-label="Glossary" hidden>
     <div class="gloss">
-      <span class="eyebrow">05 · Glossary</span>
+      <span class="eyebrow">06 · Glossary</span>
       <h1>Terms used in the test</h1>
       <p class="intro">Arabic terms from Shia law and theology, in plain English. Anywhere on this site, a word with a dotted underline opens its definition.</p>
       <dl class="glist" id="glist"></dl>
@@ -900,10 +943,8 @@ const HABITS=[
  {id:"class",t:"Your local centre starts a weekly evening class. Which one would you sign up for?",o:["Tafsir of the Quran","Philosophy or 'irfan","Fiqh for everyday life","Islamic history","Akhlaq and self-development"]},
  {id:"mutah",t:"Mut'ah, temporary marriage, is a legitimate option for young Muslims today."},
  {id:"practice",t:"Which of these is most a part of your week?",o:["Du'a Kumayl","Ziyarat Ashura","Reading the Quran","Night prayer (salat al-layl)","None of these regularly"]},
- {id:"doubt",t:"You question the existence of God.",f:1},
  {id:"source",t:"Where do you get most of your religious learning?",o:["Majalis and talks at the centre","YouTube, Instagram or TikTok","Books","Podcasts","Family"]},
- {id:"journey",t:"Which journey would you most like to make next?",o:["The Arbaeen walk to Karbala","Hajj or Umrah","Ziyara in Mashhad","Ziyara in Najaf","Sayyida Zaynab, Damascus"]},
- {id:"evil",t:"The problem of evil, why a good God allows suffering, unsettles you.",f:1}
+ {id:"journey",t:"Which journey would you most like to make next?",o:["The Arbaeen walk to Karbala","Hajj or Umrah","Ziyara in Mashhad","Ziyara in Najaf","Sayyida Zaynab, Damascus"]}
 ];
 /* Fixed order (result codes depend on it): one statement per axis in turn, with a habit question after every sixth. */
 const Q2=(()=>{
@@ -914,6 +955,77 @@ const Q2=(()=>{
   return out;
 })();
 /*P2-END*/
+/* ================= PART 3: PRACTICE AND IDENTITY ================= */
+/*P3-START*/
+const AX3={
+ f:{g:"Faith",name:"Faith and doubt",neg:"Certain",pos:"Searching",d:"How settled your faith feels, and how often hard questions press on it.",
+    b:["Your faith feels settled: hard questions rarely shake it.","You're mostly settled in your faith, with questions that come and go.","Hard questions are a live part of your faith, and you return to them often."]},
+ kb:{g:"Faith",name:"What Karbala means",neg:"Devotional",pos:"Revolutionary",d:"Whether Ashura is first of all a tragedy to mourn and a source of intercession, or a model for standing against injustice.",
+    b:["You see Karbala first as a tragedy to mourn, with weeping and Imam Husayn's intercession at its heart.","You hold mourning and the call to justice together.","You see Karbala first as a model for standing against injustice today, the reading Shariati made famous."]},
+ mh:{g:"Faith",name:"Waiting for the Mahdi",neg:"Patient",pos:"Active",d:"Whether waiting for the Twelfth Imam (intizar) means patient personal piety or active work to prepare the world.",
+    b:["You see waiting for the Imam as patient personal piety, and you are wary of efforts to hasten his return.","You combine personal preparation with some concern for changing society.","You see waiting for the Imam as active work to change society and prepare for his return."]},
+ io:{g:"Practice",name:"Inner and outer religion",neg:"Spirit-centred",pos:"Law-centred",d:"Whether religion is first of all the inner life of the heart or careful observance of the law.",
+    b:["You put the inner life first: sincerity and closeness to God matter more than getting every rule right.","You hold the law and the inner life together.","You put careful observance first: the rules are the shape that faith takes."]},
+ rl:{g:"Practice",name:"Approach to rulings",neg:"Lenient",pos:"Cautious",d:"Whether, when you can choose, you take the easier ruling or the more cautious one (ihtiyat).",
+    b:["Where you're allowed to, you take the easier ruling: religion is meant to be easy.","You weigh ease and caution case by case.","Where there's doubt, you take the more cautious ruling."]},
+ mj:{g:"Practice",name:"Majority opinion",neg:"Independent",pos:"Mainstream",d:"How much weight the long-standing majority view of the jurists (the mashhur) should carry.",
+    b:["You're open to minority rulings and to breaks with long-standing opinion when the argument is good.","You lean on the majority view, but accept good reasons to depart from it.","You put great weight on the long-standing majority view of the jurists."]},
+ rb:{g:"Daily life",name:"Money and riba",neg:"Pragmatic",pos:"Strict",d:"How strictly to keep away from interest (riba) in mortgages, savings and work.",
+    b:["You take a pragmatic view of interest in modern life, such as mortgages where there's no real alternative.","You avoid interest where you reasonably can, without treating every case the same.","You keep strictly away from interest, even when it costs you."]},
+ id:{g:"Daily life",name:"Community identity",neg:"Heritage",pos:"Shared",d:"Whether Shia community life should keep each group's language and customs, or build one shared identity.",
+    b:["You see your family's language and customs as part of keeping the faith, and value centres rooted in them.","You value your heritage while welcoming a wider Shia community.","You want one shared Shia community, in the local language, beyond ethnic lines."]},
+ sc:{g:"Daily life",name:"Science and scripture",neg:"Separate",pos:"Reconciling",d:"Whether science and scripture speak to the same questions and should be brought together, or answer different ones.",
+    b:["You see science and scripture as answering different questions, so you don't look to the Quran for science.","You see some overlap between science and scripture, but don't press it.","You see science and scripture as speaking to the same world, with discoveries often confirming revelation."]}
+};
+const K3=["f","kb","mh","io","rl","mj","rb","id","sc"];
+const GROUPS3=[["Faith",["f","kb","mh"]],["Practice",["io","rl","mj"]],["Daily life",["rb","id","sc"]]];
+/* [k, text, frequency?]. k=+1: agreeing (or "Always") pushes toward the right-hand (pos) pole. */
+const Q3BANK={
+ f:[[1,"You question the existence of God.",1],
+    [-1,"Your faith has never seriously been shaken."],
+    [1,"The problem of evil, why a good God allows suffering, unsettles you.",1],
+    [-1,"You're certain your beliefs are true, and nothing could change that."]],
+ kb:[[1,"Ashura is first of all a call to stand against injustice."],
+    [-1,"Weeping for Imam Husayn is valuable in itself, whatever lessons we draw from it."],
+    [1,"A majlis that doesn't connect Karbala to injustice today has missed the point."],
+    [-1,"Imam Husayn's intercession on the Day of Judgement is one of the main reasons to mourn him."]],
+ mh:[[1,"Waiting for the Imam means working to change society now."],
+    [-1,"Until the Imam returns, believers should focus on their own piety rather than trying to change the world."],
+    [1,"You think about how your choices might help prepare for the Imam's return."],
+    [-1,"Efforts to hasten the reappearance, or to read today's events as its signs, do more harm than good."]],
+ io:[[1,"Getting the rulings of prayer right matters more than feeling moved in it."],
+    [-1,"A sincere heart matters more to God than perfect observance of the rules."],
+    [1,"You look up rulings (on wudu or khums, say) more often than you read about spirituality or ethics."],
+    [-1,"Someone can be close to God while being lax about some religious rules."]],
+ rl:[[1,"When scholars differ, you take the stricter view."],
+    [-1,"Religion is meant to be easy, so it's right to take the lighter ruling when you're allowed to."],
+    [1,"If you're unsure whether something is halal, you avoid it."],
+    [-1,"You'd eat at a restaurant without checking every ingredient, if the food is probably halal."]],
+ mj:[[-1,"You'd follow a ruling held by only a few jurists if your marja' gave it."],
+    [1,"If most jurists over the centuries agreed on something, it is very likely right."],
+    [-1,"A new ruling that breaks with centuries of opinion can still be correct."],
+    [1,"You'd be uneasy following a marja' known for unusual rulings."]],
+ rb:[[-1,"Taking a conventional mortgage is acceptable if there's no Islamic alternative."],
+    [1,"You'd turn down a better-paid job at a conventional bank."],
+    [1,"Keeping savings in an interest-paying account is wrong, even if you give the interest away."],
+    [-1,"Islamic finance is often conventional finance with different labels, so the difference matters less than people think."]],
+ id:[[1,"Majalis should be in English (or the local language), even if older members lose out."],
+    [-1,"Keeping your family's language and customs at the centre is part of keeping the faith."],
+    [1,"Shia centres should be run as one community, not by ethnic group (Iraqi, Khoja, Pakistani, Iranian…)."],
+    [-1,"You feel most at home at a centre of people from your own background."]],
+ sc:[[1,"The Quran contains scientific facts that were only discovered recently."],
+    [-1,"The Quran is a book of guidance, not science, so it shouldn't be read for scientific facts."],
+    [1,"Scientific discoveries often confirm what the Quran and the Imams taught."],
+    [-1,"Science and religion answer different questions, so they can't truly conflict."]]
+};
+/* Fixed order (result codes depend on it): one statement per axis in turn. */
+const Q3=(()=>{
+  const order=["f","kb","rb","io","mh","id","rl","sc","mj"], out=[], seen={};
+  for(let r=0;r<4;r++) order.forEach(a=>{const q=Q3BANK[a][r]; seen[a]=(seen[a]||0)+1; out.push({a,k:q[0],t:q[1],f:q[2]||0,id:a+seen[a]});});
+  return out;
+})();
+/*P3-END*/
+
 /* Society and politics compass: only scholars whose positions on these questions are documented.
    c: liberal(-1)..conservative(+1) · w: quietist(-1)..activist(+1) · pl: pluralist(-1)..exclusivist(+1) · p: philosophical(-1)..anti-philosophical(+1), null = not placed */
 const POL={
@@ -942,17 +1054,18 @@ const POL={
 };
 
 /* ================= ROUTING ================= */
-const VIEWS=["home","test","test2","insights","compass","terms"];
-const vid=v=>v==="test2"?"test":v;
+const VIEWS=["home","test","test2","test3","insights","compass","terms"];
+const vid=v=>v==="test2"||v==="test3"?"test":v;
 let current="home";
 function route(){const h=location.hash.replace("#","");return VIEWS.includes(h)?h:"home";}
 function show(v){
   current=v;
   document.body.classList.toggle("theme2",v==="test2"||(v==="compass"&&mode==="soc"));
+  document.body.classList.toggle("theme3",v==="test3");
   ["home","test","insights","compass","terms"].forEach(x=>$("v-"+x).hidden=x!==vid(v));
   document.querySelectorAll(".nav [data-go]").forEach(b=>b.setAttribute("aria-current",b.dataset.go===v?"page":"false"));
   if(v==="home") startHero(); else stopHero();
-  if(v==="test"||v==="test2") startTest(v==="test2"?2:1);
+  if(v==="test"||v==="test2"||v==="test3") startTest(v==="test3"?3:v==="test2"?2:1);
   if(v==="insights") renderInsights();
   if(v==="compass"){ applyMode(); renderCube(); renderDrawer(); }
   window.scrollTo(0,0);
@@ -963,20 +1076,22 @@ window.addEventListener("hashchange",()=>show(route()));
 document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest("[data-go]"); if(b){e.preventDefault();go(b.dataset.go);}});
 
 /* ================= TEST ================= */
-const PER=6, PAGES=Math.ceil(QS.length/PER), PAGES2=Math.ceil(Q2.length/PER);
+const PER=6, PAGES=Math.ceil(QS.length/PER), PAGES2=Math.ceil(Q2.length/PER), PAGES3=Math.ceil(Q3.length/PER);
 let answers=new Array(QS.length).fill(null), page=0, user=null;            // part 1 (unchanged format)
 let answers2=new Array(Q2.length).fill(null), page2=0, user2=null;         // part 2
+let answers3=new Array(Q3.length).fill(null), page3=0, user3=null;         // part 3
 let about=new Array(ABOUT.length).fill(null), aboutDone=false;             // asked once, before whichever part comes first
 let part=1, onAbout=false, aboutShown=false, pendingScroll=null;
 
 /* ---- saving: this browser only (localStorage), plus portable result codes ---- */
-const KEY="shia-compass:v1", KEY2="shia-compass:part2:v1";
+const KEY="shia-compass:v1", KEY2="shia-compass:part2:v1", KEY3="shia-compass:part3:v1";
 let saveT=null;
 function saveLocal(){
   clearTimeout(saveT);
   const at=new Date().toISOString();
   try{ localStorage.setItem(KEY,JSON.stringify({v:1,answers,page,done:!!user,savedAt:at}));
-       localStorage.setItem(KEY2,JSON.stringify({v:1,about,aboutDone,answers:answers2,page:page2,done:!!user2,savedAt:at})); }catch(_){}
+       localStorage.setItem(KEY2,JSON.stringify({v:1,about,aboutDone,answers:answers2,page:page2,done:!!user2,savedAt:at}));
+       localStorage.setItem(KEY3,JSON.stringify({v:1,answers:answers3,page:page3,done:!!user3,savedAt:at})); }catch(_){}
   renderResume();
 }
 function saveSoon(){ clearTimeout(saveT); saveT=setTimeout(saveLocal,250); }
@@ -1000,11 +1115,21 @@ function loadLocal(){
       if(d.done) score2();
     }
   }catch(_){}
+  try{
+    const d=JSON.parse(localStorage.getItem(KEY3)||"null");
+    if(d&&Array.isArray(d.answers)&&d.answers.length===Q3.length){
+      answers3=d.answers.map(a=>clampA(a,100));
+      page3=Math.min(PAGES3-1,Math.max(0,d.page|0));
+      if(d.done&&answers3.every(a=>a!==null)) score3();
+    }
+  }catch(_){}
 }
 function clearPart1(){ answers=new Array(QS.length).fill(null); page=0; user=null; saveLocal(); }
 function clearPart2(){ answers2=new Array(Q2.length).fill(null); page2=0; user2=null; saveLocal(); }
+function clearPart3(){ answers3=new Array(Q3.length).fill(null); page3=0; user3=null; saveLocal(); }
 function clearLocal(){
-  try{ localStorage.removeItem(KEY); localStorage.removeItem(KEY2); }catch(_){}
+  try{ localStorage.removeItem(KEY); localStorage.removeItem(KEY2); localStorage.removeItem(KEY3); }catch(_){}
+  answers3=new Array(Q3.length).fill(null); page3=0; user3=null;
   answers=new Array(QS.length).fill(null); page=0; user=null;
   answers2=new Array(Q2.length).fill(null); page2=0; user2=null;
   about=new Array(ABOUT.length).fill(null); aboutDone=false; renderResume();
@@ -1025,12 +1150,15 @@ function unpack(body,maxes){
 const MAX2=ABOUT.map(maxOf).concat(Q2.map(maxOf));
 function encodeCode(){ return "SC1-"+pack(answers); }
 function encodeCode2(){ return "SC2-"+pack(about.concat(answers2)); }
+function encodeCode3(){ return "SC3-"+pack(about.concat(answers3)); }
 function decodeAny(str){
   const c=String(str||"").trim().replace(/\s+/g,"");
   let m=/^SC1-([A-Za-z0-9_-]+)$/.exec(c);
   if(m){ const a=unpack(m[1],QS.map(()=>100)); return a&&{part:1,a}; }
   m=/^SC2-([A-Za-z0-9_-]+)$/.exec(c);
   if(m){ const a=unpack(m[1],MAX2); return a&&{part:2,about:a.slice(0,ABOUT.length),a:a.slice(ABOUT.length)}; }
+  m=/^SC3-([A-Za-z0-9_-]+)$/.exec(c);
+  if(m){ const a=unpack(m[1],ABOUT.map(maxOf).concat(Q3.map(()=>100))); return a&&{part:3,about:a.slice(0,ABOUT.length),a:a.slice(ABOUT.length)}; }
   return null;
 }
 function restoreFrom(arr){
@@ -1050,16 +1178,27 @@ function restoreFrom2(r){
   saveLocal();
   return gap<0;
 }
-function restoreCode(str){ const r=decodeAny(str); if(!r) return null; return {part:r.part,complete:r.part===1?restoreFrom(r.a):restoreFrom2(r)}; }
+function restoreFrom3(r){
+  if(r.about.some(a=>a!==null)){ about=r.about; aboutDone=true; }
+  answers3=r.a; user3=null;
+  const gap=answers3.findIndex(a=>a===null);
+  page3=gap<0?PAGES3-1:Math.floor(gap/PER);
+  if(gap<0) score3();
+  saveLocal();
+  return gap<0;
+}
+function restoreCode(str){ const r=decodeAny(str); if(!r) return null; return {part:r.part,complete:r.part===1?restoreFrom(r.a):r.part===2?restoreFrom2(r):restoreFrom3(r)}; }
 function renderResume(){
   const box=$("resume"); if(!box) return;
-  const n1=answers.filter(a=>a!==null).length, n2=answers2.filter(a=>a!==null).length, parts=[], btns=[];
+  const n1=answers.filter(a=>a!==null).length, n2=answers2.filter(a=>a!==null).length, n3=answers3.filter(a=>a!==null).length, parts=[], btns=[];
   if(user) parts.push(`Part 1 result: <b>${archetype(user)[0]}</b>`); else if(n1) parts.push(`Part 1: <b>${n1} of ${QS.length}</b> answered`);
   if(user2) parts.push(`Part 2: <b>finished</b>`); else if(n2) parts.push(`Part 2: <b>${n2} of ${Q2.length}</b> answered`);
+  if(user3) parts.push(`Part 3: <b>finished</b>`); else if(n3) parts.push(`Part 3: <b>${n3} of ${Q3.length}</b> answered`);
   if(!parts.length){ box.hidden=true; return; }
-  if(user||user2) btns.push(`<button class="btn small" data-go="insights">View your insights →</button>`);
+  if(user||user2||user3) btns.push(`<button class="btn small" data-go="insights">View your insights →</button>`);
   if(!user&&n1) btns.push(`<button class="btn small${user2?" ghost":""}" data-go="test">Continue part 1 →</button>`);
   if(!user2&&n2) btns.push(`<button class="btn small ghost" data-go="test2">Continue part 2 →</button>`);
+  if(!user3&&n3) btns.push(`<button class="btn small ghost" data-go="test3">Continue part 3 →</button>`);
   box.innerHTML=`<span class="rk">Saved on this device</span><span class="rt">${parts.join("<br>")}</span>${btns.join("")}`;
   box.hidden=false;
 }
@@ -1084,12 +1223,13 @@ async function rpc(fn,body){
   const t=await r.text(); return t?JSON.parse(t):null;
 }
 async function submitShare(){
-  if(!user&&!user2) return;
+  if(!user&&!user2&&!user3) return;
   const s=getShare()||{token:newToken()};
   await rpc("submit_result",{p_token:s.token,
     p_m:user?+user.m.toFixed(4):null,p_i:user?+user.i.toFixed(4):null,p_e:user?+user.e.toFixed(4):null,
     p_answers:user?answers.map(a=>Math.round(a)):null,p_archetype:user?archetype(user)[0]:null,p_consent:CONSENT_VERSION,
-    p_about:about,p_answers2:user2?answers2:null,p_scores2:user2?Object.fromEntries(K2.map(k=>[k,+user2[k].toFixed(4)])):null});
+    p_about:about,p_answers2:user2?answers2:null,p_scores2:user2?Object.fromEntries(K2.map(k=>[k,+user2[k].toFixed(4)])):null,
+    p_answers3:user3?answers3:null,p_scores3:user3?Object.fromEntries(K3.map(k=>[k,+user3[k].toFixed(4)])):null});
   setShare({token:s.token,consent:CONSENT_VERSION,at:new Date().toISOString()});
 }
 async function removeShare(){ const s=getShare(); if(!s) return; await rpc("delete_result",{p_token:s.token}); setShare(null); }
@@ -1152,14 +1292,14 @@ function renderCommunity(){
   loadComparison();
 }
 async function loadComparison(){
-  const out=$("cmpOut"); if(!out||(!user&&!user2)) return;
+  const out=$("cmpOut"); if(!out||(!user&&!user2&&!user3)) return;
   out.innerHTML=`<p class="muted">Loading community results…</p>`;
   document.querySelectorAll(".cavg,.cavg2").forEach(n=>n.remove());
   let sum;
   try{ sum=await rpc("community_summary",{}); }
   catch(_){ out.innerHTML=`<p class="muted">Couldn't load the community results just now.</p>`; return; }
-  const ok1=!!(user&&sum&&sum.n1>=5&&sum.hist), ok2=!!(user2&&sum&&sum.n2>=5&&sum.avg2);
-  if(!ok1&&!ok2){ out.innerHTML=`<p class="muted">Comparisons appear once at least 5 people have shared. So far: ${sum&&sum.n?sum.n:0}.</p>`; return; }
+  const ok1=!!(user&&sum&&sum.n1>=5&&sum.hist), ok2=!!(user2&&sum&&sum.n2>=5&&sum.avg2), ok3=!!(user3&&sum&&sum.n3>=5&&sum.avg3);
+  if(!ok1&&!ok2&&!ok3){ out.innerHTML=`<p class="muted">Comparisons appear once at least 5 people have shared. So far: ${sum&&sum.n?sum.n:0}.</p>`; return; }
   let html="";
   if(ok1){
     const rows=AXK.map(a=>{
@@ -1175,6 +1315,11 @@ async function loadComparison(){
     }).join("");
     html+=`<h3>Among the ${sum.n1} people who have shared part 1</h3><ul class="cres">${rows}</ul><p class="muted" style="font-size:14px">The dark tick on each spectrum above marks the community average.</p>`;
   }
+  if(ok3){
+    K3.forEach(a=>{ const avg=Number(sum.avg3[a]), bar=document.querySelector(`.axr[data-ax3="${a}"] .pbar`);
+      if(bar&&!isNaN(avg)){ const m=document.createElement("span"); m.className="cavg2"; m.style.left=((avg+1)*50)+"%"; m.title="Community average"; bar.appendChild(m); } });
+    html+=`<p class="muted" style="font-size:14px">On part 3, the dark tick on each bar marks the average of the ${sum.n3} people who have shared it.</p>`;
+  }
   if(ok2){
     K2.forEach(a=>{ const avg=Number(sum.avg2[a]), bar=document.querySelector(`.axr[data-ax2="${a}"] .pbar`);
       if(bar&&!isNaN(avg)){ const m=document.createElement("span"); m.className="cavg2"; m.style.left=((avg+1)*50)+"%"; m.title="Community average"; bar.appendChild(m); } });
@@ -1186,10 +1331,11 @@ async function copyText(text,btn,done){
   try{ await navigator.clipboard.writeText(text); const o=btn.textContent; btn.textContent=done; setTimeout(()=>btn.textContent=o,1800); return true; }
   catch(_){ return false; }
 }
-const arrOf=set=>set==="about"?about:set==="p1"?answers:answers2;
-const curQ=()=>part===1?QS:Q2, curA=()=>part===1?answers:answers2, curPages=()=>part===1?PAGES:PAGES2;
-const curPage=()=>part===1?page:page2;
-function setPage(x){ if(part===1) page=x; else page2=x; }
+const arrOf=set=>set==="about"?about:set==="p1"?answers:set==="p2"?answers2:answers3;
+const PARTNAME={1:"Belief and method",2:"Society and politics",3:"Practice and identity"};
+const curQ=()=>[null,QS,Q2,Q3][part], curA=()=>[null,answers,answers2,answers3][part], curPages=()=>[0,PAGES,PAGES2,PAGES3][part];
+const curPage=()=>[0,page,page2,page3][part];
+function setPage(x){ if(part===1) page=x; else if(part===2) page2=x; else page3=x; }
 function curItems(){
   if(onAbout) return ABOUT.map((q,j)=>({set:"about",j,q}));
   const s=curPage()*PER; return curQ().slice(s,s+PER).map((q,k)=>({set:"p"+part,j:s+k,q}));
@@ -1217,18 +1363,19 @@ function cardHTML({set,j,q}){
 }
 function renderTest(){
   const Q=curQ(), A=curA(), start=curPage()*PER;
-  $("tPart").textContent=onAbout?"Before you start · About you":`Part ${part} · ${part===1?"Belief and method":"Society and politics"} · page ${curPage()+1} of ${curPages()}`;
-  $("tTitle").textContent=onAbout?"First, a little about you":part===1?"How much do you agree?":"Where do you stand?";
+  $("tPart").textContent=onAbout?"Before you start · About you":`Part ${part} · ${PARTNAME[part]} · page ${curPage()+1} of ${curPages()}`;
+  $("tTitle").textContent=onAbout?"First, a little about you":part===1?"How much do you agree?":part===2?"Where do you stand?":"How do you live it?";
   $("tNote").textContent=onAbout?"These aren't scored, and you can skip any of them. They're asked only once, and only used to find patterns if you choose to share your results."
     :part===1?"Each slider starts at Neutral. Move it to show how far you agree or disagree."
-    :"Each slider starts in the middle. A few questions about your habits and experience aren't scored: they help find patterns.";
+    :part===2?"Each slider starts in the middle. A few multiple-choice questions about your habits aren't scored: they help find patterns."
+    :"Each slider starts in the middle. Most ask how far you agree; a few ask how often something is true for you.";
   $("tProg").innerHTML=onAbout?ABOUT.map((_,j)=>`<i class="${about[j]!==null?"on":""} page"></i>`).join("")
     :Q.map((_,j)=>`<i class="${A[j]!==null?"on":""} ${j>=start&&j<start+PER?"page":""}"></i>`).join("");
   const items=curItems();
   $("qlist").innerHTML=items.map(cardHTML).join("");
   $("qlist").querySelectorAll("input.ag").forEach(inp=>{
     const arr=arrOf(inp.dataset.set), j=+inp.dataset.j, card=inp.closest(".qc"), uid=inp.dataset.set+"_"+j;
-    const qq=(inp.dataset.set==="about"?ABOUT:inp.dataset.set==="p1"?QS:Q2)[j];
+    const qq=(inp.dataset.set==="about"?ABOUT:inp.dataset.set==="p1"?QS:inp.dataset.set==="p2"?Q2:Q3)[j];
     const set=()=>{arr[j]=Number(inp.value);card.classList.remove("untouched");card.classList.add("done");
       const lv=lvl(qq,arr[j]); $("qv"+uid).textContent=lv; inp.setAttribute("aria-valuetext",lv); inp.style.setProperty("--p",inp.value+"%"); updateTestNav(); saveSoon();};
     inp.addEventListener("input",set); inp.addEventListener("change",set);
@@ -1267,7 +1414,7 @@ $("tNext").addEventListener("click",()=>{
   if(onAbout){ onAbout=false; aboutDone=true; saveLocal(); renderTest(); window.scrollTo(0,0); return; }
   fillPage();
   if(curPage()<curPages()-1){ setPage(curPage()+1); saveLocal(); renderTest(); window.scrollTo(0,0); return; }
-  if(part===1) score(); else { score2(); pendingScroll="q2res"; }
+  if(part===1) score(); else if(part===2){ score2(); pendingScroll="q2res"; } else { score3(); pendingScroll="q3res"; }
   saveLocal(); if(communityOn&&getShare()&&about[1]!==0) submitShare().catch(()=>{});
   go("insights");
 });
@@ -1275,6 +1422,11 @@ function score(){
   const sum={m:0,i:0,e:0},n={m:0,i:0,e:0};
   QS.forEach((q,j)=>{sum[q.a]+=q.k*((answers[j]-50)/50); n[q.a]++;});
   user={m:sum.m/n.m,i:sum.i/n.i,e:sum.e/n.e};
+}
+function score3(){
+  const sum={},n={};
+  Q3.forEach((q,j)=>{ const v=answers3[j]; if(v===null) return; sum[q.a]=(sum[q.a]||0)+q.k*((v-50)/50); n[q.a]=(n[q.a]||0)+1; });
+  user3={}; K3.forEach(a=>user3[a]=n[a]?sum[a]/n[a]:0);
 }
 function score2(){
   const sum={},n={};
@@ -1353,7 +1505,7 @@ function part2HTML(){
   return `<section class="p2 theme2" id="q2res">
     <div class="p2head"><span class="eyebrow">Your result · part 2</span><h2>Society and politics</h2>
       <p class="sum">${lead}</p>
-      <p class="note">Each bar splits 100% between the two poles: 50/50 is the middle. Based on your answers to 36 statements; the eight questions about your habits and experience aren't scored.</p>
+      <p class="note">Each bar splits 100% between the two poles: 50/50 is the middle. Based on your answers to 36 statements; the six questions about your habits aren't scored.</p>
       <div class="cta"><button class="btn" id="toCube2">See your pin on the society and politics compass →</button><button class="btn ghost" id="retake2">Retake part 2</button></div></div>
     <div class="ax12">${GROUPS2.map(([g,ks])=>`<div class="axg"><span class="eyebrow">${g}</span>${ks.map(axRow).join("")}</div>`).join("")}</div>
     <section class="align">
@@ -1364,11 +1516,29 @@ function part2HTML(){
     </section>
   </section>`;
 }
+function part3HTML(){
+  const u=user3;
+  const strong=K3.map(a=>({a,v:u[a]})).filter(o=>Math.abs(o.v)>=.2).sort((x,y)=>Math.abs(y.v)-Math.abs(x.v)).slice(0,3);
+  const lead=strong.length?`Your strongest leanings: ${strong.map(o=>`<b>${o.v<0?AX3[o.a].neg:AX3[o.a].pos}</b> on ${AX3[o.a].name.toLowerCase()} (${o.v<0?100-pct2(o.v):pct2(o.v)}%)`).join(", ")}.`:"You sit near the middle on all nine axes.";
+  const axRow=a=>{const A=AX3[a], v=u[a], r=pct2(v);
+    return `<div class="axr" data-ax3="${a}"><span class="an">${A.name}</span>
+      <div class="pends"><span><b>${A.neg}</b> ${100-r}%</span><span>${r}% <b>${A.pos}</b></span></div>
+      <div class="pbar" role="img" aria-label="${A.neg} ${100-r}%, ${A.pos} ${r}%"><i class="l" style="width:${100-r}%"></i><i class="r" style="width:${r}%"></i></div>
+      <p>${A.b[band2(v)]}</p></div>`;};
+  return `<section class="p2 theme3" id="q3res">
+    <div class="p2head"><span class="eyebrow">Your result · part 3</span><h2>Practice and identity</h2>
+      <p class="sum">${lead}</p>
+      <p class="note">Each bar splits 100% between the two poles: 50/50 is the middle. Based on your answers to 36 statements.</p>
+      <div class="cta"><button class="btn ghost" id="retake3">Retake part 3</button></div></div>
+    <div class="ax12">${GROUPS3.map(([g,ks])=>`<div class="axg"><span class="eyebrow">${g}</span>${ks.map(axRow).join("")}</div>`).join("")}</div>
+  </section>`;
+}
 function ctaHTML(p){
-  const started=(p===1?answers:answers2).some(a=>a!==null);
+  const started=[null,answers,answers2,answers3][p].some(a=>a!==null);
+  if(p===3) return `<section class="pcta theme3" id="q3res"><div><span class="eyebrow">Part 3</span><h2>Practice and identity</h2><p>Faith and doubt, what Karbala means, waiting for the Mahdi, inner and outer religion, how strictly to take rulings, the majority view, money and riba, community identity, and science and scripture. 36 statements, about 7 minutes.</p></div><div class="cta"><button class="btn" data-go="test3">${started?"Continue part 3 →":"Start part 3 →"}</button></div></section>`;
   return p===1
-    ?`<section class="pcta"><div><span class="eyebrow">Part 1 · Belief and method</span><h2>Where you stand on Esmail's three spectrums</h2><p>Modern questions, Imamology and method, with your pin among 43 scholars in the 3D compass. 36 statements, about 8 minutes.</p></div><div class="cta"><button class="btn" data-go="test">${started?"Continue part 1 →":"Start part 1 →"}</button></div></section>`
-    :`<section class="pcta theme2" id="q2res"><div><span class="eyebrow">Part 2 · Society and politics</span><h2>Nine more axes</h2><p>Social life, religion and politics, philosophy, other religions, Sunni–Shia relations, ritual, the state, wider society and religious authority, with a second 3D compass. 44 questions, about 8 minutes.</p></div><div class="cta"><button class="btn" data-go="test2">${started?"Continue part 2 →":"Start part 2 →"}</button></div></section>`;
+    ?`<section class="pcta"><div><span class="eyebrow">Part 1</span><h2>Belief and method</h2><p>Modern questions, Imamology and method, with your pin among 43 scholars in the 3D compass. 36 statements, about 8 minutes.</p></div><div class="cta"><button class="btn" data-go="test">${started?"Continue part 1 →":"Start part 1 →"}</button></div></section>`
+    :`<section class="pcta theme2" id="q2res"><div><span class="eyebrow">Part 2</span><h2>Society and politics</h2><p>Social life, religion and politics, philosophy, other religions, Sunni–Shia relations, ritual, the state, wider society and religious authority. 42 questions, about 8 minutes.</p></div><div class="cta"><button class="btn" data-go="test2">${started?"Continue part 2 →":"Start part 2 →"}</button></div></section>`;
 }
 /* ================= SHARE CARD ================= */
 /* A portrait image (1080 wide, Instagram-friendly) drawn on a canvas: where you sit on each axis and your closest scholars.
@@ -1385,12 +1555,14 @@ function initials(s){ const w=s.s.replace(/^(al-|Ayatollah |Allama |Shaykh |Sayy
 async function drawCard(){
   const W=1080, PAD=64, F1='"Bricolage Grotesque","Segoe UI",system-ui,sans-serif', F2='"Source Sans 3","Segoe UI",system-ui,sans-serif';
   try{ await Promise.all([document.fonts.load('800 40px "Bricolage Grotesque"'),document.fonts.load('600 20px "Source Sans 3"'),document.fonts.load('700 30px "Reem Kufi"')]); }catch(_){}
-  const near1=user?S.map(s=>({s,d:dist(s,user)})).sort((a,b)=>a.d-b.d).slice(0,user2?3:5):[];
+  const near1=user?S.map(s=>({s,d:dist(s,user)})).sort((a,b)=>a.d-b.d).slice(0,user2||user3?3:5):[];
   const near2=user2?Object.keys(POL).map(id=>({s:SID[id],d:dist2(id,user2)})).sort((a,b)=>a.d-b.d).slice(0,3):[];
   const photos={}; await Promise.all([...near1,...near2].map(async o=>{photos[o.s.id]=await loadPhoto(o.s.id);}));
   const top2=user2?K2.slice().sort((a,b)=>Math.abs(user2[b])-Math.abs(user2[a])).slice(0,4):[];   // the four strongest leanings
   const rows2=Math.ceil(top2.length/2);
-  const H=150+(user?150+3*92+60+near1.length*92:0)+(user2?90+rows2*92+60+near2.length*92:0)+(user&&user2?40:0)+90;
+  const top3=user3?K3.slice().sort((a,b)=>Math.abs(user3[b])-Math.abs(user3[a])).slice(0,4):[], rows3=Math.ceil(top3.length/2);
+  const nParts=[user,user2,user3].filter(Boolean).length;
+  const H=150+(user?150+3*92+60+near1.length*92:0)+(user2?90+rows2*92+60+near2.length*92:0)+(user3?90+rows3*92+20:0)+(nParts-1)*40+90;
   const cv=document.createElement("canvas"); cv.width=W; cv.height=H; const g=cv.getContext("2d");
   const INK="#0B2233";
   g.fillStyle="#F6F9FA"; g.fillRect(0,0,W,H);
@@ -1443,6 +1615,13 @@ async function drawCard(){
     y+=rows2*92+20; txt("CLOSEST ON THESE QUESTIONS",PAD,y,`700 22px ${F2}`,"#6E2B67"); y+=22;
     scholarRows(near2,o=>o.d,"#6E2B67");
   }
+  if(user3){
+    if(user||user2){ y+=10; g.fillStyle="#B9C7D1"; g.fillRect(PAD,y,W-2*PAD,3); y+=30; }
+    txt("PART 3 · PRACTICE AND IDENTITY · STRONGEST LEANINGS",PAD,y,`700 22px ${F2}`,"#7E4E12"); y+=50;
+    const cw=(W-2*PAD-48)/2;
+    top3.forEach((a,k)=>{ const col=k%2, row=Math.floor(k/2); twoPole(PAD+col*(cw+48),cw,y+row*92,AX3[a].neg,AX3[a].pos,user3[a],"#3F6B35","#C9A227",AX3[a].name); });
+    y+=rows3*92+20;
+  }
   // footer
   y=H-66; txt("Take the test: husaynyahya.github.io/ShiaCompass",PAD,y+8,`700 24px ${F2}`,INK);
   band(H-40,"#1E7A55","#6E2B67","#D8613A","#2B1630");
@@ -1469,15 +1648,16 @@ async function renderShareCard(){
 }
 function renderInsights(){
   const box=$("v-insights");
-  if(!user&&!user2){ box.innerHTML=`<div class="chead"><span class="eyebrow">03 · Insights</span><h1>Take the test first</h1><p>Your insights appear here once you've finished part 1 (36 statements on belief and method) or part 2 (44 questions on society and politics).</p><div class="cta" style="margin-top:14px"><button class="btn" data-go="test">Start part 1 →</button><button class="btn ghost" data-go="test2">Start part 2 →</button></div></div>`; return; }
-  const codes=[]; if(user) codes.push(["Part 1",encodeCode()]); if(user2) codes.push(["Part 2",encodeCode2()]);
+  if(!user&&!user2&&!user3){ box.innerHTML=`<div class="chead"><span class="eyebrow">04 · Insights</span><h1>Take the test first</h1><p>Your insights appear here once you've finished any of the three parts: belief and method (36 statements), society and politics (42 questions), or practice and identity (36 statements).</p><div class="cta" style="margin-top:14px"><button class="btn" data-go="test">Start part 1 →</button><button class="btn ghost" data-go="test2">Start part 2 →</button><button class="btn ghost" data-go="test3">Start part 3 →</button></div></div>`; return; }
+  const codes=[]; if(user) codes.push(["Part 1",encodeCode()]); if(user2) codes.push(["Part 2",encodeCode2()]); if(user3) codes.push(["Part 3",encodeCode3()]);
   box.innerHTML=`
    <div class="ins">
     ${user?part1HTML():ctaHTML(1)}
     ${user2?part2HTML():ctaHTML(2)}
+    ${user3?part3HTML():ctaHTML(3)}
     <section class="sharecard" aria-label="Share your result">
       <div class="shead"><span class="eyebrow">Share</span><h2>Your result card</h2>
-        <p>An image of where you sit on part 1's three spectrums and your four strongest part 2 leanings, with the scholars closest to you. Post it or send it to friends.</p>
+        <p>An image of your results from each part you've finished: part 1's three spectrums and your closest scholars, and your strongest leanings from parts 2 and 3. Post it or send it to friends.</p>
         <div class="cta"><button class="btn" id="dlCard" type="button">Download image</button><button class="btn ghost" id="shareCard" type="button" hidden>Share…</button></div>
         <p class="cmsg" id="cardMsg" role="status"></p><p class="muted" style="font-size:14px">On a phone, you can also press and hold the image to save it.</p></div>
       <img id="cardImg" alt="Your Shia Compass result card">
@@ -1502,9 +1682,10 @@ function renderInsights(){
   on("toCube2",()=>{mode="soc";drawer={type:"you"};go("compass");});
   on("retake",()=>{clearPart1();go("test");});
   on("retake2",()=>{clearPart2();go("test2");});
+  on("retake3",()=>{clearPart3();go("test3");});
   box.querySelectorAll("[data-copy]").forEach(b=>b.addEventListener("click",async e=>{ const inp=$("codeOut"+b.dataset.copy);
     if(!await copyText(inp.value,e.currentTarget,"Copied")){ inp.focus(); inp.select(); } }));
-  on("copyLink",async e=>{ const q=new URLSearchParams(); if(user) q.set("r",encodeCode()); if(user2) q.set("r2",encodeCode2());
+  on("copyLink",async e=>{ const q=new URLSearchParams(); if(user) q.set("r",encodeCode()); if(user2) q.set("r2",encodeCode2()); if(user3) q.set("r3",encodeCode3());
     const link=location.origin+location.pathname+"?"+q.toString()+"#insights";
     if(!await copyText(link,e.currentTarget,"Link copied")){ const inp=$("codeOut0"); inp.value=link; inp.focus(); inp.select(); } });
   const cb=$("clearData");
@@ -1737,22 +1918,28 @@ function renderShown(){
   const all=MD().list(), vis=all.filter(visible);
   $("shownT").textContent=region==="all"&&eraF==="all"?`All ${vis.length} scholars${mode==="soc"?" on this compass":""}`:`Showing ${vis.length} of ${all.length} scholars`;
   const selId=drawer.type==="scholar"?drawer.id:null;
-  $("shownL").innerHTML=vis.map(s=>`<button data-sch="${s.id}" aria-current="${s.id===selId}"><i class="dot" style="background:var(--r-${s.reg})"></i>${s.n}</button>`).join("");
+  const groups=Object.keys(REG).map(k=>({k,list:vis.filter(s=>s.reg===k)})).filter(g=>g.list.length);
+  const ncol=Math.min(3,groups.length), cols=Array.from({length:ncol},()=>({h:0,html:""}));
+  groups.forEach(g=>{ const c=cols.reduce((a,b)=>b.h<a.h?b:a); c.h+=g.list.length+2;   // balance columns by height
+    c.html+=`<div class="rgrp"><h4><i class="dot" style="background:var(--r-${g.k})"></i>${REG[g.k].n}<span>${g.list.length}</span></h4>
+      <ul>${g.list.map(s=>`<li><button data-sch="${s.id}" aria-current="${s.id===selId}" title="${s.n}">${s.s}</button><span>${s.d}</span></li>`).join("")}</ul></div>`; });
+  $("shownL").innerHTML=cols.map(c=>`<div class="rcol">${c.html}</div>`).join("");
   $("shownL").querySelectorAll("[data-sch]").forEach(b=>b.addEventListener("click",()=>{drawer={type:"scholar",id:b.dataset.sch};renderCube();renderDrawer();window.scrollTo({top:$("cube").getBoundingClientRect().top+window.scrollY-90,behavior:reduce?"auto":"smooth"});}));
 }
 function applyMode(){
   const M=MD();
   $("cTitle").textContent=M.title; $("cDesc").innerHTML=M.desc; $("cLegend").textContent=M.legend;
-  document.querySelectorAll("[data-mode]").forEach(b=>{ if(b.classList.contains("chip")) b.setAttribute("aria-pressed",b.dataset.mode===mode?"true":"false"); });
-  ["front","side","top"].forEach((k,j)=>{const sm=document.querySelector(`[data-pre="${k}"] small`); if(sm) sm.textContent=M.chips[j];});
+  document.querySelectorAll(".ctab[data-mode]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.mode===mode?"true":"false"));
+  ["front","side","top"].forEach((k,j)=>{const b=document.querySelector(`[data-pre="${k}"]`); if(b) b.title=M.chips[j];});
   const pressed=document.querySelector('[data-pre][aria-pressed="true"]'); $("cubeHint").textContent=M.hint[pressed?pressed.dataset.pre:"iso"];
 }
-document.querySelectorAll(".chip[data-mode]").forEach(b=>b.addEventListener("click",()=>{ if(mode===b.dataset.mode) return; mode=b.dataset.mode; drawer={type:"you"}; document.body.classList.toggle("theme2",mode==="soc"); applyMode(); renderCube(); renderDrawer(); }));
+document.querySelectorAll(".ctab[data-mode]").forEach(b=>b.addEventListener("click",()=>{ if(mode===b.dataset.mode) return; mode=b.dataset.mode; drawer={type:"you"}; document.body.classList.toggle("theme2",mode==="soc"); applyMode(); renderCube(); renderDrawer(); }));
 /* chips */
-$("regChips").innerHTML=`<button class="chip" data-reg="all" aria-pressed="true">All regions</button>`+Object.keys(REG).map(k=>`<button class="chip" data-reg="${k}" aria-pressed="false"><span class="sw" style="background:var(--r-${k})"></span>${REG[k].n} <small>${REG[k].sub}</small></button>`).join("");
-$("eraChips").innerHTML=`<button class="chip" data-era="all" aria-pressed="true">All periods</button>`+Object.keys(ERA).map(k=>`<button class="chip" data-era="${k}" aria-pressed="false">${ERA[k]}</button>`).join("");
-document.querySelectorAll("[data-reg]").forEach(b=>b.addEventListener("click",()=>{region=b.dataset.reg;document.querySelectorAll("[data-reg]").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));renderCube();}));
-document.querySelectorAll("[data-era]").forEach(b=>b.addEventListener("click",()=>{eraF=b.dataset.era;document.querySelectorAll("[data-era]").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));renderCube();}));
+$("regSel").innerHTML=`<option value="all">All regions</option>`+Object.keys(REG).map(k=>`<option value="${k}">${REG[k].n} (${REG[k].sub})</option>`).join("");
+$("eraSel").innerHTML=`<option value="all">All periods</option>`+Object.keys(ERA).map(k=>`<option value="${k}">${ERA[k]}</option>`).join("");
+$("regSel").addEventListener("change",e=>{region=e.target.value;renderCube();});
+$("eraSel").addEventListener("change",e=>{eraF=e.target.value;renderCube();});
+$("rLegend").innerHTML=Object.keys(REG).map(k=>`<span><i class="dot" style="background:var(--r-${k})"></i>${REG[k].n}</span>`).join("");
 function markPre(k){document.querySelectorAll("[data-pre]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.pre===k?"true":"false"));$("cubeHint").textContent=MD().hint[k||"iso"];}
 function turnTo(k){
   if(turnRaf) cancelAnimationFrame(turnRaf);
@@ -1825,6 +2012,10 @@ const GL=[
  {k:"minbar",t:"Minbar",ar:"منبر",v:["minbar"],d:"The pulpit from which sermons and majlis talks are given."},
  {k:"ahlulbayt",t:"Ahl al-Bayt",ar:"أهل البيت",v:["Ahl al-Bayt"],d:"'People of the House': the Prophet's family. In Shiism, Lady Fatima, Imam Ali and the Imams descended from them."},
  {k:"ashura",t:"Ashura",ar:"عاشوراء",v:["Ashura"],d:"The 10th of Muharram, the day Imam Husayn was killed at Karbala in 680 CE."},
+ {k:"intizar",t:"Intizar",ar:"الانتظار",v:["intizar"],d:"'Waiting': awaiting the return of the twelfth Imam, al-Mahdi. Scholars differ on whether it means patient personal piety or active work to prepare the world."},
+ {k:"riba",t:"Riba",ar:"الربا",v:["riba"],d:"Interest or usury on loans, which the Quran forbids. Scholars differ on how it applies to modern mortgages, savings and banking."},
+ {k:"khums",t:"Khums",ar:"الخمس",v:["khums"],d:"'One fifth': an annual religious tax on surplus income in Shia law, paid to the marja' or his representatives."},
+ {k:"wudu",t:"Wudu",ar:"الوضوء",v:["wudu"],d:"The ritual washing of the face, arms, head and feet before prayer."},
  {k:"ziyara",t:"Ziyara",ar:"زيارة",v:["ziyara","ziyarat"],d:"Visiting the shrine of the Prophet, an Imam or a saint, and the texts recited there (ziyarat)."}
 ];
 GL.sort((a,b)=>a.t.replace(/^'/,"").localeCompare(b.t.replace(/^'/,"")));
@@ -1878,15 +2069,15 @@ document.querySelectorAll(".spec p").forEach(linkify);
 $("restoreForm").addEventListener("submit",e=>{
   e.preventDefault();
   const r=restoreCode($("restoreIn").value), msg=$("restoreMsg");
-  if(!r){ msg.textContent="That code wasn't recognised. Check it starts with SC1- or SC2- and was copied in full."; return; }
+  if(!r){ msg.textContent="That code wasn't recognised. Check it starts with SC1-, SC2- or SC3- and was copied in full."; return; }
   msg.textContent=r.complete?"Restored. Opening your insights…":"Restored. Taking you back to the test…";
-  if(r.complete&&r.part===2) pendingScroll="q2res";
-  setTimeout(()=>go(r.complete?"insights":r.part===2?"test2":"test"),500);
+  if(r.complete&&r.part>1) pendingScroll="q"+r.part+"res";
+  setTimeout(()=>go(r.complete?"insights":["","test","test2","test3"][r.part]),500);
 });
 loadLocal();
 try{
   const qs=new URLSearchParams(location.search); let hit=false;
-  ["r","r2"].forEach(k=>{ const v=qs.get(k); if(v&&restoreCode(v)) hit=true; });
+  ["r","r2","r3"].forEach(k=>{ const v=qs.get(k); if(v&&restoreCode(v)) hit=true; });
   if(hit) history.replaceState(null,"",location.pathname+location.hash);
 }catch(_){}
 renderResume();
