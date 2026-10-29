@@ -8,12 +8,16 @@ A single-page web app built on the three spectrums Zoheir Esmail set out in his 
 2. **Minimalist ↔ Maximalist**: what an Imam is (Imamology)
 3. **Rationalist ↔ Scripturalist**: whether reason or the transmitted texts come first
 
+A second, optional part adds nine more axes, inspired by the [12Axes](https://12axes.github.io/) political test: social life, religion and politics, other religions, Sunni–Shia relations, ritual, religion and state, wider society, philosophy and mysticism, and religious authority.
+
 ## What it does
 
-- **Test**: 36 statements (12 per spectrum, some reverse-worded), answered on sliders from "Strongly disagree" to "Strongly agree"
-- **Insights**: your position on each spectrum and what it means, the strongest case from the other side, reading and practices that tend to go with your position, related beliefs, and your closest scholars by match percentage
-- **3D Compass**: a rotatable cube of 42 scholars from the 10th century to today, with your pin, filters by region (Iraq, Iran, Lebanon, Arabia & Gulf, Afghanistan, the West) and period, flat Front / Side / Top views, and clickable axis labels that explain the method behind each viewpoint
-- **Glossary**: 44 Arabic terms, also available as tap-to-define pop-ups throughout
+- **About you**: six optional, unscored questions (gender, age band, family roots, country, marja', attendance), asked once before whichever part is taken first
+- **Part 1 · Belief and method**: 36 statements (12 per spectrum, some reverse-worded), answered on sliders from "Strongly disagree" to "Strongly agree"
+- **Part 2 · Society and politics**: 36 statements (4 per axis, half reverse-worded) plus 6 unscored habit questions (what you play in the car, which class you'd join, mut'ah, and so on) that are there to find patterns
+- **Insights**: for part 1, your position on each spectrum and what it means, the strongest case from the other side, reading and practices that tend to go with your position, related beliefs, and your closest scholars. For part 2, a two-pole percentage bar per axis (12Axes style) and the scholars closest to you on those questions
+- **Two 3D compasses**: part 1's cube of 42 scholars (Modernist ↔ Traditionalist × Minimalist ↔ Maximalist × Rationalist ↔ Scripturalist), and part 2's cube of the 21 scholars with documented positions (Liberal ↔ Conservative × Quietist ↔ Activist × Pluralist ↔ Exclusivist). Both have your pin, filters by region and period, flat Front / Side / Top views, and clickable axis labels
+- **Glossary**: 53 Arabic terms, also available as tap-to-define pop-ups throughout
 
 ## Running it
 
@@ -21,9 +25,9 @@ It's one self-contained file. Open `index.html` in a browser, or serve the folde
 
 ## How user data is saved
 
-**On the person's own device (always on).** Answers save to the browser's local storage as they're given, so the test resumes where it was left and the result is still there on return. A result code (`SC1-…`) carries the answers to another device, and on a hosted copy a `?r=` link opens a result directly. "Clear my data" deletes everything.
+**On the person's own device (always on).** Answers save to the browser's local storage as they're given, so the test resumes where it was left and the result is still there on return. A result code carries the answers to another device (`SC1-…` for part 1, `SC2-…` for part 2 plus the About-you answers), and on a hosted copy a `?r=…&r2=…` link opens results directly. "Clear my data" deletes everything.
 
-**Community results (optional, opt-in).** If you connect a Supabase database, the insights page offers an "Add my result" option behind a consent tick-box. People who agree add their 36 answers, three scores, result name, date and a random sharing ID, with no name, email or account. In return they see how they compare with everyone who has shared, and the community average appears on each spectrum. They can remove their result at any time. Totals stay hidden until at least 5 people have shared.
+**Community results (optional, opt-in).** If you connect a Supabase database, the insights page offers an "Add my result" option behind a consent tick-box. People who agree add their answers to whichever parts they've finished (including the optional About-you answers), their scores, result name, date and a random sharing ID, with no name, email or account. Anyone who says they're under 18 isn't offered sharing. In return they see how they compare with everyone who has shared, and the community average appears on each spectrum. They can remove their result at any time. Totals stay hidden until at least 5 people have shared.
 
 The public key can't read or change the table directly. The page can only call three database functions: add or update this browser's result, remove it, and fetch anonymous totals.
 
@@ -35,7 +39,17 @@ The public key can't read or change the table directly. The page can only call t
 4. At the top of the script in `index.html`, fill in `COMMUNITY`: `url`, `key`, and the privacy-notice details `owner`, `contact` and `region`.
 5. Deploy with GitHub Pages. The sharing section only appears on the hosted site, not inside a Claude artifact preview.
 
-To see the data, use the Supabase **Table Editor** (table `results`) or the SQL Editor, for example `select archetype, count(*) from results group by 1 order by 2 desc;`.
+To see the data, use the Supabase **Table Editor** (table `results`) or the SQL Editor, for example `select archetype, count(*) from results group by 1 order by 2 desc;`. If you ran an older `schema.sql`, just run the new one: it upgrades the table in place.
+
+### Finding patterns
+
+`analysis/patterns.py` looks for links in the shared results, including ones the axis labels don't predict:
+
+1. In Supabase, open **Table Editor → results → Export → Export table as CSV**.
+2. Run `pip install numpy pandas`, then `python3 analysis/patterns.py results.csv`.
+3. Open `analysis/report.html`.
+
+The report shows, for each multiple-choice answer (for example "a latmiyya in the car" or "family roots in Iraq"), how that group differs from everyone else on every axis; the strongest correlations between statements written for different axes; and a factor analysis of which statements move together. Groups under 30 people are never shown. Run `python3 analysis/patterns.py --demo` to see an example report on made-up data. `analysis/questions.json` maps each position in the stored answer arrays to its question; regenerate it if the questions change.
 
 **Your responsibilities as the data controller.** Answers about faith can reveal religious beliefs, which are special category data under UK GDPR, so the page relies on explicit consent. Before you switch sharing on:
 - fill in a real name and contact address for the privacy notice

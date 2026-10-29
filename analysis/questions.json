@@ -1,0 +1,835 @@
+{
+ "version": 1,
+ "note": "Generated from index.html. Index order matches the answers, about and answers2 arrays stored in the database.",
+ "axes": {
+  "m": {
+   "name": "Modern questions",
+   "neg": "Modernist",
+   "pos": "Traditionalist",
+   "part": 1
+  },
+  "i": {
+   "name": "Imamology",
+   "neg": "Minimalist",
+   "pos": "Maximalist",
+   "part": 1
+  },
+  "e": {
+   "name": "Method",
+   "neg": "Rationalist",
+   "pos": "Scripturalist",
+   "part": 1
+  },
+  "p": {
+   "name": "Philosophy and mysticism",
+   "neg": "Philosophical",
+   "pos": "Anti-philosophical",
+   "part": 2,
+   "group": "Method"
+  },
+  "a": {
+   "name": "Religious authority",
+   "neg": "Lay",
+   "pos": "Clerical",
+   "part": 2,
+   "group": "Method"
+  },
+  "pl": {
+   "name": "Other religions",
+   "neg": "Pluralist",
+   "pos": "Exclusivist",
+   "part": 2,
+   "group": "Belief"
+  },
+  "u": {
+   "name": "Sunni–Shia relations",
+   "neg": "Unity",
+   "pos": "Distinction",
+   "part": 2,
+   "group": "Belief"
+  },
+  "c": {
+   "name": "Social life",
+   "neg": "Liberal",
+   "pos": "Conservative",
+   "part": 2,
+   "group": "Society"
+  },
+  "r": {
+   "name": "Ritual",
+   "neg": "Restrained",
+   "pos": "Expressive",
+   "part": 2,
+   "group": "Society"
+  },
+  "w": {
+   "name": "Religion and politics",
+   "neg": "Quietist",
+   "pos": "Activist",
+   "part": 2,
+   "group": "Politics"
+  },
+  "s": {
+   "name": "Religion and state",
+   "neg": "Civil state",
+   "pos": "Islamic state",
+   "part": 2,
+   "group": "Politics"
+  },
+  "g": {
+   "name": "Wider society",
+   "neg": "Integrated",
+   "pos": "Separate",
+   "part": 2,
+   "group": "Politics"
+  }
+ },
+ "about": [
+  {
+   "index": 0,
+   "id": "gender",
+   "text": "Are you…",
+   "type": "choice",
+   "options": [
+    "A man",
+    "A woman",
+    "Prefer not to say"
+   ]
+  },
+  {
+   "index": 1,
+   "id": "age",
+   "text": "How old are you?",
+   "type": "choice",
+   "options": [
+    "Under 18",
+    "18–24",
+    "25–34",
+    "35–44",
+    "45–59",
+    "60 or over"
+   ]
+  },
+  {
+   "index": 2,
+   "id": "roots",
+   "text": "Where are your family's roots mostly from?",
+   "type": "choice",
+   "options": [
+    "Iraq",
+    "Iran",
+    "Lebanon",
+    "The Gulf (Bahrain, Kuwait, Saudi Arabia…)",
+    "Pakistan or India",
+    "Khoja or East Africa",
+    "Afghanistan",
+    "I'm a convert",
+    "Somewhere else"
+   ]
+  },
+  {
+   "index": 3,
+   "id": "live",
+   "text": "Where do you live now?",
+   "type": "choice",
+   "options": [
+    "United Kingdom",
+    "Elsewhere in Europe",
+    "North America",
+    "Australia or New Zealand",
+    "Middle East",
+    "South Asia",
+    "Africa",
+    "Somewhere else"
+   ]
+  },
+  {
+   "index": 4,
+   "id": "marja",
+   "text": "Whose rulings do you mainly follow (taqlid)?",
+   "type": "choice",
+   "options": [
+    "Sayyid al-Sistani",
+    "Sayyid Khamenei",
+    "Another marja'",
+    "I'm not sure",
+    "I don't follow a marja'"
+   ]
+  },
+  {
+   "index": 5,
+   "id": "attend",
+   "text": "Outside Muharram and Ramadan, how often do you go to a mosque or centre?",
+   "type": "choice",
+   "options": [
+    "Weekly or more",
+    "A few times a month",
+    "A few times a year",
+    "Rarely or never"
+   ]
+  }
+ ],
+ "part1": [
+  {
+   "index": 0,
+   "id": "m1",
+   "axis": "m",
+   "key": 1,
+   "text": "The rulings in the classical books of fiqh should be followed today as they are, unless a living marja' rules otherwise.",
+   "type": "slider"
+  },
+  {
+   "index": 1,
+   "id": "i1",
+   "axis": "i",
+   "key": 1,
+   "text": "The Imams know the unseen, including future events, by God's permission.",
+   "type": "slider"
+  },
+  {
+   "index": 2,
+   "id": "e1",
+   "axis": "e",
+   "key": 1,
+   "text": "If a reliable hadith seems to conflict with reason, we should accept the hadith and assume our understanding is limited.",
+   "type": "slider"
+  },
+  {
+   "index": 3,
+   "id": "m2",
+   "axis": "m",
+   "key": -1,
+   "text": "Modern ideas such as human rights and gender equality are good reasons to look again at classical rulings.",
+   "type": "slider"
+  },
+  {
+   "index": 4,
+   "id": "i2",
+   "axis": "i",
+   "key": 1,
+   "text": "God has given the Imams authority to act within the created world (wilaya takwiniyya).",
+   "type": "slider"
+  },
+  {
+   "index": 5,
+   "id": "e2",
+   "axis": "e",
+   "key": -1,
+   "text": "Reason can tell us what is just and unjust, independently of revelation.",
+   "type": "slider"
+  },
+  {
+   "index": 6,
+   "id": "m3",
+   "axis": "m",
+   "key": 1,
+   "text": "A daughter inheriting half of a son's share is a fixed ruling that should not change with social conditions.",
+   "type": "slider"
+  },
+  {
+   "index": 7,
+   "id": "i3",
+   "axis": "i",
+   "key": -1,
+   "text": "The Imams are best understood as supremely pious, divinely guided scholars and leaders, without powers over creation.",
+   "type": "slider"
+  },
+  {
+   "index": 8,
+   "id": "e3",
+   "axis": "e",
+   "key": 1,
+   "text": "A single reliable narrator's report is enough to establish a point of belief, not only a legal ruling.",
+   "type": "slider"
+  },
+  {
+   "index": 9,
+   "id": "m4",
+   "axis": "m",
+   "key": -1,
+   "text": "Many classical rulings reflected the society they were made in, so their purpose matters more than their exact wording.",
+   "type": "slider"
+  },
+  {
+   "index": 10,
+   "id": "i4",
+   "axis": "i",
+   "key": 1,
+   "text": "Calling directly on an Imam for help, as in 'Ya Ali madad', is legitimate.",
+   "type": "slider"
+  },
+  {
+   "index": 11,
+   "id": "e4",
+   "axis": "e",
+   "key": -1,
+   "text": "Philosophy and rational theology are essential tools for understanding religion properly.",
+   "type": "slider"
+  },
+  {
+   "index": 12,
+   "id": "m5",
+   "axis": "m",
+   "key": 1,
+   "text": "The hawza's classical method of ijtihad is enough to answer the questions modern life raises.",
+   "type": "slider"
+  },
+  {
+   "index": 13,
+   "id": "i5",
+   "axis": "i",
+   "key": -1,
+   "text": "Many narrations describing the Imams' extraordinary powers are probably later exaggerations.",
+   "type": "slider"
+  },
+  {
+   "index": 14,
+   "id": "e5",
+   "axis": "e",
+   "key": 1,
+   "text": "Greek-influenced philosophy and mysticism have distorted Shia teaching.",
+   "type": "slider"
+  },
+  {
+   "index": 15,
+   "id": "m6",
+   "axis": "m",
+   "key": -1,
+   "text": "Academic research from universities, including by non-Muslim scholars, should shape how we understand our tradition.",
+   "type": "slider"
+  },
+  {
+   "index": 16,
+   "id": "i6",
+   "axis": "i",
+   "key": 1,
+   "text": "The Imams were created as lights before the creation of the world.",
+   "type": "slider"
+  },
+  {
+   "index": 17,
+   "id": "e6",
+   "axis": "e",
+   "key": -1,
+   "text": "A hadith that contradicts clear scientific knowledge should be reinterpreted or set aside.",
+   "type": "slider"
+  },
+  {
+   "index": 18,
+   "id": "m7",
+   "axis": "m",
+   "key": 1,
+   "text": "Following a living marja' (taqlid) in matters of practice is essential for most believers.",
+   "type": "slider"
+  },
+  {
+   "index": 19,
+   "id": "i7",
+   "axis": "i",
+   "key": -1,
+   "text": "Imam Husayn's journey to Karbala is best understood through its political and historical circumstances, rather than through his foreknowledge of the outcome.",
+   "type": "slider"
+  },
+  {
+   "index": 20,
+   "id": "e7",
+   "axis": "e",
+   "key": 1,
+   "text": "The Four Books of hadith are broadly reliable as a whole.",
+   "type": "slider"
+  },
+  {
+   "index": 21,
+   "id": "m8",
+   "axis": "m",
+   "key": -1,
+   "text": "Women should be able to become maraji' and judges.",
+   "type": "slider"
+  },
+  {
+   "index": 22,
+   "id": "i8",
+   "axis": "i",
+   "key": 1,
+   "text": "Commemorations such as Muharram majalis and Fatimiyya are central to faith, not just cultural tradition.",
+   "type": "slider"
+  },
+  {
+   "index": 23,
+   "id": "e8",
+   "axis": "e",
+   "key": -1,
+   "text": "Every hadith should be checked for its chain and its content before being used, even in the famous collections.",
+   "type": "slider"
+  },
+  {
+   "index": 24,
+   "id": "m9",
+   "axis": "m",
+   "key": 1,
+   "text": "Islam already contains everything a just society needs, so we don't need to borrow ethical frameworks from outside it.",
+   "type": "slider"
+  },
+  {
+   "index": 25,
+   "id": "i9",
+   "axis": "i",
+   "key": -1,
+   "text": "Accusations of ghuluww against some popular devotional practices are often justified.",
+   "type": "slider"
+  },
+  {
+   "index": 26,
+   "id": "e9",
+   "axis": "e",
+   "key": 1,
+   "text": "When in doubt, it is better to follow the texts cautiously than to reason your way to a new conclusion.",
+   "type": "slider"
+  },
+  {
+   "index": 27,
+   "id": "m10",
+   "axis": "m",
+   "key": -1,
+   "text": "Some established practices in our communities are cultural rather than religious, and should be reformed.",
+   "type": "slider"
+  },
+  {
+   "index": 28,
+   "id": "i10",
+   "axis": "i",
+   "key": 1,
+   "text": "The Imams hear us and can respond when we visit their shrines or address them.",
+   "type": "slider"
+  },
+  {
+   "index": 29,
+   "id": "e10",
+   "axis": "e",
+   "key": -1,
+   "text": "Islamic philosophers such as Mulla Sadra and Allama Tabataba'i deepen faith rather than threaten it.",
+   "type": "slider"
+  },
+  {
+   "index": 30,
+   "id": "m11",
+   "axis": "m",
+   "key": 1,
+   "text": "Changes in religious rulings should come only from senior jurists, not from public debate.",
+   "type": "slider"
+  },
+  {
+   "index": 31,
+   "id": "i11",
+   "axis": "i",
+   "key": -1,
+   "text": "Beliefs about the Imams should rest only on the Quran and on reports that give certainty, not on single narrations.",
+   "type": "slider"
+  },
+  {
+   "index": 32,
+   "id": "e11",
+   "axis": "e",
+   "key": 1,
+   "text": "Ordinary believers can understand religion directly from the Imams' words, without specialised legal theory.",
+   "type": "slider"
+  },
+  {
+   "index": 33,
+   "id": "m12",
+   "axis": "m",
+   "key": -1,
+   "text": "Religious knowledge develops over time as human knowledge grows.",
+   "type": "slider"
+  },
+  {
+   "index": 34,
+   "id": "i12",
+   "axis": "i",
+   "key": 1,
+   "text": "Ziyarat al-Jami'a al-Kabira describes the Imams' station accurately and should be taken at face value.",
+   "type": "slider"
+  },
+  {
+   "index": 35,
+   "id": "e12",
+   "axis": "e",
+   "key": -1,
+   "text": "Usul al-fiqh, the theory of jurisprudence, is necessary to derive rulings correctly.",
+   "type": "slider"
+  }
+ ],
+ "part2": [
+  {
+   "index": 0,
+   "id": "c1",
+   "axis": "c",
+   "key": -1,
+   "text": "A woman should be able to be president of a university Ahl al-Bayt society.",
+   "type": "slider"
+  },
+  {
+   "index": 1,
+   "id": "w1",
+   "axis": "w",
+   "key": 1,
+   "text": "A qualified jurist has the right to lead the Muslim community politically while the Imam is in occultation.",
+   "type": "slider"
+  },
+  {
+   "index": 2,
+   "id": "pl1",
+   "axis": "pl",
+   "key": -1,
+   "text": "Your kind, sincere Christian neighbour, who never becomes Muslim, can still reach Paradise.",
+   "type": "slider"
+  },
+  {
+   "index": 3,
+   "id": "u1",
+   "axis": "u",
+   "key": -1,
+   "text": "You'd happily join a Sunni congregational prayer and count it as your own.",
+   "type": "slider"
+  },
+  {
+   "index": 4,
+   "id": "r1",
+   "axis": "r",
+   "key": 1,
+   "text": "On the night of Ashura, you'd rather be at a packed majlis with latmiyya and matam than at a quiet talk.",
+   "type": "slider"
+  },
+  {
+   "index": 5,
+   "id": "s1",
+   "axis": "s",
+   "key": 1,
+   "text": "The ideal country would make Islamic law the law of the land.",
+   "type": "slider"
+  },
+  {
+   "index": 6,
+   "id": "car",
+   "axis": null,
+   "key": 0,
+   "text": "On a long drive on your own, what are you most likely to put on?",
+   "type": "choice",
+   "options": [
+    "Quran recitation",
+    "A latmiyya or nasheed",
+    "A lecture or podcast",
+    "Music",
+    "Nothing: I like the quiet"
+   ]
+  },
+  {
+   "index": 7,
+   "id": "p1",
+   "axis": "p",
+   "key": -1,
+   "text": "You'd happily spend an evening reading Mulla Sadra or Ibn Sina.",
+   "type": "slider"
+  },
+  {
+   "index": 8,
+   "id": "g1",
+   "axis": "g",
+   "key": -1,
+   "text": "Shia living in the West should be active in local politics and civic life.",
+   "type": "slider"
+  },
+  {
+   "index": 9,
+   "id": "a1",
+   "axis": "a",
+   "key": 1,
+   "text": "If your marja's ruling and your own reading of the Quran disagreed, you'd follow the marja'.",
+   "type": "slider"
+  },
+  {
+   "index": 10,
+   "id": "c2",
+   "axis": "c",
+   "key": 1,
+   "text": "You'd leave a family wedding before the party if there were music and mixed dancing.",
+   "type": "slider"
+  },
+  {
+   "index": 11,
+   "id": "w2",
+   "axis": "w",
+   "key": -1,
+   "text": "The seminary should stay out of politics and focus on teaching.",
+   "type": "slider"
+  },
+  {
+   "index": 12,
+   "id": "pl2",
+   "axis": "pl",
+   "key": 1,
+   "text": "You'd rather not attend a religious service at a friend's church, even for their wedding.",
+   "type": "slider"
+  },
+  {
+   "index": 13,
+   "id": "class",
+   "axis": null,
+   "key": 0,
+   "text": "Your local centre starts a weekly evening class. Which one would you sign up for?",
+   "type": "choice",
+   "options": [
+    "Tafsir of the Quran",
+    "Philosophy or 'irfan",
+    "Fiqh for everyday life",
+    "Islamic history",
+    "Akhlaq and self-development"
+   ]
+  },
+  {
+   "index": 14,
+   "id": "u2",
+   "axis": "u",
+   "key": 1,
+   "text": "La'n, cursing the enemies of the Ahl al-Bayt, is essential to drawing close to Allah.",
+   "type": "slider"
+  },
+  {
+   "index": 15,
+   "id": "r2",
+   "axis": "r",
+   "key": -1,
+   "text": "Some Muharram practices damage how others see Shia Islam and should be dropped.",
+   "type": "slider"
+  },
+  {
+   "index": 16,
+   "id": "s2",
+   "axis": "s",
+   "key": -1,
+   "text": "A state should treat all citizens equally, whatever their religion.",
+   "type": "slider"
+  },
+  {
+   "index": 17,
+   "id": "p2",
+   "axis": "p",
+   "key": 1,
+   "text": "Ideas taken from Greek philosophy have no place in explaining Islamic belief.",
+   "type": "slider"
+  },
+  {
+   "index": 18,
+   "id": "g2",
+   "axis": "g",
+   "key": 1,
+   "text": "You'd choose a Shia school for your child, even if it were academically weaker than the alternatives.",
+   "type": "slider"
+  },
+  {
+   "index": 19,
+   "id": "a2",
+   "axis": "a",
+   "key": -1,
+   "text": "You'd be happy to learn your religion mainly from books and podcasts by lay academics.",
+   "type": "slider"
+  },
+  {
+   "index": 20,
+   "id": "mutah",
+   "axis": null,
+   "key": 0,
+   "text": "Mut'ah, temporary marriage, is a legitimate option for young Muslims today.",
+   "type": "slider"
+  },
+  {
+   "index": 21,
+   "id": "c3",
+   "axis": "c",
+   "key": -1,
+   "text": "Whether a woman covers her hair should be her own decision.",
+   "type": "slider"
+  },
+  {
+   "index": 22,
+   "id": "w3",
+   "axis": "w",
+   "key": 1,
+   "text": "A Friday sermon is the right place to urge people to join a political protest.",
+   "type": "slider"
+  },
+  {
+   "index": 23,
+   "id": "pl3",
+   "axis": "pl",
+   "key": -1,
+   "text": "Other religions hold real wisdom you could learn from.",
+   "type": "slider"
+  },
+  {
+   "index": 24,
+   "id": "u3",
+   "axis": "u",
+   "key": -1,
+   "text": "You'd be happy for your child to marry a practising Sunni.",
+   "type": "slider"
+  },
+  {
+   "index": 25,
+   "id": "r3",
+   "axis": "r",
+   "key": 1,
+   "text": "A majlis should move people to tears more than teach them facts.",
+   "type": "slider"
+  },
+  {
+   "index": 26,
+   "id": "s3",
+   "axis": "s",
+   "key": 1,
+   "text": "In a Muslim-majority country, eating in public during the day in Ramadan should be punishable by law.",
+   "type": "slider"
+  },
+  {
+   "index": 27,
+   "id": "practice",
+   "axis": null,
+   "key": 0,
+   "text": "Which of these is most a part of your week?",
+   "type": "choice",
+   "options": [
+    "Du'a Kumayl",
+    "Ziyarat Ashura",
+    "Reading the Quran",
+    "Night prayer (salat al-layl)",
+    "None of these regularly"
+   ]
+  },
+  {
+   "index": 28,
+   "id": "p3",
+   "axis": "p",
+   "key": -1,
+   "text": "The inner, mystical meaning of the Quran matters as much as its outward meaning.",
+   "type": "slider"
+  },
+  {
+   "index": 29,
+   "id": "g3",
+   "axis": "g",
+   "key": -1,
+   "text": "You'd encourage a talented young person to build a career in mainstream media or government.",
+   "type": "slider"
+  },
+  {
+   "index": 30,
+   "id": "a3",
+   "axis": "a",
+   "key": 1,
+   "text": "Seminary training should count for more than a university doctorate when someone speaks about religion.",
+   "type": "slider"
+  },
+  {
+   "index": 31,
+   "id": "c4",
+   "axis": "c",
+   "key": 1,
+   "text": "A man taking a second wife is acceptable today, as long as he treats both wives justly.",
+   "type": "slider"
+  },
+  {
+   "index": 32,
+   "id": "w4",
+   "axis": "w",
+   "key": -1,
+   "text": "Political movements that use the Imams' names often end up harming religion.",
+   "type": "slider"
+  },
+  {
+   "index": 33,
+   "id": "pl4",
+   "axis": "pl",
+   "key": 1,
+   "text": "Only one religious path is fully true; the others are mistaken.",
+   "type": "slider"
+  },
+  {
+   "index": 34,
+   "id": "source",
+   "axis": null,
+   "key": 0,
+   "text": "Where do you get most of your religious learning?",
+   "type": "choice",
+   "options": [
+    "Majalis and talks at the centre",
+    "YouTube, Instagram or TikTok",
+    "Books",
+    "Podcasts",
+    "Family"
+   ]
+  },
+  {
+   "index": 35,
+   "id": "u4",
+   "axis": "u",
+   "key": -1,
+   "text": "Shia and Sunni scholars should work together on shared causes and play down their differences.",
+   "type": "slider"
+  },
+  {
+   "index": 36,
+   "id": "r4",
+   "axis": "r",
+   "key": -1,
+   "text": "Money spent on lavish commemorations would do more good given to charity.",
+   "type": "slider"
+  },
+  {
+   "index": 37,
+   "id": "s4",
+   "axis": "s",
+   "key": -1,
+   "text": "Faith is stronger when it is chosen freely than when the state enforces it.",
+   "type": "slider"
+  },
+  {
+   "index": 38,
+   "id": "p4",
+   "axis": "p",
+   "key": 1,
+   "text": "When a speaker talks about 'the unity of being' or 'annihilation in God', you become suspicious.",
+   "type": "slider"
+  },
+  {
+   "index": 39,
+   "id": "g4",
+   "axis": "g",
+   "key": 1,
+   "text": "Close friendships with non-Muslims tend to weaken faith.",
+   "type": "slider"
+  },
+  {
+   "index": 40,
+   "id": "a4",
+   "axis": "a",
+   "key": -1,
+   "text": "Ordinary believers should be encouraged to read Quran commentaries and form their own understanding.",
+   "type": "slider"
+  },
+  {
+   "index": 41,
+   "id": "journey",
+   "axis": null,
+   "key": 0,
+   "text": "Which journey would you most like to make next?",
+   "type": "choice",
+   "options": [
+    "The Arbaeen walk to Karbala",
+    "Hajj or Umrah",
+    "Ziyara in Mashhad",
+    "Ziyara in Najaf",
+    "Sayyida Zaynab, Damascus"
+   ]
+  }
+ ]
+}
