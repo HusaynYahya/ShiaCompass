@@ -1,0 +1,1073 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Take the Shia Compass Test: see where you align with traditional and contemporary Shia scholars across three spectrums.">
+<style>html{color-scheme:dark}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Shia Compass Test</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a four-step app (test → insights → 3D compass, plus glossary) on a lapis night ground; gold for structure, rubric red for "you".
+   Single deliberate dark world, taken from the lapis and gold of illuminated manuscripts. */
+:root{
+  color-scheme:dark;
+  --ink:#0A1230; --glow:#172A68; --plate:#101B44; --plate2:#14224F; --text:#EEE7D3; --muted:#A5ABC8;
+  --gold:#D4B26A; --gold-dim:#8A7448; --hair:rgba(212,178,106,.26); --hair2:rgba(238,231,211,.11); --track:rgba(238,231,211,.14);
+  --rubric:#EE735C; --lapis:#8CA4FF;
+  --r-iraq:#8CA4FF; --r-iran:#E8C477; --r-lebanon:#6CD3B6; --r-arabia:#C6A8F4; --r-afghanistan:#F29BB8; --r-west:#A9C4D6;
+  --f-display:"Cormorant Garamond","Iowan Old Style","Palatino Linotype",Georgia,serif;
+  --f-body:"Hanken Grotesk","Segoe UI",system-ui,-apple-system,sans-serif;
+  --f-ar:"Amiri","Traditional Arabic","Geeza Pro",serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--ink);background-image:radial-gradient(ellipse 90% 55% at 50% -10%,var(--glow) 0%,var(--ink) 60%);background-repeat:no-repeat;
+  color:var(--text);font-family:var(--f-body);font-size:16px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 72px}
+h1,h2,h3,h4{font-family:var(--f-display);font-weight:500;margin:0;text-wrap:balance}
+p{margin:0}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:0;padding:0}
+a{color:var(--gold)}
+:focus-visible{outline:2px solid var(--rubric);outline-offset:3px}
+.eyebrow{font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.ar{font-family:var(--f-ar);direction:rtl;unicode-bidi:isolate}
+.muted{color:var(--muted)}
+.wrap{max-width:1320px;margin:0 auto}
+[hidden]{display:none!important}
+
+/* top bar */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(10,18,48,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--hair2);margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:21;background:var(--ink)}
+.topin{max-width:1320px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;padding:12px max(16px,env(safe-area-inset-left,0px))}
+.brand{display:flex;align-items:baseline;gap:10px;font-family:var(--f-display);font-size:22px;font-weight:600}
+.brand .ar{color:var(--gold);font-size:18px;font-weight:400}
+.nav{display:flex;gap:4px 18px;flex-wrap:wrap}
+.nav button{font-size:14px;color:var(--muted);padding:4px 0;border-bottom:1.5px solid transparent}
+.nav button:hover{color:var(--text)}
+.nav button[aria-current="page"]{color:var(--text);border-bottom-color:var(--gold)}
+.nav .n{font-family:var(--f-mono);font-size:11px;color:var(--gold-dim);margin-right:6px}
+
+.view{padding-top:clamp(28px,5vw,56px)}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:11px 24px;font-size:15px;font-weight:600;border:1px solid var(--gold);background:var(--gold);color:var(--ink);text-decoration:none}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:transparent;color:var(--text);border-color:var(--hair)}
+.btn.ghost:hover{border-color:var(--gold);color:var(--gold)}
+.btn:disabled{opacity:.35;cursor:default;filter:none}
+.btn.small{padding:7px 16px;font-size:13.5px}
+
+/* home */
+.home{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:40px;align-items:center;min-height:min(78vh,760px)}
+@media (max-width:940px){.home{grid-template-columns:minmax(0,1fr);gap:16px}}
+.home .lead{display:flex;flex-direction:column;gap:22px}
+.home h1{font-size:clamp(46px,7.4vw,96px);line-height:.92;font-weight:500}
+.home h1 em{font-style:italic;color:var(--gold)}
+.home .sub{font-size:clamp(19px,2.2vw,24px);font-family:var(--f-display);color:var(--text);max-width:30ch;line-height:1.3}
+.facts{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:13.5px;color:var(--muted)}
+.facts b{color:var(--text);font-weight:600}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.spectra{display:flex;flex-direction:column;border-top:1px solid var(--hair);max-width:600px}
+.spec{display:grid;grid-template-columns:44px minmax(0,1fr);gap:2px 14px;padding:12px 0;border-bottom:1px solid var(--hair)}
+.spec .num{font-family:var(--f-ar);font-size:32px;line-height:1;color:var(--gold);grid-row:span 2;text-align:center}
+.spec h3{font-size:20px;line-height:1.15}
+.spec p{color:var(--muted);font-size:13.5px}
+#hero{width:100%;max-width:560px;height:auto;display:block;margin:0 auto}
+.credit{font-size:12.5px;color:var(--muted)}
+
+/* test */
+.test{max-width:860px;margin:0 auto;display:flex;flex-direction:column;gap:26px}
+.thead{display:flex;flex-direction:column;gap:12px}
+.thead h2{font-size:clamp(32px,4.4vw,46px);line-height:1.05}
+.prog{display:flex;gap:3px}
+.prog i{flex:1;height:5px;border-radius:2px;background:var(--track)}
+.prog i.on{background:var(--gold)}
+.prog i.page{background:var(--gold-dim)}
+.prog i.on.page{background:var(--gold)}
+.trow{display:flex;justify-content:space-between;gap:12px;font-size:13px;color:var(--muted);flex-wrap:wrap}
+.qlist{display:flex;flex-direction:column;gap:14px}
+.qc{background:var(--plate);border:1px solid var(--hair2);border-radius:10px;padding:22px clamp(18px,3vw,30px) 18px;display:flex;flex-direction:column;gap:14px;transition:border-color .2s}
+.qc.done{border-color:var(--hair)}
+.qtop{display:flex;gap:16px;align-items:baseline}
+.qn{font-family:var(--f-mono);font-size:12px;color:var(--gold-dim);min-width:26px}
+.qs{font-family:var(--f-display);font-size:clamp(20px,2.4vw,24px);line-height:1.3;font-weight:500}
+.sl{display:flex;flex-direction:column;gap:4px;padding-left:42px}
+@media (max-width:600px){.sl{padding-left:0}}
+.slhead{display:flex;justify-content:flex-end}
+.slval{font-size:13px;font-weight:600;color:var(--gold);min-height:1.3em}
+.qc.untouched .slval{color:var(--muted);font-weight:400}
+input.ag{-webkit-appearance:none;appearance:none;width:100%;height:34px;background:transparent;margin:0;cursor:pointer;--p:50%}
+input.ag::-webkit-slider-runnable-track{height:6px;border-radius:3px;background:linear-gradient(90deg,var(--gold) var(--p),var(--track) var(--p))}
+input.ag::-moz-range-track{height:6px;border-radius:3px;background:var(--track)}
+input.ag::-moz-range-progress{height:6px;border-radius:3px;background:var(--gold)}
+input.ag::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;margin-top:-10px;border-radius:50%;background:var(--gold);border:4px solid var(--ink);box-shadow:0 0 0 1.5px var(--gold)}
+input.ag::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--gold);border:4px solid var(--ink);box-shadow:0 0 0 1.5px var(--gold)}
+.qc.untouched input.ag::-webkit-slider-runnable-track{background:var(--track)}
+.qc.untouched input.ag::-moz-range-progress{background:transparent}
+.qc.untouched input.ag::-webkit-slider-thumb{background:var(--ink);box-shadow:0 0 0 1.5px var(--gold-dim)}
+.qc.untouched input.ag::-moz-range-thumb{background:var(--ink);box-shadow:0 0 0 1.5px var(--gold-dim)}
+.ticks{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));font-size:12px;color:var(--muted)}
+.ticks span{text-align:center}
+.ticks span:first-child{text-align:left}
+.ticks span:last-child{text-align:right}
+.tnav{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.tnav .hint{font-size:13px;color:var(--muted)}
+
+/* insights */
+.ins{display:flex;flex-direction:column;gap:56px}
+.ihead{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:28px 56px;align-items:end}
+@media (max-width:940px){.ihead{grid-template-columns:minmax(0,1fr)}}
+.ihead h1{font-size:clamp(44px,6.4vw,82px);line-height:.95}
+.ihead .sum{font-size:18px;max-width:58ch;margin-top:14px}
+.ihead .note{font-size:13.5px;color:var(--muted);margin-top:12px;max-width:60ch}
+.ihead .cta{margin-top:20px}
+.pinbox{background:var(--plate);border:1px solid var(--hair);border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;gap:12px}
+.meters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+@media (max-width:980px){.meters{grid-template-columns:minmax(0,1fr)}}
+.meter{border-top:2px solid var(--gold);padding-top:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.meter h3{font-size:28px;line-height:1.05}
+.meter p{font-size:15px}
+.meter .other{font-size:14px;color:var(--muted);border-left:2px solid var(--rubric);padding-left:14px}
+.meter .other b{display:block;color:var(--rubric);font-size:11px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:3px}
+.bigbar{display:flex;flex-direction:column;gap:6px}
+.bigbar .ends{display:flex;justify-content:space-between;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.bigbar .ends button{letter-spacing:inherit;text-transform:inherit;color:var(--gold);border-bottom:1px dotted var(--gold-dim)}
+.bigbar .tr{position:relative;height:10px;border-radius:5px;background:linear-gradient(90deg,rgba(140,164,255,.35),rgba(238,231,211,.12),rgba(212,178,106,.4))}
+.bigbar .tr::after{content:"";position:absolute;left:50%;top:-4px;bottom:-4px;width:1px;background:var(--hair)}
+.bigbar .tr b{position:absolute;top:50%;width:18px;height:18px;border-radius:50%;background:var(--rubric);border:3px solid var(--ink);transform:translate(-50%,-50%);box-shadow:0 0 0 1.5px var(--rubric)}
+.bigbar .val{font-family:var(--f-mono);font-size:12px;color:var(--rubric);text-align:center}
+.tend{display:flex;flex-direction:column;gap:18px}
+.tend h2,.align h2{font-size:clamp(30px,3.6vw,40px)}
+.tend .intro,.align .intro{color:var(--muted);max-width:68ch;font-size:15px}
+.tcols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+@media (max-width:980px){.tcols{grid-template-columns:minmax(0,1fr)}}
+.tcol{background:var(--plate);border:1px solid var(--hair2);border-radius:10px;padding:20px 22px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.tcol h3{font-size:24px}
+.tcol ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.tcol li{display:flex;flex-direction:column;gap:2px;font-size:14.5px;padding-bottom:12px;border-bottom:1px solid var(--hair2)}
+.tcol li:last-child{border-bottom:0;padding-bottom:0}
+.tcol li .t{font-family:var(--f-display);font-size:19px;font-weight:600;line-height:1.2}
+.tcol li .a{font-size:13px;color:var(--gold)}
+.tcol li .w{font-size:13.5px;color:var(--muted)}
+.tag{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.align{display:flex;flex-direction:column;gap:18px}
+.alist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 28px}
+@media (max-width:760px){.alist{grid-template-columns:minmax(0,1fr)}}
+.arow{display:grid;grid-template-columns:minmax(0,1fr) 120px;gap:4px 16px;align-items:center;padding:12px 0;border-bottom:1px solid var(--hair2);text-align:left;width:100%}
+.arow:hover .nm{color:var(--gold)}
+.arow .nm{font-family:var(--f-display);font-size:21px;font-weight:600;line-height:1.15}
+.arow .sub{font-size:12.5px;color:var(--muted);grid-column:1}
+.arow .pct{grid-row:1/span 2;grid-column:2;display:flex;flex-direction:column;gap:5px;align-items:flex-end}
+.arow .pct span{font-family:var(--f-mono);font-size:14px;color:var(--text)}
+.arow .pct i{display:block;height:4px;border-radius:2px;background:var(--gold);width:var(--w)}
+.arow .pct em{display:block;width:100%;height:4px;border-radius:2px;background:var(--track);position:relative;font-style:normal}
+.arow .pct em i{position:absolute;left:0;top:0}
+.far .arow .pct i{background:var(--muted)}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:0}
+
+/* compass */
+.chead{display:flex;flex-direction:column;gap:10px;max-width:880px}
+.chead h1{font-size:clamp(38px,5.4vw,64px);line-height:1}
+.chead p{color:var(--muted);max-width:72ch}
+.controls{display:flex;flex-direction:column;gap:10px;margin-top:22px;padding:14px 0;border-top:1px solid var(--hair2);border-bottom:1px solid var(--hair2)}
+.crow{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center}
+.crow .lab{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);min-width:76px}
+.chip{border:1px solid var(--hair);border-radius:999px;padding:5px 13px;font-size:13.5px;color:var(--text);display:inline-flex;align-items:center;gap:7px}
+.chip:hover{border-color:var(--gold)}
+.chip[aria-pressed="true"]{background:var(--text);color:var(--ink);border-color:var(--text)}
+.chip .sw{width:10px;height:10px;border-radius:50%;display:inline-block}
+.chip small{font-size:11.5px;opacity:.75}
+.cmp{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:28px;align-items:start;margin-top:18px}
+@media (max-width:1180px){.cmp{grid-template-columns:minmax(0,1fr)}}
+.cubewrap{min-width:0;display:flex;flex-direction:column;gap:6px}
+#cube{display:block;width:100%;height:auto;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab;background:radial-gradient(ellipse at 50% 45%,rgba(23,42,104,.55),transparent 70%);border-radius:14px}
+#cube:active{cursor:grabbing}
+.hintrow{display:flex;justify-content:space-between;gap:8px 18px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+.drawer{background:var(--plate);border:1px solid var(--hair);border-radius:12px;padding:22px 22px 24px;display:flex;flex-direction:column;gap:12px;min-width:0;position:sticky;top:76px}
+@media (max-width:1180px){.drawer{position:static}}
+.drawer h3{font-size:30px;line-height:1.05}
+.drawer p{font-size:14.5px}
+.drawer .meta{font-size:13px;color:var(--muted)}
+.drawer .why{color:var(--muted)}
+.drawer .sec{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-top:4px}
+.drawer .close{align-self:flex-end;font-size:12.5px;color:var(--muted);border-bottom:1px dotted var(--muted);margin-bottom:-6px}
+.mini{display:flex;flex-direction:column;gap:9px}
+.mbar{display:flex;flex-direction:column;gap:5px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.mbar .ends{display:flex;justify-content:space-between}
+.mbar .tr{position:relative;height:2px;background:var(--track);border-radius:1px}
+.mbar .tr::after{content:"";position:absolute;left:50%;top:-4px;height:10px;width:1px;background:var(--hair)}
+.mbar .tr b{position:absolute;top:50%;width:11px;height:11px;border-radius:50%;transform:translate(-50%,-50%);border:2px solid var(--plate)}
+.figs{display:flex;flex-wrap:wrap;gap:6px}
+.figs button{font-size:13px;border:1px solid var(--hair);border-radius:999px;padding:3px 11px}
+.figs button:hover{border-color:var(--gold);color:var(--gold)}
+.shown{margin-top:22px;display:flex;flex-direction:column;gap:10px}
+.shown .list{display:flex;flex-wrap:wrap;gap:6px}
+.shown .list button{font-size:13.5px;padding:5px 12px;border-radius:999px;background:var(--plate);border:1px solid var(--hair2)}
+.shown .list button:hover,.shown .list button[aria-current="true"]{border-color:var(--gold);color:var(--gold)}
+
+/* svg */
+.wall{fill:rgba(140,164,255,.055)}
+.wg{stroke:rgba(238,231,211,.08);stroke-width:1}
+.wg0{stroke:rgba(212,178,106,.32);stroke-width:1.2}
+.edge{stroke:rgba(165,171,200,.42);stroke-width:1.2;fill:none}
+.thread{stroke:var(--gold);stroke-width:1.2;stroke-dasharray:1 7;stroke-linecap:round;opacity:.75}
+.zone{fill:rgba(140,164,255,.07);stroke:var(--lapis);stroke-width:1;stroke-dasharray:3 5;opacity:.75}
+.zonel{font-family:var(--f-body);font-size:12px;letter-spacing:.14em;fill:var(--lapis);opacity:.85}
+.drop{stroke:rgba(238,231,211,.16);stroke-width:1}
+.foot{fill:rgba(238,231,211,.3)}
+.sdot{stroke:var(--ink);stroke-width:2}
+.sel{fill:none;stroke:var(--text);stroke-width:2.4}
+.lbl{font-family:var(--f-body);font-size:15px;fill:var(--text);paint-order:stroke;stroke:var(--ink);stroke-width:4.5px;stroke-linejoin:round;pointer-events:none}
+.lbl.dimtxt{fill:var(--muted);font-size:13.5px}
+.hit{fill:transparent;cursor:pointer}
+.tip{font-family:var(--f-body);font-size:15px;font-weight:600;fill:var(--text);paint-order:stroke;stroke:var(--ink);stroke-width:5px;stroke-linejoin:round;pointer-events:none}
+.poleb{cursor:pointer}
+.poleb rect{fill:rgba(10,18,48,.88);stroke:var(--gold);stroke-width:1.2}
+.poleb text{font-family:var(--f-body);font-size:13px;font-weight:700;letter-spacing:.16em;fill:var(--gold)}
+.poleb:hover rect,.poleb:focus rect,.poleb.on rect{fill:var(--gold)}
+.poleb:hover text,.poleb:focus text,.poleb.on text{fill:var(--ink)}
+.poleb:focus{outline:none}
+.pin{fill:var(--rubric);stroke:var(--ink);stroke-width:2}
+.pinc{fill:var(--ink)}
+.pinl{font-family:var(--f-body);font-size:14px;font-weight:700;letter-spacing:.2em;fill:var(--rubric);paint-order:stroke;stroke:var(--ink);stroke-width:4px;pointer-events:none}
+.pulse{fill:none;stroke:var(--rubric);stroke-width:2;transform-box:fill-box;transform-origin:center;animation:pulse 2.2s ease-out infinite}
+@keyframes pulse{0%{transform:scale(.4);opacity:.9}100%{transform:scale(2.4);opacity:0}}
+.link{stroke:var(--rubric);stroke-width:1.2;stroke-dasharray:3 4;opacity:.7}
+.pdrop{stroke:var(--rubric);stroke-width:1.2;stroke-dasharray:2 3;opacity:.8}
+.hedge{stroke:rgba(212,178,106,.4);stroke-width:1;fill:none}
+.hwall{fill:rgba(140,164,255,.05)}
+
+/* terms */
+.term{font:inherit;color:inherit;letter-spacing:inherit;line-height:inherit;border-bottom:1px dotted var(--gold);cursor:help;padding:0;text-align:inherit}
+.term:hover{color:var(--gold)}
+#pop{position:fixed;z-index:50;max-width:340px;background:var(--plate2);color:var(--text);border:1px solid var(--gold-dim);border-radius:8px;padding:14px 16px;box-shadow:0 18px 50px -18px rgba(0,0,0,.75);display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:1.5}
+#pop .ph{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+#pop .ph strong{font-family:var(--f-display);font-size:21px;font-weight:600}
+#pop .ph .ar{color:var(--gold);font-size:18px}
+#pop a{font-size:12.5px}
+.gloss{display:flex;flex-direction:column;gap:16px}
+.gloss h1{font-size:clamp(38px,5vw,60px)}
+.gloss .intro{color:var(--muted);max-width:66ch}
+.glist{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 34px;margin:0}
+@media (max-width:960px){.glist{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.glist{grid-template-columns:minmax(0,1fr)}}
+.gitem{padding:13px 0;border-bottom:1px solid var(--hair2);scroll-margin-top:90px}
+.gitem dt{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.gitem dt strong{font-family:var(--f-display);font-size:21px;font-weight:600}
+.gitem dt .ar{color:var(--gold);font-size:17px}
+.gitem dd{margin:3px 0 0;color:var(--muted);font-size:14px}
+.gitem.flash{background:rgba(212,178,106,.1)}
+.method-note{font-size:13px;color:var(--muted);max-width:80ch;margin-top:40px;display:flex;flex-direction:column;gap:8px;border-top:1px solid var(--hair2);padding-top:20px}
+</style>
+</head>
+<body>
+<div class="top"><div class="topin">
+  <div class="brand">Shia Compass <span class="ar" lang="ar">بوصلة</span></div>
+  <nav class="nav" aria-label="Sections">
+    <button data-go="home"><span class="n">00</span>Start</button>
+    <button data-go="test"><span class="n">01</span>Test</button>
+    <button data-go="insights"><span class="n">02</span>Insights</button>
+    <button data-go="compass"><span class="n">03</span>3D Compass</button>
+    <button data-go="terms"><span class="n">04</span>Glossary</button>
+  </nav>
+</div></div>
+
+<main class="wrap">
+  <!-- HOME -->
+  <section class="view" id="v-home" aria-label="Start">
+    <div class="home">
+      <div class="lead">
+        <span class="eyebrow">Built on Zoheir Esmail's three spectrums</span>
+        <h1>Take the <em>Shia Compass</em> Test</h1>
+        <p class="sub">See where you align with traditional and contemporary scholars.</p>
+        <div class="facts"><span><b>36</b> statements</span><span>about <b>8</b> minutes</span><span><b>3</b> spectrums</span><span><b>39</b> scholars, 10th century to today</span></div>
+        <div class="cta">
+          <button class="btn" data-go="test">Start the test →</button>
+          <button class="btn ghost" data-go="compass">Explore the compass first</button>
+        </div>
+        <div class="spectra" aria-label="The three spectrums">
+          <div class="spec"><span class="num" aria-hidden="true">١</span><h3>Modernist ↔ Traditionalist</h3><p>How far modern questions about women, minorities and rights should reshape religious conclusions.</p></div>
+          <div class="spec"><span class="num" aria-hidden="true">٢</span><h3>Minimalist ↔ Maximalist</h3><p>What an Imam is: a divinely guided scholar and leader, or a cosmic intermediary with wilaya takwiniyya.</p></div>
+          <div class="spec"><span class="num" aria-hidden="true">٣</span><h3>Rationalist ↔ Scripturalist</h3><p>Whether reason or the transmitted texts come first. Esmail calls this the root of the other two.</p></div>
+        </div>
+        <p class="credit">Framing from <a href="https://www.instagram.com/p/DeeCwwuDXzv/" target="_blank" rel="noopener">Zoheir Esmail's post</a> (14 October 2026), after Shaykh Dr Vinay Khetia's Shia Research Institute podcast. Your answers stay in this page and aren't saved or sent anywhere.</p>
+      </div>
+      <svg id="hero" viewBox="0 0 520 520" aria-hidden="true"></svg>
+    </div>
+  </section>
+
+  <!-- TEST -->
+  <section class="view" id="v-test" aria-label="The test" hidden>
+    <div class="test">
+      <div class="thead">
+        <span class="eyebrow" id="tPart">Part 1 of 6</span>
+        <h2>How much do you agree?</h2>
+        <div class="prog" id="tProg" aria-hidden="true"></div>
+        <div class="trow"><span id="tCount">0 of 36 answered</span><span>Move every slider, even if you leave it near the middle.</span></div>
+      </div>
+      <div class="qlist" id="qlist"></div>
+      <div class="tnav">
+        <button class="btn ghost" id="tBack">← Back</button>
+        <span class="hint" id="tHint"></span>
+        <button class="btn" id="tNext">Next →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSIGHTS -->
+  <section class="view" id="v-insights" aria-label="Your insights" hidden></section>
+
+  <!-- COMPASS -->
+  <section class="view" id="v-compass" aria-label="3D compass" hidden>
+    <div class="chead">
+      <span class="eyebrow">03 · The 3D Compass</span>
+      <h1>Where the scholars stand</h1>
+      <p>Left to right is <b style="color:var(--text)">Modernist ↔ Traditionalist</b>, bottom to top is <b style="color:var(--text)">Minimalist ↔ Maximalist</b>, and front to back is <b style="color:var(--text)">Rationalist ↔ Scripturalist</b>. Drag to turn the cube. Click a gold axis label to see the method behind that viewpoint, or click a scholar to see why they sit there.</p>
+    </div>
+    <div class="controls">
+      <div class="crow" role="group" aria-label="Region"><span class="lab">Region</span><span id="regChips" style="display:contents"></span></div>
+      <div class="crow" role="group" aria-label="Period"><span class="lab">Period</span><span id="eraChips" style="display:contents"></span></div>
+      <div class="crow" role="group" aria-label="Turn the cube"><span class="lab">View</span>
+        <button class="chip" data-pre="iso" aria-pressed="true">Angled</button>
+        <button class="chip" data-pre="front" aria-pressed="false">Front <small>Modern × Imamology</small></button>
+        <button class="chip" data-pre="side" aria-pressed="false">Side <small>Method × Imamology</small></button>
+        <button class="chip" data-pre="top" aria-pressed="false">Top <small>Modern × Method</small></button>
+      </div>
+    </div>
+    <div class="cmp">
+      <div class="cubewrap">
+        <svg id="cube" viewBox="0 0 1000 820" tabindex="0" role="img" aria-label="3D compass of scholars. Drag or use arrow keys to turn it."></svg>
+        <div class="hintrow"><span id="cubeHint">Drag to turn · arrow keys work too</span><span>Dot colour = region · dashed circle = mainstream Usuli centre · dotted gold line = the deepest divide</span></div>
+      </div>
+      <aside class="drawer" id="drawer" aria-live="polite"></aside>
+    </div>
+    <div class="shown"><span class="eyebrow" id="shownT">Showing all scholars</span><div class="list" id="shownL"></div></div>
+  </section>
+
+  <!-- TERMS -->
+  <section class="view" id="v-terms" aria-label="Glossary" hidden>
+    <div class="gloss">
+      <span class="eyebrow">04 · Glossary</span>
+      <h1>Terms used in the test</h1>
+      <p class="intro">Arabic terms from Shia law and theology, in plain English. Anywhere on this site, a word with a dotted underline opens its definition.</p>
+      <dl class="glist" id="glist"></dl>
+    </div>
+    <div class="method-note">
+      <span class="eyebrow">How the placements were made</span>
+      <p>The three spectrums come from Zoheir Esmail's post, which draws on Shaykh Dr Vinay Khetia's framing. The scholars' positions are approximate readings of what each is best known for in their published work and in the secondary literature; the post itself places no one. Every placement is contestable, since most scholars hold mixed positions and changed over a lifetime. A position says nothing about piety or correctness.</p>
+      <p>The test is a self-reflection tool, not a validated measure. The reading, activity and belief suggestions on the insights page describe tendencies among people with similar views, not predictions about you.</p>
+    </div>
+  </section>
+</main>
+
+<script>
+(function(){
+const $=id=>document.getElementById(id);
+const reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const NS="http://www.w3.org/2000/svg";
+function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e}
+const fmt=v=>(v>=0?"+":"−")+Math.abs(v).toFixed(2);
+const toAr=n=>String(n).replace(/\d/g,d=>"٠١٢٣٤٥٦٧٨٩"[d]);
+
+/* ================= DATA ================= */
+const ERA={formative:"10th–11th c.",classical:"13th–18th c.",modern:"19th–20th c.",contemporary:"Today"};
+const REG={iraq:{n:"Iraq",sub:"Najaf, Karbala, Baghdad"},iran:{n:"Iran",sub:"Qum, Isfahan, Mashhad"},lebanon:{n:"Lebanon",sub:"Jabal Amil, Beirut"},arabia:{n:"Arabia & Gulf",sub:"Bahrain, al-Ahsa, Hijaz"},afghanistan:{n:"Afghanistan",sub:"Kabul"},west:{n:"The West",sub:"Europe, North America"}};
+// m: modernist(-1)..traditionalist(+1) · i: minimalist(-1)..maximalist(+1) · e: rationalist(-1)..scripturalist(+1)
+const S=[
+ {id:"saduq",n:"al-Shaykh al-Saduq",s:"al-Saduq",d:"d. 991",era:"formative",reg:"iran",city:"Qum, Rayy",role:"Qum traditionist; compiler of Man la yahduruhu al-faqih",m:.75,i:-.15,e:.7,
+  k:"The leading hadith scholar of the Qum school, who built theology directly from the reports (his creed, al-I'tiqadat).",
+  w:"Scripturalist and traditional. Following his teacher Ibn al-Walid, he held that the Prophet could be made to forget (sahw al-nabi) and called denying it the first step of ghuluww. That is minimal by later standards, which shows how far the line has moved."},
+ {id:"mufid",n:"al-Shaykh al-Mufid",s:"al-Mufid",d:"d. 1022",era:"formative",reg:"iraq",city:"Baghdad",role:"Theologian and jurist",m:.56,i:.06,e:-.6,
+  k:"Wrote Tashih al-I'tiqadat correcting al-Saduq's creed, and set Imami theology on a rational footing.",
+  w:"Rationalist: he did not accept solitary reports as producing knowledge, and shared the Mu'tazili view that good and evil are knowable by reason. He rejected sahw al-nabi, so he sits above al-Saduq on Imamology."},
+ {id:"murtada",n:"al-Sharif al-Murtada",s:"al-Murtada",d:"d. 1044",era:"formative",reg:"iraq",city:"Baghdad",role:"Theologian; student of al-Mufid",m:.6,i:-.07,e:-.85,
+  k:"The strongest early voice against acting on solitary reports (khabar al-wahid).",
+  w:"Near the rationalist pole: reason and certain knowledge come first. This early precedent is what modern minimalists point to when they question doctrines built on single-chain reports."},
+ {id:"tusi",n:"al-Shaykh al-Tusi",s:"al-Tusi",d:"d. 1067",era:"formative",reg:"iraq",city:"Baghdad, then Najaf",role:"Author of Tahdhib al-ahkam and al-Istibsar",m:.68,i:.16,e:-.35,
+  k:"Argued in 'Uddat al-usul that one may act on reports from reliable Imami narrators. His view became the mainstream, and he is credited with founding the Najaf seminary.",
+  w:"Rationalist in theology, but he opened the door to solitary reports in law. This is the 'nuanced' mainstream that Esmail describes."},
+ {id:"hilli",n:"al-'Allama al-Hilli",s:"al-Hilli",d:"d. 1325",era:"classical",reg:"iraq",city:"Hilla",role:"Jurist and theologian",m:.55,i:.15,e:-.55,
+  k:"Systematised the four-fold grading of hadith (sahih, hasan, muwaththaq, da'if) and wrote standard works of rational theology.",
+  w:"Rationalist and Usuli. Grading hadith by narrator reliability gave later critics their main tool."},
+ {id:"shahid1",n:"al-Shahid al-Awwal",s:"al-Shahid al-Awwal",d:"d. 1385",era:"classical",reg:"lebanon",city:"Jabal Amil",role:"Jurist; author of al-Lum'a al-Dimashqiyya",m:.65,i:.3,e:-.3,
+  k:"Wrote al-Lum'a al-Dimashqiyya, a compact legal handbook still taught in seminaries. He was executed in Damascus.",
+  w:"A classic Usuli jurist of the Jabal Amil school, close to the mainstream centre."},
+ {id:"shahid2",n:"al-Shahid al-Thani",s:"al-Shahid al-Thani",d:"d. 1558",era:"classical",reg:"lebanon",city:"Jabal Amil",role:"Jurist; author of al-Rawda al-Bahiyya",m:.6,i:.25,e:-.35,
+  k:"Wrote the standard commentary on al-Lum'a, and one of the first Shia works on the science of hadith (al-Ri'aya fi 'ilm al-diraya).",
+  w:"Usuli and systematic about grading hadith, which places him on the rationalist side of the centre."},
+ {id:"astarabadi",n:"Muhammad Amin al-Astarabadi",s:"Astarabadi",d:"d. 1626",era:"classical",reg:"arabia",city:"Mecca (from Astarabad, Iran)",role:"Founder of the Akhbari movement",m:.85,i:.45,e:.95,
+  k:"His al-Fawa'id al-madaniyya argued that the Imams' reports are the true source and that rational legal theory (usul al-fiqh) was a borrowed error.",
+  w:"The scripturalist pole of Shia history. He trusted the main hadith collections broadly and emphasised the Imams' exclusive authority to interpret."},
+ {id:"sadra",n:"Mulla Sadra",s:"Mulla Sadra",d:"d. 1640",era:"classical",reg:"iran",city:"Shiraz",role:"Philosopher; Transcendent Philosophy",m:.55,i:.7,e:-.7,
+  k:"Joined philosophy, mysticism and revelation, and wrote a major commentary on Usul al-Kafi.",
+  w:"Shows the spectrums are independent: highly rationalist, yet maximalist on Imamology, with the Imam as the Perfect Human (al-insan al-kamil)."},
+ {id:"majlisi",n:"Muhammad Baqir al-Majlisi",s:"al-Majlisi",d:"d. 1699",era:"classical",reg:"iran",city:"Isfahan",role:"Compiler of Bihar al-Anwar",m:.9,i:.75,e:.55,
+  k:"Gathered the vast hadith encyclopaedia Bihar al-Anwar and shaped popular devotional Shiism in Safavid Iran.",
+  w:"Traditional and maximalist. Leans scriptural, though he did grade hadith (in Mir'at al-'uqul), so he is not a pure Akhbari."},
+ {id:"bahrani",n:"Yusuf al-Bahrani",s:"Yusuf al-Bahrani",d:"d. 1772",era:"classical",reg:"arabia",city:"Bahrain, later Karbala",role:"Akhbari jurist; author of al-Hada'iq al-Nadira",m:.85,i:.55,e:.7,
+  k:"A leading moderate Akhbari whose al-Hada'iq al-Nadira is still consulted. He debated Wahid Behbahani in Karbala.",
+  w:"Scripturalist and traditional, though more moderate than al-Astarabadi."},
+ {id:"behbahani",n:"Wahid Behbahani",s:"Behbahani",d:"d. 1791",era:"classical",reg:"iraq",city:"Karbala",role:"Restorer of the Usuli school",m:.7,i:.35,e:-.4,
+  k:"Ended Akhbari dominance and re-established ijtihad and usul al-fiqh as the norm.",
+  w:"Rationalist compared with the Akhbaris he opposed, and squarely traditional. He sits near the mainstream centre."},
+ {id:"ahsai",n:"Shaykh Ahmad al-Ahsa'i",s:"al-Ahsa'i",d:"d. 1826",era:"modern",reg:"arabia",city:"al-Ahsa, later Iran",role:"Founder of the Shaykhi school",m:.85,i:.95,e:.45,
+  k:"Taught an esoteric cosmology in which the Imams are causes of creation.",
+  w:"Close to the maximalist pole; even many contemporaries criticised him for exaggeration. Leans scriptural through esoteric readings of the reports."},
+ {id:"ansari",n:"Shaykh Murtada al-Ansari",s:"M. al-Ansari",d:"d. 1864",era:"modern",reg:"iraq",city:"Najaf",role:"Author of Fara'id al-usul and al-Makasib",m:.7,i:.35,e:-.35,
+  k:"His legal theory shaped the method of nearly every later marja'.",
+  w:"The anchor of the mainstream Usuli centre: reliable solitary reports bind in law, and reason governs principles."},
+ {id:"isfahani",n:"Mirza Mahdi Isfahani",s:"M. M. Isfahani",d:"d. 1946",era:"modern",reg:"iran",city:"Mashhad",role:"Founder of the 'school of separation'",m:.8,i:.6,e:.85,
+  k:"Argued that revealed knowledge from the Imams must be kept separate from Greek philosophy and Sufi mysticism (Maktab-e Tafkik).",
+  w:"A modern scripturalist. Treats the Imams' teaching as the only sure source, hence maximalist-leaning."},
+ {id:"mughniyya",n:"Muhammad Jawad Mughniyya",s:"Mughniyya",d:"d. 1979",era:"modern",reg:"lebanon",city:"Jabal Amil, Beirut",role:"Jurist and writer",m:-.2,i:.05,e:-.45,
+  k:"Wrote al-Fiqh 'ala al-madhahib al-khamsa, comparing the five schools of law, and the Quran commentary al-Tafsir al-Kashif. Openly criticised parts of seminary culture.",
+  w:"A reform-minded, rationalist jurist who worked across Sunni–Shia lines."},
+ {id:"musasadr",n:"Musa al-Sadr",s:"Musa al-Sadr",d:"disappeared 1978",era:"modern",reg:"lebanon",city:"Tyre",role:"Cleric and community leader",m:-.15,i:.3,e:-.3,
+  k:"Founded the Movement of the Deprived and built schools and institutions for Lebanon's Shia community.",
+  w:"Modern in social engagement while mainstream in doctrine."},
+ {id:"tabatabai",n:"Allama Tabataba'i",s:"Tabataba'i",d:"d. 1981",era:"modern",reg:"iran",city:"Qum",role:"Philosopher; author of Tafsir al-Mizan",m:.45,i:.6,e:-.6,
+  k:"Interpreted the Quran by the Quran in al-Mizan, alongside philosophy and 'irfan.",
+  w:"Rationalist and mystical, with an exalted doctrine of wilaya. Traditional, but engaged with modern thought."},
+ {id:"shariati",n:"Ali Shariati",s:"Shariati",d:"d. 1977",era:"modern",reg:"iran",city:"Tehran",role:"Sociologist and lay intellectual",m:-.65,i:-.3,e:-.3,
+  k:"Contrasted a revolutionary 'Alavi Shiism' with a ritualistic 'Safavid Shiism'.",
+  w:"Modernist. He read the Imams as revolutionary exemplars rather than through their metaphysical station, so he leans minimalist. Not a jurist."},
+ {id:"mutahhari",n:"Murtaza Mutahhari",s:"Mutahhari",d:"d. 1979",era:"modern",reg:"iran",city:"Qum, Tehran",role:"Philosopher and public scholar",m:.15,i:.45,e:-.55,
+  k:"Defended traditional rulings with rational arguments in The Rights of Women in Islam, and criticised distortions in Karbala narratives (Hamaseh-ye Husayni).",
+  w:"A rationalist reformer working from within the tradition. He affirmed wilaya in his work on the subject."},
+ {id:"khomeini",n:"Ayatollah Khomeini",s:"Khomeini",d:"d. 1989",era:"modern",reg:"iran",city:"Qum",role:"Jurist and mystic; founder of the Islamic Republic",m:.2,i:.75,e:-.45,
+  k:"Developed wilayat al-faqih, and wrote that the Imams hold a station no angel or prophet reaches.",
+  w:"Maximalist Imamology and philosophical-mystical rationalism. Politically innovative within a juristic frame, so he sits near the middle on modern questions."},
+ {id:"sadr",n:"Muhammad Baqir al-Sadr",s:"al-Sadr",d:"d. 1980",era:"modern",reg:"iraq",city:"Najaf",role:"Jurist and philosopher",m:.25,i:.3,e:-.6,
+  k:"His Logical Foundations of Induction explained certainty through probability, and Iqtisaduna engaged modern economics.",
+  w:"Strongly rationalist and engaged with modern ideas, while staying a mainstream Usuli on doctrine."},
+ {id:"khoei",n:"Ayatollah al-Khoei",s:"al-Khoei",d:"d. 1992",era:"modern",reg:"iraq",city:"Najaf",role:"Marja'; author of Mu'jam rijal al-hadith",m:.6,i:.3,e:-.15,
+  k:"Built the major modern reference on narrators and judged reports strictly by narrator reliability, including those in al-Kafi.",
+  w:"Mainstream centre. Accepted reliable solitary reports in law, but his strict grading is a resource that minimalists draw on."},
+ {id:"burqai",n:"Abu al-Fadl Burqa'i",s:"Burqa'i",d:"d. 1993",era:"modern",reg:"iran",city:"Tehran",role:"Cleric turned Quran-centred reformer",m:-.45,i:-.95,e:.25,
+  k:"Rejected tawassul to the Imams and much of the hadith corpus, appealing to the Quran.",
+  w:"The minimalist extreme. Leans scripturalist (Quran-first) rather than rationalist, which shows that minimalism need not come from rationalism."},
+ {id:"shirazi",n:"Sayyid Muhammad al-Shirazi",s:"M. al-Shirazi",d:"d. 2001",era:"contemporary",reg:"iraq",city:"Karbala, Kuwait, Qum",role:"Marja'; founder of the Shirazi movement",m:.7,i:.8,e:.35,
+  k:"Wrote prolifically; his school stresses the Imams' exalted station and public commemoration.",
+  w:"Traditional and maximalist on devotional practice, though he also proposed political ideas such as a council of maraji'."},
+ {id:"shamsaldin",n:"Muhammad Mahdi Shams al-Din",s:"Shams al-Din",d:"d. 2001",era:"contemporary",reg:"lebanon",city:"Beirut",role:"Head of the Supreme Islamic Shia Council",m:-.35,i:.1,e:-.45,
+  k:"Proposed 'wilayat al-umma', the authority of the community, as an alternative to wilayat al-faqih, and urged Shias to integrate fully in their own societies.",
+  w:"Reformist in political theory and community life, rationalist in method."},
+ {id:"salehi",n:"Salehi Najafabadi",s:"Salehi Najafabadi",d:"d. 2006",era:"contemporary",reg:"iran",city:"Qum",role:"Mujtahid; author of Shahid-e Javid",m:-.15,i:-.7,e:-.55,
+  k:"His 1968 book read Imam Husayn's uprising as an attempt to establish just government, not a martyrdom he knew in advance.",
+  w:"Minimalist on the Imam's knowledge of the unseen, and rationalist in how he read history. The book caused a major controversy."},
+ {id:"fadlallah",n:"Muhammad Husayn Fadlallah",s:"Fadlallah",d:"d. 2010",era:"contemporary",reg:"lebanon",city:"Beirut",role:"Marja'",m:-.35,i:-.35,e:-.45,
+  k:"A reformist marja' who questioned some historical narrations and popular practices, and took progressive positions on women.",
+  w:"Modernist-leaning, minimalist-leaning and rationalist. Several fellow maraji' contested his views."},
+ {id:"mohseni",n:"Muhammad Asif Mohseni",s:"Mohseni",d:"d. 2019",era:"contemporary",reg:"afghanistan",city:"Kabul",role:"Marja'; hadith critic",m:.35,i:-.35,e:-.2,
+  k:"Mashra'at Bihar al-Anwar graded the reports in Bihar al-Anwar and found a large share weak.",
+  w:"Traditional in law, but his strict hadith criticism prunes many maximalist reports: Esmail's 'new methods in hadith criticism'."},
+ {id:"jafarmurtada",n:"Ja'far Murtada al-'Amili",s:"Ja'far Murtada",d:"d. 2019",era:"contemporary",reg:"lebanon",city:"Jabal Amil, Qum",role:"Historian; author of al-Sahih min sirat al-nabi",m:.75,i:.75,e:.2,
+  k:"A prolific historian of early Islam and a leading critic of Fadlallah's positions on the Imams and Lady Fatima.",
+  w:"Traditional and strongly maximalist; he defended the inherited Imamology against reformist readings."},
+ {id:"sistani",n:"Ayatollah al-Sistani",s:"al-Sistani",d:"b. 1930",era:"contemporary",reg:"iraq",city:"Najaf",role:"Marja'",m:.55,i:.35,e:-.2,
+  k:"The most widely followed marja' of the Najaf seminary, which is known for a cautious Usuli method.",
+  w:"Placed as representative of the mainstream Usuli centre that Esmail says cannot be pigeonholed."},
+ {id:"vahid",n:"Ayatollah Vahid Khorasani",s:"Vahid Khorasani",d:"b. 1921",era:"contemporary",reg:"iran",city:"Qum",role:"Marja'",m:.8,i:.75,e:.1,
+  k:"Known for strong emphasis on the station of the Imams and of Lady Fatima, and on Fatimiyya commemoration.",
+  w:"Traditional and maximalist, while remaining Usuli in method."},
+ {id:"javadi",n:"Ayatollah Javadi Amoli",s:"Javadi Amoli",d:"b. 1933",era:"contemporary",reg:"iran",city:"Qum",role:"Philosopher-exegete; author of Tasnim",m:.45,i:.75,e:-.65,
+  k:"Continues the Sadrian and Tabataba'i tradition in philosophy and Quranic exegesis.",
+  w:"Rationalist and maximalist, in the same philosophical-mystical family as Mulla Sadra and Tabataba'i."},
+ {id:"hobballah",n:"Haydar Hobballah",s:"Hobballah",d:"living",era:"contemporary",reg:"lebanon",city:"Lebanon, Qum",role:"Scholar of hadith and law",m:-.35,i:-.4,e:-.4,
+  k:"His Nazariyyat al-sunna and other works argue for a much higher threshold before solitary reports count.",
+  w:"A reformist working within seminary scholarship. Stricter hadith standards push him toward minimalism."},
+ {id:"qabbanji",n:"Ahmad al-Qabbanji",s:"al-Qabbanji",d:"living",era:"contemporary",reg:"iraq",city:"Najaf, Baghdad",role:"Reformist thinker",m:-.95,i:-.9,e:-.95,
+  k:"Calls for a rationalist 'civil Islam' and openly draws on the Mu'tazili heritage.",
+  w:"The clearest example of what Esmail means by Shia modernists having more in common with the Neo-Mu'tazila."},
+ {id:"shabestari",n:"Mohammad Mojtahed Shabestari",s:"Shabestari",d:"living",era:"contemporary",reg:"iran",city:"Tehran",role:"Theologian; hermeneutics",m:-.9,i:-.55,e:-.75,
+  k:"Argues that every reading of revelation is a human, historically situated interpretation.",
+  w:"Modernist and rationalist. One of Iran's 'new religious thinkers'."},
+ {id:"ansarih",n:"Hassan Ansari",s:"H. Ansari",d:"living",era:"contemporary",reg:"west",city:"Princeton (from Iran)",role:"Historian of Islamic thought",m:.35,i:.45,e:-.1,
+  k:"In Al-Qalam (ICAIR, 2024) he argued that the theory of the Imams as 'righteous scholars' has no historical basis, responding to Kadivar.",
+  w:"Defends the mainstream view of the Imams' attributes using historical method, so he sits opposite Kadivar on Imamology."},
+ {id:"kadivar",n:"Mohsen Kadivar",s:"Kadivar",d:"living",era:"contemporary",reg:"west",city:"Duke University, USA (from Iran)",role:"Jurist and scholar",m:-.8,i:-.85,e:-.6,
+  k:"Argued that early Shias saw the Imams as 'ulama' abrar, righteous scholars, and that maximal Imamology came later. Also writes on Islam and human rights.",
+  w:"Strongly modernist and minimalist. His thesis is one of the central targets in today's minimalist–maximalist debate."},
+ {id:"soroush",n:"Abdolkarim Soroush",s:"Soroush",d:"living",era:"contemporary",reg:"west",city:"Based abroad (from Iran)",role:"Philosopher",m:-.95,i:-.75,e:-.85,
+  k:"Argued that religious knowledge contracts and expands with human knowledge, and that the Prophet's experience was historically situated.",
+  w:"Near the reform pole on all three spectrums."}
+];
+const SID={}; S.forEach(s=>SID[s.id]=s);
+const AX={
+ m:{neg:"Modernist",pos:"Traditionalist",name:"Modern questions",full:"Modernist ↔ Traditionalist"},
+ i:{neg:"Minimalist",pos:"Maximalist",name:"Imamology",full:"Minimalist ↔ Maximalist"},
+ e:{neg:"Rationalist",pos:"Scripturalist",name:"Method",full:"Rationalist ↔ Scripturalist"}
+};
+const MAIN={m:.55,i:.3,e:-.2};
+
+const METHOD={
+ m:{neg:{t:"Modernist",line:"Reads the tradition in light of modern knowledge and ethics.",
+   src:"The Quran and Sunna, read alongside modern knowledge: history, the social sciences and human-rights ethics.",
+   how:"Separates what is fixed in religion from what reflects its time. Asks what a ruling was for (its purposes, maqasid) and whether its wording still serves that purpose. Treats every reading of scripture as a human, historically situated interpretation (hermeneutics).",
+   ask:"What was this ruling meant to achieve, and does applying it literally still achieve that today?",
+   figs:["soroush","shabestari","kadivar","shariati","qabbanji","shamsaldin"],
+   ex:"On inheritance, a modernist may argue that the half share assumed men were the only providers. Where that no longer holds, justice may point toward equal shares."},
+  pos:{t:"Traditionalist",line:"Treats the inherited law and its scholarly method as the baseline.",
+   src:"The Quran, the Sunna of the Prophet and the Imams, consensus (ijma') and reason, as used within classical legal theory.",
+   how:"Classical ijtihad by qualified jurists in the hawza, building on earlier scholars and the well-known opinion (mashhur). New questions are answered by applying established principles; where the evidence is unclear, jurists prefer precaution (ihtiyat). Ordinary believers follow a living marja' (taqlid).",
+   ask:"What do the sources, read through the established method, say about this case?",
+   figs:["majlisi","ansari","khoei","sistani","vahid","shahid1"],
+   ex:"On new questions such as IVF or modern banking, a traditionalist jurist extends existing rules on lineage or contracts rather than rethinking the rules themselves."}},
+ i:{neg:{t:"Minimalist",line:"Keeps belief about the Imams to what certain evidence supports.",
+   src:"The Quran first, then reports that give certainty (mutawatir) for matters of belief, with history read critically.",
+   how:"Strict hadith criticism of both the chain and the content. Single-chain reports are not enough to establish a belief. Early Shia history is read with historical-critical methods to see how ideas about the Imams developed.",
+   ask:"Is this claim about the Imams established by certain evidence, or only by isolated reports?",
+   figs:["kadivar","mohseni","salehi","burqai","fadlallah","hobballah"],
+   ex:"Reports that the Imams govern events in the cosmos are judged weak or late, so the Imam is understood as a divinely guided scholar and leader."},
+  pos:{t:"Maximalist",line:"Affirms the Imams' exalted station as described across the whole body of reports.",
+   src:"The large corpus of reports about the Imams, ziyarat texts such as al-Jami'a al-Kabira, and esoteric and mystical traditions.",
+   how:"Reads the reports together, so that many reports agreeing in meaning add up to certainty (tawatur ma'nawi) even if individual chains are weak. Takes the texts largely at face value, and often reads them through mystical philosophy, with the Imam as the Perfect Human.",
+   ask:"Taken together, what do the many reports say about who the Imams are?",
+   figs:["majlisi","ahsai","shirazi","vahid","jafarmurtada","javadi"],
+   ex:"The line in Ziyarat al-Jami'a al-Kabira, 'through you God began and through you He will seal', is read as describing a real cosmic role."}},
+ e:{neg:{t:"Rationalist",line:"Lets reason judge how scripture is understood.",
+   src:"Reason ('aql) as an independent source alongside the Quran and Sunna.",
+   how:"Rational theology (kalam) and philosophy. Reason can know good and evil in its own right (husn wa qubh 'aqli). Where a text conflicts with certain reason, it is read figuratively (ta'wil) or set aside.",
+   ask:"Does this reading fit what reason establishes about God and justice?",
+   figs:["mufid","murtada","hilli","sadra","tabatabai","sadr"],
+   ex:"Reason shows that God is just, so reports implying that God punishes people for acts He compelled them to do are reinterpreted or rejected."},
+  pos:{t:"Scripturalist",line:"Starts from the texts and keeps reason in their service.",
+   src:"The Quran as explained by the Imams' reports, especially the Four Books.",
+   how:"Acts directly on the reports rather than on speculative legal theory (the Akhbari approach), and keeps revealed knowledge separate from Greek philosophy and mysticism (the Tafkik approach). Where the texts are silent, it prefers caution (ihtiyat) to reasoning out a new rule.",
+   ask:"What did the Imams actually say about this?",
+   figs:["astarabadi","bahrani","isfahani","saduq","majlisi"],
+   ex:"Where no report addresses a new case, a scripturalist takes the cautious option rather than deriving a ruling through legal theory."}}
+};
+
+const QS=[
+ {a:"m",k:1,t:"The rulings in the classical books of fiqh should be followed today as they are, unless a living marja' rules otherwise."},
+ {a:"i",k:1,t:"The Imams know the unseen, including future events, by God's permission."},
+ {a:"e",k:1,t:"If a reliable hadith seems to conflict with reason, we should accept the hadith and assume our understanding is limited."},
+ {a:"m",k:-1,t:"Modern ideas such as human rights and gender equality are good reasons to look again at classical rulings."},
+ {a:"i",k:1,t:"God has given the Imams authority to act within the created world (wilaya takwiniyya)."},
+ {a:"e",k:-1,t:"Reason can tell us what is just and unjust, independently of revelation."},
+ {a:"m",k:1,t:"A daughter inheriting half of a son's share is a fixed ruling that should not change with social conditions."},
+ {a:"i",k:-1,t:"The Imams are best understood as supremely pious, divinely guided scholars and leaders, without powers over creation."},
+ {a:"e",k:1,t:"A single reliable narrator's report is enough to establish a point of belief, not only a legal ruling."},
+ {a:"m",k:-1,t:"Many classical rulings reflected the society they were made in, so their purpose matters more than their exact wording."},
+ {a:"i",k:1,t:"Calling directly on an Imam for help, as in 'Ya Ali madad', is legitimate."},
+ {a:"e",k:-1,t:"Philosophy and rational theology are essential tools for understanding religion properly."},
+ {a:"m",k:1,t:"The hawza's classical method of ijtihad is enough to answer the questions modern life raises."},
+ {a:"i",k:-1,t:"Many narrations describing the Imams' extraordinary powers are probably later exaggerations."},
+ {a:"e",k:1,t:"Greek-influenced philosophy and mysticism have distorted Shia teaching."},
+ {a:"m",k:-1,t:"Academic research from universities, including by non-Muslim scholars, should shape how we understand our tradition."},
+ {a:"i",k:1,t:"The Imams were created as lights before the creation of the world."},
+ {a:"e",k:-1,t:"A hadith that contradicts clear scientific knowledge should be reinterpreted or set aside."},
+ {a:"m",k:1,t:"Following a living marja' (taqlid) in matters of practice is essential for most believers."},
+ {a:"i",k:-1,t:"Imam Husayn's journey to Karbala is best understood through its political and historical circumstances, rather than through his foreknowledge of the outcome."},
+ {a:"e",k:1,t:"The Four Books of hadith are broadly reliable as a whole."},
+ {a:"m",k:-1,t:"Women should be able to become maraji' and judges."},
+ {a:"i",k:1,t:"Commemorations such as Muharram majalis and Fatimiyya are central to faith, not just cultural tradition."},
+ {a:"e",k:-1,t:"Every hadith should be checked for its chain and its content before being used, even in the famous collections."},
+ {a:"m",k:1,t:"Islam already contains everything a just society needs, so we don't need to borrow ethical frameworks from outside it."},
+ {a:"i",k:-1,t:"Accusations of ghuluww against some popular devotional practices are often justified."},
+ {a:"e",k:1,t:"When in doubt, it is better to follow the texts cautiously than to reason your way to a new conclusion."},
+ {a:"m",k:-1,t:"Some established practices in our communities are cultural rather than religious, and should be reformed."},
+ {a:"i",k:1,t:"The Imams hear us and can respond when we visit their shrines or address them."},
+ {a:"e",k:-1,t:"Islamic philosophers such as Mulla Sadra and Allama Tabataba'i deepen faith rather than threaten it."},
+ {a:"m",k:1,t:"Changes in religious rulings should come only from senior jurists, not from public debate."},
+ {a:"i",k:-1,t:"Beliefs about the Imams should rest only on the Quran and on reports that give certainty, not on single narrations."},
+ {a:"e",k:1,t:"Ordinary believers can understand religion directly from the Imams' words, without specialised legal theory."},
+ {a:"m",k:-1,t:"Religious knowledge develops over time as human knowledge grows."},
+ {a:"i",k:1,t:"Ziyarat al-Jami'a al-Kabira describes the Imams' station accurately and should be taken at face value."},
+ {a:"e",k:-1,t:"Usul al-fiqh, the theory of jurisprudence, is necessary to derive rulings correctly."}
+];
+const LEVELS=[[12.5,"Not at all"],[37.5,"Slightly"],[62.5,"Somewhat"],[87.5,"Mostly"],[101,"Completely"]];
+const levelOf=x=>LEVELS.find(([t])=>x<t)[1];
+
+const BANDS={
+ m:[["Strongly modernist","You think modern ethical insight should actively shape how religious rulings are read. Like Soroush, Shabestari or Kadivar, you treat classical rulings as answers to the questions of their own time, and ask what justice requires now."],
+  ["Leaning modernist","You accept the classical framework, but you think modern questions about gender, minorities and rights expose real problems that it has to address. This is close to reformers who work from within seminary scholarship, such as Fadlallah, Shams al-Din and Hobballah."],
+  ["In the middle","You hold two commitments at once: the inherited law matters, and modern questions deserve real answers. Many mainstream scholars sit here, defending classical rulings with fresh reasoning, as Mutahhari did."],
+  ["Leaning traditionalist","You treat the inherited law as the default. It can develop through ijtihad, but it should not be revised wholesale. This is where most mainstream Usuli jurists sit."],
+  ["Strongly traditionalist","You see the classical law as settled, and you judge modern ethical frameworks by religion rather than the other way round."]],
+ i:[["Strongly minimalist","You see the Imams as exemplary, divinely guided scholars and leaders, and you are sceptical of claims about cosmic powers. Kadivar's 'righteous scholars' thesis and Burqa'i's rejection of tawassul sit near here."],
+  ["Leaning minimalist","You honour the Imams' station, but you want strong evidence before accepting claims about their knowledge of the unseen or their powers. Hadith critics such as Mohseni and reformers such as Fadlallah sit around here."],
+  ["In the middle","You affirm the Imams' authority and guidance, while staying cautious about the more extraordinary reports. Many scholars hold a version of this balance."],
+  ["Leaning maximalist","You hold an exalted view of the Imams: vast God-given knowledge, and a real role as means of God's grace in tawassul. Most traditional seminary teaching sits around here."],
+  ["Strongly maximalist","You see the Imams as intermediaries through whom God's grace reaches creation, with knowledge of the unseen and authority within creation by God's permission. al-Majlisi, the Shirazi school, Ja'far Murtada and al-Ahsa'i sit toward this end."]],
+ e:[["Strongly rationalist","You think reason sets the frame within which scripture is read, and that reports which clash with clear reason should be reinterpreted or set aside. al-Sharif al-Murtada in the classical period, and Soroush or al-Qabbanji today, sit near here."],
+  ["Leaning rationalist","You give reason a strong role, especially in theology, while relying on reliable reports in law. This is the classic Baghdad and Usuli blend of al-Mufid, al-Hilli and the philosophers."],
+  ["In the middle","You balance reason and text, perhaps leaning on text in law and on reason in theology, which is how mainstream Usuli scholarship works."],
+  ["Leaning scripturalist","You prefer to begin from the texts, and you treat reason as a tool for understanding them rather than a judge over them."],
+  ["Strongly scripturalist","You see the Imams' reports as the surest source of religious knowledge, and you distrust independent rational speculation. This is the Akhbari position of al-Astarabadi and Yusuf al-Bahrani, and of the school of separation (Maktab-e Tafkik)."]]
+};
+const OTHER={
+ m:{neg:"Traditionalists argue that modern values are themselves products of a particular time and change quickly, so tying revelation to them risks reshaping religion around the culture of the moment. A ruling's wisdom may not be visible to us, and the classical system was built by centuries of careful scholarship.",
+    pos:"Modernists argue that some classical rulings rested on social facts that no longer hold, such as men being the only earners, so applying the wording unchanged can defeat the ruling's own purpose of justice. They point out that the Quran itself moved its society forward from where it found it."},
+ i:{neg:"Maximalists answer that hundreds of reports through many chains describe the Imams' exalted station, which together give collective certainty (tawatur ma'nawi) even when single reports are weak. Historians such as Amir-Moezzi and Hassan Ansari argue that an exalted Imamology was there from the earliest period, not added later. And God granting gifts to whom He wills does not compromise Tawhid.",
+    pos:"Minimalists point to early precedent: al-Mufid and al-Murtada would not base belief on solitary reports, and 10th-century Qum scholars called some views that are now mainstream exaggeration. They argue that many reports about the Imams' powers have weak chains, and that a simpler Imamology protects Tawhid."},
+ e:{neg:"Scripturalists argue that human reason is limited and shaped by its age, and that the Imams themselves warned against analogy (qiyas) and speculation. Revelation exists precisely because reason alone cannot reach what it teaches.",
+    pos:"Rationalists answer that we only know scripture comes from God through reason in the first place, and that Shia theology itself rests on reason's grasp of divine justice. Without reason as a check, weak or fabricated reports can enter belief."}
+};
+const INS={
+ m:{neg:{read:[["Reason, Freedom, and Democracy in Islam","Abdolkarim Soroush","His case that religious knowledge grows with human knowledge."],["Human Rights and Reformist Islam","Mohsen Kadivar","A jurist's argument for re-reading rulings in light of human rights."],["Islam and Modernity","Fazlur Rahman","The classic case for reading the Quran by its purposes."]],
+   do:["Intrafaith and interfaith dialogue events","Academic lectures and courses in Islamic studies","Debates on Islam, ethics and law"],
+   bel:["Women can serve as jurists, judges and maraji'.","Some rulings, on inheritance or punishments for example, can be revisited when their purpose is better served another way.","Democracy and civil rights sit well with Islam."]},
+  mid:{read:[["The Rights of Women in Islam","Murtaza Mutahhari","Defends classical rulings with modern arguments."],["Shi'i Islam: An Introduction","Najam Haider","A clear academic overview of how the tradition developed."]],
+   do:["Reading both seminary and academic writers","Community discussion circles on modern questions"],
+   bel:["The classical framework is right, but it must give real answers to modern questions.","Change should come through qualified scholars, informed by wider debate."]},
+  pos:{read:[["Traditional Islam in the Modern World","Seyyed Hossein Nasr","A defence of tradition against modernism."],["Islamic Laws (Tawdih al-masa'il)","your marja'","The practical rulings you follow day to day."]],
+   do:["Studying fiqh with a teacher, in a hawza class or an online dars","Following your marja's rulings closely and asking his office about new questions"],
+   bel:["Following a living marja' (taqlid) is essential for most believers.","Islam already contains what a just society needs.","Family-law rulings are fixed, whatever social conditions are like."]}},
+ i:{neg:{read:[["Crisis and Consolidation in the Formative Period of Shi'ite Islam","Hossein Modarressi","A historian's account of the early debates over the Imams' status."],["Tradition and Survival","Hossein Modarressi","What survives of early Shia writings, and how reliable it is."]],
+   do:["Studying early Islamic history from primary sources","Learning rijal so you can check hadith chains yourself","Quran study circles"],
+   bel:["Many reports of the Imams' extraordinary powers are later exaggerations.","The Imams are first of all moral and scholarly exemplars.","Some popular devotional practices go beyond what the sources support."]},
+  mid:{read:[["An Introduction to Shi'i Islam","Moojan Momen","A balanced overview of Shia history and doctrine."],["Nahj al-Balagha","Imam Ali, compiled by al-Sharif al-Radi","Sermons and letters that show the Imam as teacher and leader."]],
+   do:["Ziyara and majalis, alongside study of the Imams' teachings","Reading the Imams' sayings for practical guidance"],
+   bel:["The Imams are infallible guides with God-given knowledge, but not every report about them is reliable.","Tawassul is legitimate; some popular practices need care."]},
+  pos:{read:[["The Divine Guide in Early Shi'ism","Mohammad Ali Amir-Moezzi","Argues that an exalted, esoteric Imamology goes back to the earliest period."],["Mafatih al-Jinan","Shaykh Abbas Qummi","The standard collection of duas and ziyarat."],["Ziyarat al-Jami'a al-Kabira","attributed to Imam al-Hadi","The great visitation text that sets out the Imams' station."]],
+   do:["Ziyara to the shrines of the Imams","Reciting Du'a Tawassul and Ziyarat Ashura","Muharram and Fatimiyya majalis"],
+   bel:["The Imams know the unseen and hear us when we address them.","God has given the Imams wilaya takwiniyya, authority within creation.","The Imams' light was created before the world."]}},
+ e:{neg:{read:[["The Theology of al-Shaikh al-Mufid","Martin McDermott","How the Baghdad school built Shia theology on reason."],["Our Philosophy (Falsafatuna)","Muhammad Baqir al-Sadr","A rational defence of belief against materialism."],["al-Bab al-Hadi 'Ashar","al-'Allama al-Hilli","A short classical creed argued step by step from reason."]],
+   do:["Islamic philosophy or kalam reading groups","Debating and testing arguments","Comparing religious and philosophical ethics"],
+   bel:["Reason can tell right from wrong even without revelation.","A hadith that clashes with certain reason should be reinterpreted or set aside.","Philosophy and mysticism deepen faith."]},
+  mid:{read:[["Understanding Islamic Sciences","Murtaza Mutahhari","An introduction to logic, philosophy, kalam, usul and fiqh together."],["Shi'ite Islam","Allama Tabataba'i","A concise statement of Shia belief by a philosopher-exegete."]],
+   do:["Combining Quran and hadith study with some philosophy","Learning the basics of usul al-fiqh"],
+   bel:["Texts guide law, and reason guides theology.","Reliable reports bind in practice, but belief needs firmer proof."]},
+  pos:{read:[["Scripturalist Islam","Robert Gleave","The history and doctrines of the Akhbari school."],["al-Kafi","al-Kulayni","The foundational collection of the Imams' reports."],["al-Hada'iq al-Nadira","Yusuf al-Bahrani","A major Akhbari work of law."]],
+   do:["Reading the Imams' reports directly, in al-Kafi or Nahj al-Balagha","Memorising Quran and hadith","Choosing the cautious option (ihtiyat) when unsure"],
+   bel:["The Imams' words are the surest guide; speculation leads astray.","Greek-influenced philosophy and mysticism have distorted Shia teaching.","The major hadith collections are broadly reliable."]}}
+};
+const ARCH={
+ "+++":["The Guardian of Tradition","Inherited law, an exalted Imamology and a text-first method. This is the tradition pole, where Akhbari and devotional schools gather."],
+ "---":["The Reformer","Modern ethics, a minimal Imamology and reason first. This is the reform pole, the 'Neo-Mu'tazili' corner Esmail describes."],
+ "++-":["The Philosopher-Mystic","Traditional in law, with an exalted Imamology argued for through reason and mysticism, in the family of Mulla Sadra, Tabataba'i and Javadi Amoli."],
+ "+-+":["The Early Traditionist","Theology built from the reports, yet a modest view of the Imams by later standards, like the 10th-century scholars of Qum."],
+ "+--":["The Critical Jurist","Traditional in law, but sceptical of single-chain reports and the claims built on them, like strict hadith critics such as Mohseni."],
+ "-++":["The Devotional Reformer","Reformist on society while reading the texts about the Imams at face value. A rare combination."],
+ "-+-":["The Mystical Modernist","Uses reason to rethink law and society while keeping a high, often mystical, view of the Imams."],
+ "--+":["The Quranic Reformer","Quran-first reform that sets aside much of the hadith corpus, including reports about the Imams' powers, as Burqa'i did."],
+ main:["The Mainstream Usuli","Scriptural in law, rationalist in theology, with a moderate-to-high view of the Imams. This is where most maraji' and seminary teaching sit."],
+ mid:["The Bridge","You sit near the centre on all three spectrums, holding the tensions together rather than choosing a camp."]
+};
+
+/* ================= ROUTING ================= */
+const VIEWS=["home","test","insights","compass","terms"];
+let current="home";
+function route(){const h=location.hash.replace("#","");return VIEWS.includes(h)?h:"home";}
+function show(v){
+  current=v;
+  VIEWS.forEach(x=>$("v-"+x).hidden=x!==v);
+  document.querySelectorAll(".nav [data-go]").forEach(b=>b.setAttribute("aria-current",b.dataset.go===v?"page":"false"));
+  if(v==="home") startHero(); else stopHero();
+  if(v==="test") renderTest();
+  if(v==="insights") renderInsights();
+  if(v==="compass"){ renderCube(); renderDrawer(); }
+  window.scrollTo(0,0);
+}
+function go(v){ const target=v==="home"?"":"#"+v; if(location.hash===target||(v==="home"&&!location.hash)) show(v); else location.hash=target; }
+window.addEventListener("hashchange",()=>show(route()));
+document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest("[data-go]"); if(b){e.preventDefault();go(b.dataset.go);}});
+
+/* ================= TEST ================= */
+const PER=6, PAGES=Math.ceil(QS.length/PER);
+let answers=new Array(QS.length).fill(null), page=0, user=null;
+function renderTest(){
+  const start=page*PER, idxs=[...Array(PER).keys()].map(j=>start+j).filter(j=>j<QS.length);
+  $("tPart").textContent=`Part ${page+1} of ${PAGES}`;
+  $("tProg").innerHTML=QS.map((_,j)=>`<i class="${answers[j]!==null?"on":""} ${j>=start&&j<start+PER?"page":""}"></i>`).join("");
+  $("qlist").innerHTML=idxs.map(j=>{const v=answers[j], x=v===null?50:v;
+    return `<div class="qc ${v===null?"untouched":"done"}" data-q="${j}">
+      <div class="qtop"><span class="qn">${String(j+1).padStart(2,"0")}</span><p class="qs" id="qs${j}">${QS[j].t}</p></div>
+      <div class="sl">
+        <div class="slhead"><span class="slval" id="qv${j}">${v===null?"Move the slider":levelOf(x)}</span></div>
+        <input class="ag" type="range" min="0" max="100" step="1" value="${x}" id="q${j}" aria-labelledby="qs${j}" aria-valuetext="${v===null?"Not answered":levelOf(x)}" style="--p:${x}%">
+        <div class="ticks" aria-hidden="true"><span>Not at all</span><span>Slightly</span><span>Somewhat</span><span>Mostly</span><span>Completely</span></div>
+      </div></div>`;}).join("");
+  idxs.forEach(j=>{
+    const inp=$("q"+j), card=inp.closest(".qc");
+    const set=()=>{answers[j]=Number(inp.value);card.classList.remove("untouched");card.classList.add("done");
+      const lv=levelOf(answers[j]); $("qv"+j).textContent=lv; inp.setAttribute("aria-valuetext",lv); inp.style.setProperty("--p",inp.value+"%"); updateTestNav();};
+    inp.addEventListener("input",set); inp.addEventListener("change",set);
+    inp.addEventListener("pointerdown",()=>setTimeout(set,0));
+    inp.addEventListener("keydown",e=>{if(["ArrowLeft","ArrowRight","ArrowUp","ArrowDown","Home","End","PageUp","PageDown"].includes(e.key)) setTimeout(set,0);});
+  });
+  document.querySelectorAll("#qlist .qs").forEach(linkify);
+  updateTestNav();
+}
+function updateTestNav(){
+  const start=page*PER, idxs=[...Array(PER).keys()].map(j=>start+j).filter(j=>j<QS.length);
+  const left=idxs.filter(j=>answers[j]===null).length, total=answers.filter(a=>a!==null).length;
+  $("tCount").textContent=`${total} of ${QS.length} answered`;
+  document.querySelectorAll("#tProg i").forEach((b,j)=>b.classList.toggle("on",answers[j]!==null));
+  $("tBack").disabled=page===0;
+  $("tNext").disabled=left>0;
+  $("tNext").innerHTML=page===PAGES-1?"See my insights →":"Next →";
+  $("tHint").textContent=left?`${left} left on this page`:"";
+}
+$("tBack").addEventListener("click",()=>{if(page>0){page--;renderTest();window.scrollTo(0,0);}});
+$("tNext").addEventListener("click",()=>{
+  if(page<PAGES-1){page++;renderTest();window.scrollTo(0,0);}
+  else{ score(); go("insights"); }
+});
+function score(){
+  const sum={m:0,i:0,e:0},n={m:0,i:0,e:0};
+  QS.forEach((q,j)=>{sum[q.a]+=q.k*((answers[j]-50)/50); n[q.a]++;});
+  user={m:sum.m/n.m,i:sum.i/n.i,e:sum.e/n.e};
+}
+
+/* ================= INSIGHTS ================= */
+const bandOf=v=>v<=-.6?0:v<-.2?1:v<=.2?2:v<.6?3:4;
+const poleOf=v=>v<=-.2?"neg":v>=.2?"pos":"mid";
+const dist=(a,b)=>Math.hypot(a.m-b.m,a.i-b.i,a.e-b.e);
+const match=d=>Math.max(0,Math.round(100*(1-d/2.6)));
+function archetype(u){
+  if(dist(u,MAIN)<.35) return ARCH.main;
+  if([u.m,u.i,u.e].every(v=>Math.abs(v)<.2)) return ARCH.mid;
+  return ARCH[(u.m>=0?"+":"-")+(u.i>=0?"+":"-")+(u.e>=0?"+":"-")];
+}
+function renderInsights(){
+  const box=$("v-insights");
+  if(!user){ box.innerHTML=`<div class="chead"><span class="eyebrow">02 · Insights</span><h1>Take the test first</h1><p>Your insights appear here once you've answered the 36 statements.</p><div class="cta" style="margin-top:14px"><button class="btn" data-go="test">Start the test →</button></div></div>`; return; }
+  const u=user, [aname,adesc]=archetype(u);
+  const ranked=S.map(s=>({s,d:dist(s,u)})).sort((a,b)=>a.d-b.d);
+  const meter=a=>{const v=u[a], b=bandOf(v), [bn,bt]=BANDS[a][b];
+    const other=b<2?`<b>The case from the ${AX[a].pos.toLowerCase()} side</b>${OTHER[a].neg}`:b>2?`<b>The case from the ${AX[a].neg.toLowerCase()} side</b>${OTHER[a].pos}`:`<b>The two sides you're balancing</b>${OTHER[a].pos} ${OTHER[a].neg}`;
+    return `<div class="meter"><span class="eyebrow">${a==="m"?"١":a==="i"?"٢":"٣"} · ${AX[a].name}</span>
+      <div class="bigbar"><div class="ends"><button data-meth="${a}:neg">${AX[a].neg}</button><button data-meth="${a}:pos">${AX[a].pos}</button></div><div class="tr"><b style="left:${(v+1)*50}%"></b></div><div class="val">${fmt(v)}</div></div>
+      <h3>${bn}</h3><p>${bt}</p><p class="other">${other}</p></div>`;};
+  const tag={m:"Modern questions",i:"Imamology",e:"Method"};
+  const reads=[],dos=[],bels=[];
+  ["m","i","e"].forEach(a=>{const p=INS[a][poleOf(u[a])];
+    p.read.slice(0,2).forEach(r=>reads.push([a,...r])); p.do.slice(0,2).forEach(r=>dos.push([a,r])); p.bel.slice(0,2).forEach(r=>bels.push([a,r]));});
+  const row=(o,cls)=>`<button class="arow" data-sch="${o.s.id}"><span class="nm">${o.s.n}</span><span class="sub"><i class="dot" style="background:var(--r-${o.s.reg})"></i>${REG[o.s.reg].n} · ${o.s.city} · ${o.s.d}</span><span class="pct"><span>${match(o.d)}%</span><em><i style="--w:${match(o.d)}%"></i></em></span></button>`;
+  box.innerHTML=`
+   <div class="ins">
+    <div class="ihead">
+      <div><span class="eyebrow">Your Shia Compass result</span><h1 style="margin-top:12px">${aname}</h1>
+        <p class="sum">${adesc}</p>
+        <p class="note">Based on your 36 answers. Esmail's own conclusion is that no framework has every answer, and that we should settle on a coherent mix held with epistemic humility. Read the case from the other side under each spectrum.</p>
+        <div class="cta"><button class="btn" id="toCube">See your pin in the 3D compass →</button><button class="btn ghost" id="retake">Retake the test</button></div></div>
+      <div class="pinbox"><span class="eyebrow">Your coordinates</span>
+        <div class="mini">${["m","i","e"].map(a=>`<div class="mbar"><div class="ends"><span>${AX[a].neg}</span><span class="mono" style="color:var(--rubric)">${fmt(u[a])}</span><span>${AX[a].pos}</span></div><div class="tr"><b style="left:${(u[a]+1)*50}%;background:var(--rubric)"></b></div></div>`).join("")}</div>
+        <span class="eyebrow" style="margin-top:6px">Closest scholar</span>
+        <p style="font-family:var(--f-display);font-size:26px;font-weight:600;line-height:1.1">${ranked[0].s.n}</p>
+        <p class="muted" style="font-size:13.5px">${match(ranked[0].d)}% match · ${REG[ranked[0].s.reg].n}, ${ranked[0].s.d}</p></div>
+    </div>
+    <section><div class="meters">${meter("m")}${meter("i")}${meter("e")}</div></section>
+    <section class="tend">
+      <span class="eyebrow">What tends to go with your position</span>
+      <h2>Reading, practice and related beliefs</h2>
+      <p class="intro">These are tendencies among people who answer as you did, drawn from where you sit on each spectrum. They aren't predictions about you.</p>
+      <div class="tcols">
+        <div class="tcol"><h3>You might enjoy reading</h3><ul>${reads.map(([a,t,au,w])=>`<li><span class="tag">${tag[a]}</span><span class="t">${t}</span><span class="a">${au}</span><span class="w">${w}</span></li>`).join("")}</ul></div>
+        <div class="tcol"><h3>You might enjoy doing</h3><ul>${dos.map(([a,t])=>`<li><span class="tag">${tag[a]}</span><span>${t}</span></li>`).join("")}</ul></div>
+        <div class="tcol"><h3>Beliefs often held alongside yours</h3><ul>${bels.map(([a,t])=>`<li><span class="tag">${tag[a]}</span><span>${t}</span></li>`).join("")}</ul></div>
+      </div>
+    </section>
+    <section class="align">
+      <span class="eyebrow">Scholars you align with</span>
+      <h2>Your closest matches</h2>
+      <p class="intro">Match is based on distance across all three spectrums. Click a scholar to see them in the 3D compass.</p>
+      <div class="alist">${ranked.slice(0,8).map(o=>row(o)).join("")}</div>
+      <span class="eyebrow" style="margin-top:18px">Furthest from you</span>
+      <div class="alist far">${ranked.slice(-2).reverse().map(o=>row(o)).join("")}</div>
+    </section>
+   </div>`;
+  box.querySelectorAll(".meter p, .sum, .tcol li span:not(.tag)").forEach(linkify);
+  $("toCube").addEventListener("click",()=>{drawer={type:"you"};go("compass");});
+  $("retake").addEventListener("click",()=>{answers=new Array(QS.length).fill(null);page=0;user=null;go("test");});
+  box.querySelectorAll("[data-sch]").forEach(b=>b.addEventListener("click",()=>{drawer={type:"scholar",id:b.dataset.sch};go("compass");}));
+  box.querySelectorAll("[data-meth]").forEach(b=>b.addEventListener("click",()=>{const [a,p]=b.dataset.meth.split(":");drawer={type:"method",a,p};go("compass");}));
+}
+
+/* ================= 3D ENGINE ================= */
+function project(st,m,i,e){
+  const cy=Math.cos(st.yaw),sy=Math.sin(st.yaw), x1=m*cy+e*sy, z1=-m*sy+e*cy;
+  const cp=Math.cos(st.pitch),sp=Math.sin(st.pitch), y2=i*cp-z1*sp, z2=i*sp+z1*cp, s=st.CAM/(st.CAM-z2);
+  return {x:st.cx+x1*s*st.K,y:st.cy-y2*s*st.K,z:z2,s:s};
+}
+const AXK=["m","i","e"];
+function at(st,o){return project(st,o.m||0,o.i||0,o.e||0)}
+function face(st,a,sg,u,pu,v,pv){const o={};o[a]=sg;o[u]=pu;o[v]=pv;return at(st,o)}
+function drawWalls(st,g,wallCls,gridCls,grid0Cls){
+  AXK.forEach(a=>[-1,1].forEach(sg=>{
+    const o={}; o[a]=sg; if(at(st,o).z>-0.02) return;
+    const [u,v]=AXK.filter(x=>x!==a);
+    const cs=[[-1,-1],[1,-1],[1,1],[-1,1]].map(([pu,pv])=>face(st,a,sg,u,pu,v,pv));
+    el("path",{d:"M"+cs.map(p=>p.x.toFixed(1)+","+p.y.toFixed(1)).join(" L")+"Z",class:wallCls},g);
+    if(!gridCls) return;
+    [-.5,0,.5].forEach(t=>{const A=face(st,a,sg,u,t,v,-1),B=face(st,a,sg,u,t,v,1),C=face(st,a,sg,u,-1,v,t),D=face(st,a,sg,u,1,v,t);
+      el("line",{x1:A.x,y1:A.y,x2:B.x,y2:B.y,class:t===0?grid0Cls:gridCls},g); el("line",{x1:C.x,y1:C.y,x2:D.x,y2:D.y,class:t===0?grid0Cls:gridCls},g);});
+  }));
+}
+function drawEdges(st,g,cls){
+  const cs=[-1,1];
+  cs.forEach(a=>cs.forEach(b=>{[[[-1,a,b],[1,a,b]],[[a,-1,b],[a,1,b]],[[a,b,-1],[a,b,1]]].forEach(([p,q])=>{const A=project(st,...p),B=project(st,...q);el("line",{x1:A.x,y1:A.y,x2:B.x,y2:B.y,class:cls},g);});}));
+}
+function pinShape(g,x,y,sc){
+  const h=34*sc, r=12*sc;
+  el("circle",{cx:x,cy:y,r:7*sc,class:"pulse"},g);
+  el("path",{d:`M${x},${y} C${x-4*sc},${y-12*sc} ${x-r},${y-h+r+2*sc} ${x-r},${y-h+r} A${r},${r} 0 1 1 ${x+r},${y-h+r} C${x+r},${y-h+r+2*sc} ${x+4*sc},${y-12*sc} ${x},${y}Z`,class:"pin"},g);
+  el("circle",{cx:x,cy:y-h+r,r:4.5*sc,class:"pinc"},g);
+  const t=el("text",{x:x,y:y-h-6*sc,"text-anchor":"middle",class:"pinl"},g); t.textContent="YOU";
+}
+
+/* hero cube */
+const HS={yaw:-0.6,pitch:.42,K:150,CAM:9,cx:260,cy:262}; let heroRaf=null;
+function renderHero(){
+  const svg=$("hero"); svg.innerHTML="";
+  drawWalls(HS,svg,"hwall","wg","wg0"); drawEdges(HS,svg,"hedge");
+  const pts=S.map(s=>({s,p:project(HS,s.m,s.i,s.e)})).sort((a,b)=>a.p.z-b.p.z);
+  pts.forEach(({s,p})=>{const c=el("circle",{cx:p.x,cy:p.y,r:6.2*p.s,class:"sdot",fill:`var(--r-${s.reg})`},svg);c.style.opacity=Math.max(.45,Math.min(1,.8+p.z*.2));});
+  const A=project(HS,-1,-1,-1),B=project(HS,1,1,1); el("line",{x1:A.x,y1:A.y,x2:B.x,y2:B.y,class:"thread"},svg);
+  if(user){const U=project(HS,user.m,user.i,user.e); pinShape(svg,U.x,U.y,.8);}
+}
+function startHero(){ renderHero(); if(reduce||heroRaf) return; const tick=()=>{HS.yaw+=.0035; renderHero(); heroRaf=requestAnimationFrame(tick);}; heroRaf=requestAnimationFrame(tick); }
+function stopHero(){ if(heroRaf){cancelAnimationFrame(heroRaf);heroRaf=null;} }
+
+/* main cube */
+const CS={yaw:-0.72,pitch:.46,K:236,CAM:10,cx:500,cy:418};
+const PRE={iso:[-0.72,.46],front:[0,0],side:[Math.PI/2,0],top:[0,-Math.PI/2]};
+const PREHINT={iso:"Drag to turn · arrow keys work too",front:"Front: modern questions across, Imamology up. Method is depth.",side:"Side: method across (rationalist left), Imamology up. Modern questions is depth.",top:"Top: modern questions across, method up (scripturalist top). Imamology is depth."};
+let region="all", eraF="all", drawer={type:"you"}, turnRaf=null;
+const visible=s=>(region==="all"||s.reg===region)&&(eraF==="all"||s.era===eraF);
+let tipEl=null;
+function placeLabels(items,g,reserved,bounds){
+  const boxes=reserved.slice();
+  items.forEach(p=>boxes.push({x:p.x-p.r,y:p.y-p.r,w:2*p.r,h:2*p.r,own:p.s.id}));
+  items.forEach(p=>{
+    const w=p.s.s.length*8.1, h=16, o=p.r+5;
+    const cands=[[p.x+o,p.y+5,"start",p.x+o,p.y-10],[p.x-o,p.y+5,"end",p.x-o-w,p.y-10],[p.x,p.y-o-4,"middle",p.x-w/2,p.y-o-19],[p.x,p.y+o+14,"middle",p.x-w/2,p.y+o],
+      [p.x+o-2,p.y-o+2,"start",p.x+o-2,p.y-o-13],[p.x-o+2,p.y-o+2,"end",p.x-o+2-w,p.y-o-13],[p.x+o-2,p.y+o+10,"start",p.x+o-2,p.y+o-5],[p.x-o+2,p.y+o+10,"end",p.x-o+2-w,p.y+o-5]];
+    for(const [x,y,a,bx,by] of cands){
+      const b={x:bx,y:by,w:w,h:h};
+      if(b.x<bounds[0]||b.x+b.w>bounds[2]||b.y<bounds[1]||b.y+b.h>bounds[3]) continue;
+      if(boxes.some(q=>q.own!==p.s.id&&b.x<q.x+q.w&&b.x+b.w>q.x&&b.y<q.y+q.h&&b.y+b.h>q.y)) continue;
+      boxes.push(b); const t=el("text",{x:x,y:y,"text-anchor":a,class:"lbl"},g); t.textContent=p.s.s; break;
+    }
+  });
+}
+function renderCube(){
+  const svg=$("cube"); svg.innerHTML=""; const st=CS, P=(m,i,e)=>project(st,m,i,e);
+  drawWalls(st,svg,"wall","wg","wg0");
+  drawEdges(st,svg,"edge");
+  const R0=P(-1,-1,-1),T0=P(1,1,1); el("line",{x1:R0.x,y1:R0.y,x2:T0.x,y2:T0.y,class:"thread"},svg);
+  const Z=P(MAIN.m,MAIN.i,MAIN.e); el("circle",{cx:Z.x,cy:Z.y,r:.28*st.K*Z.s,class:"zone"},svg);
+  const vis=S.filter(visible);
+  const floorBack=at(st,{i:-1}).z<-0.02;
+  const pts=vis.map(s=>{const p=P(s.m,s.i,s.e);return {s,x:p.x,y:p.y,z:p.z,r:8.4*p.s}}).sort((a,b)=>a.z-b.z);
+  if(floorBack) pts.forEach(p=>{const F=P(p.s.m,-1,p.s.e); el("line",{x1:p.x,y1:p.y,x2:F.x,y2:F.y,class:"drop"},svg); el("circle",{cx:F.x,cy:F.y,r:2.2,class:"foot"},svg);});
+  let U=null, near=[];
+  if(user){ U=P(user.m,user.i,user.e); near=vis.map(s=>({s,d:dist(s,user)})).sort((a,b)=>a.d-b.d).slice(0,3);
+    near.forEach(o=>{const q=P(o.s.m,o.s.i,o.s.e); el("line",{x1:U.x,y1:U.y,x2:q.x,y2:q.y,class:"link"},svg);});
+    const Uf=P(user.m,-1,user.e); if(floorBack){el("line",{x1:U.x,y1:U.y,x2:Uf.x,y2:Uf.y,class:"pdrop"},svg); el("ellipse",{cx:Uf.x,cy:Uf.y,rx:9,ry:4,fill:"none",stroke:"var(--rubric)","stroke-width":1.4},svg);} }
+  const selId=drawer.type==="scholar"?drawer.id:null;
+  pts.forEach(p=>{
+    const c=el("circle",{cx:p.x,cy:p.y,r:p.r,class:"sdot",fill:`var(--r-${p.s.reg})`},svg);
+    c.style.opacity=Math.max(.55,Math.min(1,.82+p.z*.18));
+    if(p.s.id===selId) el("circle",{cx:p.x,cy:p.y,r:p.r+4,class:"sel"},svg);
+  });
+  // pole buttons (reserve their space before labels)
+  const reserved=[], poles=[];
+  const O=P(0,0,0);
+  AXK.forEach(a=>[-1,1].forEach(sg=>{const o={};o[a]=sg*1.3;const L=at(st,o);
+    if(Math.hypot(L.x-O.x,L.y-O.y)<90) return;
+    const name=(sg<0?AX[a].neg:AX[a].pos).toUpperCase(), w=name.length*10+30, h=30;
+    const x=Math.min(Math.max(L.x,w/2+6),1000-w/2-6), y=Math.min(Math.max(L.y,h/2+6),820-h/2-6);
+    reserved.push({x:x-w/2,y:y-h/2,w:w,h:h}); poles.push({a,sg,name,x,y,w,h});}));
+  if(U) reserved.push({x:U.x-16,y:U.y-52,w:32,h:52});
+  const items=[...pts].sort((a,b)=>{const fa=near.some(o=>o.s.id===a.s.id)||a.s.id===selId, fb=near.some(o=>o.s.id===b.s.id)||b.s.id===selId; return (fb-fa)||(b.z-a.z);}).map(p=>({s:p.s,x:p.x,y:p.y,r:p.r+1}));
+  placeLabels(items,svg,reserved,[6,6,994,814]);
+  if(U) pinShape(svg,U.x,U.y,1.15);
+  tipEl=el("text",{class:"tip",visibility:"hidden"},svg);
+  pts.forEach(p=>{const h=el("circle",{cx:p.x,cy:p.y,r:Math.max(14,p.r+6),class:"hit"},svg);
+    const tt=el("title",{},h); tt.textContent=`${p.s.n} (${p.s.d}) · ${REG[p.s.reg].n}`;
+    h.addEventListener("pointerenter",()=>{tipEl.textContent=p.s.n;const right=p.x>760;tipEl.setAttribute("x",right?p.x-14:p.x+14);tipEl.setAttribute("y",p.y-16);tipEl.setAttribute("text-anchor",right?"end":"start");tipEl.setAttribute("visibility","visible");});
+    h.addEventListener("pointerleave",()=>tipEl.setAttribute("visibility","hidden"));
+    h.addEventListener("pointerdown",e=>e.stopPropagation());
+    h.addEventListener("click",e=>{e.stopPropagation();drawer={type:"scholar",id:p.s.id};renderCube();renderDrawer();});});
+  poles.forEach(pb=>{
+    const on=drawer.type==="method"&&drawer.a===pb.a&&((drawer.p==="neg")===(pb.sg<0));
+    const g=el("g",{class:"poleb"+(on?" on":""),tabindex:0,role:"button","aria-label":`What does ${pb.name.toLowerCase()} mean? Show the method`},svg);
+    el("rect",{x:pb.x-pb.w/2,y:pb.y-pb.h/2,width:pb.w,height:pb.h,rx:pb.h/2},g);
+    const t=el("text",{x:pb.x,y:pb.y+4.5,"text-anchor":"middle"},g); t.textContent=pb.name+"  ⓘ";
+    const open=()=>{drawer={type:"method",a:pb.a,p:pb.sg<0?"neg":"pos"};renderCube();renderDrawer();};
+    g.addEventListener("pointerdown",e=>e.stopPropagation());
+    g.addEventListener("click",open);
+    g.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();open();}});
+  });
+  renderShown();
+}
+function bars(o,color){return `<div class="mini">${AXK.map(a=>`<div class="mbar"><div class="ends"><span>${AX[a].neg}</span><span>${AX[a].pos}</span></div><div class="tr"><b style="left:${(o[a]+1)*50}%;background:${color}"></b></div></div>`).join("")}</div>`}
+function renderDrawer(){
+  const d=$("drawer"); let h="";
+  if(drawer.type==="scholar"){const s=SID[drawer.id];
+    const leans=AXK.filter(a=>Math.abs(s[a])>=.45).map(a=>`<button data-meth="${a}:${s[a]<0?"neg":"pos"}">${s[a]<0?AX[a].neg:AX[a].pos} method</button>`).join("");
+    h=`<button class="close" id="dclose">${user?"Back to your pin":"Close"}</button>
+      <span class="eyebrow"><i class="dot" style="background:var(--r-${s.reg})"></i>${REG[s.reg].n} · ${s.city}</span>
+      <h3>${s.n}</h3><span class="meta">${s.d} · ${ERA[s.era]} · ${s.role}</span>
+      ${bars(s,"var(--r-"+s.reg+")")}
+      <p>${s.k}</p><span class="sec">Why here</span><p class="why">${s.w}</p>
+      ${user?`<span class="sec">Match with you</span><p>${match(dist(s,user))}%</p>`:""}
+      ${leans?`<span class="sec">Methods they lean on</span><div class="figs">${leans}</div>`:""}`;
+  } else if(drawer.type==="method"){const M=METHOD[drawer.a][drawer.p], opp=drawer.p==="neg"?"pos":"neg";
+    h=`<button class="close" id="dclose">${user?"Back to your pin":"Close"}</button>
+      <span class="eyebrow">${AX[drawer.a].full} · method</span><h3>${M.t}</h3><p style="font-size:16px">${M.line}</p>
+      <span class="sec">Starts from</span><p>${M.src}</p>
+      <span class="sec">How it works</span><p>${M.how}</p>
+      <span class="sec">The question it asks</span><p style="font-family:var(--f-display);font-size:19px;font-style:italic">"${M.ask}"</p>
+      <span class="sec">Example</span><p class="why">${M.ex}</p>
+      <span class="sec">Scholars who use it</span><div class="figs">${M.figs.map(id=>`<button data-sch="${id}">${SID[id].s}</button>`).join("")}</div>
+      <button class="btn ghost small" style="align-self:flex-start;margin-top:6px" data-meth="${drawer.a}:${opp}">The opposite view: ${METHOD[drawer.a][opp].t} →</button>`;
+  } else if(user){ const [an]=archetype(user); const near=S.map(s=>({s,d:dist(s,user)})).sort((a,b)=>a.d-b.d).slice(0,3);
+    h=`<span class="eyebrow" style="color:var(--rubric)">Your pin</span><h3>${an}</h3>
+      ${bars(user,"var(--rubric)")}
+      <span class="sec">Nearest scholars (dotted red lines)</span>
+      <div class="figs">${near.map(o=>`<button data-sch="${o.s.id}">${o.s.s} · ${match(o.d)}%</button>`).join("")}</div>
+      <p class="muted" style="font-size:13.5px">Click any gold axis label on the cube to see the method behind that viewpoint.</p>
+      <button class="btn ghost small" style="align-self:flex-start" data-go="insights">Back to your insights</button>`;
+  } else {
+    h=`<span class="eyebrow">Your pin</span><h3>You're not on the map yet</h3>
+      <p>Take the test to drop a pin showing where you stand among these scholars.</p>
+      <button class="btn small" style="align-self:flex-start" data-go="test">Start the test →</button>
+      <span class="sec" style="margin-top:10px">How to read the cube</span>
+      <p class="why">Each dot is a scholar, coloured by region. Thin lines drop each dot to the floor so you can judge its height. Click a gold axis label for the method behind that viewpoint.</p>`;
+  }
+  d.innerHTML=h;
+  const c=$("dclose"); if(c) c.addEventListener("click",()=>{drawer={type:"you"};renderCube();renderDrawer();});
+  d.querySelectorAll("[data-sch]").forEach(b=>b.addEventListener("click",()=>{drawer={type:"scholar",id:b.dataset.sch};renderCube();renderDrawer();}));
+  d.querySelectorAll("[data-meth]").forEach(b=>b.addEventListener("click",()=>{const [a,p]=b.dataset.meth.split(":");drawer={type:"method",a,p};renderCube();renderDrawer();}));
+  d.querySelectorAll("p").forEach(linkify);
+}
+function renderShown(){
+  const vis=S.filter(visible);
+  $("shownT").textContent=region==="all"&&eraF==="all"?`All ${vis.length} scholars`:`Showing ${vis.length} of ${S.length} scholars`;
+  const selId=drawer.type==="scholar"?drawer.id:null;
+  $("shownL").innerHTML=vis.map(s=>`<button data-sch="${s.id}" aria-current="${s.id===selId}"><i class="dot" style="background:var(--r-${s.reg})"></i>${s.n}</button>`).join("");
+  $("shownL").querySelectorAll("[data-sch]").forEach(b=>b.addEventListener("click",()=>{drawer={type:"scholar",id:b.dataset.sch};renderCube();renderDrawer();window.scrollTo({top:$("cube").getBoundingClientRect().top+window.scrollY-90,behavior:reduce?"auto":"smooth"});}));
+}
+/* chips */
+$("regChips").innerHTML=`<button class="chip" data-reg="all" aria-pressed="true">All regions</button>`+Object.keys(REG).map(k=>`<button class="chip" data-reg="${k}" aria-pressed="false"><span class="sw" style="background:var(--r-${k})"></span>${REG[k].n} <small>${REG[k].sub}</small></button>`).join("");
+$("eraChips").innerHTML=`<button class="chip" data-era="all" aria-pressed="true">All periods</button>`+Object.keys(ERA).map(k=>`<button class="chip" data-era="${k}" aria-pressed="false">${ERA[k]}</button>`).join("");
+document.querySelectorAll("[data-reg]").forEach(b=>b.addEventListener("click",()=>{region=b.dataset.reg;document.querySelectorAll("[data-reg]").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));renderCube();}));
+document.querySelectorAll("[data-era]").forEach(b=>b.addEventListener("click",()=>{eraF=b.dataset.era;document.querySelectorAll("[data-era]").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));renderCube();}));
+function markPre(k){document.querySelectorAll("[data-pre]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.pre===k?"true":"false"));$("cubeHint").textContent=PREHINT[k||"iso"];}
+function turnTo(k){
+  if(turnRaf) cancelAnimationFrame(turnRaf);
+  const [ty,tp]=PRE[k]; let dy=Math.atan2(Math.sin(ty-CS.yaw),Math.cos(ty-CS.yaw));
+  const y0=CS.yaw,p0=CS.pitch,t0=performance.now(),dur=reduce?0:700; markPre(k);
+  const step=now=>{const t=dur?Math.min(1,(now-t0)/dur):1,ez=1-Math.pow(1-t,3);CS.yaw=y0+dy*ez;CS.pitch=p0+(tp-p0)*ez;renderCube();if(t<1)turnRaf=requestAnimationFrame(step);else turnRaf=null;};
+  turnRaf=requestAnimationFrame(step);
+}
+document.querySelectorAll("[data-pre]").forEach(b=>b.addEventListener("click",()=>turnTo(b.dataset.pre)));
+/* drag + keys */
+const cube=$("cube"); let drag=null;
+cube.addEventListener("pointerdown",e=>{drag={x:e.clientX,y:e.clientY};try{cube.setPointerCapture(e.pointerId)}catch(_){}} );
+cube.addEventListener("pointermove",e=>{if(!drag)return;const dx=e.clientX-drag.x,dy=e.clientY-drag.y;drag={x:e.clientX,y:e.clientY};
+  CS.yaw+=dx*.008;CS.pitch=Math.max(-Math.PI/2,Math.min(Math.PI/2,CS.pitch+dy*.008));markPre(null);renderCube();});
+cube.addEventListener("pointerup",()=>drag=null); cube.addEventListener("pointercancel",()=>drag=null);
+cube.addEventListener("keydown",e=>{const m={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1]}[e.key];if(!m)return;e.preventDefault();
+  CS.yaw+=m[0]*.12;CS.pitch=Math.max(-Math.PI/2,Math.min(Math.PI/2,CS.pitch+m[1]*.12));markPre(null);renderCube();});
+
+/* ================= GLOSSARY ================= */
+const GL=[
+ {k:"abrar",t:"'Ulama' abrar",ar:"علماء أبرار",v:["'ulama' abrar","righteous scholars"],d:"'Righteous scholars'. Mohsen Kadivar's thesis that the earliest Shias saw the Imams as pious, learned guides rather than beings with supernatural knowledge and powers."},
+ {k:"adl",t:"'Adl (divine justice)",ar:"العدل",v:["divine justice"],d:"One of the Shia principles of belief. Shia theology holds that reason can recognise good and evil, so God's justice is something we can understand, not simply whatever God wills."},
+ {k:"akhbari",t:"Akhbari",ar:"أخباري",v:["Akhbaris","Akhbari"],d:"A school of Shia law, strongest in the 17th and 18th centuries, that took the Imams' reports (akhbar) as the direct source of law and rejected much of Usuli legal theory and ijtihad."},
+ {k:"fatimiyya",t:"Fatimiyya",ar:"الفاطمية",v:["Fatimiyya"],d:"The days of mourning for Lady Fatima, the Prophet's daughter, commemorating her death."},
+ {k:"fiqh",t:"Fiqh",ar:"فقه",v:["fiqh"],d:"Islamic law as worked out by jurists: the rulings on worship, family, trade and so on."},
+ {k:"fourbooks",t:"The Four Books",ar:"الكتب الأربعة",v:["Four Books"],d:"The four canonical Shia hadith collections: al-Kafi (al-Kulayni), Man la yahduruhu al-faqih (al-Saduq), and Tahdhib al-ahkam and al-Istibsar (al-Tusi)."},
+ {k:"ghayb",t:"'Ilm al-ghayb",ar:"علم الغيب",v:["knowledge of the unseen","the unseen"],d:"Knowledge of what is hidden from ordinary perception, including the future. Whether, and how far, the Imams have it by God's permission is a core question of Imamology."},
+ {k:"ghayba",t:"Ghayba (the Occultation)",ar:"الغيبة",v:["ghayba","occultation"],d:"The hiddenness of the twelfth Imam, Muhammad al-Mahdi. The Minor Occultation began in 874 CE (260 AH), when he communicated through four deputies. The Major Occultation began in 941 CE and continues today."},
+ {k:"ghuluww",t:"Ghuluww",ar:"غلوّ",v:["ghuluww","ghulat"],d:"'Exaggeration': giving the Imams qualities that belong only to God. Those accused of it are called ghulat. Where the line falls has moved over the centuries."},
+ {k:"hadith",t:"Hadith",ar:"حديث",v:["hadith"],d:"A report of the words or actions of the Prophet or, in Shiism, of the Imams. Each has a chain of narrators (isnad) and a text."},
+ {k:"hawza",t:"Hawza",ar:"حوزة",v:["hawza","seminary","seminaries"],d:"The traditional Shia seminary system, centred today in Najaf and Qum, where jurists and theologians are trained."},
+ {k:"ihtiyat",t:"Ihtiyat",ar:"احتياط",v:["ihtiyat","precaution"],d:"Precaution: choosing the safer course when the evidence is unclear."},
+ {k:"ijma",t:"Ijma'",ar:"إجماع",v:["ijma'"],d:"Consensus of the scholars. In Shia law it counts because it is taken to reveal the view of the Imam."},
+ {k:"ijtihad",t:"Ijtihad",ar:"اجتهاد",v:["ijtihad"],d:"The effort of a qualified jurist to derive rulings from the Quran, hadith, consensus and reason. A jurist qualified to do it is a mujtahid."},
+ {k:"imamology",t:"Imamology",ar:"الإمامة",v:["Imamology"],d:"The doctrine of the Imams, the twelve successors of the Prophet in Twelver Shiism from Imam Ali to Imam al-Mahdi: their knowledge, authority, infallibility and role."},
+ {k:"imami",t:"Imami (Twelver)",ar:"الإمامية",v:["Imami"],d:"Twelver Shiism, the largest branch of Shia Islam, which follows a line of twelve Imams."},
+ {k:"insan",t:"Al-insan al-kamil",ar:"الإنسان الكامل",v:["al-insan al-kamil","Perfect Human"],d:"'The Perfect Human'. In mystical philosophy, the person who fully reflects God's names and attributes. Shia philosophers see the Prophet and the Imams as its fullest instances."},
+ {k:"irfan",t:"'Irfan",ar:"عرفان",v:["'irfan"],d:"Shia mystical philosophy (gnosis): knowing God through spiritual unveiling as well as reason."},
+ {k:"kalam",t:"Kalam",ar:"علم الكلام",v:["rational theology","kalam"],d:"Islamic theology that argues for and defends belief using reason."},
+ {k:"khabar",t:"Khabar al-wahid",ar:"خبر الواحد",v:["khabar al-wahid","solitary reports","solitary report","single-chain reports","single narrations","single reliable narrator's report"],d:"A 'solitary report': a hadith passed down through too few chains of narrators to guarantee certainty. Whether such reports count as proof, and for what (law, or belief too), is one of the central disputes here."},
+ {k:"majalis",t:"Majalis",ar:"مجالس",v:["majalis"],d:"Gatherings to commemorate the Imams, especially in Muharram for Imam Husayn."},
+ {k:"maqasid",t:"Maqasid",ar:"مقاصد الشريعة",v:["maqasid"],d:"The purposes of the law, such as protecting life, faith, reason, family and property. Some reformers read rulings in light of them."},
+ {k:"marja",t:"Marja'",ar:"مرجع التقليد",v:["maraji'","marja'"],d:"'Source of emulation': a senior mujtahid whose rulings ordinary believers follow (taqlid). The plural is maraji'."},
+ {k:"mashhur",t:"Mashhur",ar:"المشهور",v:["mashhur"],d:"The well-known, majority opinion among earlier jurists. Traditionalist jurists are reluctant to depart from it."},
+ {k:"mutazila",t:"Mu'tazila",ar:"المعتزلة",v:["Mu'tazili","Mu'tazila"],d:"An early school of rationalist Islamic theology (8th–10th centuries) that stressed reason, human free will and divine justice. Shia theology shares several of its positions."},
+ {k:"neomut",t:"Neo-Mu'tazila",ar:"المعتزلة الجدد",v:["Neo-Mu'tazila","Neo-Mu'tazili"],d:"Modern Muslim thinkers who revive the Mu'tazili idea that reason should judge how scripture is read."},
+ {k:"qiyas",t:"Qiyas",ar:"قياس",v:["qiyas"],d:"Analogical reasoning in law: extending a ruling to a new case because of a shared cause. Used in Sunni law, but the Imams rejected it and Shia law does not use it."},
+ {k:"rijal",t:"Rijal",ar:"علم الرجال",v:["rijal"],d:"The science of evaluating the narrators in a hadith's chain, used to grade reports as reliable or weak."},
+ {k:"sahw",t:"Sahw al-nabi",ar:"سهو النبي",v:["sahw al-nabi"],d:"Whether the Prophet could be made to forget or slip, for example in prayer. Early Qum scholars accepted it; later scholarship rejected it."},
+ {k:"shaykhi",t:"Shaykhi school",ar:"الشيخية",v:["Shaykhi"],d:"A school founded by Shaykh Ahmad al-Ahsa'i in the early 19th century, with an esoteric and highly exalted doctrine of the Imams."},
+ {k:"tafkik",t:"Maktab-e Tafkik",ar:"مکتب تفکیک",v:["Maktab-e Tafkik","school of separation","Tafkik"],d:"'School of separation': a 20th-century movement from Mashhad holding that knowledge from the Quran and the Imams must be kept apart from Greek philosophy and Sufi mysticism."},
+ {k:"taqlid",t:"Taqlid",ar:"تقليد",v:["taqlid"],d:"Following the rulings of a qualified marja' in matters of practice, rather than deriving them yourself."},
+ {k:"taqsir",t:"Taqsir",ar:"تقصير",v:["taqsir","falling short"],d:"'Falling short': failing to recognise the Imams' true station. It is the charge maximalists make against minimalists, the mirror image of ghuluww."},
+ {k:"tawassul",t:"Tawassul",ar:"توسّل",v:["tawassul"],d:"Asking God for something through the standing of a holy figure, as in 'O God, by the right of Muhammad and his family…'. Widely practised in Shiism; the debate is over its forms and limits."},
+ {k:"tawatur",t:"Tawatur",ar:"تواتر",v:["tawatur ma'nawi","mutawatir"],d:"Transmission through so many independent chains that error or fabrication is ruled out; such a report is mutawatir. Tawatur ma'nawi is when many differently worded reports agree on the same meaning."},
+ {k:"tawhid",t:"Tawhid",ar:"توحيد",v:["Tawhid"],d:"The oneness of God, the first principle of Islamic belief. Both sides of the Imamology debate say they are protecting it."},
+ {k:"tawil",t:"Ta'wil",ar:"تأويل",v:["ta'wil"],d:"Interpreting a text beyond its apparent meaning, for example reading it figuratively."},
+ {k:"istighatha",t:"Istighatha",ar:"استغاثة",v:["istighatha","Ya Ali madad"],d:"Calling directly on a holy figure, such as an Imam, for help, as in 'Ya Ali madad' ('O Ali, help'). Supporters see the Imam as a God-given means; critics worry it blurs Tawhid."},
+ {k:"usuli",t:"Usuli",ar:"أصولي",v:["Usuli"],d:"The dominant Twelver school of law since the late 18th century. It derives rulings through ijtihad using formal principles of jurisprudence (usul al-fiqh), and ordinary believers follow a living mujtahid."},
+ {k:"usulfiqh",t:"Usul al-fiqh",ar:"أصول الفقه",v:["usul al-fiqh"],d:"The principles of jurisprudence: the rules for how law is derived from the sources, including which reports count as proof."},
+ {k:"wilaya",t:"Wilaya",ar:"ولاية",v:["wilaya"],d:"Authority, guardianship or closeness. In Shiism, the Imams' God-given authority over the community."},
+ {k:"wilayatak",t:"Wilaya takwiniyya",ar:"الولاية التكوينية",v:["wilaya takwiniyya"],d:"'Creational authority': the belief that God has given the Imams power to act within the created world, by His permission. A key marker of maximalist Imamology."},
+ {k:"wilfaqih",t:"Wilayat al-faqih",ar:"ولاية الفقيه",v:["wilayat al-faqih"],d:"'Guardianship of the jurist': the theory, developed by Ayatollah Khomeini, that a qualified jurist should hold political authority while the twelfth Imam is in occultation."},
+ {k:"ziyara",t:"Ziyara",ar:"زيارة",v:["ziyara","ziyarat"],d:"Visiting the shrine of the Prophet, an Imam or a saint, and the texts recited there (ziyarat)."}
+];
+GL.sort((a,b)=>a.t.replace(/^'/,"").localeCompare(b.t.replace(/^'/,"")));
+const GMAP={},GBY={},VARS=[];
+GL.forEach(g=>{GBY[g.k]=g;g.v.forEach(v=>{GMAP[v.toLowerCase()]=g.k;VARS.push(v);});});
+VARS.sort((a,b)=>b.length-a.length);
+const esc=s=>s.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
+const TSRC="(?<![\\w'])("+VARS.map(esc).join("|")+")(?![\\w])";
+const TTEST=new RegExp(TSRC,"i");
+function linkify(root){
+  if(!root) return;
+  const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode(n){const p=n.parentElement;
+    if(!p||p.closest(".term,button,a,h1,h2,h3,h4,.ar,svg,label,.eyebrow,.mono,#pop,dt,.tag,.t,.a")) return NodeFilter.FILTER_REJECT;
+    return TTEST.test(n.nodeValue)?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT;}});
+  const nodes=[]; while(w.nextNode()) nodes.push(w.currentNode);
+  const seen=new Set([...root.querySelectorAll(".term")].map(b=>b.dataset.k));
+  nodes.forEach(n=>{const s=n.nodeValue,re=new RegExp(TSRC,"gi");let m,last=0;const f=document.createDocumentFragment();
+    while((m=re.exec(s))){const k=GMAP[m[1].toLowerCase()];if(!k||seen.has(k))continue;seen.add(k);
+      f.append(s.slice(last,m.index));const b=document.createElement("button");b.type="button";b.className="term";b.dataset.k=k;b.textContent=m[1];f.append(b);last=m.index+m[1].length;}
+    if(!last)return;f.append(s.slice(last));n.replaceWith(f);});
+}
+const pop=document.createElement("div");pop.id="pop";pop.setAttribute("role","dialog");pop.hidden=true;document.body.appendChild(pop);
+let popFor=null,popPinned=false,hideT=null;
+function showPop(btn,pin){
+  const g=GBY[btn.dataset.k];if(!g)return;clearTimeout(hideT);
+  pop.innerHTML=`<div class="ph"><strong>${g.t}</strong><span class="ar" lang="ar">${g.ar}</span></div><div>${g.d}</div><a href="#terms" data-gk="${g.k}">All terms in the glossary</a>`;
+  pop.hidden=false;popFor=btn;popPinned=!!pin;
+  const r=btn.getBoundingClientRect(),pw=pop.offsetWidth,ph=pop.offsetHeight,vw=innerWidth,vh=innerHeight;
+  pop.style.left=Math.min(Math.max(12,r.left+r.width/2-pw/2),vw-pw-12)+"px";
+  let top=r.bottom+8;if(top+ph>vh-12)top=Math.max(12,r.top-ph-8);pop.style.top=top+"px";
+}
+function hidePop(){pop.hidden=true;popFor=null;popPinned=false;}
+document.addEventListener("click",e=>{
+  const t=e.target.closest&&e.target.closest(".term");
+  if(t){e.preventDefault();if(popFor===t&&popPinned)hidePop();else showPop(t,true);return;}
+  const a=e.target.closest&&e.target.closest("[data-gk]");
+  if(a){const k=a.dataset.gk;hidePop();setTimeout(()=>{const it=$("g-"+k);if(it){it.scrollIntoView({block:"center"});it.classList.add("flash");setTimeout(()=>it.classList.remove("flash"),1800);}},80);return;}
+  if(!pop.hidden&&!pop.contains(e.target))hidePop();
+});
+document.addEventListener("pointerover",e=>{const t=e.target.closest&&e.target.closest(".term");if(t&&e.pointerType==="mouse"&&!popPinned)showPop(t,false);});
+document.addEventListener("pointerout",e=>{const t=e.target.closest&&e.target.closest(".term");if(t&&!popPinned)hideT=setTimeout(()=>{if(!popPinned&&!pop.matches(":hover"))hidePop();},180);});
+pop.addEventListener("pointerleave",()=>{if(!popPinned)hidePop();});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!pop.hidden){const f=popFor;hidePop();if(f)f.focus();}});
+addEventListener("scroll",()=>{if(!pop.hidden&&!popPinned)hidePop();},{passive:true});
+$("glist").innerHTML=GL.map(g=>`<div class="gitem" id="g-${g.k}"><dt><strong>${g.t}</strong><span class="ar" lang="ar">${g.ar}</span></dt><dd>${g.d}</dd></div>`).join("");
+document.querySelectorAll(".gitem dd").forEach(linkify);
+document.querySelectorAll(".spec p").forEach(linkify);
+
+/* ================= START ================= */
+show(route());
+})();
+</script>
+
+</body>
+</html>
