@@ -323,6 +323,18 @@ input.ag::-moz-range-thumb{width:22px;height:22px;background:var(--saffron);bord
 .saveact{display:flex;flex-direction:column;gap:10px;min-width:0}
 .btn.danger{color:var(--rubric);border-color:var(--rubric)}
 .btn.danger:hover{background:#FBE9E6}
+/* part 2 colour scheme: emerald, plum and pomegranate in place of turquoise, cobalt and saffron.
+   Applied to the whole page while part 2's test or compass is showing, and to part 2's blocks elsewhere. */
+.theme2{
+  --teal:#1E7A55; --teal-d:#176446; --teal-t:#E2F2EA;
+  --cobalt:#6E2B67; --cobalt-d:#561F50; --cobalt-t:#F3E7F1;
+  --saffron:#D8613A; --saffron-d:#A23F1D; --saffron-t:#FBEAE3;
+  --bg:#FAF4EF; --text:#2B1630; --ink2:#47304D; --muted:#5C4762; --line:#EADCE2; --line2:#CDB6C3;
+  --shadow:0 5px 0 var(--text);
+}
+body.theme2{background:var(--bg);color:var(--text)}
+body.theme2 #tile rect:first-child{fill:#2B1630}
+body.theme2 #tile .t1{fill:#1E7A55} body.theme2 #tile .t2{fill:#6E2B67} body.theme2 #tile .t3{fill:#D8613A}
 /* part 2 */
 .p2card{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px;align-items:start;background:#fff;border:2px solid var(--text);border-radius:12px;padding:14px 16px;max-width:660px;box-shadow:0 4px 0 var(--saffron)}
 .p2card .num{font-family:var(--f-kufi);font-size:30px;line-height:1;color:var(--saffron-d);font-weight:700;grid-row:1/span 2}
@@ -371,7 +383,7 @@ input.ag::-moz-range-thumb{width:22px;height:22px;background:var(--saffron);bord
 </head>
 <body>
 <div class="top">
-<svg class="band" aria-hidden="true"><defs><pattern id="tile" width="26" height="26" patternUnits="userSpaceOnUse"><rect width="26" height="26" fill="#0B2233"/><path d="M13 3.5 L16 10 L22.5 13 L16 16 L13 22.5 L10 16 L3.5 13 L10 10Z" fill="#0E7C80"/><rect x="9" y="9" width="8" height="8" fill="#1D3FA6" transform="rotate(45 13 13)"/><circle cx="13" cy="13" r="2" fill="#E0A42A"/></pattern></defs><rect width="100%" height="26" fill="url(#tile)"/></svg>
+<svg class="band" aria-hidden="true"><defs><pattern id="tile" width="26" height="26" patternUnits="userSpaceOnUse"><rect width="26" height="26" fill="#0B2233"/><path class="t1" d="M13 3.5 L16 10 L22.5 13 L16 16 L13 22.5 L10 16 L3.5 13 L10 10Z" fill="#0E7C80"/><rect class="t2" x="9" y="9" width="8" height="8" fill="#1D3FA6" transform="rotate(45 13 13)"/><circle class="t3" cx="13" cy="13" r="2" fill="#E0A42A"/></pattern></defs><rect width="100%" height="26" fill="url(#tile)"/></svg>
 <div class="topin">
   <div class="brand">Shia Compass <span class="ar" lang="ar">بوصلة</span></div>
   <nav class="nav" aria-label="Sections">
@@ -403,7 +415,7 @@ input.ag::-moz-range-thumb{width:22px;height:22px;background:var(--saffron);bord
           <div class="spec"><span class="num" aria-hidden="true">٢</span><h3>Minimalist ↔ Maximalist</h3><p>What an Imam is: a divinely guided scholar and leader, or a cosmic intermediary with wilaya takwiniyya.</p></div>
           <div class="spec"><span class="num" aria-hidden="true">٣</span><h3>Rationalist ↔ Scripturalist</h3><p>Whether reason or the transmitted texts come first. Esmail calls this the root of the other two.</p></div>
         </div>
-        <div class="p2card"><span class="num" aria-hidden="true">٢</span><div><span class="eyebrow">Part 2, take it any time</span><h3>Society and politics</h3><p>Nine more axes, inspired by the 12Axes test: social life, religion and politics, other religions, Sunni–Shia relations, ritual, the state, wider society, philosophy and religious authority. Part 2 has its own 3D compass.</p></div><button class="btn small ghost" data-go="test2">Start part 2 →</button></div>
+        <div class="p2card theme2"><span class="num" aria-hidden="true">٢</span><div><span class="eyebrow">Part 2, take it any time</span><h3>Society and politics</h3><p>Nine more axes, inspired by the 12Axes test: social life, religion and politics, other religions, Sunni–Shia relations, ritual, the state, wider society, philosophy and religious authority. Part 2 has its own 3D compass.</p></div><button class="btn small ghost" data-go="test2">Start part 2 →</button></div>
         <p class="credit">Framing from <a href="https://www.instagram.com/p/DeeCwwuDXzv/" target="_blank" rel="noopener">Zoheir Esmail's post</a> (14 October 2026), after Shaykh Dr Vinay Khetia's Shia Research Institute podcast. Your answers are saved only in this browser, so you can pick up where you left off. They are never sent anywhere.</p>
         <details class="restore">
           <summary>Have a result code from another device?</summary>
@@ -857,10 +869,10 @@ const Q2BANK={
     [-1,"A state should treat all citizens equally, whatever their religion."],
     [1,"In a Muslim-majority country, eating in public during the day in Ramadan should be punishable by law."],
     [-1,"Faith is stronger when it is chosen freely than when the state enforces it."]],
- p:[[-1,"You'd happily spend an evening reading Mulla Sadra or Ibn Sina."],
-    [1,"Ideas taken from Greek philosophy have no place in explaining Islamic belief."],
-    [-1,"The inner, mystical meaning of the Quran matters as much as its outward meaning."],
-    [1,"When a speaker talks about 'the unity of being' or 'annihilation in God', you become suspicious."]],
+ p:[[-1,"Existence is one reality that comes in degrees, from God, who is pure existence, down to the smallest speck of dust."],
+    [1,"Questions like 'What is existence?' or 'How can an unchanging God act in time?' do little to help a believer's faith."],
+    [-1,"When you face suffering, thinking hard about why a perfect God allows it strengthens your faith more than it unsettles it."],
+    [1,"Saying the world is a manifestation of God's names goes too far: it's safer to say only that God created it."]],
  g:[[-1,"Shia living in the West should be active in local politics and civic life."],
     [1,"You'd choose a Shia school for your child, even if it were academically weaker than the alternatives."],
     [-1,"You'd encourage a talented young person to build a career in mainstream media or government."],
@@ -921,6 +933,7 @@ let current="home";
 function route(){const h=location.hash.replace("#","");return VIEWS.includes(h)?h:"home";}
 function show(v){
   current=v;
+  document.body.classList.toggle("theme2",v==="test2"||(v==="compass"&&mode==="soc"));
   ["home","test","insights","compass","terms"].forEach(x=>$("v-"+x).hidden=x!==vid(v));
   document.querySelectorAll(".nav [data-go]").forEach(b=>b.setAttribute("aria-current",b.dataset.go===v?"page":"false"));
   if(v==="home") startHero(); else stopHero();
@@ -1321,7 +1334,7 @@ function part2HTML(){
       <div class="pbar" role="img" aria-label="${A.neg} ${100-r}%, ${A.pos} ${r}%"><i class="l" style="width:${100-r}%"></i><i class="r" style="width:${r}%"></i></div>
       <p>${A.b[band2(v)]}</p></div>`;};
   const ranked=Object.keys(POL).map(id=>({s:SID[id],d:dist2(id,u)})).sort((a,b)=>a.d-b.d);
-  return `<section class="p2" id="q2res">
+  return `<section class="p2 theme2" id="q2res">
     <div class="p2head"><span class="eyebrow">Your result · part 2</span><h2>Society and politics</h2>
       <p class="sum">${lead}</p>
       <p class="note">Each bar splits 100% between the two poles: 50/50 is the middle. Based on your answers to 36 statements; the six habit questions aren't scored.</p>
@@ -1339,7 +1352,7 @@ function ctaHTML(p){
   const started=(p===1?answers:answers2).some(a=>a!==null);
   return p===1
     ?`<section class="pcta"><div><span class="eyebrow">Part 1 · Belief and method</span><h2>Where you stand on Esmail's three spectrums</h2><p>Modern questions, Imamology and method, with your pin among 42 scholars in the 3D compass. 36 statements, about 8 minutes.</p></div><div class="cta"><button class="btn" data-go="test">${started?"Continue part 1 →":"Start part 1 →"}</button></div></section>`
-    :`<section class="pcta" id="q2res"><div><span class="eyebrow">Part 2 · Society and politics</span><h2>Nine more axes</h2><p>Social life, religion and politics, other religions, Sunni–Shia relations, ritual, the state, wider society, philosophy and religious authority, with a second 3D compass. 42 questions, about 8 minutes.</p></div><div class="cta"><button class="btn" data-go="test2">${started?"Continue part 2 →":"Start part 2 →"}</button></div></section>`;
+    :`<section class="pcta theme2" id="q2res"><div><span class="eyebrow">Part 2 · Society and politics</span><h2>Nine more axes</h2><p>Social life, religion and politics, other religions, Sunni–Shia relations, ritual, the state, wider society, philosophy and religious authority, with a second 3D compass. 42 questions, about 8 minutes.</p></div><div class="cta"><button class="btn" data-go="test2">${started?"Continue part 2 →":"Start part 2 →"}</button></div></section>`;
 }
 function renderInsights(){
   const box=$("v-insights");
@@ -1613,7 +1626,7 @@ function applyMode(){
   ["front","side","top"].forEach((k,j)=>{const sm=document.querySelector(`[data-pre="${k}"] small`); if(sm) sm.textContent=M.chips[j];});
   const pressed=document.querySelector('[data-pre][aria-pressed="true"]'); $("cubeHint").textContent=M.hint[pressed?pressed.dataset.pre:"iso"];
 }
-document.querySelectorAll(".chip[data-mode]").forEach(b=>b.addEventListener("click",()=>{ if(mode===b.dataset.mode) return; mode=b.dataset.mode; drawer={type:"you"}; applyMode(); renderCube(); renderDrawer(); }));
+document.querySelectorAll(".chip[data-mode]").forEach(b=>b.addEventListener("click",()=>{ if(mode===b.dataset.mode) return; mode=b.dataset.mode; drawer={type:"you"}; document.body.classList.toggle("theme2",mode==="soc"); applyMode(); renderCube(); renderDrawer(); }));
 /* chips */
 $("regChips").innerHTML=`<button class="chip" data-reg="all" aria-pressed="true">All regions</button>`+Object.keys(REG).map(k=>`<button class="chip" data-reg="${k}" aria-pressed="false"><span class="sw" style="background:var(--r-${k})"></span>${REG[k].n} <small>${REG[k].sub}</small></button>`).join("");
 $("eraChips").innerHTML=`<button class="chip" data-era="all" aria-pressed="true">All periods</button>`+Object.keys(ERA).map(k=>`<button class="chip" data-era="${k}" aria-pressed="false">${ERA[k]}</button>`).join("");

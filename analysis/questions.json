@@ -528,7 +528,7 @@
    "id": "p1",
    "axis": "p",
    "key": -1,
-   "text": "You'd happily spend an evening reading Mulla Sadra or Ibn Sina.",
+   "text": "Existence is one reality that comes in degrees, from God, who is pure existence, down to the smallest speck of dust.",
    "type": "slider"
   },
   {
@@ -615,7 +615,7 @@
    "id": "p2",
    "axis": "p",
    "key": 1,
-   "text": "Ideas taken from Greek philosophy have no place in explaining Islamic belief.",
+   "text": "Questions like 'What is existence?' or 'How can an unchanging God act in time?' do little to help a believer's faith.",
    "type": "slider"
   },
   {
@@ -710,7 +710,7 @@
    "id": "p3",
    "axis": "p",
    "key": -1,
-   "text": "The inner, mystical meaning of the Quran matters as much as its outward meaning.",
+   "text": "When you face suffering, thinking hard about why a perfect God allows it strengthens your faith more than it unsettles it.",
    "type": "slider"
   },
   {
@@ -797,7 +797,7 @@
    "id": "p4",
    "axis": "p",
    "key": 1,
-   "text": "When a speaker talks about 'the unity of being' or 'annihilation in God', you become suspicious.",
+   "text": "Saying the world is a manifestation of God's names goes too far: it's safer to say only that God created it.",
    "type": "slider"
   },
   {
