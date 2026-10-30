@@ -523,7 +523,7 @@ body.theme2 #tile .t1{fill:#1E7A55} body.theme2 #tile .t2{fill:#6E2B67} body.the
     <div class="chead">
       <span class="eyebrow">04 · The 3D Compass</span>
       <h1 id="cTitle">Worldview and Methodology</h1>
-      <p id="cDesc">Left to right is <b style="color:var(--text)">Modernist ↔ Traditionalist</b>, bottom to top is <b style="color:var(--text)">Minimalist ↔ Maximalist</b>, and front to back is <b style="color:var(--text)">Rationalist ↔ Scripturalist</b>. Drag to turn the cube. Click a gold axis label to see the method behind that viewpoint, or click a scholar to see why they sit there.</p>
+      <p id="cDesc">Left to right is <b style="color:var(--text)">Modernist ↔ Traditionalist</b>, bottom to top is <b style="color:var(--text)">Minimalist ↔ Maximalist</b>, and front to back is <b style="color:var(--text)">Rationalist ↔ Scripturalist</b>. Click a gold axis label to see the method behind that viewpoint, or click a scholar to see why they sit there.</p>
     </div>
     <div class="ctabs" role="group" aria-label="Which compass">
       <button class="ctab" data-mode="core" aria-pressed="true"><span class="ctn">Part 1</span>Worldview and Methodology</button>
@@ -1984,13 +1984,13 @@ const PRE={iso:[-0.72,.46],front:[0,0],side:[Math.PI/2,0],top:[0,-Math.PI/2]};
 const MODES={
  core:{keys:["m","i","e"], ax:k=>AX[k], list:()=>S, pos:s=>s, me:()=>user,
    title:"Worldview and Methodology", lab:"Worldview and Methodology",
-   desc:`Left to right is <b style="color:var(--text)">Modernist ↔ Traditionalist</b>, bottom to top is <b style="color:var(--text)">Minimalist ↔ Maximalist</b>, and front to back is <b style="color:var(--text)">Rationalist ↔ Scripturalist</b>. Drag to turn the cube. Click a gold axis label to see the method behind that viewpoint, or click a scholar to see why they sit there.`,
+   desc:`Left to right is <b style="color:var(--text)">Modernist ↔ Traditionalist</b>, bottom to top is <b style="color:var(--text)">Minimalist ↔ Maximalist</b>, and front to back is <b style="color:var(--text)">Rationalist ↔ Scripturalist</b>. Click a gold axis label to see the method behind that viewpoint, or click a scholar to see why they sit there.`,
    legend:"Dot colour = region · dashed circle = mainstream Usuli centre · dotted saffron line = the deepest divide",
    chips:["Modern × Imamology","Method × Imamology","Modern × Method"],
    hint:{iso:"Drag to turn · arrow keys work too",front:"Front: modern questions across, Imamology up. Method is depth.",side:"Side: method across (rationalist left), Imamology up. Modern questions is depth.",top:"Top: modern questions across, method up (scripturalist top). Imamology is depth."}},
  soc:{keys:["c","w","p"], ax:k=>AX2[k], list:()=>ALLS.filter(s=>POL[s.id]), pos:s=>({m:POL[s.id].c,i:POL[s.id].w,e:POL[s.id].p===null?0:POL[s.id].p}), me:()=>user2&&{m:user2.c,i:user2.w,e:user2.p},
    title:"Society and politics", lab:"Society and politics",
-   desc:`The second compass. Left to right is <b style="color:var(--text)">Liberal ↔ Conservative</b> on social life, bottom to top is <b style="color:var(--text)">Quietist ↔ Activist</b> on religion and politics, and front to back is <b style="color:var(--text)">Philosophical ↔ Anti-philosophical</b> on philosophy and mysticism. It places ${ALLS.filter(s=>POL[s.id]).length} Shia figures: jurists, thinkers, political and community leaders, and preachers. Use Kind to show one group at a time. Placements are approximate readings of each figure's public positions.`,
+   desc:`The second compass. Left to right is <b style="color:var(--text)">Liberal ↔ Conservative</b> on social life, bottom to top is <b style="color:var(--text)">Quietist ↔ Activist</b> on religion and politics, and front to back is <b style="color:var(--text)">Philosophical ↔ Anti-philosophical</b> on philosophy and mysticism. Use Kind to show one group at a time. Placements are approximate readings of each figure's public positions.`,
    legend:"Dot colour = region · hollow dot = no documented view on philosophy, so shown at the middle of that axis",
    chips:["Social life × Politics","Philosophy × Politics","Social life × Philosophy"],
    hint:{iso:"Drag to turn · arrow keys work too",front:"Front: social life across, religion and politics up. Philosophy is depth.",side:"Side: philosophy across (philosophical left), politics up. Social life is depth.",top:"Top: social life across, philosophy up (anti-philosophical top). Politics is depth."}}
