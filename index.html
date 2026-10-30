@@ -556,7 +556,7 @@ body.theme2 #tile .t1{fill:#1E7A55} body.theme2 #tile .t2{fill:#6E2B67} body.the
       <span class="eyebrow">How the placements were made</span>
       <p>The three spectrums come from Zoheir Esmail's post, which draws on Shaykh Dr Vinay Khetia's framing. The scholars' positions are approximate readings of what each is best known for in their published work and in the secondary literature; the post itself places no one. Every placement is contestable, since most scholars hold mixed positions and changed over a lifetime. A position says nothing about piety or correctness.</p>
       <p>Part 2's axes are inspired by the 12Axes political test and adapted to questions Shia communities argue about. The society and politics compass places a wider cast than part 1: jurists and maraji', thinkers and academics, political and community leaders, and preachers. Each is placed only where their public positions are documented, and those placements are rougher than part 1's: they read public stances on politics, social life and philosophy, which few figures set out systematically. Where a figure has no documented view on philosophy, their dot is hollow and sits at the middle of that axis.</p>
-      <p>Your answers are stored only in your own browser on this device (its local storage), so the test resumes where you left off and your results are there when you come back. When you finish a part, your answers and scores are also recorded anonymously for research, as the notice before the test says (not for anyone who says they're under 18). You can remove your recorded result from the insights page. A result code for each part lets you carry your answers to another device yourself. "Clear my data" on the insights page removes everything.</p>
+      <p>Your answers are stored only in your own browser on this device (its local storage), so the test resumes where you left off and your results are there when you come back. When you finish a part, your answers and scores are also recorded anonymously for research, as the notice before the test says (not for anyone who says they're under 18). A result code for each part lets you carry your answers to another device yourself. "Clear my data" on the insights page removes everything, including your recorded result.</p>
       <p>The test is a self-reflection tool, not a validated measure. The reading, activity and belief suggestions on the insights page describe tendencies among people with similar views, not predictions about you.</p>
     </div>
   </section>
@@ -1349,7 +1349,7 @@ async function submitShare(){
     p_about:about,p_answers2:user2?answers2:null,p_scores2:user2?Object.fromEntries(K2.filter(k=>user2[k]!==undefined).map(k=>[k,+user2[k].toFixed(4)])):null});
   setShare({token:s.token,consent:CONSENT_VERSION,at:new Date().toISOString()});
 }
-async function removeShare(){ const s=getShare(); if(!s) return; await rpc("delete_result",{p_token:s.token}); setShare(null); setOptOut(true); }
+async function removeShare(){ const s=getShare(); if(!s) return; await rpc("delete_result",{p_token:s.token}); setShare(null); }
 const htmlEsc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 function noticeHTML(){
   return `<details class="notice"><summary>Read the full privacy notice</summary><div class="nbody">
@@ -1360,7 +1360,7 @@ function noticeHTML(){
     <p><b>Safeguards.</b> No names, emails or contact details are collected. Answers about faith can reveal religious beliefs, so results are only ever shown as totals, only once at least 5 people have taken part, and you can remove yours at any time.</p>
     <p><b>Where.</b> In a Supabase database hosted in ${htmlEsc(COMMUNITY.region)}. Supabase may keep short-lived technical logs, such as IP addresses, for security.</p>
     <p><b>How long.</b> Until you remove it, or until this project closes, when all shared results are deleted.</p>
-    <p><b>Your rights.</b> Remove your result at any time with the Remove button on the insights page, on the device you took the test on; clearing your data on this site removes it too. If you finish the test again on the same device, your recorded result is updated to match. If you can't use the button, email the contact above with your sharing ID. You can also complain to the Information Commissioner's Office at ico.org.uk.</p>
+    <p><b>Your rights.</b> "Clear my data" on the insights page deletes your answers from this device and your recorded result. If you finish the test again on the same device, your recorded result is updated to match. Because results are anonymous, a result can only be found and deleted from the device it was recorded on. You can also complain to the Information Commissioner's Office at ico.org.uk.</p>
   </div></details>`;
 }
 const OPTOUT_KEY="shia-compass:noshare";
@@ -1372,7 +1372,7 @@ function renderRecNotes(){
 }
 let pendingShare=null;
 function autoShare(){
-  if(!communityOn||about[1]===0||optedOut()) return;
+  if(!communityOn||about[1]===0) return;
   pendingShare=submitShare().catch(()=>{}).finally(()=>{ pendingShare=null; if(current==="insights") renderCommunity(); });
 }
 function renderCommunity(){
@@ -1795,12 +1795,11 @@ function renderInsights(){
         <p class="cmsg" id="cardMsg" role="status"></p><p class="muted" style="font-size:14px">On a phone, you can also press and hold the image to save it.</p></div>
       <img id="cardImg" alt="Your Shia Compass result card">
     </section>
-    ${communityOn?`<section class="community" id="community" aria-label="Compare with others"></section>`:""}
     <section class="savebox" aria-label="Your data">
       <div class="savehead">
         <span class="eyebrow">Your data</span>
         <h2>Saved on this device</h2>
-        <p>Your answers are kept in this browser, so your results are here when you come back. Nothing is sent to a server unless you choose to share. To open your results on another device, copy your result code and paste it on the start page there.</p>
+        <p>Your answers are kept in this browser, so your results are here when you come back.${communityOn&&about[1]!==0?" Your anonymised answers are also recorded for research when you finish a part; Clear my data deletes them too.":""} To open your results on another device, copy your result code and paste it on the start page there.</p>
       </div>
       <div class="saveact">
         ${codes.map(([l,c],k)=>`<label for="codeOut${k}">${codes.length>1?l+" result code":"Your result code"}</label>
@@ -1823,11 +1822,10 @@ function renderInsights(){
   const cb=$("clearData");
   cb.addEventListener("click",()=>{
     const shared=communityOn&&getShare();
-    if(cb.dataset.armed!=="1"){ cb.dataset.armed="1"; cb.textContent=shared?"Tap again to delete your answers and shared result":"Tap again to delete your answers"; setTimeout(()=>{cb.dataset.armed="";cb.textContent="Clear my data";},4000); return; }
+    if(cb.dataset.armed!=="1"){ cb.dataset.armed="1"; cb.textContent=shared?"Tap again to delete your answers and recorded result":"Tap again to delete your answers"; setTimeout(()=>{cb.dataset.armed="";cb.textContent="Clear my data";},4000); return; }
     if(shared) removeShare().catch(()=>{});
     clearLocal(); go("home");
   });
-  if(communityOn) renderCommunity();
   const ni=$("cardName");
   if(ni){ try{ ni.value=localStorage.getItem(NAME_KEY)||""; }catch(_){}
     ni.addEventListener("input",()=>{ clearTimeout(nameT); nameT=setTimeout(()=>{ try{ const v=cardName(); if(v) localStorage.setItem(NAME_KEY,v); else localStorage.removeItem(NAME_KEY); }catch(_){} renderShareCard(); },350); }); }
