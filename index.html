@@ -338,6 +338,8 @@ input.ag::-moz-range-thumb{width:22px;height:22px;background:var(--saffron);bord
 .ctab[aria-pressed="true"] .ctn{color:var(--saffron)}
 .controls{flex-direction:row;flex-wrap:wrap;align-items:center;gap:12px 22px;padding:12px 16px;margin-top:12px}
 .csel,.cseg{display:flex;align-items:center;gap:10px}
+.zoomb{min-height:40px;font-size:15px}
+.zoomb[aria-pressed="true"]{background:var(--text);color:#fff}
 .csel{min-width:0}
 .controls .lab{min-width:0}
 .csel select{min-height:40px;border:2px solid var(--line2);border-radius:8px;background:#fff;color:var(--text);font:inherit;font-size:15px;font-weight:600;padding:0 32px 0 12px;max-width:260px}
@@ -536,6 +538,7 @@ body.theme2 #tile .t1{fill:#1E7A55} body.theme2 #tile .t2{fill:#6E2B67} body.the
       <div class="cseg" role="group" aria-label="Turn the cube"><span class="lab">View</span>
         <span class="segs"><button data-pre="iso" aria-pressed="true">Angled</button><button data-pre="front" aria-pressed="false">Front</button><button data-pre="side" aria-pressed="false">Side</button><button data-pre="top" aria-pressed="false">Top</button></span>
       </div>
+      <button class="btn ghost small zoomb" id="zoomBtn" type="button" aria-pressed="false">Zoom into the mainstream</button>
     </div>
     <div class="cmp">
       <div class="cubewrap">
@@ -2024,7 +2027,7 @@ function stopHero(){ if(heroRaf){cancelAnimationFrame(heroRaf);heroRaf=null;} }
 
 /* main cube: two compasses share one engine. "core" = part 1 (Esmail's spectrums), "soc" = part 2 (society and politics).
    Each mode maps its three axes onto the cube's x (left→right), y (up) and depth slots, named m, i, e in the engine. */
-const CS={yaw:-0.72,pitch:.46,K:236,CAM:10,cx:500,cy:418};
+const CS={yaw:-0.72,pitch:.46,K:262,CAM:10,cx:500,cy:420};
 const PRE={iso:[-0.72,.46],front:[0,0],side:[Math.PI/2,0],top:[0,-Math.PI/2]};
 const MODES={
  core:{keys:["m","i","e"], ax:k=>AX[k], list:()=>S1, pos:s=>s, me:()=>user,
@@ -2044,8 +2047,12 @@ let mode="core";
 const MD=()=>MODES[mode], cp=s=>MD().pos(s), me=()=>MD().me();
 const slotAx=slot=>MD().keys[AXK.indexOf(slot)];
 let region="all", eraF="all", drawer={type:"you"}, turnRaf=null;
-let kindF="all";
-const visible=s=>(region==="all"||s.reg===region)&&(eraF==="all"||s.era===eraF)&&(mode!=="soc"||kindF==="all"||(POL[s.id]&&POL[s.id].t===kindF));
+let kindF="all", zoomOn=false;
+const ZF=2.6;   // zoom factor: the area within about 0.38 of the mainstream centre fills the cube
+const zoomed=()=>zoomOn&&mode==="core";
+const tf=c=>zoomed()?{m:(c.m-MAIN.m)*ZF,i:(c.i-MAIN.i)*ZF,e:(c.e-MAIN.e)*ZF}:c;
+const inCube=c=>Math.abs(c.m)<=1.02&&Math.abs(c.i)<=1.02&&Math.abs(c.e)<=1.02;
+const visible=s=>(!zoomed()||inCube(tf(cp(s))))&&(region==="all"||s.reg===region)&&(eraF==="all"||s.era===eraF)&&(mode!=="soc"||kindF==="all"||(POL[s.id]&&POL[s.id].t===kindF));
 let tipEl=null;
 function placeLabels(items,g,reserved,bounds){
   const boxes=reserved.slice();
@@ -2067,16 +2074,16 @@ function renderCube(){
   svg.setAttribute("aria-label",core?"3D compass of scholars on worldview and methodology. Drag or use arrow keys to turn it.":"3D compass of scholars on society and politics. Drag or use arrow keys to turn it.");
   drawWalls(st,svg,"wall","wg","wg0");
   drawEdges(st,svg,"edge");
-  if(core){
+  if(core&&!zoomed()){
     const R0=P(-1,-1,-1),T0=P(1,1,1); el("line",{x1:R0.x,y1:R0.y,x2:T0.x,y2:T0.y,class:"thread"},svg);
     const Z=P(MAIN.m,MAIN.i,MAIN.e); el("circle",{cx:Z.x,cy:Z.y,r:.28*st.K*Z.s,class:"zone"},svg);
-  }
+  } else if(core){ const Z=P(0,0,0); el("circle",{cx:Z.x,cy:Z.y,r:.28*ZF*st.K*Z.s,class:"zone"},svg); }
   const vis=MD().list().filter(visible);
   const floorBack=at(st,{i:-1}).z<-0.02;
-  const pts=vis.map(s=>{const c=cp(s),p=P(c.m,c.i,c.e);return {s,c,x:p.x,y:p.y,z:p.z,r:8.4*p.s}}).sort((a,b)=>a.z-b.z);
+  const pts=vis.map(s=>{const c=tf(cp(s)),p=P(c.m,c.i,c.e);return {s,c,x:p.x,y:p.y,z:p.z,r:8.4*p.s}}).sort((a,b)=>a.z-b.z);
   if(floorBack) pts.forEach(p=>{const F=P(p.c.m,-1,p.c.e); el("line",{x1:p.x,y1:p.y,x2:F.x,y2:F.y,class:"drop"},svg); el("circle",{cx:F.x,cy:F.y,r:2.2,class:"foot"},svg);});
-  let U=null, near=[]; const u=me();
-  if(u){ U=P(u.m,u.i,u.e); near=pts.filter(p=>core?!p.s.lo1:!POL[p.s.id].lo).map(p=>({s:p.s,c:p.c,d:core?dist(p.c,u):dist2(p.s.id,user2)})).sort((a,b)=>a.d-b.d).slice(0,3);
+  let U=null, near=[]; const u0=me(), u=u0&&tf(u0), uIn=u&&(!zoomed()||inCube(u));
+  if(u&&uIn){ U=P(u.m,u.i,u.e); near=pts.filter(p=>core?!p.s.lo1:!POL[p.s.id].lo).map(p=>({s:p.s,c:p.c,d:core?dist(p.c,u):dist2(p.s.id,user2)})).sort((a,b)=>a.d-b.d).slice(0,3);
     near.forEach(o=>{const q=P(o.c.m,o.c.i,o.c.e); el("line",{x1:U.x,y1:U.y,x2:q.x,y2:q.y,class:"link"},svg);});
     const Uf=P(u.m,-1,u.e); if(floorBack){el("line",{x1:U.x,y1:U.y,x2:Uf.x,y2:Uf.y,class:"pdrop"},svg); el("ellipse",{cx:Uf.x,cy:Uf.y,rx:9,ry:4,fill:"none",stroke:"var(--rubric)","stroke-width":1.4},svg);} }
   const selId=drawer.type==="scholar"?drawer.id:null;
@@ -2192,7 +2199,8 @@ function renderDrawer(){
 }
 function renderShown(){
   const all=MD().list(), vis=all.filter(visible);
-  $("shownT").textContent=region==="all"&&eraF==="all"&&(mode!=="soc"||kindF==="all")?`All ${vis.length} ${mode==="soc"?"figures on this compass":"scholars"}`:`Showing ${vis.length} of ${all.length} ${mode==="soc"?"figures":"scholars"}`;
+  if(zoomed()){ const u0=me(), out=u0&&!inCube(tf(u0)); $("shownT").textContent=`Zoomed into the mainstream: ${vis.length} of ${all.length} scholars${out?" · your pin is outside this area":""}`; }
+  else $("shownT").textContent=region==="all"&&eraF==="all"&&(mode!=="soc"||kindF==="all")?`All ${vis.length} ${mode==="soc"?"figures on this compass":"scholars"}`:`Showing ${vis.length} of ${all.length} ${mode==="soc"?"figures":"scholars"}`;
   const selId=drawer.type==="scholar"?drawer.id:null;
   const groups=Object.keys(REG).map(k=>({k,list:vis.filter(s=>s.reg===k)})).filter(g=>g.list.length);
   const ncol=Math.min(3,groups.length), cols=Array.from({length:ncol},()=>({h:0,html:""}));
@@ -2215,6 +2223,7 @@ function applyMode(){
   $("eraSel").innerHTML=`<option value="all">All periods</option>`+eras.map(k=>`<option value="${k}">${ERA[k]}</option>`).join(""); $("eraSel").value=eraF;
   $("rLegend").innerHTML=regs.map(k=>`<span><i class="dot" style="background:var(--r-${k})"></i>${REG[k].n}</span>`).join("");
   $("kindWrap").hidden=mode!=="soc"; if(mode!=="soc") kindF="all";
+  $("zoomBtn").hidden=mode!=="core";
   $("kindSel").innerHTML=`<option value="all">All kinds</option>`+Object.keys(KIND).map(k=>`<option value="${k}">${KIND[k]}</option>`).join(""); $("kindSel").value=kindF;
 }
 document.querySelectorAll(".ctab[data-mode]").forEach(b=>b.addEventListener("click",()=>{ if(mode===b.dataset.mode) return; mode=b.dataset.mode; drawer={type:"you"}; document.body.classList.toggle("theme2",mode==="soc"); applyMode(); renderCube(); renderDrawer(); }));
@@ -2222,6 +2231,7 @@ document.querySelectorAll(".ctab[data-mode]").forEach(b=>b.addEventListener("cli
 $("regSel").addEventListener("change",e=>{region=e.target.value;renderCube();});
 $("eraSel").addEventListener("change",e=>{eraF=e.target.value;renderCube();});
 $("kindSel").addEventListener("change",e=>{kindF=e.target.value;renderCube();});
+$("zoomBtn").addEventListener("click",e=>{ zoomOn=!zoomOn; e.currentTarget.setAttribute("aria-pressed",String(zoomOn)); e.currentTarget.textContent=zoomOn?"Show the whole compass":"Zoom into the mainstream"; renderCube(); });
 function markPre(k){document.querySelectorAll("[data-pre]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.pre===k?"true":"false"));$("cubeHint").textContent=MD().hint[k||"iso"];}
 function turnTo(k){
   if(turnRaf) cancelAnimationFrame(turnRaf);
