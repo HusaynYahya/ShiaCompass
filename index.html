@@ -375,6 +375,10 @@ input.ag::-moz-range-thumb{width:22px;height:22px;background:var(--saffron);bord
 .sharecard .shead{display:flex;flex-direction:column;gap:10px}
 .sharecard h2{font-size:clamp(26px,3vw,34px)}
 .sharecard p{color:var(--ink2)}
+.namein{display:flex;flex-direction:column;gap:6px;font-size:14.5px;font-weight:700;max-width:360px}
+.namein em{font-style:normal;font-weight:500;color:var(--muted)}
+.namein input{min-height:46px;border:2px solid var(--line2);border-radius:8px;padding:0 12px;font:inherit;font-size:17px;font-weight:600;color:var(--text);background:#fff}
+.namein input:focus{border-color:var(--text);outline:none}
 #cardImg{width:100%;height:auto;border:2px solid var(--text);border-radius:12px;box-shadow:0 6px 0 var(--text);background:var(--bg);min-height:200px}
 /* part 2 colour scheme: emerald, plum and pomegranate in place of turquoise, cobalt and saffron.
    Applied to the whole page while part 2's test or compass is showing, and to part 2's blocks elsewhere. */
@@ -1104,7 +1108,7 @@ function loadLocal(){
 function clearPart1(){ answers=new Array(QS.length).fill(null); page=0; user=null; saveLocal(); }
 function clearPart2(){ answers2=new Array(Q2.length).fill(null); page2=0; user2=null; saveLocal(); }
 function clearLocal(){
-  try{ localStorage.removeItem(KEY); localStorage.removeItem(KEY2); }catch(_){}
+  try{ localStorage.removeItem(KEY); localStorage.removeItem(KEY2); localStorage.removeItem(NAME_KEY); }catch(_){}
   answers=new Array(QS.length).fill(null); page=0; user=null;
   answers2=new Array(Q2.length).fill(null); page2=0; user2=null;
   about=new Array(ABOUT.length).fill(null); aboutDone=false; renderResume();
@@ -1516,7 +1520,9 @@ async function drawCard(){
   const txt=(t,x,y,font,col,align)=>{ g.font=font; g.fillStyle=col; g.textAlign=align||"left"; g.fillText(t,x,y); };
   const fit=(t,font,max)=>{ g.font=font; if(g.measureText(t).width<=max) return t; while(t.length>3&&g.measureText(t+"…").width>max) t=t.slice(0,-1); return t+"…"; };
   let y=110;
-  txt("MY SHIA COMPASS",PAD,y,`700 26px ${F2}`,"#0E6E72"); txt("بوصلة",W-PAD,y,`700 30px "Reem Kufi",serif`,"#0E6E72","right");
+  const who=cardName(); let head=who?(who+(/s$/i.test(who)?"'":"'s")+" Shia Compass").toUpperCase():"MY SHIA COMPASS";
+  const headFont=who?`800 32px ${F1}`:`700 26px ${F2}`;
+  txt(fit(head,headFont,W-2*PAD-120),PAD,y,headFont,"#0E6E72"); txt("بوصلة",W-PAD,y,`700 30px "Reem Kufi",serif`,"#0E6E72","right");
   y+=40;
   const scholarRows=(list,dfn,accent)=>{ list.forEach(o=>{ const r=34, cx=PAD+r, cy=y+r, m=match(dfn(o));
       g.save(); g.beginPath(); g.arc(cx,cy,r,0,7); g.closePath(); g.clip();
@@ -1562,6 +1568,10 @@ async function drawCard(){
   band(H-40,"#1E7A55","#6E2B67","#D8613A","#2B1630");
   return cv;
 }
+/* Optional name for the card: kept only in this browser, never shared or sent anywhere. */
+const NAME_KEY="shia-compass:name";
+const cardName=()=>{ const el=$("cardName"); const v=el?el.value:(()=>{try{return localStorage.getItem(NAME_KEY)||"";}catch(_){return "";}})(); return v.replace(/\s+/g," ").trim().slice(0,40); };
+let nameT=null;
 async function renderShareCard(){
   const img=$("cardImg"); if(!img) return;
   const cv=await drawCard(); img.src=cv.toDataURL("image/png");
@@ -1592,6 +1602,9 @@ function renderInsights(){
     <section class="sharecard" aria-label="Share your result">
       <div class="shead"><span class="eyebrow">Share</span><h2>Your result card</h2>
         <p>An image of where you sit on part 1's three spectrums and part 2's four main leanings, with the scholars closest to you. Post it or send it to friends.</p>
+        <label class="namein" for="cardName"><span>Your name on the card <em>(optional)</em></span>
+          <input id="cardName" type="text" maxlength="40" autocomplete="given-name" placeholder="e.g. Aisha" spellcheck="false"></label>
+        <p class="muted" style="font-size:14px;margin-top:-4px">Only used on the image. It's remembered in this browser and never sent anywhere.</p>
         <div class="cta"><button class="btn" id="dlCard" type="button">Download image</button><button class="btn ghost" id="shareCard" type="button" hidden>Share…</button></div>
         <p class="cmsg" id="cardMsg" role="status"></p><p class="muted" style="font-size:14px">On a phone, you can also press and hold the image to save it.</p></div>
       <img id="cardImg" alt="Your Shia Compass result card">
@@ -1629,6 +1642,9 @@ function renderInsights(){
     clearLocal(); go("home");
   });
   if(communityOn) renderCommunity();
+  const ni=$("cardName");
+  if(ni){ try{ ni.value=localStorage.getItem(NAME_KEY)||""; }catch(_){}
+    ni.addEventListener("input",()=>{ clearTimeout(nameT); nameT=setTimeout(()=>{ try{ const v=cardName(); if(v) localStorage.setItem(NAME_KEY,v); else localStorage.removeItem(NAME_KEY); }catch(_){} renderShareCard(); },350); }); }
   renderShareCard();
   box.querySelectorAll("[data-sch]").forEach(b=>b.addEventListener("click",()=>{mode=b.closest('[data-mode="soc"]')?"soc":"core";drawer={type:"scholar",id:b.dataset.sch};go("compass");}));
   box.querySelectorAll("[data-meth]").forEach(b=>b.addEventListener("click",()=>{const [a,p]=b.dataset.meth.split(":");mode="core";drawer={type:"method",a,p};go("compass");}));
