@@ -470,7 +470,7 @@ body.theme2 #tile .t1{fill:#1E7A55} body.theme2 #tile .t2{fill:#6E2B67} body.the
         <div class="facts"><span><b>2</b> parts, about <b>10–15</b> minutes each</span><span><b>21</b> axes</span><span><b>2</b> 3D compasses</span><span><b>89</b> scholars and figures, 10th century to today</span></div>
         <div class="cta">
           <button class="btn" data-go="test">Start part 1 →</button>
-          <button class="btn" data-go="test2">Start part 2 →</button>
+          <button class="btn theme2" data-go="test2">Start part 2 →</button>
           <button class="btn ghost" data-go="compass">Explore the compass first</button>
         </div>
         <div id="resume" class="resume" hidden></div>
@@ -1397,7 +1397,7 @@ function renderResume(){
   if(!parts.length){ box.hidden=true; return; }
   if(user||user2) btns.push(`<button class="btn small" data-go="insights">View your insights →</button>`);
   if(!user&&n1) btns.push(`<button class="btn small${user2?" ghost":""}" data-go="test">Continue part 1 →</button>`);
-  if(!user2&&n2) btns.push(`<button class="btn small ghost" data-go="test2">Continue part 2 →</button>`);
+  if(!user2&&n2) btns.push(`<button class="btn small ghost theme2" data-go="test2">Continue part 2 →</button>`);
   const unfinished=(!user&&n1)||(!user2&&n2);
   if(unfinished) btns.push(`<button class="btn small ghost danger" id="resumeReset" type="button">Start again</button>`);
   box.innerHTML=`<span class="rk">Saved on this device</span><span class="rt">${parts.join("<br>")}</span>${btns.join("")}`;
@@ -1580,7 +1580,7 @@ function cardHTML({set,j,q,n}){
 function renderTest(){
   { const rt=$("recTest"); if(rt) rt.hidden=!communityOn||!(onAbout||curPage()===0); }
   const Q=curQ(), A=curA(), start=curPage()*PER;
-  $("tPart").textContent=onAbout?"Before you start · About you":`Part ${part} · ${part===1?"Belief and method":"Society, politics and practice"} · page ${curPage()+1} of ${curPages()}`;
+  $("tPart").textContent=onAbout?"Before you start · About you":`Part ${part} · ${part===1?"Worldview and Methodology":"Society, politics and practice"} · page ${curPage()+1} of ${curPages()}`;
   $("tTitle").textContent=onAbout?"First, a little about you":part===1?"How much do you agree?":"Where do you stand?";
   $("tNote").textContent=onAbout?"These aren't scored, and you can skip any of them. They're asked only once, and are recorded anonymously with your answers to help find patterns."
     :part===1?""
@@ -1747,7 +1747,7 @@ function part2HTML(){
 function ctaHTML(p){
   const started=(p===1?answers:answers2).some(a=>a!==null);
   return p===1
-    ?`<section class="pcta"><div><span class="eyebrow">Part 1</span><h2>Belief and method</h2><p>Modern questions, Imamology and method, with your pin among 43 scholars in the 3D compass. ${ORD1.length} statements, about 10 minutes.</p></div><div class="cta"><button class="btn" data-go="test">${started?"Continue part 1 →":"Start part 1 →"}</button></div></section>`
+    ?`<section class="pcta"><div><span class="eyebrow">Part 1</span><h2>Worldview and Methodology</h2><p>Modern questions, Imamology and method, with your pin among 43 scholars in the 3D compass. ${ORD1.length} statements, about 10 minutes.</p></div><div class="cta"><button class="btn" data-go="test">${started?"Continue part 1 →":"Start part 1 →"}</button></div></section>`
     :`<section class="pcta theme2" id="q2res"><div><span class="eyebrow">Part 2</span><h2>Society, politics and practice</h2><p>Social life, politics, the state, philosophy, other religions, Sunni–Shia relations, faith and doubt, Karbala, waiting for the Mahdi, ritual, rulings, money and community identity, with a second 3D compass. ${ORD2.length} questions, about 12 minutes.</p></div><div class="cta"><button class="btn" data-go="test2">${started?"Continue part 2 →":"Start part 2 →"}</button></div></section>`;
 }
 /* ================= SHARE CARD ================= */
@@ -1819,7 +1819,7 @@ async function drawCard(){
       g.lineWidth=2.5; g.strokeStyle=INK; g.strokeRect(x0,yy+42,bw,14); g.fillStyle="#fff"; g.fillRect(x0+bw/2-1,yy+42,2,14); };
   if(user){
     const [an]=archetype(user);
-    txt("PART 1 · BELIEF AND METHOD",PAD,y,`700 22px ${F2}`,"#3D5566"); y+=62;
+    txt("PART 1 · WORLDVIEW AND METHODOLOGY",PAD,y,`700 22px ${F2}`,"#3D5566"); y+=62;
     txt(fit(an,`800 64px ${F1}`,W-2*PAD),PAD,y,`800 64px ${F1}`,INK); y+=46;
     aLines.forEach(l=>{ txt(l,PAD,y,LINEFONT,"#2C4556"); y+=36; }); y+=14;
     const cols={m:"#0E7C80",i:"#1D3FA6",e:"#9A6304"};
@@ -1875,7 +1875,7 @@ async function renderShareCard(){
 }
 function renderInsights(){
   const box=$("v-insights");
-  if(!user&&!user2){ box.innerHTML=`<div class="chead"><span class="eyebrow">03 · Insights</span><h1>Take the test first</h1><p>Your insights appear here once you've finished part 1 (${ORD1.length} statements on belief and method) or part 2 (${ORD2.length} questions on society and politics).</p><div class="cta" style="margin-top:14px"><button class="btn" data-go="test">Start part 1 →</button><button class="btn ghost" data-go="test2">Start part 2 →</button></div></div>`; return; }
+  if(!user&&!user2){ box.innerHTML=`<div class="chead"><span class="eyebrow">03 · Insights</span><h1>Take the test first</h1><p>Your insights appear here once you've finished part 1 (${ORD1.length} statements on worldview and methodology) or part 2 (${ORD2.length} questions on society and politics).</p><div class="cta" style="margin-top:14px"><button class="btn" data-go="test">Start part 1 →</button><button class="btn ghost" data-go="test2">Start part 2 →</button></div></div>`; return; }
   const codes=[]; if(user) codes.push(["Part 1",encodeCode()]); if(user2) codes.push(["Part 2",encodeCode2()]);
   box.innerHTML=`
    <div class="ins">
@@ -2019,7 +2019,7 @@ function placeLabels(items,g,reserved,bounds){
 }
 function renderCube(){
   const svg=$("cube"); svg.innerHTML=""; const st=CS, P=(m,i,e)=>project(st,m,i,e), core=mode==="core";
-  svg.setAttribute("aria-label",core?"3D compass of scholars on belief and method. Drag or use arrow keys to turn it.":"3D compass of scholars on society and politics. Drag or use arrow keys to turn it.");
+  svg.setAttribute("aria-label",core?"3D compass of scholars on worldview and methodology. Drag or use arrow keys to turn it.":"3D compass of scholars on society and politics. Drag or use arrow keys to turn it.");
   drawWalls(st,svg,"wall","wg","wg0");
   drawEdges(st,svg,"edge");
   if(core){
