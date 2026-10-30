@@ -326,6 +326,7 @@ input.ag::-moz-range-thumb{width:22px;height:22px;background:var(--saffron);bord
 .savehead p{color:var(--ink2);max-width:58ch}
 .saveact{display:flex;flex-direction:column;gap:10px;min-width:0}
 .btn.danger{color:var(--rubric);border-color:var(--rubric)}
+.treset{margin-top:10px}.treset .btn{min-height:36px;font-size:14px;padding:0 12px}
 .btn.danger:hover{background:#FBE9E6}
 /* compass controls, tidied */
 .ctabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:22px;max-width:720px}
@@ -500,6 +501,7 @@ body.theme2 #tile .t1{fill:#1E7A55} body.theme2 #tile .t2{fill:#6E2B67} body.the
         <h2 id="tTitle">How much do you agree?</h2>
         <div class="prog" id="tProg" aria-hidden="true"></div>
         <div class="trow"><span id="tCount">0 of 49 answered</span><span id="tNote">Each slider starts at Neutral. Move it to show how far you agree or disagree.</span></div>
+        <div class="treset"><button class="btn ghost small danger" id="tReset" type="button" hidden>Start this part again</button></div>
       </div>
       <div class="recnote" id="recTest" hidden></div>
       <div class="qlist" id="qlist"></div>
@@ -1325,8 +1327,14 @@ function renderResume(){
   if(user||user2) btns.push(`<button class="btn small" data-go="insights">View your insights →</button>`);
   if(!user&&n1) btns.push(`<button class="btn small${user2?" ghost":""}" data-go="test">Continue part 1 →</button>`);
   if(!user2&&n2) btns.push(`<button class="btn small ghost" data-go="test2">Continue part 2 →</button>`);
+  const unfinished=(!user&&n1)||(!user2&&n2);
+  if(unfinished) btns.push(`<button class="btn small ghost danger" id="resumeReset" type="button">Start again</button>`);
   box.innerHTML=`<span class="rk">Saved on this device</span><span class="rt">${parts.join("<br>")}</span>${btns.join("")}`;
   box.hidden=false;
+  const rb=$("resumeReset");
+  if(rb) rb.addEventListener("click",()=>armTap(rb,"Start again","Tap again to clear your unfinished answers",()=>{
+    if(!user&&n1) clearPart1(); if(!user2&&n2) clearPart2(); renderResume();
+  }));
 }
 const inFrame=(()=>{try{return window.self!==window.top;}catch(_){return true;}})();
 
@@ -1529,6 +1537,14 @@ function renderTest(){
   document.querySelectorAll("#qlist .qs").forEach(linkify);
   updateTestNav();
 }
+function armTap(b,label,armed,go){ // two-tap confirm for destructive buttons
+  if(b.dataset.armed!=="1"){ b.dataset.armed="1"; b.textContent=armed; setTimeout(()=>{ b.dataset.armed=""; b.textContent=label; },4000); return; }
+  b.dataset.armed=""; b.textContent=label; go();
+}
+$("tReset").addEventListener("click",e=>armTap(e.currentTarget,"Start this part again","Tap again to clear this part's answers",()=>{
+  if(part===1) clearPart1(); else clearPart2();
+  onAbout=false; renderTest(); window.scrollTo(0,0);
+}));
 function updateTestNav(){
   const Q=curQ(), A=curA(), items=curItems();
   const O=curOrd(), left=onAbout?0:items.filter(it=>!it.q.o&&A[it.j]===null).length, total=O.filter(j=>A[j]!==null).length;
@@ -1537,6 +1553,7 @@ function updateTestNav(){
   $("tBack").disabled=onAbout||(curPage()===0&&!aboutShown);
   $("tNext").innerHTML=onAbout?"Start the questions →":curPage()===curPages()-1?"See my insights →":"Next →";
   $("tHint").textContent=left?`${left} still at Neutral`:"";
+  $("tReset").hidden=onAbout||!curOrd().some(j=>A[j]!==null);
 }
 function fillPage(){ // sliders left untouched count as Neutral; multiple-choice questions may stay skipped
   if(onAbout) return; const A=curA(); curItems().forEach(it=>{ if(!it.q.o&&A[it.j]===null) A[it.j]=50; });
