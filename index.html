@@ -1165,10 +1165,11 @@ const Q2MORE={
 const Q2LATER=[
  ["r",1,"Matam is an essential part of mourning Imam Husayn, not just a cultural custom."],
  ["r",-1,"Many popular Shia practices are bid'ah: religious innovations with no basis in the Quran or the Imams' teaching."],
- ["w",1,"You wouldn't go on Umrah, or on ziyara to Medina, while Saudi Arabia is ruled by what you see as a taghuti regime."]
+ ["w",1,"You wouldn't go on Umrah, or on ziyara to Medina, while Saudi Arabia is ruled by what you see as a taghuti regime."],
+ ["g",1,"Evading tax is acceptable when the government is one you see as taghuti."]
 ];
 const Q2_V1=42;   // length of part 2 before Q2MORE was added
-const Q2_OLD=[42,61,62,63];   // lengths of earlier versions of part 2
+const Q2_OLD=[42,61,62,63,64];   // lengths of earlier versions of part 2
 const Q2=(()=>{
   const order=["c","w","pl","u","r","s","p","g","a"], out=[], seen={};
   const rounds=Math.max(...order.map(a=>Q2BANK[a].length));

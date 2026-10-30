@@ -1,6 +1,6 @@
 {
  "version": 7,
- "note": "Generated from index.html. Index order matches the answers, about and answers2 arrays stored in the database. Part 1 grew from 36 to 50 to 51 stored answers; on 30 Oct 2026 questions 20 and 42 were retired (still stored as null, not asked or scored) and a new Karbala question was added at index 50, shown to people as question 20. Part 2 grew from 42 to 61 to 63 to 64; older rows are shorter.",
+ "note": "Generated from index.html. Index order matches the answers, about and answers2 arrays stored in the database. Part 1 grew from 36 to 50 to 51 stored answers; on 30 Oct 2026 questions 20 and 42 were retired (still stored as null, not asked or scored) and a new Karbala question was added at index 50, shown to people as question 20. Part 2 grew from 42 to 61 to 63 to 64 to 65; older rows are shorter.",
  "axes": {
   "m": {
    "name": "Modern questions",
@@ -1300,6 +1300,15 @@
    "axis": "w",
    "key": 1,
    "text": "You wouldn't go on Umrah, or on ziyara to Medina, while Saudi Arabia is ruled by what you see as a taghuti regime.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 64,
+   "id": "g_tax",
+   "axis": "g",
+   "key": 1,
+   "text": "Evading tax is acceptable when the government is one you see as taghuti.",
    "type": "slider",
    "scale": "agreement"
   }
