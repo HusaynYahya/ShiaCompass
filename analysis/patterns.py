@@ -55,7 +55,7 @@ def load(path):
     for _, r in df.iterrows():
         rows.append({
             "about": parse_array(r.get("about"), len(Q["about"])),
-            "p1": parse_array(r.get("answers"), len(Q["part1"])) or next((pad(x, len(Q["part1"])) for x in (parse_array(r.get("answers"), n) for n in (48, 36)) if x), None),
+            "p1": parse_array(r.get("answers"), len(Q["part1"])) or next((pad(x, len(Q["part1"])) for x in (parse_array(r.get("answers"), n) for n in (50, 48, 36)) if x), None),
             "p2": parse_array(r.get("answers2"), len(Q["part2"])) or next((pad(x, len(Q["part2"])) for x in (parse_array(r.get("answers2"), n) for n in (62, 61, 42)) if x), None),
         })
     return rows
@@ -178,6 +178,11 @@ def main():
     if not a.csv and not a.demo:
         ap.error("give a CSV file, or --demo")
     rows = demo() if a.demo else load(a.csv)
+    # Retired questions keep their slot in the stored arrays but are no longer asked or scored.
+    for r in rows:
+        for part, key in (("part1", "p1"), ("part2", "p2")):
+            if r.get(key):
+                r[key] = [None if q.get("retired") else v for q, v in zip(Q[part], r[key])]
     n = len(rows)
     scores, cats, sl = axis_scores(rows), categorical(rows), sliders(rows)
     html = [f"<h1>Shia Compass · patterns</h1><p>{n} shared results{' (made-up demo data)' if a.demo else ''}. "

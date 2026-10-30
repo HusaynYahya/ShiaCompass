@@ -1,6 +1,6 @@
 {
- "version": 6,
- "note": "Generated from index.html. Index order matches the answers, about and answers2 arrays stored in the database. Part 1 grew from 36 to 50 answers, part 2 from 42 to 61 to 63; older rows are shorter.",
+ "version": 7,
+ "note": "Generated from index.html. Index order matches the answers, about and answers2 arrays stored in the database. Part 1 grew from 36 to 50 to 51 stored answers; on 30 Oct 2026 questions 20 and 42 were retired (still stored as null, not asked or scored) and a new Karbala question was added at index 50, shown to people as question 20. Part 2 grew from 42 to 61 to 63; older rows are shorter.",
  "axes": {
   "m": {
    "name": "Modern questions",
@@ -238,7 +238,7 @@
    "id": "m1",
    "axis": "m",
    "key": 1,
-   "text": "The rulings in the classical books of fiqh should be followed today as they are, unless a living marja' rules otherwise.",
+   "text": "Rulings set out by the classical jurists centuries ago should still be followed exactly as written today, unless a living marja' rules otherwise.",
    "type": "slider",
    "scale": "agreement"
   },
@@ -337,7 +337,7 @@
    "id": "e4",
    "axis": "e",
    "key": -1,
-   "text": "Philosophy and rational theology are essential tools for understanding religion properly.",
+   "text": "You can't properly understand Islam without reason-based disciplines such as philosophy and kalam (rational theology).",
    "type": "slider",
    "scale": "agreement"
   },
@@ -346,7 +346,7 @@
    "id": "m5",
    "axis": "m",
    "key": 1,
-   "text": "The hawza's classical method of ijtihad is enough to answer the questions modern life raises.",
+   "text": "The hawza's traditional way of deriving rulings can answer today's new questions, such as IVF, organ donation or cryptocurrency, without changing its method.",
    "type": "slider",
    "scale": "agreement"
   },
@@ -364,7 +364,7 @@
    "id": "e5",
    "axis": "e",
    "key": 1,
-   "text": "Greek-influenced philosophy and mysticism have distorted Shia teaching.",
+   "text": "Philosophy and mysticism, such as the ideas of Ibn Arabi and Mulla Sadra, have distorted Shia teachings.",
    "type": "slider",
    "scale": "agreement"
   },
@@ -411,7 +411,8 @@
    "key": -1,
    "text": "Imam Husayn's journey to Karbala is best understood through its political and historical circumstances, rather than through his foreknowledge of the outcome.",
    "type": "slider",
-   "scale": "agreement"
+   "scale": "agreement",
+   "retired": true
   },
   {
    "index": 20,
@@ -499,7 +500,7 @@
    "id": "e10",
    "axis": "e",
    "key": -1,
-   "text": "Islamic philosophers such as Mulla Sadra and Allama Tabataba'i deepen faith rather than threaten it.",
+   "text": "The foundations of faith, such as God's existence and justice, should be reached through your own reasoning, not simply accepted from scripture or scholars.",
    "type": "slider",
    "scale": "agreement"
   },
@@ -609,7 +610,8 @@
    "key": 1,
    "text": "You'd rather memorise a hadith than read a book of philosophy.",
    "type": "slider",
-   "scale": "agreement"
+   "scale": "agreement",
+   "retired": true
   },
   {
    "index": 42,
@@ -652,7 +654,7 @@
    "id": "i16",
    "axis": "i",
    "key": -1,
-   "text": "You'd rather spend your time reciting the Quran and your own du'as than long ziyarat texts.",
+   "text": "Given the choice, you'd rather read the Quran than recite Ziyarat Ashura.",
    "type": "slider",
    "scale": "agreement"
   },
@@ -679,9 +681,19 @@
    "id": "m18",
    "axis": "m",
    "key": 1,
-   "text": "The careful, text-centred ijtihad of the Najaf seminary is a better model than the more socially engaged approach of the Qum seminary.",
+   "text": "When deriving rulings, scholars should stay close to the texts, as the Najaf seminary is known for, rather than weigh a ruling's effect on society, as the Qum seminary often does.",
    "type": "slider",
    "scale": "agreement"
+  },
+  {
+   "index": 50,
+   "id": "i_karbala2",
+   "axis": "i",
+   "key": 1,
+   "text": "Imam Husayn's journey to Karbala is best seen as an act of submission to a destiny he knew in advance.",
+   "type": "slider",
+   "scale": "agreement",
+   "shown_at": 20
   }
  ],
  "part2": [

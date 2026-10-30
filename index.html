@@ -499,7 +499,7 @@ body.theme2 #tile .t1{fill:#1E7A55} body.theme2 #tile .t2{fill:#6E2B67} body.the
         <span class="eyebrow" id="tPart">Part 1 of 6</span>
         <h2 id="tTitle">How much do you agree?</h2>
         <div class="prog" id="tProg" aria-hidden="true"></div>
-        <div class="trow"><span id="tCount">0 of 50 answered</span><span id="tNote">Each slider starts at Neutral. Move it to show how far you agree or disagree.</span></div>
+        <div class="trow"><span id="tCount">0 of 49 answered</span><span id="tNote">Each slider starts at Neutral. Move it to show how far you agree or disagree.</span></div>
       </div>
       <div class="recnote" id="recTest" hidden></div>
       <div class="qlist" id="qlist"></div>
@@ -819,7 +819,7 @@ const METHOD={
 };
 
 const QS=[
- {a:"m",k:1,t:"The rulings in the classical books of fiqh should be followed today as they are, unless a living marja' rules otherwise."},
+ {a:"m",k:1,t:"Rulings set out by the classical jurists centuries ago should still be followed exactly as written today, unless a living marja' rules otherwise."},
  {a:"i",k:1,t:"The Imams know the unseen, including future events, by God's permission."},
  {a:"e",k:1,t:"If a reliable hadith seems to conflict with reason, we should accept the hadith and assume our understanding is limited."},
  {a:"m",k:-1,t:"Modern ideas such as human rights and gender equality are good reasons to look again at classical rulings."},
@@ -830,15 +830,15 @@ const QS=[
  {a:"e",k:1,t:"A single reliable narrator's report is enough to establish a point of belief, not only a legal ruling."},
  {a:"m",k:-1,t:"Many classical rulings reflected the society they were made in, so their purpose matters more than their exact wording."},
  {a:"i",k:1,t:"Calling directly on an Imam for help, as in 'Ya Ali madad', is legitimate."},
- {a:"e",k:-1,t:"Philosophy and rational theology are essential tools for understanding religion properly."},
- {a:"m",k:1,t:"The hawza's classical method of ijtihad is enough to answer the questions modern life raises."},
+ {a:"e",k:-1,t:"You can't properly understand Islam without reason-based disciplines such as philosophy and kalam (rational theology)."},
+ {a:"m",k:1,t:"The hawza's traditional way of deriving rulings can answer today's new questions, such as IVF, organ donation or cryptocurrency, without changing its method."},
  {a:"i",k:-1,t:"Many narrations describing the Imams' extraordinary powers are probably later exaggerations."},
- {a:"e",k:1,t:"Greek-influenced philosophy and mysticism have distorted Shia teaching."},
+ {a:"e",k:1,t:"Philosophy and mysticism, such as the ideas of Ibn Arabi and Mulla Sadra, have distorted Shia teachings."},
  {a:"m",k:-1,t:"Academic research from universities, including by non-Muslim scholars, should shape how we understand our tradition."},
  {a:"i",k:1,t:"The Imams were created as lights before the creation of the world."},
  {a:"e",k:-1,t:"A hadith that contradicts clear scientific knowledge should be reinterpreted or set aside."},
  {a:"m",k:1,t:"Following a living marja' (taqlid) in matters of practice is essential for most believers."},
- {a:"i",k:-1,t:"Imam Husayn's journey to Karbala is best understood through its political and historical circumstances, rather than through his foreknowledge of the outcome."},
+ {a:"i",k:-1,x:1,t:"Imam Husayn's journey to Karbala is best understood through its political and historical circumstances, rather than through his foreknowledge of the outcome."},
  {a:"e",k:1,t:"The Four Books of hadith are broadly reliable as a whole."},
  {a:"m",k:-1,t:"Women should be able to become maraji' and judges."},
  {a:"i",k:1,t:"Commemorations such as Muharram majalis and Fatimiyya are central to faith, not just cultural tradition."},
@@ -848,7 +848,7 @@ const QS=[
  {a:"e",k:1,t:"When in doubt, it is better to follow the texts cautiously than to reason your way to a new conclusion."},
  {a:"m",k:-1,t:"Some established practices in our communities are cultural rather than religious, and should be reformed."},
  {a:"i",k:1,t:"The Imams hear us and can respond when we visit their shrines or address them."},
- {a:"e",k:-1,t:"Islamic philosophers such as Mulla Sadra and Allama Tabataba'i deepen faith rather than threaten it."},
+ {a:"e",k:-1,t:"The foundations of faith, such as God's existence and justice, should be reached through your own reasoning, not simply accepted from scripture or scholars."},
  {a:"m",k:1,t:"Changes in religious rulings should come only from senior jurists, not from public debate."},
  {a:"i",k:-1,t:"Beliefs about the Imams should rest only on the Quran and on reports that give certainty, not on single narrations."},
  {a:"e",k:1,t:"Ordinary believers can understand religion directly from the Imams' words, without specialised legal theory."},
@@ -862,18 +862,24 @@ const QS=[
  {a:"e",k:-1,t:"You enjoy debates and thought experiments about God and ethics."},
  {a:"m",k:1,t:"Old customs at weddings and funerals should be kept, even when they feel out of date."},
  {a:"i",k:-1,t:"You find the Imams' sayings on ethics more moving than accounts of their miracles."},
- {a:"e",k:1,t:"You'd rather memorise a hadith than read a book of philosophy."},
+ {a:"e",k:1,x:1,t:"You'd rather memorise a hadith than read a book of philosophy."},
  {a:"m",k:-1,t:"A good Muharram talk should take on current issues such as mental health or gender."},
  {a:"i",k:1,t:"You'd travel a long way, at real cost, to visit an Imam's shrine."},
  {a:"e",k:1,f:1,t:"You read from hadith collections such as al-Kafi or Bihar al-Anwar."},
  {a:"m",k:1,t:"On a religious question, you'd sooner trust an elderly scholar than a young, university-educated one."},
- {a:"i",k:-1,t:"You'd rather spend your time reciting the Quran and your own du'as than long ziyarat texts."},
+ {a:"i",k:-1,t:"Given the choice, you'd rather read the Quran than recite Ziyarat Ashura."},
  {a:"e",k:-1,t:"You'd read a Western philosopher to help you think through a religious question."},
  /* Approaches to ijtihad in the two great seminaries. */
  {a:"m",k:-1,t:"Ijtihad must take account of time and place, as Ayatollah Khomeini argued, even when that changes a ruling."},
- {a:"m",k:1,t:"The careful, text-centred ijtihad of the Najaf seminary is a better model than the more socially engaged approach of the Qum seminary."}
+ {a:"m",k:1,t:"When deriving rulings, scholars should stay close to the texts, as the Najaf seminary is known for, rather than weigh a ruling's effect on society, as the Qum seminary often does."},
+  /* Added 30 Oct 2026: replaces the retired Karbala question (shown in its place, as question 20). */
+  {a:"i",k:1,at:19,t:"Imam Husayn's journey to Karbala is best seen as an act of submission to a destiny he knew in advance."}
 ];
-const QS_OLD=[36];   // lengths of earlier versions of part 1
+const QS_OLD=[36,50];   // lengths of earlier versions of part 1
+/* Retired questions (x:1) keep their slot so saved answers and codes still line up, but are no longer shown or scored.
+   ORD1 = the questions shown, in display order (an added question can take a retired one's place with at:). */
+const ORD1=(()=>{ const o=[]; QS.forEach((q,j)=>{ if(!q.x&&q.at===undefined) o.push(j); });
+  QS.forEach((q,j)=>{ if(q.at!==undefined){ const k=o.findIndex(i=>i>q.at); o.splice(k<0?o.length:k,0,j); } }); return o; })();
 const LEVELS=[[12.5,"Strongly disagree"],[37.5,"Disagree"],[62.5,"Neutral"],[87.5,"Agree"],[101,"Strongly agree"]];
 const levelOf=x=>LEVELS.find(([t])=>x<t)[1];
 const FLEVELS=[[12.5,"Not at all"],[37.5,"Rarely"],[62.5,"Sometimes"],[87.5,"Often"],[101,"Always"]];
@@ -1216,7 +1222,9 @@ window.addEventListener("hashchange",()=>show(route()));
 document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest("[data-go]"); if(b){e.preventDefault();go(b.dataset.go);}});
 
 /* ================= TEST ================= */
-const PER=6, PAGES=Math.ceil(QS.length/PER), PAGES2=Math.ceil(Q2.length/PER);
+const PER=6, PAGES=Math.ceil(ORD1.length/PER), PAGES2=Math.ceil(Q2.length/PER);
+const ORD2=Q2.map((_,j)=>j);
+const gap1=()=>ORD1.findIndex(j=>answers[j]===null);   // display position of the first unanswered part 1 question
 let answers=new Array(QS.length).fill(null), page=0, user=null;            // part 1 (unchanged format)
 let answers2=new Array(Q2.length).fill(null), page2=0, user2=null;         // part 2
 let about=new Array(ABOUT.length).fill(null), aboutDone=false;             // asked once, before whichever part comes first
@@ -1241,7 +1249,7 @@ function loadLocal(){
     if(d&&Array.isArray(d.answers)&&(d.answers.length===QS.length||QS_OLD.includes(d.answers.length))){
       answers=QS.map((_,j)=>j<d.answers.length?clampA(d.answers[j],100):null);   // older saves lack the newer questions
       page=Math.min(PAGES-1,Math.max(0,d.page|0));
-      if(d.done&&answers.slice(0,QS_OLD[0]).every(a=>a!==null)) score();
+      if(d.done&&ORD1.filter(j=>j<QS_OLD[0]).every(j=>answers[j]!==null)) score();
     }
   }catch(_){}
   try{
@@ -1292,9 +1300,9 @@ function decodeAny(str){
 }
 function restoreFrom(arr){
   answers=arr; user=null;
-  const firstGap=answers.findIndex(a=>a===null);
+  const firstGap=gap1();
   page=firstGap<0?PAGES-1:Math.floor(firstGap/PER);
-  if(firstGap<0||firstGap>=QS_OLD[0]) score();   // a code from before the newer questions still gives a result
+  if(ORD1.filter(j=>j<QS_OLD[0]).every(j=>answers[j]!==null)) score();   // a code from before the newer questions still gives a result
   saveLocal();
   return !!user;
 }
@@ -1310,8 +1318,8 @@ function restoreFrom2(r){
 function restoreCode(str){ const r=decodeAny(str); if(!r) return null; return {part:r.part,complete:r.part===1?restoreFrom(r.a):restoreFrom2(r)}; }
 function renderResume(){
   const box=$("resume"); if(!box) return;
-  const n1=answers.filter(a=>a!==null).length, n2=answers2.filter(a=>a!==null).length, parts=[], btns=[];
-  if(user) parts.push(`Part 1 result: <b>${archetype(user)[0]}</b>`); else if(n1) parts.push(`Part 1: <b>${n1} of ${QS.length}</b> answered`);
+  const n1=ORD1.filter(j=>answers[j]!==null).length, n2=answers2.filter(a=>a!==null).length, parts=[], btns=[];
+  if(user) parts.push(`Part 1 result: <b>${archetype(user)[0]}</b>`); else if(n1) parts.push(`Part 1: <b>${n1} of ${ORD1.length}</b> answered`);
   if(user2) parts.push(`Part 2 result: <b>${archetype2(user2)[0]}</b>`); else if(n2) parts.push(`Part 2: <b>${n2} of ${Q2.length}</b> answered`);
   if(!parts.length){ box.hidden=true; return; }
   if(user||user2) btns.push(`<button class="btn small" data-go="insights">View your insights →</button>`);
@@ -1345,7 +1353,7 @@ async function submitShare(){
   const s=getShare()||{token:newToken()};
   await rpc("submit_result",{p_token:s.token,
     p_m:user?+user.m.toFixed(4):null,p_i:user?+user.i.toFixed(4):null,p_e:user?+user.e.toFixed(4):null,
-    p_answers:user?answers.map(a=>Math.round(a)):null,p_archetype:user?archetype(user)[0]:null,p_consent:CONSENT_VERSION,
+    p_answers:user?answers.map(a=>a===null?null:Math.round(a)):null,p_archetype:user?archetype(user)[0]:null,p_consent:CONSENT_VERSION,
     p_about:about,p_answers2:user2?answers2:null,p_scores2:user2?Object.fromEntries(K2.filter(k=>user2[k]!==undefined).map(k=>[k,+user2[k].toFixed(4)])):null});
   setShare({token:s.token,consent:CONSENT_VERSION,at:new Date().toISOString()});
 }
@@ -1461,21 +1469,22 @@ async function copyText(text,btn,done){
 const arrOf=set=>set==="about"?about:set==="p1"?answers:answers2;
 const curQ=()=>part===1?QS:Q2, curA=()=>part===1?answers:answers2, curPages=()=>part===1?PAGES:PAGES2;
 const curPage=()=>part===1?page:page2;
+const curOrd=()=>part===1?ORD1:ORD2;
 function setPage(x){ if(part===1) page=x; else page2=x; }
 function curItems(){
   if(onAbout) return ABOUT.map((q,j)=>({set:"about",j,q}));
-  const s=curPage()*PER; return curQ().slice(s,s+PER).map((q,k)=>({set:"p"+part,j:s+k,q}));
+  const s=curPage()*PER, Q=curQ(); return curOrd().slice(s,s+PER).map((j,k)=>({set:"p"+part,j,q:Q[j],n:s+k+1}));
 }
 function startTest(p){
   part=p;
-  if(p===1&&user){ const gap=answers.findIndex(a=>a===null); if(gap>=0) page=Math.floor(gap/PER); }
+  if(p===1&&user){ const gap=gap1(); if(gap>=0) page=Math.floor(gap/PER); }
   if(p===2&&user2){ const gap=answers2.findIndex((a,j)=>a===null&&!Q2[j].o); if(gap>=0) page2=Math.floor(gap/PER); }   // jump to questions added since
   onAbout=!aboutDone&&!curA().some(a=>a!==null);
   aboutShown=onAbout;
   renderTest();
 }
-function cardHTML({set,j,q}){
-  const v=arrOf(set)[j], uid=set+"_"+j, num=set==="about"?"A"+(j+1):String(j+1).padStart(2,"0");
+function cardHTML({set,j,q,n}){
+  const v=arrOf(set)[j], uid=set+"_"+j, num=set==="about"?"A"+(j+1):String(n).padStart(2,"0");
   const head=`<div class="qtop"><span class="qn">${num}</span><p class="qs" id="qs${uid}">${q.t}</p></div>`;
   if(q.o) return `<div class="qc ${v===null?"untouched":"done"}">${head}
       <div class="opts" role="radiogroup" aria-labelledby="qs${uid}">${q.o.map((o,k)=>`<button type="button" class="opt" role="radio" aria-checked="${v===k}" data-set="${set}" data-j="${j}" data-k="${k}">${o}</button>`).join("")}</div>
@@ -1498,7 +1507,7 @@ function renderTest(){
     :part===1?"Each slider starts in the middle. Most ask how far you agree; a few ask how often something is true for you."
     :"Each slider starts in the middle. A few questions about your habits and experience aren't scored: they help find patterns.";
   $("tProg").innerHTML=onAbout?ABOUT.map((_,j)=>`<i class="${about[j]!==null?"on":""} page"></i>`).join("")
-    :Q.map((_,j)=>`<i class="${A[j]!==null?"on":""} ${j>=start&&j<start+PER?"page":""}"></i>`).join("");
+    :curOrd().map((j,k)=>`<i class="${A[j]!==null?"on":""} ${k>=start&&k<start+PER?"page":""}"></i>`).join("");
   const items=curItems();
   $("qlist").innerHTML=items.map(cardHTML).join("");
   $("qlist").querySelectorAll("input.ag").forEach(inp=>{
@@ -1522,9 +1531,9 @@ function renderTest(){
 }
 function updateTestNav(){
   const Q=curQ(), A=curA(), items=curItems();
-  const left=onAbout?0:items.filter(it=>!it.q.o&&A[it.j]===null).length, total=A.filter(a=>a!==null).length;
-  $("tCount").textContent=onAbout?`${about.filter(a=>a!==null).length} of ${ABOUT.length} answered · all optional`:`${total} of ${Q.length} answered`;
-  document.querySelectorAll("#tProg i").forEach((b,j)=>b.classList.toggle("on",(onAbout?about:A)[j]!==null));
+  const O=curOrd(), left=onAbout?0:items.filter(it=>!it.q.o&&A[it.j]===null).length, total=O.filter(j=>A[j]!==null).length;
+  $("tCount").textContent=onAbout?`${about.filter(a=>a!==null).length} of ${ABOUT.length} answered · all optional`:`${total} of ${O.length} answered`;
+  document.querySelectorAll("#tProg i").forEach((b,k)=>b.classList.toggle("on",(onAbout?about[k]:A[O[k]])!==null));
   $("tBack").disabled=onAbout||(curPage()===0&&!aboutShown);
   $("tNext").innerHTML=onAbout?"Start the questions →":curPage()===curPages()-1?"See my insights →":"Next →";
   $("tHint").textContent=left?`${left} still at Neutral`:"";
@@ -1548,7 +1557,7 @@ $("tNext").addEventListener("click",()=>{
 });
 function score(){
   const sum={m:0,i:0,e:0},n={m:0,i:0,e:0};
-  QS.forEach((q,j)=>{ if(answers[j]===null) return; sum[q.a]+=q.k*((answers[j]-50)/50); n[q.a]++;});
+  QS.forEach((q,j)=>{ if(q.x||answers[j]===null) return; sum[q.a]+=q.k*((answers[j]-50)/50); n[q.a]++;});
   user={m:sum.m/n.m,i:sum.i/n.i,e:sum.e/n.e};
 }
 function score2(){
@@ -1587,8 +1596,8 @@ function part1HTML(){
     <div class="ihead">
       <div><span class="eyebrow">Your Shia Compass result · part 1</span><h1 style="margin-top:12px">${aname}</h1>
         <p class="sum">${adesc}</p>
-        ${answers.some(a=>a===null)?`<p class="note" style="color:#fff"><b>New:</b> part 1 has ${answers.filter(a=>a===null).length} more questions since you took it. <button class="btn small" data-go="test" style="margin-left:6px">Answer them →</button></p>`:""}
-        <p class="note">Based on your ${answers.filter(a=>a!==null).length} answers. Esmail's own conclusion is that no framework has every answer, and that we should settle on a coherent mix held with epistemic humility. Read the case from the other side under each spectrum.</p>
+        ${gap1()>=0?`<p class="note" style="color:#fff"><b>New:</b> part 1 has ${ORD1.filter(j=>answers[j]===null).length} more question${ORD1.filter(j=>answers[j]===null).length>1?"s":""} since you took it. <button class="btn small" data-go="test" style="margin-left:6px">Answer ${ORD1.filter(j=>answers[j]===null).length>1?"them":"it"} →</button></p>`:""}
+        <p class="note">Based on your ${ORD1.filter(j=>answers[j]!==null).length} answers. Esmail's own conclusion is that no framework has every answer, and that we should settle on a coherent mix held with epistemic humility. Read the case from the other side under each spectrum.</p>
         <div class="cta"><button class="btn" id="toCube">See your pin in the 3D compass →</button><button class="btn ghost" id="retake">Retake part 1</button></div></div>
       <div class="pinbox"><span class="eyebrow">Your coordinates</span>
         <div class="mini">${["m","i","e"].map(a=>`<div class="mbar"><div class="ends"><span>${AX[a].neg}</span><span class="mono" style="color:var(--rubric)">${fmt(u[a])}</span><span>${AX[a].pos}</span></div><div class="tr"><b style="left:${(u[a]+1)*50}%;background:var(--rubric)"></b></div></div>`).join("")}</div>
@@ -1651,7 +1660,7 @@ function part2HTML(){
 function ctaHTML(p){
   const started=(p===1?answers:answers2).some(a=>a!==null);
   return p===1
-    ?`<section class="pcta"><div><span class="eyebrow">Part 1</span><h2>Belief and method</h2><p>Modern questions, Imamology and method, with your pin among 43 scholars in the 3D compass. 50 statements, about 10 minutes.</p></div><div class="cta"><button class="btn" data-go="test">${started?"Continue part 1 →":"Start part 1 →"}</button></div></section>`
+    ?`<section class="pcta"><div><span class="eyebrow">Part 1</span><h2>Belief and method</h2><p>Modern questions, Imamology and method, with your pin among 43 scholars in the 3D compass. ${ORD1.length} statements, about 10 minutes.</p></div><div class="cta"><button class="btn" data-go="test">${started?"Continue part 1 →":"Start part 1 →"}</button></div></section>`
     :`<section class="pcta theme2" id="q2res"><div><span class="eyebrow">Part 2</span><h2>Society, politics and practice</h2><p>Social life, politics, the state, philosophy, other religions, Sunni–Shia relations, faith and doubt, Karbala, waiting for the Mahdi, ritual, rulings, money and community identity, with a second 3D compass. ${Q2.length} questions, about 12 minutes.</p></div><div class="cta"><button class="btn" data-go="test2">${started?"Continue part 2 →":"Start part 2 →"}</button></div></section>`;
 }
 /* ================= SHARE CARD ================= */
@@ -1779,7 +1788,7 @@ async function renderShareCard(){
 }
 function renderInsights(){
   const box=$("v-insights");
-  if(!user&&!user2){ box.innerHTML=`<div class="chead"><span class="eyebrow">03 · Insights</span><h1>Take the test first</h1><p>Your insights appear here once you've finished part 1 (50 statements on belief and method) or part 2 (63 questions on society and politics).</p><div class="cta" style="margin-top:14px"><button class="btn" data-go="test">Start part 1 →</button><button class="btn ghost" data-go="test2">Start part 2 →</button></div></div>`; return; }
+  if(!user&&!user2){ box.innerHTML=`<div class="chead"><span class="eyebrow">03 · Insights</span><h1>Take the test first</h1><p>Your insights appear here once you've finished part 1 (${ORD1.length} statements on belief and method) or part 2 (63 questions on society and politics).</p><div class="cta" style="margin-top:14px"><button class="btn" data-go="test">Start part 1 →</button><button class="btn ghost" data-go="test2">Start part 2 →</button></div></div>`; return; }
   const codes=[]; if(user) codes.push(["Part 1",encodeCode()]); if(user2) codes.push(["Part 2",encodeCode2()]);
   box.innerHTML=`
    <div class="ins">

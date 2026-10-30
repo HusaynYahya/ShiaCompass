@@ -4,7 +4,7 @@
 --
 -- Design:
 --   * One row per browser that chooses to share, keyed by a random token kept in that browser.
---   * Part 1 (50 statements) and part 2 (63 questions) are both optional; a row holds whichever were finished.
+--   * Part 1 (51 stored slots, 49 asked) and part 2 (63 questions) are both optional; a row holds whichever were finished.
 --   * The table is locked: the public (anon) key cannot read or write it directly.
 --   * The page can only call three functions:
 --       submit_result      add or update this browser's result (needs its token)
@@ -27,19 +27,19 @@ alter table public.results add column if not exists archetype text     check (ch
 alter table public.results add column if not exists answers   smallint[] check (
   answers is null or (array_ndims(answers) = 1 and cardinality(answers) = 36 and 0 <= all (answers) and 100 >= all (answers)));
 -- About you (optional, each item may be null) and part 2
--- Keep the part 1 length check current (part 1 grew from 36 to 50 statements); rows saved earlier are kept as they are.
+-- Part 1 length check: questions are only ever appended (36 → 50 → 51 so far), so allow room to grow without re-running this.
 alter table public.results drop constraint if exists results_answers_check;
 alter table public.results add constraint results_answers_check check (
-  answers is null or (array_ndims(answers) = 1 and cardinality(answers) = 50 and 0 <= all (answers) and 100 >= all (answers))) not valid;
+  answers is null or (array_ndims(answers) = 1 and cardinality(answers) between 36 and 80 and 0 <= all (answers) and 100 >= all (answers))) not valid;
 alter table public.results add column if not exists about     smallint[] check (
   about is null or (array_ndims(about) = 1 and cardinality(about) = 6 and 0 <= all (about) and 10 >= all (about)));
 alter table public.results add column if not exists answers2  smallint[] check (
-  answers2 is null or (array_ndims(answers2) = 1 and cardinality(answers2) = 63 and 0 <= all (answers2) and 100 >= all (answers2)));
+  answers2 is null or (array_ndims(answers2) = 1 and cardinality(answers2) between 42 and 150 and 0 <= all (answers2) and 100 >= all (answers2)));
 alter table public.results add column if not exists scores2   jsonb    check (scores2 is null or jsonb_typeof(scores2) = 'object');
 -- Keep the part 2 length check current if an older version of this script created it with a different length.
 alter table public.results drop constraint if exists results_answers2_check;
 alter table public.results add constraint results_answers2_check check (
-  answers2 is null or (array_ndims(answers2) = 1 and cardinality(answers2) = 63 and 0 <= all (answers2) and 100 >= all (answers2))) not valid;  -- not valid: rows saved under an earlier version (42 or 61 answers) are kept as they are
+  answers2 is null or (array_ndims(answers2) = 1 and cardinality(answers2) between 42 and 150 and 0 <= all (answers2) and 100 >= all (answers2))) not valid;  -- not valid: rows saved under an earlier version (42 or 61 answers) are kept as they are
 -- Older installs made these NOT NULL; part 1 is now optional.
 alter table public.results alter column m drop not null, alter column i drop not null, alter column e drop not null,
   alter column archetype drop not null, alter column answers drop not null;
