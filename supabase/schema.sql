@@ -4,7 +4,7 @@
 --
 -- Design:
 --   * One row per browser that chooses to share, keyed by a random token kept in that browser.
---   * Part 1 (36 statements) and part 2 (63 questions) are both optional; a row holds whichever were finished.
+--   * Part 1 (50 statements) and part 2 (63 questions) are both optional; a row holds whichever were finished.
 --   * The table is locked: the public (anon) key cannot read or write it directly.
 --   * The page can only call three functions:
 --       submit_result      add or update this browser's result (needs its token)
@@ -27,6 +27,10 @@ alter table public.results add column if not exists archetype text     check (ch
 alter table public.results add column if not exists answers   smallint[] check (
   answers is null or (array_ndims(answers) = 1 and cardinality(answers) = 36 and 0 <= all (answers) and 100 >= all (answers)));
 -- About you (optional, each item may be null) and part 2
+-- Keep the part 1 length check current (part 1 grew from 36 to 50 statements); rows saved earlier are kept as they are.
+alter table public.results drop constraint if exists results_answers_check;
+alter table public.results add constraint results_answers_check check (
+  answers is null or (array_ndims(answers) = 1 and cardinality(answers) = 50 and 0 <= all (answers) and 100 >= all (answers))) not valid;
 alter table public.results add column if not exists about     smallint[] check (
   about is null or (array_ndims(about) = 1 and cardinality(about) = 6 and 0 <= all (about) and 10 >= all (about)));
 alter table public.results add column if not exists answers2  smallint[] check (

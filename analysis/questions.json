@@ -1,6 +1,6 @@
 {
- "version": 4,
- "note": "Generated from index.html. Index order matches the answers, about and answers2 arrays stored in the database. Part 2 grew over time (42, then 61, then 63 answers); older rows are shorter.",
+ "version": 6,
+ "note": "Generated from index.html. Index order matches the answers, about and answers2 arrays stored in the database. Part 1 grew from 36 to 50 answers, part 2 from 42 to 61 to 63; older rows are shorter.",
  "axes": {
   "m": {
    "name": "Modern questions",
@@ -554,6 +554,132 @@
    "axis": "e",
    "key": -1,
    "text": "Usul al-fiqh, the theory of jurisprudence, is necessary to derive rulings correctly.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 36,
+   "id": "m13",
+   "axis": "m",
+   "key": -1,
+   "text": "You enjoy reading Muslim writers who aren't clerics, such as academics, doctors and journalists.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 37,
+   "id": "i13",
+   "axis": "i",
+   "key": 1,
+   "text": "You ask the Imams by name to intercede for you in your du'as.",
+   "type": "slider",
+   "scale": "frequency"
+  },
+  {
+   "index": 38,
+   "id": "e13",
+   "axis": "e",
+   "key": -1,
+   "text": "You enjoy debates and thought experiments about God and ethics.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 39,
+   "id": "m14",
+   "axis": "m",
+   "key": 1,
+   "text": "Old customs at weddings and funerals should be kept, even when they feel out of date.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 40,
+   "id": "i14",
+   "axis": "i",
+   "key": -1,
+   "text": "You find the Imams' sayings on ethics more moving than accounts of their miracles.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 41,
+   "id": "e14",
+   "axis": "e",
+   "key": 1,
+   "text": "You'd rather memorise a hadith than read a book of philosophy.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 42,
+   "id": "m15",
+   "axis": "m",
+   "key": -1,
+   "text": "A good Muharram talk should take on current issues such as mental health or gender.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 43,
+   "id": "i15",
+   "axis": "i",
+   "key": 1,
+   "text": "You'd travel a long way, at real cost, to visit an Imam's shrine.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 44,
+   "id": "e15",
+   "axis": "e",
+   "key": 1,
+   "text": "You read from hadith collections such as al-Kafi or Bihar al-Anwar.",
+   "type": "slider",
+   "scale": "frequency"
+  },
+  {
+   "index": 45,
+   "id": "m16",
+   "axis": "m",
+   "key": 1,
+   "text": "On a religious question, you'd sooner trust an elderly scholar than a young, university-educated one.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 46,
+   "id": "i16",
+   "axis": "i",
+   "key": -1,
+   "text": "You'd rather spend your time reciting the Quran and your own du'as than long ziyarat texts.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 47,
+   "id": "e16",
+   "axis": "e",
+   "key": -1,
+   "text": "You'd read a Western philosopher to help you think through a religious question.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 48,
+   "id": "m17",
+   "axis": "m",
+   "key": -1,
+   "text": "Ijtihad must take account of time and place, as Ayatollah Khomeini argued, even when that changes a ruling.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 49,
+   "id": "m18",
+   "axis": "m",
+   "key": 1,
+   "text": "The careful, text-centred ijtihad of the Najaf seminary is a better model than the more socially engaged approach of the Qum seminary.",
    "type": "slider",
    "scale": "agreement"
   }
