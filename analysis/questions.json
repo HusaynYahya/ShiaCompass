@@ -1365,7 +1365,7 @@
    "id": "rl_music",
    "axis": "rl",
    "key": 1,
-   "text": "When it comes to music, you're black and white: you avoid it completely.",
+   "text": "I am very black and white when it comes to not listening to music.",
    "type": "slider",
    "scale": "agreement"
   }
