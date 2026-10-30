@@ -56,7 +56,7 @@ def load(path):
         rows.append({
             "about": parse_array(r.get("about"), len(Q["about"])),
             "p1": parse_array(r.get("answers"), len(Q["part1"])) or next((pad(x, len(Q["part1"])) for x in (parse_array(r.get("answers"), n) for n in (50, 48, 36)) if x), None),
-            "p2": parse_array(r.get("answers2"), len(Q["part2"])) or next((pad(x, len(Q["part2"])) for x in (parse_array(r.get("answers2"), n) for n in (65, 64, 63, 62, 61, 42)) if x), None),
+            "p2": parse_array(r.get("answers2"), len(Q["part2"])) or next((pad(x, len(Q["part2"])) for x in (parse_array(r.get("answers2"), n) for n in (68, 65, 64, 63, 62, 61, 42)) if x), None),
         })
     return rows
 

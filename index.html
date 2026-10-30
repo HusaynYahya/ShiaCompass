@@ -1169,10 +1169,11 @@ const Q2LATER=[
  ["g",1,"Evading tax is acceptable when the government is one you see as taghuti."],
  ["p",-1,"Ideas from Jungian psychology, such as archetypes and the shadow self, can deepen how we understand Islamic spirituality."],
  [null,0,"You'd see a therapist or counsellor if you were struggling with your mental health.",0,"therapy"],
- ["sc",1,"Scientific discoveries, such as the expanding universe, can be found foretold in the Quran."]
+ ["sc",1,"Scientific discoveries, such as the expanding universe, can be found foretold in the Quran."],
+ ["c",-1,"Hijab is a journey: it's fine for a woman to grow into wearing it at her own pace."]
 ];
 const Q2_V1=42;   // length of part 2 before Q2MORE was added
-const Q2_OLD=[42,61,62,63,64,65];   // lengths of earlier versions of part 2
+const Q2_OLD=[42,61,62,63,64,65,68];   // lengths of earlier versions of part 2
 const Q2=(()=>{
   const order=["c","w","pl","u","r","s","p","g","a"], out=[], seen={};
   const rounds=Math.max(...order.map(a=>Q2BANK[a].length));
