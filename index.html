@@ -944,27 +944,65 @@ const INS={
 /* One-line versions of each result, for the share card. */
 const ARCHLINE={
  "The Guardian of Tradition":"Inherited law, an exalted view of the Imams, and the texts first.",
- "The Reformer":"Modern ethics, a minimal view of the Imams, and reason first.",
+ "The Devoted Traditionalist":"Traditional in law, with a high view of the Imams.",
  "The Philosopher-Mystic":"Traditional in law, with an exalted view of the Imams reached through reason and mysticism.",
+ "The Textual Traditionalist":"Traditional in law, and the texts first.",
+ "The Steady Traditionalist":"Inherited rulings first, moderate on everything else.",
+ "The Reasoning Jurist":"Traditional in law, with reason given a strong voice.",
  "The Early Traditionist":"Theology built from the reports, with a modest view of the Imams.",
- "The Critical Jurist":"Traditional in law, but sceptical of single-chain reports and the claims built on them.",
+ "The Sober Traditionalist":"Traditional in law, with a restrained view of the Imams.",
+ "The Critical Jurist":"Traditional in law, but sceptical of single-chain reports.",
+ "The Keeper of the Narrations":"A high view of the Imams, drawn straight from the narrations.",
+ "The Devotee":"A high view of the Imams at the centre of faith.",
+ "The Gnostic":"A mystical view of the Imams, reached through reason and 'irfan.",
+ "The Text-First Believer":"The texts before human reasoning.",
+ "The Bridge":"Near the centre on all three spectrums, holding the tensions together.",
+ "The Thinking Believer":"Reason given a strong role in understanding faith.",
+ "The Plain Reader":"The texts read plainly, with a modest view of the Imams.",
+ "The Sober Believer":"A restrained view of the Imams, moderate on the rest.",
+ "The Rational Theologian":"Reason first, with a minimal view of the Imams.",
  "The Devotional Reformer":"Reformist on society, while reading the texts about the Imams at face value.",
+ "The Devoted Modernist":"Modern on law and society, with a high view of the Imams.",
  "The Mystical Modernist":"Rethinks law and society through reason, with a high view of the Imams.",
+ "The Scriptural Reformer":"Reform argued from the texts.",
+ "The Social Reformer":"Open to rethinking rulings, moderate on the rest.",
+ "The Rational Modernist":"Reason and modern ethics lead the way.",
  "The Quranic Reformer":"Quran-first reform that sets aside much of the hadith.",
- "The Mainstream Usuli":"Scriptural in law, rational in theology, with a moderate to high view of the Imams.",
- "The Bridge":"Near the centre on all three spectrums, holding the tensions together."
+ "The Minimalist Reformer":"Reformist, with a minimal view of the Imams.",
+ "The Reformer":"Modern ethics, a minimal view of the Imams, and reason first.",
+ "The Mainstream Usuli":"Scriptural in law, rational in theology, with a moderate to high view of the Imams."
 };
+/* 27 titles: each spectrum is read as one pole, the middle (|score| <= 0.2) or the other pole. Key order m, i, e. */
 const ARCH={
  "+++":["The Guardian of Tradition","Inherited law, an exalted Imamology and a text-first method. This is the tradition pole, where Akhbari and devotional schools gather."],
- "---":["The Reformer","Modern ethics, a minimal Imamology and reason first. This is the reform pole, the 'Neo-Mu'tazili' corner Esmail describes."],
+ "++0":["The Devoted Traditionalist","Traditional on law and society, with a high view of the Imams' station, weighing reason and the texts together."],
  "++-":["The Philosopher-Mystic","Traditional in law, with an exalted Imamology argued for through reason and mysticism, in the family of Mulla Sadra, Tabataba'i and Javadi Amoli."],
+ "+0+":["The Textual Traditionalist","Traditional on law and society and guided first by the texts, with a moderate view of the Imams' powers."],
+ "+00":["The Steady Traditionalist","Holds to inherited rulings on modern questions, while staying in the middle on the Imams and on reason versus the texts."],
+ "+0-":["The Reasoning Jurist","Traditional in law, with reason given a strong role in theology and method, and a moderate view of the Imams."],
  "+-+":["The Early Traditionist","Theology built from the reports, yet a modest view of the Imams by later standards, like the 10th-century scholars of Qum."],
+ "+-0":["The Sober Traditionalist","Traditional in law and society, with a restrained view of the Imams' powers and a balance of reason and the texts."],
  "+--":["The Critical Jurist","Traditional in law, but sceptical of single-chain reports and the claims built on them, like strict hadith critics such as Mohseni."],
+ "0++":["The Keeper of the Narrations","Middle of the road on modern questions, with a high view of the Imams drawn straight from the narrations."],
+ "0+0":["The Devotee","Love for the Ahl al-Bayt and a high view of their station sit at the centre, with moderate views on law and method."],
+ "0+-":["The Gnostic","A high, mystical view of the Imams reached through reason and 'irfan, with moderate views on modern questions."],
+ "00+":["The Text-First Believer","Moderate on modern questions and on the Imams, but clear that the texts come before human reasoning."],
+ "000":["The Bridge","You sit near the centre on all three spectrums, holding the tensions together rather than choosing a camp."],
+ "00-":["The Thinking Believer","Moderate on modern questions and on the Imams, with reason given a strong role in understanding faith."],
+ "0-+":["The Plain Reader","Reads the texts plainly, with a modest view of the Imams' powers and moderate views on modern questions."],
+ "0-0":["The Sober Believer","A restrained view of the Imams' powers, with moderate views on law and on reason versus the texts."],
+ "0--":["The Rational Theologian","Reason first and a minimal view of the Imams' powers, with moderate views on how far law should change."],
  "-++":["The Devotional Reformer","Reformist on society while reading the texts about the Imams at face value. A rare combination."],
+ "-+0":["The Devoted Modernist","Open to rethinking law and society in modern terms, while keeping a high view of the Imams."],
  "-+-":["The Mystical Modernist","Uses reason to rethink law and society while keeping a high, often mystical, view of the Imams."],
+ "-0+":["The Scriptural Reformer","Wants law and society to change, and argues for it from the texts rather than from philosophy."],
+ "-00":["The Social Reformer","Open to rethinking rulings on modern questions, with moderate views on the Imams and on method."],
+ "-0-":["The Rational Modernist","Reason and modern ethics lead the way on law and society, with a moderate view of the Imams."],
  "--+":["The Quranic Reformer","Quran-first reform that sets aside much of the hadith corpus, including reports about the Imams' powers, as Burqa'i did."],
+ "--0":["The Minimalist Reformer","Reformist on law and society, with a minimal view of the Imams' powers and a balance of reason and the texts."],
+ "---":["The Reformer","Modern ethics, a minimal Imamology and reason first. This is the reform pole, the 'Neo-Mu'tazili' corner Esmail describes."],
  main:["The Mainstream Usuli","Scriptural in law, rationalist in theology, with a moderate-to-high view of the Imams. This is where most maraji' and seminary teaching sit."],
- mid:["The Bridge","You sit near the centre on all three spectrums, holding the tensions together rather than choosing a camp."]
+ mid:["The Bridge", "You sit near the centre on all three spectrums, holding the tensions together rather than choosing a camp."]
 };
 
 /* ================= PART 2: SOCIETY AND POLITICS ================= */
@@ -1015,22 +1053,41 @@ const K2=["p","a","pl","u","c","r","w","s","g","f","kb","mh","io","rl","mj","rb"
 const MAIN2=["w","c","pl","p"];
 /* Part 2 result names, from social life (c), religion and politics (w) and other religions (pl): + = conservative, activist, exclusivist.
    [name, description, one line for the card] */
+/* 27 titles: social life, religion and politics, other religions, each read as one pole, the middle (|score| <= 1/3, as on the bars) or the other pole. */
 const ARCH2={
- "+++":["The Revolutionary Guardian","Strict social norms, a leading political role for religion and its scholars, and a firm belief in one true path.","Strict norms, religion leading politics, and one true path."],
- "++-":["The Engaged Traditionalist","Traditional in family and social life and active in public life, while open to the good in other faiths.","Traditional at home, active in public life, open to other faiths."],
- "+-+":["The Quiet Guardian","Strict social norms and a firm sense of one true path, with the clergy kept out of running politics: the quietist tradition.","Strict norms, one true path, and politics left to others."],
- "+--":["The Traditional Universalist","Traditional in how life is lived and wary of religious politics, while seeing truth and sincerity across the great faiths.","Traditional in life, wary of politics, open to truth in other faiths."],
- "-++":["The Revolutionary Reformer","Personal freedom in social life, with religion as a force for political change, and a firm belief in one true path.","Personal freedom, religion as a force for change, one true path."],
- "-+-":["The Progressive Activist","Personal freedom, religion active in public life and justice, and open hands towards other faiths.","Personal freedom, religion active in public life, open to other faiths."],
- "--+":["The Private Believer","Personal freedom, religion kept apart from running politics, and a firm private conviction that one path is true.","Personal freedom, politics kept apart, one true path."],
- "---":["The Civil Pluralist","Personal freedom, a civil state that leaves faith to free choice, and truth found by sincere people across faiths.","Personal freedom, a civil state, truth across faiths."],
- mid:["The Balancer","Near the middle on social life, politics and other religions, weighing each case rather than choosing a camp.","Near the middle on society, politics and other faiths."]
+ "+++":["The Revolutionary Guardian", "Strict social norms, a leading political role for religion and its scholars, and a firm belief in one true path.", "Strict norms, religion leading politics, and one true path."],
+ "++0":["The Engaged Guardian", "Strict social norms and religion active in public life, while holding a middle view on other faiths.", "Strict norms and religion active in public life."],
+ "++-":["The Engaged Traditionalist", "Traditional in family and social life and active in public life, while open to the good in other faiths.", "Traditional at home, active in public life, open to other faiths."],
+ "+0+":["The Firm Traditionalist", "Strict social norms and a firm belief in one true path, with a middle view on religion's role in politics.", "Strict norms and one true path."],
+ "+00":["The Family Traditionalist", "Traditional norms in family and social life, with middle views on politics and other faiths.", "Traditional norms at home, moderate on the rest."],
+ "+0-":["The Open Traditionalist", "Traditional in how life is lived, while recognising truth and sincerity in other faiths.", "Traditional in life, open to other faiths."],
+ "+-+":["The Quiet Guardian", "Strict social norms and a firm sense of one true path, with the clergy kept out of running politics: the quietist tradition.", "Strict norms, one true path, and politics left to others."],
+ "+-0":["The Quiet Traditionalist", "Traditional in social life, with religion kept out of running politics and a middle view on other faiths.", "Traditional in life, quietist in politics."],
+ "+--":["The Traditional Universalist", "Traditional in how life is lived and wary of religious politics, while seeing truth and sincerity across the great faiths.", "Traditional in life, wary of politics, open to truth in other faiths."],
+ "0++":["The Mobiliser", "Religion as a force in politics and a firm belief in one true path, with middle views on social life.", "Religion as a political force, and one true path."],
+ "0+0":["The Engaged Believer", "Religion active in public life and politics, with middle views on social norms and other faiths.", "Religion active in public life."],
+ "0+-":["The Interfaith Activist", "Religion active in public life and justice, alongside openness to truth in other faiths.", "Religion active in public life, open to other faiths."],
+ "00+":["The One-Path Believer", "A firm conviction that one religious path is fully true, with middle views on social life and politics.", "A firm belief in one true path."],
+ "000":["The Balancer", "Near the middle on social life, politics and other religions, weighing each case rather than choosing a camp.", "Near the middle on society, politics and other faiths."],
+ "00-":["The Open-Hearted Believer", "Sees truth and sincerity across faiths, with middle views on social life and politics.", "Truth and sincerity found across faiths."],
+ "0-+":["The Devout Quietist", "Religion kept out of running politics, with a firm belief in one true path and middle views on social life.", "Quietist in politics, with one true path."],
+ "0-0":["The Quietist", "Religion and the clergy kept out of running politics, with middle views on social life and other faiths.", "Religion kept out of running politics."],
+ "0--":["The Quiet Universalist", "Wary of religious politics and open to truth in other faiths, with middle views on social life.", "Wary of religious politics, open to other faiths."],
+ "-++":["The Revolutionary Reformer", "Personal freedom in social life, with religion as a force for political change, and a firm belief in one true path.", "Personal freedom, religion as a force for change, one true path."],
+ "-+0":["The Reforming Activist", "Personal freedom in social life and religion active in public life, with a middle view on other faiths.", "Personal freedom, with religion active in public life."],
+ "-+-":["The Progressive Activist", "Personal freedom, religion active in public life and justice, and open hands towards other faiths.", "Personal freedom, religion active in public life, open to other faiths."],
+ "-0+":["The Modern Believer", "Personal freedom in social life alongside a firm belief in one true path, with a middle view on politics.", "Personal freedom, with one true path."],
+ "-00":["The Liberal Moderate", "Personal freedom in dress, mixing and marriage, with middle views on politics and other faiths.", "Personal freedom, moderate on the rest."],
+ "-0-":["The Liberal Pluralist", "Personal freedom in social life and truth found across faiths, with a middle view on politics.", "Personal freedom, and truth across faiths."],
+ "--+":["The Private Believer", "Personal freedom, religion kept apart from running politics, and a firm private conviction that one path is true.", "Personal freedom, politics kept apart, one true path."],
+ "--0":["The Civil Believer", "Personal freedom and religion kept out of running the state, with a middle view on other faiths.", "Personal freedom, and a civil state."],
+ "---":["The Civil Pluralist", "Personal freedom, a civil state that leaves faith to free choice, and truth found by sincere people across faiths.", "Personal freedom, a civil state, truth across faiths."],
+ mid:["The Balancer", "Near the middle on social life, politics and other religions, weighing each case rather than choosing a camp.", "Near the middle on society, politics and other faiths."]
 };
 function archetype2(u){
   const v=[u.c,u.w,u.pl];
   if(v.some(x=>x===undefined)) return ARCH2.mid;
-  if(v.every(x=>Math.abs(x)<.2)) return ARCH2.mid;
-  return ARCH2[v.map(x=>x>=0?"+":"-").join("")];
+  return ARCH2[v.map(x=>x>1/3?"+":x<-1/3?"-":"0").join("")];
 }   // the four headline dimensions: political, liberal/conservative, pluralist, philosophy
 const GROUPS2=[["Faith",["f","kb","mh","u","pl"]],["Thought",["p","a","mj","sc"]],["Practice",["io","rl","r","rb"]],["Society",["c","id","g"]],["Politics",["w","s"]]];
 /* About you: asked once, before whichever part is taken first. Unscored; every one can be skipped. */
@@ -1591,8 +1648,7 @@ const dist=(a,b)=>Math.hypot(a.m-b.m,a.i-b.i,a.e-b.e);
 const match=d=>Math.max(0,Math.round(100*(1-d/2.6)));
 function archetype(u){
   if(dist(u,MAIN)<.35) return ARCH.main;
-  if([u.m,u.i,u.e].every(v=>Math.abs(v)<.2)) return ARCH.mid;
-  return ARCH[(u.m>=0?"+":"-")+(u.i>=0?"+":"-")+(u.e>=0?"+":"-")];
+  return ARCH[[u.m,u.i,u.e].map(v=>v>.2?"+":v<-.2?"-":"0").join("")];
 }
 const row=o=>`<button class="arow" data-sch="${o.s.id}"><span class="nm">${o.s.n}</span><span class="sub"><i class="dot" style="background:var(--r-${o.s.reg})"></i>${REG[o.s.reg].n} · ${o.s.city} · ${o.s.d}</span><span class="pct"><span>${match(o.d)}%</span><em><i style="--w:${match(o.d)}%"></i></em></span></button>`;
 function dist2(id,u){ const P=POL[id], ks=["c","w","pl"].concat(P.p===null?[]:["p"]); return Math.sqrt(ks.reduce((t,k)=>t+(P[k]-u[k])**2,0)*3/ks.length); }
