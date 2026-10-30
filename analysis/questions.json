@@ -238,7 +238,7 @@
    "id": "m1",
    "axis": "m",
    "key": 1,
-   "text": "Rulings set out by the classical jurists centuries ago should still be followed exactly as written today, unless a living marja' rules otherwise.",
+   "text": "We should stay as close as possible to the rulings in the classical books of fiqh.",
    "type": "slider",
    "scale": "agreement"
   },
@@ -310,7 +310,7 @@
    "id": "e3",
    "axis": "e",
    "key": 1,
-   "text": "A single reliable narrator's report is enough to establish a point of belief, not only a legal ruling.",
+   "text": "A hadith with one reliable chain of narrators is enough to base a belief on, such as a detail about the afterlife, not just a legal ruling.",
    "type": "slider",
    "scale": "agreement"
   },
