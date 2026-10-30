@@ -357,6 +357,18 @@ input.ag::-moz-range-thumb{width:22px;height:22px;background:var(--saffron);bord
 .rgrp li span{font-size:12.5px;color:var(--muted);white-space:nowrap}
 .shown .list button{border:0;min-height:30px;padding:0;background:none}
 @media (max-width:600px){.controls{gap:10px}.csel{flex:1 1 100%}.csel select{flex:1;width:100%;min-width:0;max-width:none}}
+/* part 2: four main leanings, then the detailed profile */
+.axg.ax4{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 32px}
+@media (max-width:760px){.ax4{grid-template-columns:minmax(0,1fr)}}
+.p2more{border:2px solid var(--text);border-radius:14px;background:#fff}
+.p2more summary{list-style:none;cursor:pointer;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;padding:16px 20px}
+.p2more summary::-webkit-details-marker{display:none}
+.p2more summary span{font-family:var(--f-display);font-size:22px;font-weight:800;letter-spacing:-.01em}
+.p2more summary small{font-size:15px;font-weight:600;color:var(--teal-d);border-bottom:2px dotted var(--teal)}
+.p2more[open] summary small{visibility:hidden}
+.p2more[open]{padding-bottom:16px}
+.p2more > .note,.p2more > .ax12{margin:0 16px}
+.p2more > .note{margin-bottom:12px}
 /* share card */
 .sharecard{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,380px);gap:24px 40px;align-items:start;background:#fff;border:2px solid var(--text);border-radius:14px;padding:clamp(20px,3vw,32px)}
 @media (max-width:860px){.sharecard{grid-template-columns:minmax(0,1fr)}}
@@ -898,6 +910,7 @@ Object.assign(AX2,{
     b:["You see science and scripture as answering different questions.","You see some overlap between science and scripture, but don't press it.","You see science and scripture as speaking to the same world."]}
 });
 const K2=["p","a","pl","u","c","r","w","s","g","f","kb","mh","io","rl","mj","rb","id","sc"];
+const MAIN2=["w","c","pl","p"];   // the four headline dimensions: political, liberal/conservative, pluralist, philosophy
 const GROUPS2=[["Faith",["f","kb","mh","u","pl"]],["Thought",["p","a","mj","sc"]],["Practice",["io","rl","r","rb"]],["Society",["c","id","g"]],["Politics",["w","s"]]];
 /* About you: asked once, before whichever part is taken first. Unscored; every one can be skipped. */
 const ABOUT=[
@@ -1245,8 +1258,8 @@ async function loadComparison(){
     html+=`<h3>Among the ${sum.n1} people who have shared part 1</h3><ul class="cres">${rows}</ul><p class="muted" style="font-size:14px">The dark tick on each spectrum above marks the community average.</p>`;
   }
   if(ok2){
-    K2.forEach(a=>{ const avg=Number(sum.avg2[a]), bar=document.querySelector(`.axr[data-ax2="${a}"] .pbar`);
-      if(bar&&!isNaN(avg)){ const m=document.createElement("span"); m.className="cavg2"; m.style.left=((avg+1)*50)+"%"; m.title="Community average"; bar.appendChild(m); } });
+    K2.forEach(a=>{ const avg=Number(sum.avg2[a]); if(isNaN(avg)) return;
+      document.querySelectorAll(`.axr[data-ax2="${a}"] .pbar`).forEach(bar=>{ const m=document.createElement("span"); m.className="cavg2"; m.style.left=((avg+1)*50)+"%"; m.title="Community average"; bar.appendChild(m); }); });
     html+=`<p class="muted" style="font-size:14px">On part 2, the dark tick on each bar marks the average of the ${sum.n2} people who have shared it.</p>`;
   }
   out.innerHTML=html;
@@ -1413,8 +1426,8 @@ function part1HTML(){
 function part2HTML(){
   const u=user2;
   const missing=K2.filter(a=>u[a]===undefined);
-  const strong=K2.filter(a=>u[a]!==undefined).map(a=>({a,v:u[a]})).filter(o=>Math.abs(o.v)>=.2).sort((x,y)=>Math.abs(y.v)-Math.abs(x.v)).slice(0,3);
-  const lead=strong.length?`Your strongest leanings: ${strong.map(o=>`<b>${o.v<0?AX2[o.a].neg:AX2[o.a].pos}</b> on ${/^Sunni/.test(AX2[o.a].name)?AX2[o.a].name:AX2[o.a].name[0].toLowerCase()+AX2[o.a].name.slice(1)} (${o.v<0?100-pct2(o.v):pct2(o.v)}%)`).join(", ")}.`:"You sit near the middle on every axis.";
+  const strong=MAIN2.filter(a=>u[a]!==undefined).map(a=>({a,v:u[a]})).filter(o=>Math.abs(o.v)>=.2).sort((x,y)=>Math.abs(y.v)-Math.abs(x.v)).slice(0,3);
+  const lead=strong.length?`Your strongest leanings: ${strong.map(o=>`<b>${o.v<0?AX2[o.a].neg:AX2[o.a].pos}</b> on ${/^Sunni/.test(AX2[o.a].name)?AX2[o.a].name:AX2[o.a].name[0].toLowerCase()+AX2[o.a].name.slice(1)} (${o.v<0?100-pct2(o.v):pct2(o.v)}%)`).join(", ")}.`:"You sit near the middle on all four.";
   const axRow=a=>{const A=AX2[a], v=u[a], r=pct2(v);
     if(v===undefined) return `<div class="axr" data-ax2="${a}"><span class="an">${A.name}</span><p class="muted">Not answered yet: these questions were added after you took part 2.</p></div>`;
     return `<div class="axr" data-ax2="${a}"><span class="an">${A.name}</span>
@@ -1425,10 +1438,14 @@ function part2HTML(){
   return `<section class="p2 theme2" id="q2res">
     <div class="p2head"><span class="eyebrow">Your result · part 2</span><h2>Society, politics and practice</h2>
       <p class="sum">${lead}</p>
-      <p class="note">Each bar splits 100% between the two poles: 50/50 is the middle. Based on your answers to ${Q2.filter(q=>q.a).length} statements; the six questions about your habits aren't scored.</p>
-      ${missing.length?`<p class="note"><b>New:</b> ${missing.length} axes were added after you took part 2. <button class="btn small" data-go="test2" style="margin-left:6px">Answer the new questions →</button></p>`:""}
+      <p class="note">Your four main leanings: politics, social life, other religions and philosophy. Each bar splits 100% between the two poles, and 50/50 is the middle. Your other part 2 answers make up your detailed profile.</p>
       <div class="cta"><button class="btn" id="toCube2">See your pin on the society and politics compass →</button><button class="btn ghost" id="retake2">Retake part 2</button></div></div>
-    <div class="ax12">${GROUPS2.map(([g,ks])=>`<div class="axg"><span class="eyebrow">${g}</span>${ks.map(axRow).join("")}</div>`).join("")}</div>
+    <div class="axg ax4">${MAIN2.map(axRow).join("")}</div>
+    <details class="p2more" id="p2more">
+      <summary><span>Detailed profile</span><small>All ${K2.length} axes, from faith and doubt to money and riba →</small></summary>
+      ${missing.length?`<p class="note"><b>New:</b> ${missing.length} axes were added after you took part 2. <button class="btn small" data-go="test2" style="margin-left:6px">Answer the new questions →</button></p>`:""}
+      <div class="ax12">${GROUPS2.map(([g,ks])=>`<div class="axg"><span class="eyebrow">${g}</span>${ks.map(axRow).join("")}</div>`).join("")}</div>
+    </details>
     <section class="align">
       <span class="eyebrow">On these questions</span>
       <h2>Scholars closest to you</h2>
@@ -1461,7 +1478,7 @@ async function drawCard(){
   const near1=user?S.map(s=>({s,d:dist(s,user)})).sort((a,b)=>a.d-b.d).slice(0,user2?3:5):[];
   const near2=user2?Object.keys(POL).map(id=>({s:SID[id],d:dist2(id,user2)})).sort((a,b)=>a.d-b.d).slice(0,3):[];
   const photos={}; await Promise.all([...near1,...near2].map(async o=>{photos[o.s.id]=await loadPhoto(o.s.id);}));
-  const top2=user2?K2.filter(a=>user2[a]!==undefined).sort((a,b)=>Math.abs(user2[b])-Math.abs(user2[a])).slice(0,4):[];   // the four strongest leanings
+  const top2=user2?MAIN2.filter(a=>user2[a]!==undefined):[];   // the four main dimensions
   const rows2=Math.ceil(top2.length/2);
   const H=150+(user?150+3*92+60+near1.length*92:0)+(user2?90+rows2*92+60+near2.length*92:0)+(user&&user2?40:0)+90;
   const cv=document.createElement("canvas"); cv.width=W; cv.height=H; const g=cv.getContext("2d");
@@ -1510,7 +1527,7 @@ async function drawCard(){
   }
   if(user2){
     if(user){ y+=10; g.fillStyle="#B9C7D1"; g.fillRect(PAD,y,W-2*PAD,3); y+=30; }
-    txt("PART 2 · STRONGEST LEANINGS",PAD,y,`700 22px ${F2}`,"#6E2B67"); y+=50;
+    txt("PART 2 · SOCIETY AND POLITICS",PAD,y,`700 22px ${F2}`,"#6E2B67"); y+=50;
     const cw=(W-2*PAD-48)/2;
     top2.forEach((a,k)=>{ const col=k%2, row=Math.floor(k/2); twoPole(PAD+col*(cw+48),cw,y+row*92,AX2[a].neg,AX2[a].pos,user2[a],"#1E7A55","#D8613A",AX2[a].name); });
     y+=rows2*92+20; txt("CLOSEST ON THESE QUESTIONS",PAD,y,`700 22px ${F2}`,"#6E2B67"); y+=22;
@@ -1550,7 +1567,7 @@ function renderInsights(){
     ${user2?part2HTML():ctaHTML(2)}
     <section class="sharecard" aria-label="Share your result">
       <div class="shead"><span class="eyebrow">Share</span><h2>Your result card</h2>
-        <p>An image of where you sit on part 1's three spectrums and your four strongest part 2 leanings, with the scholars closest to you. Post it or send it to friends.</p>
+        <p>An image of where you sit on part 1's three spectrums and part 2's four main leanings, with the scholars closest to you. Post it or send it to friends.</p>
         <div class="cta"><button class="btn" id="dlCard" type="button">Download image</button><button class="btn ghost" id="shareCard" type="button" hidden>Share…</button></div>
         <p class="cmsg" id="cardMsg" role="status"></p><p class="muted" style="font-size:14px">On a phone, you can also press and hold the image to save it.</p></div>
       <img id="cardImg" alt="Your Shia Compass result card">
