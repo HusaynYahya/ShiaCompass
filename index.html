@@ -1584,7 +1584,7 @@ function renderTest(){
   $("tTitle").textContent=onAbout?"First, a little about you":part===1?"How much do you agree?":"Where do you stand?";
   $("tNote").textContent=onAbout?"These aren't scored, and you can skip any of them. They're asked only once, and are recorded anonymously with your answers to help find patterns."
     :part===1?""
-    :"Each slider starts in the middle. A few questions about your habits and experience aren't scored: they help find patterns.";
+    :"";
   $("tProg").innerHTML=onAbout?ABOUT.map((_,j)=>`<i class="${about[j]!==null?"on":""} page"></i>`).join("")
     :curOrd().map((j,k)=>`<i class="${A[j]!==null?"on":""} ${k>=start&&k<start+PER?"page":""}"></i>`).join("");
   const items=curItems();
