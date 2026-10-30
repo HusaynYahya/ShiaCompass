@@ -1685,7 +1685,7 @@ function part1HTML(){
         <p class="sum">${adesc}</p>
         ${gap1()>=0?`<p class="note" style="color:#fff"><b>New:</b> part 1 has ${ORD1.filter(j=>answers[j]===null).length} more question${ORD1.filter(j=>answers[j]===null).length>1?"s":""} since you took it. <button class="btn small" data-go="test" style="margin-left:6px">Answer ${ORD1.filter(j=>answers[j]===null).length>1?"them":"it"} →</button></p>`:""}
         <p class="note">Based on your ${ORD1.filter(j=>answers[j]!==null).length} answers. Esmail's own conclusion is that no framework has every answer, and that we should settle on a coherent mix held with epistemic humility. Read the case from the other side under each spectrum.</p>
-        <div class="cta"><button class="btn" id="toCube">See your pin in the 3D compass →</button><button class="btn ghost" id="retake">Retake part 1</button></div></div>
+        <div class="cta"><button class="btn" id="toCube">See your pin on the 3D compass →</button><button class="btn ghost" id="retake">Retake part 1</button></div></div>
       <div class="pinbox"><span class="eyebrow">Your coordinates</span>
         <div class="mini">${["m","i","e"].map(a=>`<div class="mbar"><div class="ends"><span>${AX[a].neg}</span><span class="mono" style="color:var(--rubric)">${fmt(u[a])}</span><span>${AX[a].pos}</span></div><div class="tr"><b style="left:${(u[a]+1)*50}%;background:var(--rubric)"></b></div></div>`).join("")}</div>
         <span class="eyebrow" style="margin-top:6px">Closest scholar</span>
