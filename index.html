@@ -502,7 +502,7 @@ body.theme2 #tile .t1{fill:#1E7A55} body.theme2 #tile .t2{fill:#6E2B67} body.the
         <span class="eyebrow" id="tPart">Part 1 of 6</span>
         <h2 id="tTitle">How much do you agree?</h2>
         <div class="prog" id="tProg" aria-hidden="true"></div>
-        <div class="trow"><span id="tCount">0 of 49 answered</span><span id="tNote">Each slider starts at Neutral. Move it to show how far you agree or disagree.</span></div>
+        <div class="trow"><span id="tCount">0 of 49 answered</span><span id="tNote"></span></div>
         <div class="treset"><button class="btn ghost small danger" id="tReset" type="button" hidden>Start this part again</button></div>
       </div>
       <div class="recnote" id="recTest" hidden></div>
@@ -1583,7 +1583,7 @@ function renderTest(){
   $("tPart").textContent=onAbout?"Before you start · About you":`Part ${part} · ${part===1?"Belief and method":"Society, politics and practice"} · page ${curPage()+1} of ${curPages()}`;
   $("tTitle").textContent=onAbout?"First, a little about you":part===1?"How much do you agree?":"Where do you stand?";
   $("tNote").textContent=onAbout?"These aren't scored, and you can skip any of them. They're asked only once, and are recorded anonymously with your answers to help find patterns."
-    :part===1?"Each slider starts in the middle. Most ask how far you agree; a few ask how often something is true for you."
+    :part===1?""
     :"Each slider starts in the middle. A few questions about your habits and experience aren't scored: they help find patterns.";
   $("tProg").innerHTML=onAbout?ABOUT.map((_,j)=>`<i class="${about[j]!==null?"on":""} page"></i>`).join("")
     :curOrd().map((j,k)=>`<i class="${A[j]!==null?"on":""} ${k>=start&&k<start+PER?"page":""}"></i>`).join("");
