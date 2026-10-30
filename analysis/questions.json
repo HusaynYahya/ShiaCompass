@@ -1,6 +1,6 @@
 {
  "version": 7,
- "note": "Generated from index.html. Index order matches the answers, about and answers2 arrays stored in the database. Part 1 grew from 36 to 50 to 51 stored answers; on 30 Oct 2026 questions 20 and 42 were retired (still stored as null, not asked or scored) and a new Karbala question was added at index 50, shown to people as question 20. Part 2 grew from 42 to 61 to 63 to 64 to 65 to 68 to 69; question 59 became unscored on 30 Oct 2026 when it was reworded; older rows are shorter.",
+ "note": "Generated from index.html. Index order matches the answers, about and answers2 arrays stored in the database. Part 1 grew from 36 to 50 to 51 stored answers; on 30 Oct 2026 questions 20 and 42 were retired (still stored as null, not asked or scored) and a new Karbala question was added at index 50, shown to people as question 20. Part 2 grew from 42 to 61 to 63 to 64 to 65 to 68 to 69 to 70; question 59 became unscored on 30 Oct 2026 when it was reworded; older rows are shorter.",
  "axes": {
   "m": {
    "name": "Modern questions",
@@ -1345,6 +1345,15 @@
    "axis": "c",
    "key": -1,
    "text": "Hijab is a journey: it's fine for a woman to grow into wearing it at her own pace.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 69,
+   "id": "dawahbro",
+   "axis": null,
+   "key": 0,
+   "text": "'Dawah bro' culture, with its online debates and confrontational street preaching, goes against the spirit of Islam.",
    "type": "slider",
    "scale": "agreement"
   }

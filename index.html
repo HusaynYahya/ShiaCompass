@@ -1170,10 +1170,11 @@ const Q2LATER=[
  ["p",-1,"Ideas from Jungian psychology, such as archetypes and the shadow self, can deepen how we understand Islamic spirituality."],
  [null,0,"You'd see a therapist or counsellor if you were struggling with your mental health.",0,"therapy"],
  ["sc",1,"Scientific discoveries, such as the expanding universe, can be found foretold in the Quran."],
- ["c",-1,"Hijab is a journey: it's fine for a woman to grow into wearing it at her own pace."]
+ ["c",-1,"Hijab is a journey: it's fine for a woman to grow into wearing it at her own pace."],
+ [null,0,"'Dawah bro' culture, with its online debates and confrontational street preaching, goes against the spirit of Islam.",0,"dawahbro"]
 ];
 const Q2_V1=42;   // length of part 2 before Q2MORE was added
-const Q2_OLD=[42,61,62,63,64,65,68];   // lengths of earlier versions of part 2
+const Q2_OLD=[42,61,62,63,64,65,68,69];   // lengths of earlier versions of part 2
 const Q2=(()=>{
   const order=["c","w","pl","u","r","s","p","g","a"], out=[], seen={};
   const rounds=Math.max(...order.map(a=>Q2BANK[a].length));
@@ -2195,6 +2196,7 @@ const GL=[
  {k:"taghut",t:"Taghut",ar:"طاغوت",v:["taghuti","taghut"],d:"A tyrant or false authority that people obey in place of God. 'Taghuti regime' is used, especially in revolutionary Shia language, for governments seen as illegitimate and oppressive."},
  {k:"wafat",t:"Wafat",ar:"وفاة",v:["wafat"],d:"The anniversary of the death or martyrdom of the Prophet, Lady Fatima or one of the Imams, marked with majalis."},
  {k:"jung",t:"Jungian psychology",ar:"",v:["Jungian psychology"],d:"The school of the Swiss psychiatrist Carl Jung (d. 1961). It explores the unconscious through 'archetypes', images shared across cultures such as the wise elder, and the 'shadow', the parts of ourselves we hide."},
+ {k:"dawah",t:"Dawah",ar:"دعوة",v:["dawah"],d:"Inviting people to Islam. 'Dawah bro' is a nickname for a style of online and street preaching built around debates with other faiths and with other Muslims."},
  {k:"bidah",t:"Bid'ah",ar:"بدعة",v:["bid'ah"],d:"'Innovation': a practice added to religion with no basis in the Quran or the teaching of the Prophet and the Imams. Which practices count as bid'ah is often disputed."},
  {k:"fatimiyya",t:"Fatimiyya",ar:"الفاطمية",v:["Fatimiyya"],d:"The days of mourning for Lady Fatima, the Prophet's daughter, commemorating her death."},
  {k:"fiqh",t:"Fiqh",ar:"فقه",v:["fiqh"],d:"Islamic law as worked out by jurists: the rulings on worship, family, trade and so on."},
