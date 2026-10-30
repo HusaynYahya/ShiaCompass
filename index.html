@@ -466,12 +466,12 @@ body.theme2 #tile .t1{fill:#1E7A55} body.theme2 #tile .t2{fill:#6E2B67} body.the
         <span class="eyebrow">Built on Zoheir Esmail's three spectrums</span>
         <h1>Take the <em>Shia Compass</em> Test</h1>
         <p class="sub">See where you align with traditional and contemporary scholars.</p>
-        <div class="facts"><span><b>2</b> parts, about <b>8</b> minutes each</span><span><b>21</b> axes</span><span><b>2</b> 3D compasses</span><span><b>89</b> scholars and figures, 10th century to today</span></div>
+        <div class="facts"><span><b>2</b> parts, about <b>10–15</b> minutes each</span><span><b>21</b> axes</span><span><b>2</b> 3D compasses</span><span><b>89</b> scholars and figures, 10th century to today</span></div>
         <div class="cta">
           <button class="btn" data-go="test">Start part 1 →</button>
+          <button class="btn ghost" data-go="test2">Start part 2 →</button>
           <button class="btn ghost" data-go="compass">Explore the compass first</button>
         </div>
-        <div class="recnote" id="recHome" hidden></div>
         <div id="resume" class="resume" hidden></div>
         <div class="spectra" aria-label="The three spectrums">
           <div class="spec"><span class="num" aria-hidden="true">١</span><h3>Modernist ↔ Traditionalist</h3><p>How far modern questions about women, minorities and rights should reshape religious conclusions.</p></div>
@@ -488,6 +488,7 @@ body.theme2 #tile .t1{fill:#1E7A55} body.theme2 #tile .t2{fill:#6E2B67} body.the
             <p id="restoreMsg" class="rmsg" role="status"></p>
           </form>
         </details>
+        <div class="recnote" id="recHome" hidden></div>
       </div>
       <svg id="hero" viewBox="0 0 520 520" aria-hidden="true"></svg>
     </div>
@@ -1171,10 +1172,11 @@ const Q2LATER=[
  [null,0,"You'd see a therapist or counsellor if you were struggling with your mental health.",0,"therapy"],
  ["sc",1,"Scientific discoveries, such as the expanding universe, can be found foretold in the Quran."],
  ["c",-1,"Hijab is a journey: it's fine for a woman to grow into wearing it at her own pace."],
- [null,0,"'Dawah bro' culture, with its online debates and confrontational street preaching, goes against the spirit of Islam.",0,"dawahbro"]
+ [null,0,"'Dawah bro' culture, with its online debates and confrontational street preaching, goes against the spirit of Islam.",0,"dawahbro"],
+ ["rl",1,"When it comes to music, you're black and white: you avoid it completely."]
 ];
 const Q2_V1=42;   // length of part 2 before Q2MORE was added
-const Q2_OLD=[42,61,62,63,64,65,68,69];   // lengths of earlier versions of part 2
+const Q2_OLD=[42,61,62,63,64,65,68,69,70];   // lengths of earlier versions of part 2
 const Q2=(()=>{
   const order=["c","w","pl","u","r","s","p","g","a"], out=[], seen={};
   const rounds=Math.max(...order.map(a=>Q2BANK[a].length));
@@ -1876,8 +1878,6 @@ function renderInsights(){
   const codes=[]; if(user) codes.push(["Part 1",encodeCode()]); if(user2) codes.push(["Part 2",encodeCode2()]);
   box.innerHTML=`
    <div class="ins">
-    ${user?part1HTML():ctaHTML(1)}
-    ${user2?part2HTML():ctaHTML(2)}
     <section class="sharecard" aria-label="Share your result">
       <div class="shead"><span class="eyebrow">Share</span><h2>Your result card</h2>
         <p>An image of where you sit on part 1's three spectrums and part 2's four main leanings, with the scholars closest to you. Post it or send it to friends.</p>
@@ -1888,6 +1888,8 @@ function renderInsights(){
         <p class="cmsg" id="cardMsg" role="status"></p><p class="muted" style="font-size:14px">On a phone, you can also press and hold the image to save it.</p></div>
       <img id="cardImg" alt="Your Shia Compass result card">
     </section>
+    ${user?part1HTML():ctaHTML(1)}
+    ${user2?part2HTML():ctaHTML(2)}
     <section class="savebox" aria-label="Your data">
       <div class="savehead">
         <span class="eyebrow">Your data</span>

@@ -1359,6 +1359,15 @@
    "text": "'Dawah bro' culture, with its online debates and confrontational street preaching, goes against the spirit of Islam.",
    "type": "slider",
    "scale": "agreement"
+  },
+  {
+   "index": 70,
+   "id": "rl_music",
+   "axis": "rl",
+   "key": 1,
+   "text": "When it comes to music, you're black and white: you avoid it completely.",
+   "type": "slider",
+   "scale": "agreement"
   }
  ]
 }
