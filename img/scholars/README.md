@@ -49,3 +49,49 @@ Any scholar without an image gets a tile with their initials in their region's c
 | `nasr` | Seyyed Hossein Nasr |
 | `kadivar` | Mohsen Kadivar |
 | `soroush` | Abdolkarim Soroush |
+| `akhundkhorasani` | Akhund Muhammad Kazim Khurasani |
+| `naini` | Mirza Muhammad Husayn Na'ini |
+| `nouri` | Shaykh Fazlullah Nouri |
+| `borujerdi` | Grand Ayatollah Sayyid Husayn Borujerdi |
+| `shariatmadari` | Grand Ayatollah Sayyid Kazem Shariatmadari |
+| `taleghani` | Ayatollah Sayyid Mahmoud Taleghani |
+| `bazargan` | Mehdi Bazargan |
+| `aleahmad` | Jalal Al-e Ahmad |
+| `beheshti` | Ayatollah Sayyid Mohammad Beheshti |
+| `montazeri` | Grand Ayatollah Hossein-Ali Montazeri |
+| `mesbahyazdi` | Ayatollah Mohammad Taqi Mesbah Yazdi |
+| `makaremshirazi` | Grand Ayatollah Naser Makarem Shirazi |
+| `saanei` | Grand Ayatollah Yousef Saanei |
+| `khatami` | Hojjatoleslam Sayyid Mohammad Khatami |
+| `rafsanjani` | Ayatollah Akbar Hashemi Rafsanjani |
+| `eshkevari` | Hasan Yousefi Eshkevari |
+| `hasanzadehamoli` | Ayatollah Hasan Hasanzadeh Amoli |
+| `bahjat` | Grand Ayatollah Mohammad-Taqi Bahjat Foumani |
+| `kashifghita` | Shaykh Muhammad Husayn Kashif al-Ghita |
+| `sharafaldin` | Sayyid Abd al-Husayn Sharaf al-Din al-Musawi |
+| `muhsinhakim` | Sayyid Muhsin al-Hakim |
+| `sadr2` | Sayyid Muhammad Sadiq al-Sadr |
+| `muqtada` | Sayyid Muqtada al-Sadr |
+| `baqirhakim` | Sayyid Muhammad Baqir al-Hakim |
+| `ammarhakim` | Sayyid Ammar al-Hakim |
+| `nasrallah` | Sayyid Hassan Nasrallah |
+| `haydari` | Sayyid Kamal al-Haydari |
+| `mtmodarresi` | Sayyid Muhammad Taqi al-Modarresi |
+| `sadiqshirazi` | Sayyid Sadiq al-Shirazi |
+| `habib` | Shaykh Yasser al-Habib |
+| `saffar` | Shaykh Hassan al-Saffar |
+| `isaqassim` | Ayatollah Shaykh Isa Qassim |
+| `zakzaky` | Shaykh Ibrahim Zakzaky |
+| `nakshawani` | Sayed Ammar Nakshawani |
+| `shomali` | Shaykh Mohammad Ali Shomali |
+| `mrizvi` | Sayyid Muhammad Rizvi |
+| `mmodarresi` | Sayed Mahdi al-Modarresi |
+| `qazwini` | Sayed Moustafa al-Qazwini |
+| `sachedina` | Abdulaziz Sachedina |
+| `takim` | Liyakat Takim |
+| `jkhoei` | Sayyid Jawad al-Khoei |
+| `leghaei` | Shaykh Mansour Leghaei |
+| `naqqan` | Sayyid Ali Naqi Naqvi |
+| `jauhari` | Allama Talib Jauhari |
+| `jnaqvi` | Syed Jawad Naqvi |
+| `hmodarresi` | Sayed Hadi al-Modarresi |
