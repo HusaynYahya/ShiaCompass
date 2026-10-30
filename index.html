@@ -852,6 +852,19 @@ const INS={
    do:["Reading the Imams' reports directly, in al-Kafi or Nahj al-Balagha","Memorising Quran and hadith","Choosing the cautious option (ihtiyat) when unsure"],
    bel:["The Imams' words are the surest guide; speculation leads astray.","Greek-influenced philosophy and mysticism have distorted Shia teaching.","The major hadith collections are broadly reliable."]}}
 };
+/* One-line versions of each result, for the share card. */
+const ARCHLINE={
+ "The Guardian of Tradition":"Inherited law, an exalted view of the Imams, and the texts first.",
+ "The Reformer":"Modern ethics, a minimal view of the Imams, and reason first.",
+ "The Philosopher-Mystic":"Traditional in law, with an exalted view of the Imams reached through reason and mysticism.",
+ "The Early Traditionist":"Theology built from the reports, with a modest view of the Imams.",
+ "The Critical Jurist":"Traditional in law, but sceptical of single-chain reports and the claims built on them.",
+ "The Devotional Reformer":"Reformist on society, while reading the texts about the Imams at face value.",
+ "The Mystical Modernist":"Rethinks law and society through reason, with a high view of the Imams.",
+ "The Quranic Reformer":"Quran-first reform that sets aside much of the hadith.",
+ "The Mainstream Usuli":"Scriptural in law, rational in theology, with a moderate to high view of the Imams.",
+ "The Bridge":"Near the centre on all three spectrums, holding the tensions together."
+};
 const ARCH={
  "+++":["The Guardian of Tradition","Inherited law, an exalted Imamology and a text-first method. This is the tradition pole, where Akhbari and devotional schools gather."],
  "---":["The Reformer","Modern ethics, a minimal Imamology and reason first. This is the reform pole, the 'Neo-Mu'tazili' corner Esmail describes."],
@@ -1487,7 +1500,10 @@ async function drawCard(){
   const photos={}; await Promise.all([...near1,...near2].map(async o=>{photos[o.s.id]=await loadPhoto(o.s.id);}));
   const top2=user2?MAIN2.filter(a=>user2[a]!==undefined):[];   // the four main dimensions
   const rows2=Math.ceil(top2.length/2);
-  const H=150+(user?150+3*92+60+near1.length*92:0)+(user2?90+rows2*92+60+near2.length*92:0)+(user&&user2?40:0)+90;
+  const wrap=(t,font,max)=>{ const m=document.createElement("canvas").getContext("2d"); m.font=font; const out=[]; let line="";
+    t.split(" ").forEach(w=>{ const tryL=line?line+" "+w:w; if(m.measureText(tryL).width>max&&line){ out.push(line); line=w; } else line=tryL; }); if(line) out.push(line); return out; };
+  const LINEFONT=`500 27px ${F2}`, aLines=user?wrap(ARCHLINE[archetype(user)[0]]||"",LINEFONT,W-2*PAD):[];
+  const H=150+(user?150+aLines.length*36+14+3*92+60+near1.length*92:0)+(user2?90+rows2*92+60+near2.length*92:0)+(user&&user2?40:0)+50;
   const cv=document.createElement("canvas"); cv.width=W; cv.height=H; const g=cv.getContext("2d");
   const INK="#0B2233";
   g.fillStyle="#F6F9FA"; g.fillRect(0,0,W,H);
@@ -1521,7 +1537,8 @@ async function drawCard(){
   if(user){
     const [an]=archetype(user);
     txt("PART 1 · BELIEF AND METHOD",PAD,y,`700 22px ${F2}`,"#3D5566"); y+=62;
-    txt(fit(an,`800 64px ${F1}`,W-2*PAD),PAD,y,`800 64px ${F1}`,INK); y+=48;
+    txt(fit(an,`800 64px ${F1}`,W-2*PAD),PAD,y,`800 64px ${F1}`,INK); y+=46;
+    aLines.forEach(l=>{ txt(l,PAD,y,LINEFONT,"#2C4556"); y+=36; }); y+=14;
     const cols={m:"#0E7C80",i:"#1D3FA6",e:"#9A6304"};
     AXK.forEach(a=>{ const v=user[a], bw=W-2*PAD, x=PAD+bw*(v+1)/2;
       txt(AX[a].name,PAD,y+16,`800 24px ${F1}`,INK);
