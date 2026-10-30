@@ -4,7 +4,7 @@
 --
 -- Design:
 --   * One row per browser that chooses to share, keyed by a random token kept in that browser.
---   * Part 1 (51 stored slots, 49 asked) and part 2 (63 questions) are both optional; a row holds whichever were finished.
+--   * Part 1 (51 stored slots, 49 asked) and part 2 (64 questions) are both optional; a row holds whichever were finished.
 --   * The table is locked: the public (anon) key cannot read or write it directly.
 --   * The page can only call three functions:
 --       submit_result      add or update this browser's result (needs its token)

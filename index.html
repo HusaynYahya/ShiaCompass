@@ -1107,10 +1107,11 @@ const Q2MORE={
 /* Later additions, appended one at a time so every earlier version's answers still line up. [axis, k, text, frequency?] */
 const Q2LATER=[
  ["r",1,"Matam is an essential part of mourning Imam Husayn, not just a cultural custom."],
- ["r",-1,"Many popular Shia practices are bid'ah: religious innovations with no basis in the Quran or the Imams' teaching."]
+ ["r",-1,"Many popular Shia practices are bid'ah: religious innovations with no basis in the Quran or the Imams' teaching."],
+ ["w",1,"You wouldn't go on Umrah, or on ziyara to Medina, while Saudi Arabia is ruled by what you see as a taghuti regime."]
 ];
 const Q2_V1=42;   // length of part 2 before Q2MORE was added
-const Q2_OLD=[42,61];   // lengths of earlier versions of part 2
+const Q2_OLD=[42,61,62,63];   // lengths of earlier versions of part 2
 const Q2=(()=>{
   const order=["c","w","pl","u","r","s","p","g","a"], out=[], seen={};
   const rounds=Math.max(...order.map(a=>Q2BANK[a].length));
@@ -1805,7 +1806,7 @@ async function renderShareCard(){
 }
 function renderInsights(){
   const box=$("v-insights");
-  if(!user&&!user2){ box.innerHTML=`<div class="chead"><span class="eyebrow">03 · Insights</span><h1>Take the test first</h1><p>Your insights appear here once you've finished part 1 (${ORD1.length} statements on belief and method) or part 2 (63 questions on society and politics).</p><div class="cta" style="margin-top:14px"><button class="btn" data-go="test">Start part 1 →</button><button class="btn ghost" data-go="test2">Start part 2 →</button></div></div>`; return; }
+  if(!user&&!user2){ box.innerHTML=`<div class="chead"><span class="eyebrow">03 · Insights</span><h1>Take the test first</h1><p>Your insights appear here once you've finished part 1 (${ORD1.length} statements on belief and method) or part 2 (${Q2.length} questions on society and politics).</p><div class="cta" style="margin-top:14px"><button class="btn" data-go="test">Start part 1 →</button><button class="btn ghost" data-go="test2">Start part 2 →</button></div></div>`; return; }
   const codes=[]; if(user) codes.push(["Part 1",encodeCode()]); if(user2) codes.push(["Part 2",encodeCode2()]);
   box.innerHTML=`
    <div class="ins">
@@ -2130,6 +2131,7 @@ const GL=[
  {k:"abrar",t:"'Ulama' abrar",ar:"علماء أبرار",v:["'ulama' abrar","righteous scholars"],d:"'Righteous scholars'. Mohsen Kadivar's thesis that the earliest Shias saw the Imams as pious, learned guides rather than beings with supernatural knowledge and powers."},
  {k:"adl",t:"'Adl (divine justice)",ar:"العدل",v:["divine justice"],d:"One of the Shia principles of belief. Shia theology holds that reason can recognise good and evil, so God's justice is something we can understand, not simply whatever God wills."},
  {k:"akhbari",t:"Akhbari",ar:"أخباري",v:["Akhbaris","Akhbari"],d:"A school of Shia law, strongest in the 17th and 18th centuries, that took the Imams' reports (akhbar) as the direct source of law and rejected much of Usuli legal theory and ijtihad."},
+ {k:"taghut",t:"Taghut",ar:"طاغوت",v:["taghuti","taghut"],d:"A tyrant or false authority that people obey in place of God. 'Taghuti regime' is used, especially in revolutionary Shia language, for governments seen as illegitimate and oppressive."},
  {k:"bidah",t:"Bid'ah",ar:"بدعة",v:["bid'ah"],d:"'Innovation': a practice added to religion with no basis in the Quran or the teaching of the Prophet and the Imams. Which practices count as bid'ah is often disputed."},
  {k:"fatimiyya",t:"Fatimiyya",ar:"الفاطمية",v:["Fatimiyya"],d:"The days of mourning for Lady Fatima, the Prophet's daughter, commemorating her death."},
  {k:"fiqh",t:"Fiqh",ar:"فقه",v:["fiqh"],d:"Islamic law as worked out by jurists: the rulings on worship, family, trade and so on."},
