@@ -1288,8 +1288,12 @@ window.addEventListener("hashchange",()=>show(route()));
 document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest("[data-go]"); if(b){e.preventDefault();go(b.dataset.go);}});
 
 /* ================= TEST ================= */
-const PER=6, PAGES=Math.ceil(ORD1.length/PER), PAGES2=Math.ceil(Q2.length/PER);
-const ORD2=Q2.map((_,j)=>j);
+/* Part 2 questions retired on 30 Oct 2026 as near-duplicates (Q25 Sunni marriage, Q45 mortgage, Q53 Karbala).
+   Like part 1's, they keep their stored slot but are no longer shown or scored. */
+["u3","rb1","kb2"].forEach(id=>{ const q=Q2.find(x=>x.id===id); if(q) q.x=1; });
+const ORD2=Q2.map((_,j)=>j).filter(j=>!Q2[j].x);
+const PER=6, PAGES=Math.ceil(ORD1.length/PER), PAGES2=Math.ceil(ORD2.length/PER);
+const gap2=()=>ORD2.findIndex(j=>answers2[j]===null&&!Q2[j].o);   // display position of the first unanswered part 2 question (multiple choice may be skipped)
 const gap1=()=>ORD1.findIndex(j=>answers[j]===null);   // display position of the first unanswered part 1 question
 let answers=new Array(QS.length).fill(null), page=0, user=null;            // part 1 (unchanged format)
 let answers2=new Array(Q2.length).fill(null), page2=0, user2=null;         // part 2
@@ -1375,7 +1379,7 @@ function restoreFrom(arr){
 function restoreFrom2(r){
   if(r.about.some(a=>a!==null)){ about=r.about; aboutDone=true; }
   answers2=r.a; user2=null;
-  const gap=answers2.findIndex((a,j)=>a===null&&!Q2[j].o);   // multiple-choice questions may be skipped
+  const gap=gap2();
   page2=gap<0?PAGES2-1:Math.floor(gap/PER);
   if(gap<0) score2();
   saveLocal();
@@ -1384,9 +1388,9 @@ function restoreFrom2(r){
 function restoreCode(str){ const r=decodeAny(str); if(!r) return null; return {part:r.part,complete:r.part===1?restoreFrom(r.a):restoreFrom2(r)}; }
 function renderResume(){
   const box=$("resume"); if(!box) return;
-  const n1=ORD1.filter(j=>answers[j]!==null).length, n2=answers2.filter(a=>a!==null).length, parts=[], btns=[];
+  const n1=ORD1.filter(j=>answers[j]!==null).length, n2=ORD2.filter(j=>answers2[j]!==null).length, parts=[], btns=[];
   if(user) parts.push(`Part 1 result: <b>${archetype(user)[0]}</b>`); else if(n1) parts.push(`Part 1: <b>${n1} of ${ORD1.length}</b> answered`);
-  if(user2) parts.push(`Part 2 result: <b>${archetype2(user2)[0]}</b>`); else if(n2) parts.push(`Part 2: <b>${n2} of ${Q2.length}</b> answered`);
+  if(user2) parts.push(`Part 2 result: <b>${archetype2(user2)[0]}</b>`); else if(n2) parts.push(`Part 2: <b>${n2} of ${ORD2.length}</b> answered`);
   if(!parts.length){ box.hidden=true; return; }
   if(user||user2) btns.push(`<button class="btn small" data-go="insights">View your insights →</button>`);
   if(!user&&n1) btns.push(`<button class="btn small${user2?" ghost":""}" data-go="test">Continue part 1 →</button>`);
@@ -1550,7 +1554,7 @@ function curItems(){
 function startTest(p){
   part=p;
   if(p===1&&user){ const gap=gap1(); if(gap>=0) page=Math.floor(gap/PER); }
-  if(p===2&&user2){ const gap=answers2.findIndex((a,j)=>a===null&&!Q2[j].o); if(gap>=0) page2=Math.floor(gap/PER); }   // jump to questions added since
+  if(p===2&&user2){ const gap=gap2(); if(gap>=0) page2=Math.floor(gap/PER); }   // jump to questions added since
   onAbout=!aboutDone&&!curA().some(a=>a!==null);
   aboutShown=onAbout;
   renderTest();
@@ -1643,7 +1647,7 @@ function score(){
 }
 function score2(){
   const sum={},n={};
-  Q2.forEach((q,j)=>{ const v=answers2[j]; if(!q.a||v===null) return; sum[q.a]=(sum[q.a]||0)+q.k*((v-50)/50); n[q.a]=(n[q.a]||0)+1; });
+  Q2.forEach((q,j)=>{ const v=answers2[j]; if(!q.a||q.x||v===null) return; sum[q.a]=(sum[q.a]||0)+q.k*((v-50)/50); n[q.a]=(n[q.a]||0)+1; });
   user2={}; K2.forEach(a=>{ if(n[a]) user2[a]=sum[a]/n[a]; });
 }
 
@@ -1741,7 +1745,7 @@ function ctaHTML(p){
   const started=(p===1?answers:answers2).some(a=>a!==null);
   return p===1
     ?`<section class="pcta"><div><span class="eyebrow">Part 1</span><h2>Belief and method</h2><p>Modern questions, Imamology and method, with your pin among 43 scholars in the 3D compass. ${ORD1.length} statements, about 10 minutes.</p></div><div class="cta"><button class="btn" data-go="test">${started?"Continue part 1 →":"Start part 1 →"}</button></div></section>`
-    :`<section class="pcta theme2" id="q2res"><div><span class="eyebrow">Part 2</span><h2>Society, politics and practice</h2><p>Social life, politics, the state, philosophy, other religions, Sunni–Shia relations, faith and doubt, Karbala, waiting for the Mahdi, ritual, rulings, money and community identity, with a second 3D compass. ${Q2.length} questions, about 12 minutes.</p></div><div class="cta"><button class="btn" data-go="test2">${started?"Continue part 2 →":"Start part 2 →"}</button></div></section>`;
+    :`<section class="pcta theme2" id="q2res"><div><span class="eyebrow">Part 2</span><h2>Society, politics and practice</h2><p>Social life, politics, the state, philosophy, other religions, Sunni–Shia relations, faith and doubt, Karbala, waiting for the Mahdi, ritual, rulings, money and community identity, with a second 3D compass. ${ORD2.length} questions, about 12 minutes.</p></div><div class="cta"><button class="btn" data-go="test2">${started?"Continue part 2 →":"Start part 2 →"}</button></div></section>`;
 }
 /* ================= SHARE CARD ================= */
 /* A portrait image (1080 wide, Instagram-friendly) drawn on a canvas: where you sit on each axis and your closest scholars.
@@ -1868,7 +1872,7 @@ async function renderShareCard(){
 }
 function renderInsights(){
   const box=$("v-insights");
-  if(!user&&!user2){ box.innerHTML=`<div class="chead"><span class="eyebrow">03 · Insights</span><h1>Take the test first</h1><p>Your insights appear here once you've finished part 1 (${ORD1.length} statements on belief and method) or part 2 (${Q2.length} questions on society and politics).</p><div class="cta" style="margin-top:14px"><button class="btn" data-go="test">Start part 1 →</button><button class="btn ghost" data-go="test2">Start part 2 →</button></div></div>`; return; }
+  if(!user&&!user2){ box.innerHTML=`<div class="chead"><span class="eyebrow">03 · Insights</span><h1>Take the test first</h1><p>Your insights appear here once you've finished part 1 (${ORD1.length} statements on belief and method) or part 2 (${ORD2.length} questions on society and politics).</p><div class="cta" style="margin-top:14px"><button class="btn" data-go="test">Start part 1 →</button><button class="btn ghost" data-go="test2">Start part 2 →</button></div></div>`; return; }
   const codes=[]; if(user) codes.push(["Part 1",encodeCode()]); if(user2) codes.push(["Part 2",encodeCode2()]);
   box.innerHTML=`
    <div class="ins">
