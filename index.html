@@ -238,7 +238,8 @@ input.ag::-moz-range-thumb{width:22px;height:22px;background:var(--saffron);bord
 .edge{stroke:var(--text);stroke-width:2;fill:none;stroke-linejoin:round}
 .hedge{stroke:var(--text);stroke-width:2;fill:none}
 .thread{stroke:var(--saffron-d);stroke-width:2;stroke-dasharray:2 7;stroke-linecap:round;opacity:.9}
-.zone{fill:rgba(29,63,166,.06);stroke:var(--cobalt);stroke-width:1.5;stroke-dasharray:4 5}
+.zone{fill:rgba(29,63,166,.06);stroke:var(--cobalt);stroke-width:1.5;stroke-dasharray:4 5;cursor:zoom-in}
+.zone:hover{fill:rgba(29,63,166,.12)}
 .zonel{font-family:var(--f-body);font-size:12px;font-weight:700;fill:var(--cobalt)}
 .drop{stroke:rgba(11,34,51,.22);stroke-width:1.2}
 .foot{fill:rgba(11,34,51,.35)}
@@ -2033,7 +2034,7 @@ const MODES={
  core:{keys:["m","i","e"], ax:k=>AX[k], list:()=>S1, pos:s=>s, me:()=>user,
    title:"Worldview and Methodology", lab:"Worldview and Methodology",
    desc:`Left to right is <b style="color:var(--text)">Modernist ↔ Traditionalist</b>, bottom to top is <b style="color:var(--text)">Minimalist ↔ Maximalist</b>, and front to back is <b style="color:var(--text)">Rationalist ↔ Scripturalist</b>. Click a gold axis label to see the method behind that viewpoint, or click a scholar to see why they sit there.`,
-   legend:"Dot colour = region · dashed circle = mainstream Usuli centre · dotted saffron line = the deepest divide",
+   legend:"Dot colour = region · dashed circle = mainstream Usuli centre (tap it to zoom in) · dotted saffron line = the deepest divide",
    chips:["Modern × Imamology","Method × Imamology","Modern × Method"],
    hint:{iso:"Drag to turn · arrow keys work too",front:"Front: modern questions across, Imamology up. Method is depth.",side:"Side: method across (rationalist left), Imamology up. Modern questions is depth.",top:"Top: modern questions across, method up (scripturalist top). Imamology is depth."}},
  soc:{keys:["c","w","p"], ax:k=>AX2[k], list:()=>ALLS.filter(s=>POL[s.id]), pos:s=>({m:POL[s.id].c,i:POL[s.id].w,e:POL[s.id].p===null?0:POL[s.id].p}), me:()=>user2&&{m:user2.c,i:user2.w,e:user2.p},
@@ -2076,8 +2077,8 @@ function renderCube(){
   drawEdges(st,svg,"edge");
   if(core&&!zoomed()){
     const R0=P(-1,-1,-1),T0=P(1,1,1); el("line",{x1:R0.x,y1:R0.y,x2:T0.x,y2:T0.y,class:"thread"},svg);
-    const Z=P(MAIN.m,MAIN.i,MAIN.e); el("circle",{cx:Z.x,cy:Z.y,r:.28*st.K*Z.s,class:"zone"},svg);
-  } else if(core){ const Z=P(0,0,0); el("circle",{cx:Z.x,cy:Z.y,r:.28*ZF*st.K*Z.s,class:"zone"},svg); }
+    const Z=P(MAIN.m,MAIN.i,MAIN.e); el("title",{},el("circle",{cx:Z.x,cy:Z.y,r:.28*st.K*Z.s,class:"zone"},svg)).textContent="Mainstream Usuli centre: click to zoom in";
+  } else if(core){ const Z=P(0,0,0); el("title",{},el("circle",{cx:Z.x,cy:Z.y,r:.28*ZF*st.K*Z.s,class:"zone"},svg)).textContent="Click to show the whole compass"; }
   const vis=MD().list().filter(visible);
   const floorBack=at(st,{i:-1}).z<-0.02;
   const pts=vis.map(s=>{const c=tf(cp(s)),p=P(c.m,c.i,c.e);return {s,c,x:p.x,y:p.y,z:p.z,r:8.4*p.s}}).sort((a,b)=>a.z-b.z);
@@ -2231,7 +2232,8 @@ document.querySelectorAll(".ctab[data-mode]").forEach(b=>b.addEventListener("cli
 $("regSel").addEventListener("change",e=>{region=e.target.value;renderCube();});
 $("eraSel").addEventListener("change",e=>{eraF=e.target.value;renderCube();});
 $("kindSel").addEventListener("change",e=>{kindF=e.target.value;renderCube();});
-$("zoomBtn").addEventListener("click",e=>{ zoomOn=!zoomOn; e.currentTarget.setAttribute("aria-pressed",String(zoomOn)); e.currentTarget.textContent=zoomOn?"Show the whole compass":"Zoom into the mainstream"; renderCube(); });
+function setZoom(v){ zoomOn=v; const b=$("zoomBtn"); b.setAttribute("aria-pressed",String(zoomOn)); b.textContent=zoomOn?"Show the whole compass":"Zoom into the mainstream"; renderCube(); }
+$("zoomBtn").addEventListener("click",()=>setZoom(!zoomOn));
 function markPre(k){document.querySelectorAll("[data-pre]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.pre===k?"true":"false"));$("cubeHint").textContent=MD().hint[k||"iso"];}
 function turnTo(k){
   if(turnRaf) cancelAnimationFrame(turnRaf);
@@ -2243,10 +2245,12 @@ function turnTo(k){
 document.querySelectorAll("[data-pre]").forEach(b=>b.addEventListener("click",()=>turnTo(b.dataset.pre)));
 /* drag + keys */
 const cube=$("cube"); let drag=null;
-cube.addEventListener("pointerdown",e=>{drag={x:e.clientX,y:e.clientY};try{cube.setPointerCapture(e.pointerId)}catch(_){}} );
-cube.addEventListener("pointermove",e=>{if(!drag)return;const dx=e.clientX-drag.x,dy=e.clientY-drag.y;drag={x:e.clientX,y:e.clientY};
+cube.addEventListener("pointerdown",e=>{drag={x:e.clientX,y:e.clientY,sx:e.clientX,sy:e.clientY,t:e.target};try{cube.setPointerCapture(e.pointerId)}catch(_){}} );
+cube.addEventListener("pointermove",e=>{if(!drag)return;const dx=e.clientX-drag.x,dy=e.clientY-drag.y;drag.x=e.clientX;drag.y=e.clientY;
   CS.yaw+=dx*.008;CS.pitch=Math.max(-Math.PI/2,Math.min(Math.PI/2,CS.pitch+dy*.008));markPre(null);renderCube();});
-cube.addEventListener("pointerup",()=>drag=null); cube.addEventListener("pointercancel",()=>drag=null);
+cube.addEventListener("pointerup",e=>{ // a tap (not a drag) on the dashed mainstream circle zooms in or out
+  if(drag&&mode==="core"&&drag.t&&drag.t.classList&&drag.t.classList.contains("zone")&&Math.hypot(e.clientX-drag.sx,e.clientY-drag.sy)<6) setZoom(!zoomOn);
+  drag=null;}); cube.addEventListener("pointercancel",()=>drag=null);
 cube.addEventListener("keydown",e=>{const m={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1]}[e.key];if(!m)return;e.preventDefault();
   CS.yaw+=m[0]*.12;CS.pitch=Math.max(-Math.PI/2,Math.min(Math.PI/2,CS.pitch+m[1]*.12));markPre(null);renderCube();});
 
