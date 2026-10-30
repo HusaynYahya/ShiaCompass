@@ -1989,7 +1989,7 @@ const MODES={
    chips:["Modern × Imamology","Method × Imamology","Modern × Method"],
    hint:{iso:"Drag to turn · arrow keys work too",front:"Front: modern questions across, Imamology up. Method is depth.",side:"Side: method across (rationalist left), Imamology up. Modern questions is depth.",top:"Top: modern questions across, method up (scripturalist top). Imamology is depth."}},
  soc:{keys:["c","w","p"], ax:k=>AX2[k], list:()=>ALLS.filter(s=>POL[s.id]), pos:s=>({m:POL[s.id].c,i:POL[s.id].w,e:POL[s.id].p===null?0:POL[s.id].p}), me:()=>user2&&{m:user2.c,i:user2.w,e:user2.p},
-   title:"How Shia figures differ on social life, politics and philosophy, and where you fit", lab:"Society and politics",
+   title:"Society and politics", lab:"Society and politics",
    desc:`The second compass. Left to right is <b style="color:var(--text)">Liberal ↔ Conservative</b> on social life, bottom to top is <b style="color:var(--text)">Quietist ↔ Activist</b> on religion and politics, and front to back is <b style="color:var(--text)">Philosophical ↔ Anti-philosophical</b> on philosophy and mysticism. It places ${ALLS.filter(s=>POL[s.id]).length} Shia figures: jurists, thinkers, political and community leaders, and preachers. Use Kind to show one group at a time. Placements are approximate readings of each figure's public positions.`,
    legend:"Dot colour = region · hollow dot = no documented view on philosophy, so shown at the middle of that axis",
    chips:["Social life × Politics","Philosophy × Politics","Social life × Philosophy"],
