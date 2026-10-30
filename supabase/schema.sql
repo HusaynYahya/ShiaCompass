@@ -127,7 +127,9 @@ revoke all on function public.delete_result(uuid) from public;
 revoke all on function public.community_summary() from public;
 grant execute on function public.submit_result(uuid, real, real, real, smallint[], text, text, smallint[], smallint[], jsonb) to anon, authenticated;
 grant execute on function public.delete_result(uuid) to anon, authenticated;
-grant execute on function public.community_summary() to anon, authenticated;
+-- Totals are private for now: only the project owner (dashboard / SQL Editor) can see any results.
+-- To publish anonymous totals on the site later, grant this back to anon, authenticated.
+revoke execute on function public.community_summary() from anon, authenticated;
 
 -- To read the data yourself, use the Table Editor or the SQL Editor (both run with full access), e.g.
 --   select archetype, count(*) from public.results group by 1 order by 2 desc;
