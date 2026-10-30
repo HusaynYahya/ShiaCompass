@@ -1101,7 +1101,7 @@ const ABOUT=[
 ];
 /* Part 2 statements: [axis, k, text]. k=+1: agreeing pushes toward the right-hand (pos) pole. */
 const Q2BANK={
- c:[[-1,"A woman should be able to be president of a university Ahl al-Bayt society."],
+ c:[[-1,"A woman should be able to be president of a Shia youth or university society."],
     [1,"You'd leave a family wedding before the party if there were music and mixed dancing."],
     [-1,"Whether a woman covers her hair should be her own decision."],
     [1,"A man taking a second wife is acceptable today, as long as he treats both wives justly."]],
@@ -1116,10 +1116,10 @@ const Q2BANK={
  u:[[-1,"You'd happily join a Sunni congregational prayer and count it as your own."],
     [1,"La'n, cursing the enemies of the Ahl al-Bayt, is essential to drawing close to Allah."],
     [-1,"You'd be happy for your child to marry a practising Sunni."],
-    [-1,"Shia and Sunni scholars should work together on shared causes and play down their differences."]],
- r:[[1,"On the night of Ashura, you'd rather be at a packed majlis with latmiyya and matam than at a quiet talk."],
+    [-1,"It is a priority for Shia and Sunni Muslims to work together and stay united."]],
+ r:[[1,"On a wafat night, you'd rather be at a packed majlis with latmiyya and matam than at a quiet talk."],
     [-1,"Some Muharram practices damage how others see Shia Islam and should be dropped."],
-    [1,"A majlis should move people to tears more than teach them facts."],
+    [1,"The main purpose of a majlis should be to move people to tears."],
     [-1,"Money spent on lavish commemorations would do more good given to charity."]],
  s:[[1,"The ideal country would make Islamic law the law of the land."],
     [-1,"A state should treat all citizens equally, whatever their religion."],
@@ -1152,13 +1152,13 @@ const HABITS=[
    [k, text, frequency?] */
 const Q2MORE={
  f:[[1,"You question the existence of God.",1],[-1,"Your faith has never seriously been shaken."]],
- kb:[[1,"Ashura is first of all a call to stand against injustice."],[1,"A majlis that doesn't connect Karbala to injustice today has missed the point."]],
+ kb:[[1,"Ashura is primarily a call to stand against injustice."],[1,"A majlis that doesn't connect Karbala to injustice today has missed the point."]],
  rb:[[-1,"Taking a conventional mortgage is acceptable if there's no Islamic alternative."],[-1,"You have no issue with taking out a loan for a mortgage."]],
  io:[[-1,"A sincere heart matters more to God than perfect observance of the rules."],[1,"You look up rulings (on wudu or khums, say) more often than you read about spirituality or ethics."],[-1,"Someone can be close to God while being lax about some religious rules."]],
  mh:[[1,"Waiting for the Imam means working to change society now."],[-1,"Until the Imam returns, believers should focus on their own piety rather than trying to change the world."]],
  id:[[1,"Majalis should be in English (or the local language), even if older members lose out."],[-1,"Keeping your family's language and customs at the centre is part of keeping the faith."],[-1,"You feel most at home at a centre of people from your own background."]],
  rl:[[1,"If you're unsure whether something is halal, you avoid it."],[-1,"You'd eat at a restaurant without checking every ingredient, if the food is probably halal."]],
- sc:[[-1,"The Quran is a book of guidance, not science, so it shouldn't be read for scientific facts."],[-1,"Science and religion answer different questions, so they can't truly conflict."]],
+ sc:[[-1,"The Quran is a book of guidance, not science, so it shouldn't be read for scientific facts."],[-1,"Science and religion don't contradict each other.",0,1]],
  mj:[[-1,"A new ruling that breaks with centuries of opinion can still be correct."]]
 };
 /* Later additions, appended one at a time so every earlier version's answers still line up. [axis, k, text, frequency?] */
@@ -1166,18 +1166,21 @@ const Q2LATER=[
  ["r",1,"Matam is an essential part of mourning Imam Husayn, not just a cultural custom."],
  ["r",-1,"Many popular Shia practices are bid'ah: religious innovations with no basis in the Quran or the Imams' teaching."],
  ["w",1,"You wouldn't go on Umrah, or on ziyara to Medina, while Saudi Arabia is ruled by what you see as a taghuti regime."],
- ["g",1,"Evading tax is acceptable when the government is one you see as taghuti."]
+ ["g",1,"Evading tax is acceptable when the government is one you see as taghuti."],
+ ["p",-1,"Ideas from Jungian psychology, such as archetypes and the shadow self, can deepen how we understand Islamic spirituality."],
+ [null,0,"You'd see a therapist or counsellor if you were struggling with your mental health.",0,"therapy"],
+ ["sc",1,"Scientific discoveries, such as the expanding universe, can be found foretold in the Quran."]
 ];
 const Q2_V1=42;   // length of part 2 before Q2MORE was added
-const Q2_OLD=[42,61,62,63,64];   // lengths of earlier versions of part 2
+const Q2_OLD=[42,61,62,63,64,65];   // lengths of earlier versions of part 2
 const Q2=(()=>{
   const order=["c","w","pl","u","r","s","p","g","a"], out=[], seen={};
   const rounds=Math.max(...order.map(a=>Q2BANK[a].length));
   for(let r=0;r<rounds;r++) order.forEach(a=>{const q=Q2BANK[a][r]; if(q){seen[a]=(seen[a]||0)+1; out.push({a,k:q[0],t:q[1],id:a+seen[a]});}});
   HABITS.forEach((h,j)=>out.splice(Math.min(out.length,(j+1)*7-1),0,{a:null,k:0,t:h.t,id:h.id,o:h.o||null,f:h.f||0}));
   const more=["f","kb","rb","io","mh","id","rl","sc","mj"], seen2={};
-  for(let r=0;r<3;r++) more.forEach(a=>{const q=Q2MORE[a][r]; if(q){seen2[a]=(seen2[a]||0)+1; out.push({a,k:q[0],t:q[1],f:q[2]||0,id:a+seen2[a]});}});
-  Q2LATER.forEach(([a,k,t,f])=>{ const n=out.filter(q=>q.a===a).length+1; out.push({a,k,t,f:f||0,id:a+n}); });
+  for(let r=0;r<3;r++) more.forEach(a=>{const q=Q2MORE[a][r]; if(q){seen2[a]=(seen2[a]||0)+1; out.push({a:q[3]?null:a,k:q[3]?0:q[0],t:q[1],f:q[2]||0,id:a+seen2[a]});}});
+  Q2LATER.forEach(([a,k,t,f,id])=>{ const n=out.filter(q=>q.a===a).length+1; out.push({a,k,t,f:f||0,id:id||a+n}); });
   return out;
 })();
 /*P2-END*/
@@ -2189,6 +2192,8 @@ const GL=[
  {k:"adl",t:"'Adl (divine justice)",ar:"العدل",v:["divine justice"],d:"One of the Shia principles of belief. Shia theology holds that reason can recognise good and evil, so God's justice is something we can understand, not simply whatever God wills."},
  {k:"akhbari",t:"Akhbari",ar:"أخباري",v:["Akhbaris","Akhbari"],d:"A school of Shia law, strongest in the 17th and 18th centuries, that took the Imams' reports (akhbar) as the direct source of law and rejected much of Usuli legal theory and ijtihad."},
  {k:"taghut",t:"Taghut",ar:"طاغوت",v:["taghuti","taghut"],d:"A tyrant or false authority that people obey in place of God. 'Taghuti regime' is used, especially in revolutionary Shia language, for governments seen as illegitimate and oppressive."},
+ {k:"wafat",t:"Wafat",ar:"وفاة",v:["wafat"],d:"The anniversary of the death or martyrdom of the Prophet, Lady Fatima or one of the Imams, marked with majalis."},
+ {k:"jung",t:"Jungian psychology",ar:"",v:["Jungian psychology"],d:"The school of the Swiss psychiatrist Carl Jung (d. 1961). It explores the unconscious through 'archetypes', images shared across cultures such as the wise elder, and the 'shadow', the parts of ourselves we hide."},
  {k:"bidah",t:"Bid'ah",ar:"بدعة",v:["bid'ah"],d:"'Innovation': a practice added to religion with no basis in the Quran or the teaching of the Prophet and the Imams. Which practices count as bid'ah is often disputed."},
  {k:"fatimiyya",t:"Fatimiyya",ar:"الفاطمية",v:["Fatimiyya"],d:"The days of mourning for Lady Fatima, the Prophet's daughter, commemorating her death."},
  {k:"fiqh",t:"Fiqh",ar:"فقه",v:["fiqh"],d:"Islamic law as worked out by jurists: the rulings on worship, family, trade and so on."},

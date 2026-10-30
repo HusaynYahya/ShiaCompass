@@ -1,6 +1,6 @@
 {
  "version": 7,
- "note": "Generated from index.html. Index order matches the answers, about and answers2 arrays stored in the database. Part 1 grew from 36 to 50 to 51 stored answers; on 30 Oct 2026 questions 20 and 42 were retired (still stored as null, not asked or scored) and a new Karbala question was added at index 50, shown to people as question 20. Part 2 grew from 42 to 61 to 63 to 64 to 65; older rows are shorter.",
+ "note": "Generated from index.html. Index order matches the answers, about and answers2 arrays stored in the database. Part 1 grew from 36 to 50 to 51 stored answers; on 30 Oct 2026 questions 20 and 42 were retired (still stored as null, not asked or scored) and a new Karbala question was added at index 50, shown to people as question 20. Part 2 grew from 42 to 61 to 63 to 64 to 65 to 68; question 59 became unscored on 30 Oct 2026 when it was reworded; older rows are shorter.",
  "axes": {
   "m": {
    "name": "Modern questions",
@@ -702,7 +702,7 @@
    "id": "c1",
    "axis": "c",
    "key": -1,
-   "text": "A woman should be able to be president of a university Ahl al-Bayt society.",
+   "text": "A woman should be able to be president of a Shia youth or university society.",
    "type": "slider",
    "scale": "agreement"
   },
@@ -738,7 +738,7 @@
    "id": "r1",
    "axis": "r",
    "key": 1,
-   "text": "On the night of Ashura, you'd rather be at a packed majlis with latmiyya and matam than at a quiet talk.",
+   "text": "On a wafat night, you'd rather be at a packed majlis with latmiyya and matam than at a quiet talk.",
    "type": "slider",
    "scale": "agreement"
   },
@@ -939,7 +939,7 @@
    "id": "r3",
    "axis": "r",
    "key": 1,
-   "text": "A majlis should move people to tears more than teach them facts.",
+   "text": "The main purpose of a majlis should be to move people to tears.",
    "type": "slider",
    "scale": "agreement"
   },
@@ -1041,7 +1041,7 @@
    "id": "u4",
    "axis": "u",
    "key": -1,
-   "text": "Shia and Sunni scholars should work together on shared causes and play down their differences.",
+   "text": "It is a priority for Shia and Sunni Muslims to work together and stay united.",
    "type": "slider",
    "scale": "agreement"
   },
@@ -1119,7 +1119,7 @@
    "id": "kb1",
    "axis": "kb",
    "key": 1,
-   "text": "Ashura is first of all a call to stand against injustice.",
+   "text": "Ashura is primarily a call to stand against injustice.",
    "type": "slider",
    "scale": "agreement"
   },
@@ -1252,9 +1252,9 @@
   {
    "index": 58,
    "id": "sc2",
-   "axis": "sc",
-   "key": -1,
-   "text": "Science and religion answer different questions, so they can't truly conflict.",
+   "axis": null,
+   "key": 0,
+   "text": "Science and religion don't contradict each other.",
    "type": "slider",
    "scale": "agreement"
   },
@@ -1309,6 +1309,33 @@
    "axis": "g",
    "key": 1,
    "text": "Evading tax is acceptable when the government is one you see as taghuti.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 65,
+   "id": "p_jung",
+   "axis": "p",
+   "key": -1,
+   "text": "Ideas from Jungian psychology, such as archetypes and the shadow self, can deepen how we understand Islamic spirituality.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 66,
+   "id": "therapy",
+   "axis": null,
+   "key": 0,
+   "text": "You'd see a therapist or counsellor if you were struggling with your mental health.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 67,
+   "id": "sc_concord",
+   "axis": "sc",
+   "key": 1,
+   "text": "Scientific discoveries, such as the expanding universe, can be found foretold in the Quran.",
    "type": "slider",
    "scale": "agreement"
   }
