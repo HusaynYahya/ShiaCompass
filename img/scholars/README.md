@@ -95,3 +95,17 @@ Any scholar without an image gets a tile with their initials in their region's c
 | `jauhari` | Allama Talib Jauhari |
 | `jnaqvi` | Syed Jawad Naqvi |
 | `hmodarresi` | Sayed Hadi al-Modarresi |
+| `kulayni` | Muhammad ibn Ya'qub al-Kulayni |
+| `ntusi` | Muhammad ibn Muhammad Nasir al-Din al-Tusi |
+| `amuli` | Sayyid Baha' al-Din Haydar ibn 'Ali al-Amuli |
+| `mirdamad` | Mir Muhammad Baqir al-Husayni al-Astarabadi (Mir Damad) |
+| `fayd` | Mulla Muhammad Muhsin Fayd al-Kashani |
+| `hurr` | Muhammad ibn al-Hasan al-Hurr al-'Amili |
+| `banuamin` | Nusrat Amin (Banu Amin) |
+| `saidhakim` | Sayyid Muhammad Sa'id al-Tabataba'i al-Hakim |
+| `bnajafi` | Shaykh Bashir Husayn al-Najafi |
+| `fayyad` | Shaykh Muhammad Ishaq al-Fayyad |
+| `sobhani` | Ayatollah Ja'far Sobhani (Subhani Tabrizi) |
+| `safi` | Ayatollah Lutfullah Safi Golpaygani |
+| `shubayri` | Ayatollah Sayyid Musa Shubayri Zanjani |
+| `tabrizi` | Mirza Javad Tabrizi |
