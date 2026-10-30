@@ -1567,11 +1567,11 @@ function cardHTML({set,j,q,n}){
   const head=`<div class="qtop"><span class="qn">${num}</span><p class="qs" id="qs${uid}">${q.t}</p></div>`;
   if(q.o) return `<div class="qc ${v===null?"untouched":"done"}">${head}
       <div class="opts" role="radiogroup" aria-labelledby="qs${uid}">${q.o.map((o,k)=>`<button type="button" class="opt" role="radio" aria-checked="${v===k}" data-set="${set}" data-j="${j}" data-k="${k}">${o}</button>`).join("")}</div>
-      <p class="qhint">Optional · not scored · tap again to clear</p></div>`;
+      <p class="qhint">Optional · tap again to clear</p></div>`;
   const x=v===null?50:v;
   return `<div class="qc ${v===null?"untouched":"done"}">${head}
       <div class="sl">
-        <div class="slhead">${!q.a&&set!=="p1"?`<span class="qtag">Not scored</span>`:""}<span class="slval" id="qv${uid}">${lvl(q,x)}</span></div>
+        <div class="slhead"><span class="slval" id="qv${uid}">${lvl(q,x)}</span></div>
         <div class="track"><div class="stops" aria-hidden="true"><i style="left:0%"></i><i style="left:25%"></i><i style="left:50%"></i><i style="left:75%"></i><i style="left:100%"></i></div>
         <input class="ag" type="range" min="0" max="100" step="1" value="${x}" id="q${uid}" data-set="${set}" data-j="${j}" aria-labelledby="qs${uid}" aria-valuetext="${lvl(q,x)}" style="--p:${x}%"></div>
         <div class="ticks" aria-hidden="true">${(q.f?FLEVELS:LEVELS).map(l=>`<span>${l[1]}</span>`).join("")}</div>
