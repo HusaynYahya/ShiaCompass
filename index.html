@@ -192,6 +192,7 @@ input.ag::-moz-range-thumb{width:22px;height:22px;background:var(--saffron);bord
 /* compass */
 .chead{display:flex;flex-direction:column;gap:12px;max-width:900px}
 .chead h1{font-size:clamp(40px,5.4vw,66px);line-height:.98;letter-spacing:-.03em}
+#cTitle{font-size:clamp(28px,3.4vw,44px);line-height:1.08;max-width:26ch}
 .chead p{color:var(--ink2);max-width:72ch}
 .controls{display:flex;flex-direction:column;gap:12px;margin-top:22px;padding:16px;background:#fff;border:2px solid var(--text);border-radius:14px}
 .crow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
@@ -521,7 +522,7 @@ body.theme2 #tile .t1{fill:#1E7A55} body.theme2 #tile .t2{fill:#6E2B67} body.the
   <section class="view" id="v-compass" aria-label="3D compass" hidden>
     <div class="chead">
       <span class="eyebrow">04 · The 3D Compass</span>
-      <h1 id="cTitle">Where the scholars stand</h1>
+      <h1 id="cTitle">How scholars differ on modern life, the Imams and reason, and where you fit</h1>
       <p id="cDesc">Left to right is <b style="color:var(--text)">Modernist ↔ Traditionalist</b>, bottom to top is <b style="color:var(--text)">Minimalist ↔ Maximalist</b>, and front to back is <b style="color:var(--text)">Rationalist ↔ Scripturalist</b>. Drag to turn the cube. Click a gold axis label to see the method behind that viewpoint, or click a scholar to see why they sit there.</p>
     </div>
     <div class="ctabs" role="group" aria-label="Which compass">
@@ -1982,13 +1983,13 @@ const CS={yaw:-0.72,pitch:.46,K:236,CAM:10,cx:500,cy:418};
 const PRE={iso:[-0.72,.46],front:[0,0],side:[Math.PI/2,0],top:[0,-Math.PI/2]};
 const MODES={
  core:{keys:["m","i","e"], ax:k=>AX[k], list:()=>S, pos:s=>s, me:()=>user,
-   title:"Where the scholars stand", lab:"Belief and method",
+   title:"How scholars differ on modern life, the Imams and reason, and where you fit", lab:"Belief and method",
    desc:`Left to right is <b style="color:var(--text)">Modernist ↔ Traditionalist</b>, bottom to top is <b style="color:var(--text)">Minimalist ↔ Maximalist</b>, and front to back is <b style="color:var(--text)">Rationalist ↔ Scripturalist</b>. Drag to turn the cube. Click a gold axis label to see the method behind that viewpoint, or click a scholar to see why they sit there.`,
    legend:"Dot colour = region · dashed circle = mainstream Usuli centre · dotted saffron line = the deepest divide",
    chips:["Modern × Imamology","Method × Imamology","Modern × Method"],
    hint:{iso:"Drag to turn · arrow keys work too",front:"Front: modern questions across, Imamology up. Method is depth.",side:"Side: method across (rationalist left), Imamology up. Modern questions is depth.",top:"Top: modern questions across, method up (scripturalist top). Imamology is depth."}},
  soc:{keys:["c","w","p"], ax:k=>AX2[k], list:()=>ALLS.filter(s=>POL[s.id]), pos:s=>({m:POL[s.id].c,i:POL[s.id].w,e:POL[s.id].p===null?0:POL[s.id].p}), me:()=>user2&&{m:user2.c,i:user2.w,e:user2.p},
-   title:"Society and politics", lab:"Society and politics",
+   title:"How Shia figures differ on social life, politics and philosophy, and where you fit", lab:"Society and politics",
    desc:`The second compass. Left to right is <b style="color:var(--text)">Liberal ↔ Conservative</b> on social life, bottom to top is <b style="color:var(--text)">Quietist ↔ Activist</b> on religion and politics, and front to back is <b style="color:var(--text)">Philosophical ↔ Anti-philosophical</b> on philosophy and mysticism. It places ${ALLS.filter(s=>POL[s.id]).length} Shia figures: jurists, thinkers, political and community leaders, and preachers. Use Kind to show one group at a time. Placements are approximate readings of each figure's public positions.`,
    legend:"Dot colour = region · hollow dot = no documented view on philosophy, so shown at the middle of that axis",
    chips:["Social life × Politics","Philosophy × Politics","Social life × Philosophy"],
