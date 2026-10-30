@@ -1368,6 +1368,15 @@
    "text": "I am very black and white when it comes to not listening to music.",
    "type": "slider",
    "scale": "agreement"
+  },
+  {
+   "index": 71,
+   "id": "id_marry_culture",
+   "axis": "id",
+   "key": -1,
+   "text": "I would prefer to marry within my culture.",
+   "type": "slider",
+   "scale": "agreement"
   }
  ]
 }
