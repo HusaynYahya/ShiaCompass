@@ -1507,8 +1507,8 @@ async function drawCard(){
   const wrap=(t,font,max)=>{ const m=document.createElement("canvas").getContext("2d"); m.font=font; const out=[]; let line="";
     t.split(" ").forEach(w=>{ const tryL=line?line+" "+w:w; if(m.measureText(tryL).width>max&&line){ out.push(line); line=w; } else line=tryL; }); if(line) out.push(line); return out; };
   const LINEFONT=`500 27px ${F2}`, aLines=user?wrap(ARCHLINE[archetype(user)[0]]||"",LINEFONT,W-2*PAD):[];
-  const H=150+(user?150+aLines.length*36+14+3*92+60+near1.length*92:0)+(user2?90+rows2*92+60+near2.length*92:0)+(user&&user2?40:0)+50;
-  const cv=document.createElement("canvas"); cv.width=W; cv.height=H; const g=cv.getContext("2d");
+  const H=150+(user?150+aLines.length*36+14+3*92+60+near1.length*92:0)+(user2?90+rows2*92+60+near2.length*92:0)+(user&&user2?40:0)+200;   // generous: the image is trimmed to its content at the end
+  const cv=document.createElement("canvas"); cv.width=W; cv.height=H; let g=cv.getContext("2d");
   const INK="#0B2233";
   g.fillStyle="#F6F9FA"; g.fillRect(0,0,W,H);
   // tile band
@@ -1520,10 +1520,20 @@ async function drawCard(){
   const txt=(t,x,y,font,col,align)=>{ g.font=font; g.fillStyle=col; g.textAlign=align||"left"; g.fillText(t,x,y); };
   const fit=(t,font,max)=>{ g.font=font; if(g.measureText(t).width<=max) return t; while(t.length>3&&g.measureText(t+"…").width>max) t=t.slice(0,-1); return t+"…"; };
   let y=110;
-  const who=cardName(); let head=who?(who+(/s$/i.test(who)?"'":"'s")+" Shia Compass").toUpperCase():"MY SHIA COMPASS";
-  const headFont=who?`800 32px ${F1}`:`700 26px ${F2}`;
-  txt(fit(head,headFont,W-2*PAD-120),PAD,y,headFont,"#0E6E72"); txt("بوصلة",W-PAD,y,`700 30px "Reem Kufi",serif`,"#0E6E72","right");
-  y+=40;
+  const who=cardName();
+  if(who){   // a name makes a large title: "Aisha's Shia Compass", shrinking to fit
+    y+=14; const poss=/s$/i.test(who)?"' ":"'s ", rest="Shia Compass", maxW=W-2*PAD-130;
+    let fs=66; const width=f=>{ g.font=`800 ${f}px ${F1}`; return g.measureText(who+poss+rest).width; };
+    while(fs>40&&width(fs)>maxW) fs-=2;
+    const f=`800 ${fs}px ${F1}`; g.font=f;
+    const shown=fit(who,f,maxW-g.measureText(poss+rest).width).replace(/…$/,"").trim()+poss;   // a very long name is cut, keeping the "'s"
+    txt(shown,PAD,y,f,"#0E6E72"); g.font=f; txt(rest,PAD+g.measureText(shown).width,y,f,INK);
+    txt("بوصلة",W-PAD,y,`700 34px "Reem Kufi",serif`,"#0E6E72","right");
+    y+=56;
+  } else {
+    txt("MY SHIA COMPASS",PAD,y,`700 26px ${F2}`,"#0E6E72"); txt("بوصلة",W-PAD,y,`700 30px "Reem Kufi",serif`,"#0E6E72","right");
+    y+=40;
+  }
   const scholarRows=(list,dfn,accent)=>{ list.forEach(o=>{ const r=34, cx=PAD+r, cy=y+r, m=match(dfn(o));
       g.save(); g.beginPath(); g.arc(cx,cy,r,0,7); g.closePath(); g.clip();
       const im=photos[o.s.id];
@@ -1563,10 +1573,13 @@ async function drawCard(){
     y+=rows2*92+20; txt("CLOSEST ON THESE QUESTIONS",PAD,y,`700 22px ${F2}`,"#6E2B67"); y+=22;
     scholarRows(near2,o=>o.d,"#6E2B67");
   }
-  // footer
-  y=H-66; txt("Take the test: husaynyahya.github.io/ShiaCompass",PAD,y+8,`700 24px ${F2}`,INK);
-  band(H-40,"#1E7A55","#6E2B67","#D8613A","#2B1630");
-  return cv;
+  // trim to the content, then the footer
+  const HF=Math.min(H,y+112), out=document.createElement("canvas"); out.width=W; out.height=HF;
+  g=out.getContext("2d"); g.drawImage(cv,0,0);
+  g.fillStyle="#F6F9FA"; g.fillRect(0,HF-112,W,112);
+  txt("Take the test: husaynyahya.github.io/ShiaCompass",PAD,HF-58,`700 24px ${F2}`,INK);
+  band(HF-40,"#1E7A55","#6E2B67","#D8613A","#2B1630");
+  return out;
 }
 /* Optional name for the card: kept only in this browser, never shared or sent anywhere. */
 const NAME_KEY="shia-compass:name";
