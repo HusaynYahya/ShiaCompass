@@ -983,7 +983,13 @@ const Q2MORE={
  sc:[[-1,"The Quran is a book of guidance, not science, so it shouldn't be read for scientific facts."],[-1,"Science and religion answer different questions, so they can't truly conflict."]],
  mj:[[-1,"A new ruling that breaks with centuries of opinion can still be correct."]]
 };
+/* Later additions, appended one at a time so every earlier version's answers still line up. [axis, k, text, frequency?] */
+const Q2LATER=[
+ ["r",1,"Matam is an essential part of mourning Imam Husayn, not just a cultural custom."],
+ ["r",-1,"Many popular Shia practices are bid'ah: religious innovations with no basis in the Quran or the Imams' teaching."]
+];
 const Q2_V1=42;   // length of part 2 before Q2MORE was added
+const Q2_OLD=[42,61];   // lengths of earlier versions of part 2
 const Q2=(()=>{
   const order=["c","w","pl","u","r","s","p","g","a"], out=[], seen={};
   const rounds=Math.max(...order.map(a=>Q2BANK[a].length));
@@ -991,6 +997,7 @@ const Q2=(()=>{
   HABITS.forEach((h,j)=>out.splice(Math.min(out.length,(j+1)*7-1),0,{a:null,k:0,t:h.t,id:h.id,o:h.o||null,f:h.f||0}));
   const more=["f","kb","rb","io","mh","id","rl","sc","mj"], seen2={};
   for(let r=0;r<3;r++) more.forEach(a=>{const q=Q2MORE[a][r]; if(q){seen2[a]=(seen2[a]||0)+1; out.push({a,k:q[0],t:q[1],f:q[2]||0,id:a+seen2[a]});}});
+  Q2LATER.forEach(([a,k,t,f])=>{ const n=out.filter(q=>q.a===a).length+1; out.push({a,k,t,f:f||0,id:a+n}); });
   return out;
 })();
 /*P2-END*/
@@ -1074,7 +1081,7 @@ function loadLocal(){
   try{
     const d=JSON.parse(localStorage.getItem(KEY2)||"null"); if(!d) return;
     if(Array.isArray(d.about)&&d.about.length===ABOUT.length){ about=d.about.map((a,j)=>clampA(a,maxOf(ABOUT[j]))); aboutDone=!!d.aboutDone; }
-    if(Array.isArray(d.answers)&&(d.answers.length===Q2.length||d.answers.length===Q2_V1)){
+    if(Array.isArray(d.answers)&&(d.answers.length===Q2.length||Q2_OLD.includes(d.answers.length))){
       answers2=Q2.map((q,j)=>j<d.answers.length?clampA(d.answers[j],maxOf(q)):null);   // older saves lack the newer questions
       page2=Math.min(PAGES2-1,Math.max(0,d.page|0));
       if(d.done) score2();
@@ -1111,7 +1118,7 @@ function decodeAny(str){
   if(m){ const a=unpack(m[1],QS.map(()=>100)); return a&&{part:1,a}; }
   m=/^SC2-([A-Za-z0-9_-]+)$/.exec(c);
   if(m){ let a=unpack(m[1],MAX2);
-    if(!a){ const old=unpack(m[1],MAX2.slice(0,ABOUT.length+Q2_V1)); if(old) a=old.concat(new Array(Q2.length-Q2_V1).fill(null)); }   // a code from before the newer questions
+    for(const L of Q2_OLD){ if(a) break; const old=unpack(m[1],MAX2.slice(0,ABOUT.length+L)); if(old) a=old.concat(new Array(Q2.length-L).fill(null)); }   // a code from an earlier version
     return a&&{part:2,about:a.slice(0,ABOUT.length),a:a.slice(ABOUT.length)}; }
   return null;
 }
@@ -1559,7 +1566,7 @@ async function renderShareCard(){
 }
 function renderInsights(){
   const box=$("v-insights");
-  if(!user&&!user2){ box.innerHTML=`<div class="chead"><span class="eyebrow">03 · Insights</span><h1>Take the test first</h1><p>Your insights appear here once you've finished part 1 (36 statements on belief and method) or part 2 (61 questions on society and politics).</p><div class="cta" style="margin-top:14px"><button class="btn" data-go="test">Start part 1 →</button><button class="btn ghost" data-go="test2">Start part 2 →</button></div></div>`; return; }
+  if(!user&&!user2){ box.innerHTML=`<div class="chead"><span class="eyebrow">03 · Insights</span><h1>Take the test first</h1><p>Your insights appear here once you've finished part 1 (36 statements on belief and method) or part 2 (63 questions on society and politics).</p><div class="cta" style="margin-top:14px"><button class="btn" data-go="test">Start part 1 →</button><button class="btn ghost" data-go="test2">Start part 2 →</button></div></div>`; return; }
   const codes=[]; if(user) codes.push(["Part 1",encodeCode()]); if(user2) codes.push(["Part 2",encodeCode2()]);
   box.innerHTML=`
    <div class="ins">
@@ -1872,6 +1879,7 @@ const GL=[
  {k:"abrar",t:"'Ulama' abrar",ar:"علماء أبرار",v:["'ulama' abrar","righteous scholars"],d:"'Righteous scholars'. Mohsen Kadivar's thesis that the earliest Shias saw the Imams as pious, learned guides rather than beings with supernatural knowledge and powers."},
  {k:"adl",t:"'Adl (divine justice)",ar:"العدل",v:["divine justice"],d:"One of the Shia principles of belief. Shia theology holds that reason can recognise good and evil, so God's justice is something we can understand, not simply whatever God wills."},
  {k:"akhbari",t:"Akhbari",ar:"أخباري",v:["Akhbaris","Akhbari"],d:"A school of Shia law, strongest in the 17th and 18th centuries, that took the Imams' reports (akhbar) as the direct source of law and rejected much of Usuli legal theory and ijtihad."},
+ {k:"bidah",t:"Bid'ah",ar:"بدعة",v:["bid'ah"],d:"'Innovation': a practice added to religion with no basis in the Quran or the teaching of the Prophet and the Imams. Which practices count as bid'ah is often disputed."},
  {k:"fatimiyya",t:"Fatimiyya",ar:"الفاطمية",v:["Fatimiyya"],d:"The days of mourning for Lady Fatima, the Prophet's daughter, commemorating her death."},
  {k:"fiqh",t:"Fiqh",ar:"فقه",v:["fiqh"],d:"Islamic law as worked out by jurists: the rulings on worship, family, trade and so on."},
  {k:"fourbooks",t:"The Four Books",ar:"الكتب الأربعة",v:["Four Books"],d:"The four canonical Shia hadith collections: al-Kafi (al-Kulayni), Man la yahduruhu al-faqih (al-Saduq), and Tahdhib al-ahkam and al-Istibsar (al-Tusi)."},

@@ -1,6 +1,6 @@
 {
- "version": 2,
- "note": "Generated from index.html. Index order matches the answers, about and answers2 arrays stored in the database. Part 2 indexes 42 onwards were added later; older rows may have 42 answers.",
+ "version": 4,
+ "note": "Generated from index.html. Index order matches the answers, about and answers2 arrays stored in the database. Part 2 grew over time (42, then 61, then 63 answers); older rows are shorter.",
  "axes": {
   "m": {
    "name": "Modern questions",
@@ -1135,6 +1135,24 @@
    "axis": "id",
    "key": -1,
    "text": "You feel most at home at a centre of people from your own background.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 61,
+   "id": "r5",
+   "axis": "r",
+   "key": 1,
+   "text": "Matam is an essential part of mourning Imam Husayn, not just a cultural custom.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 62,
+   "id": "r6",
+   "axis": "r",
+   "key": -1,
+   "text": "Many popular Shia practices are bid'ah: religious innovations with no basis in the Quran or the Imams' teaching.",
    "type": "slider",
    "scale": "agreement"
   }

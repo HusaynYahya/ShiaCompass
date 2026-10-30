@@ -45,7 +45,7 @@ def parse_array(v, n):
 
 
 def pad(a, n):
-    """Rows saved before the newer part 2 questions were added have 42 answers: pad them with blanks."""
+    """Rows saved under an earlier version of part 2 (42, 61 or 62 answers): pad them with blanks."""
     return a + [None] * (n - len(a)) if a else None
 
 
@@ -56,7 +56,7 @@ def load(path):
         rows.append({
             "about": parse_array(r.get("about"), len(Q["about"])),
             "p1": parse_array(r.get("answers"), len(Q["part1"])),
-            "p2": parse_array(r.get("answers2"), len(Q["part2"])) or pad(parse_array(r.get("answers2"), 42), len(Q["part2"])),
+            "p2": parse_array(r.get("answers2"), len(Q["part2"])) or next((pad(x, len(Q["part2"])) for x in (parse_array(r.get("answers2"), n) for n in (62, 61, 42)) if x), None),
         })
     return rows
 
