@@ -8,17 +8,16 @@ A single-page web app built on the three spectrums Zoheir Esmail set out in his 
 2. **Minimalist ↔ Maximalist**: what an Imam is (Imamology)
 3. **Rationalist ↔ Scripturalist**: whether reason or the transmitted texts come first
 
-Two optional parts add nine axes each. Part 2, inspired by the [12Axes](https://12axes.github.io/) political test, covers society and politics: social life, religion and politics, philosophy and mysticism, other religions, Sunni–Shia relations, ritual, religion and state, wider society, and religious authority. Part 3 covers practice and identity: faith and doubt, what Karbala means, waiting for the Mahdi, inner and outer religion, strict or lenient rulings, the majority view, money and riba, community identity, and science and scripture.
+A second, optional part adds 18 more axes. Nine are inspired by the [12Axes](https://12axes.github.io/) political test (social life, religion and politics, other religions, Sunni–Shia relations, ritual, religion and state, wider society, philosophy and mysticism, religious authority). Nine cover faith and practice (faith and doubt, what Karbala means, waiting for the Mahdi, inner and outer religion, approach to rulings, majority opinion, money and riba, community identity, science and scripture).
 
 ## What it does
 
 - **About you**: six optional, unscored questions (gender, age band, family roots, country, marja', attendance), asked once before whichever part is taken first
 - **Part 1 · Belief and method**: 36 statements (12 per spectrum, some reverse-worded), answered on sliders from "Strongly disagree" to "Strongly agree"
-- **Part 2 · Society and politics**: 36 statements (4 per axis, half reverse-worded) plus 6 unscored habit questions (what you play in the car, which class you'd join, mut'ah, and so on) that are there to find patterns
-- **Part 3 · Practice and identity**: 36 statements (4 per axis, two worded each way). Most use the agree scale; the faith-and-doubt questions use a "Not at all" to "Always" frequency scale
-- **Insights**: for part 1, your position on each spectrum and what it means, the strongest case from the other side, reading and practices that tend to go with your position, related beliefs, and your closest scholars. For parts 2 and 3, a two-pole percentage bar per axis (12Axes style), plus, for part 2, the scholars closest to you on those questions
+- **Part 2 · Society, politics and practice**: 61 questions. 36 statements on the first nine axes (4 each, half reverse-worded), 19 on the faith-and-practice axes (1 to 3 each; "You question the existence of God" uses a "Not at all" to "Always" scale), and 6 unscored habit questions (what you play in the car, which class you'd join, mut'ah, and so on) that are there to find patterns. The 19 newer questions come after the original 42, so earlier answers and result codes still work
+- **Insights**: for part 1, your position on each spectrum and what it means, the strongest case from the other side, reading and practices that tend to go with your position, related beliefs, and your closest scholars. For part 2, a two-pole percentage bar per axis (12Axes style) and the scholars closest to you on those questions
 - **Two 3D compasses**: part 1's cube of 43 scholars (Modernist ↔ Traditionalist × Minimalist ↔ Maximalist × Rationalist ↔ Scripturalist), and part 2's cube of the 19 scholars with documented positions (Liberal ↔ Conservative × Quietist ↔ Activist × Philosophical ↔ Anti-philosophical). Both have your pin, filters by region and period, flat Front / Side / Top views, and clickable axis labels
-- **Share card**: a downloadable image of part 1's three spectrums and closest scholars, and your four strongest leanings from parts 2 and 3, ready to post. Scholar portraits come from `img/scholars/<id>.jpg` if you add them (see `img/scholars/README.md`); otherwise each scholar gets an initials tile
+- **Share card**: a downloadable image of part 1's three spectrums, your four strongest part 2 leanings and your closest scholars, ready to post. Scholar portraits come from `img/scholars/<id>.jpg` if you add them (see `img/scholars/README.md`); otherwise each scholar gets an initials tile
 - **Glossary**: 57 Arabic terms, also available as tap-to-define pop-ups throughout
 
 ## Running it
@@ -27,7 +26,7 @@ It's one self-contained file. Open `index.html` in a browser, or serve the folde
 
 ## How user data is saved
 
-**On the person's own device (always on).** Answers save to the browser's local storage as they're given, so the test resumes where it was left and the result is still there on return. A result code carries the answers to another device (`SC1-…` for part 1, `SC2-…` and `SC3-…` for parts 2 and 3 plus the About-you answers), and on a hosted copy a `?r=…&r2=…&r3=…` link opens results directly. "Clear my data" deletes everything.
+**On the person's own device (always on).** Answers save to the browser's local storage as they're given, so the test resumes where it was left and the result is still there on return. A result code carries the answers to another device (`SC1-…` for part 1, `SC2-…` for part 2 plus the About-you answers), and on a hosted copy a `?r=…&r2=…` link opens results directly. "Clear my data" deletes everything.
 
 **Community results (optional, opt-in).** If you connect a Supabase database, the insights page offers an "Add my result" option behind a consent tick-box. People who agree add their answers to whichever parts they've finished (including the optional About-you answers), their scores, result name, date and a random sharing ID, with no name, email or account. Anyone who says they're under 18 isn't offered sharing. In return they see how they compare with everyone who has shared, and the community average appears on each spectrum. They can remove their result at any time. Totals stay hidden until at least 5 people have shared.
 

@@ -44,6 +44,11 @@ def parse_array(v, n):
     return out if len(out) == n else None
 
 
+def pad(a, n):
+    """Rows saved before the newer part 2 questions were added have 42 answers: pad them with blanks."""
+    return a + [None] * (n - len(a)) if a else None
+
+
 def load(path):
     df = pd.read_csv(path)
     rows = []
@@ -51,8 +56,7 @@ def load(path):
         rows.append({
             "about": parse_array(r.get("about"), len(Q["about"])),
             "p1": parse_array(r.get("answers"), len(Q["part1"])),
-            "p2": parse_array(r.get("answers2"), len(Q["part2"])),
-            "p3": parse_array(r.get("answers3"), len(Q["part3"])),
+            "p2": parse_array(r.get("answers2"), len(Q["part2"])) or pad(parse_array(r.get("answers2"), 42), len(Q["part2"])),
         })
     return rows
 
@@ -71,6 +75,8 @@ def demo(n=600, seed=7):
             x = key * lat[axis] + rng.normal(scale=.9)
             return float(np.clip(round(50 + 22 * x), 0, 100))
         p1 = [slider(q["axis"], q["key"]) for q in Q["part1"]]
+        lat.update({"f": rng.normal(), "kb": .5 * lat["w"] + rng.normal(scale=.5), "mh": .4 * lat["w"], "io": .5 * trad,
+                    "rl": .6 * trad, "mj": .5 * trad, "rb": .4 * trad, "id": rng.normal(), "sc": .3 * devo})
         p2 = []
         for q in Q["part2"]:
             if q["type"] == "slider" and q["axis"]:
@@ -84,12 +90,8 @@ def demo(n=600, seed=7):
                     p2.append(float(rng.choice(k, p=w / w.sum())))
                 else:
                     p2.append(float(rng.integers(k)) if rng.random() > .1 else None)
-        lat.update({"f": rng.normal(), "kb": rng.normal(), "mh": .4 * lat["w"], "io": .5 * trad, "rl": .6 * trad,
-                    "mj": .5 * trad, "rb": .4 * trad, "id": rng.normal(), "sc": .3 * devo})
-        p3 = [slider(q["axis"], q["key"]) for q in Q["part3"]]
         about = [float(rng.integers(len(q["options"]))) if rng.random() > .15 else None for q in Q["about"]]
-        rows.append({"about": about, "p1": p1 if rng.random() > .2 else None, "p2": p2 if rng.random() > .1 else None,
-                     "p3": p3 if rng.random() > .3 else None})
+        rows.append({"about": about, "p1": p1 if rng.random() > .2 else None, "p2": p2 if rng.random() > .1 else None})
     return rows
 
 
@@ -97,7 +99,7 @@ def axis_scores(rows):
     recs = []
     for r in rows:
         s = {}
-        for part, key in (("part1", "p1"), ("part2", "p2"), ("part3", "p3")):
+        for part, key in (("part1", "p1"), ("part2", "p2")):
             ans = r[key]
             if ans is None:
                 continue
@@ -133,7 +135,7 @@ def categorical(rows):
 def sliders(rows):
     """One column per slider statement, 0..100, oriented as written (not reversed)."""
     cols = {}
-    for part, key in (("part1", "p1"), ("part2", "p2"), ("part3", "p3")):
+    for part, key in (("part1", "p1"), ("part2", "p2")):
         for j, q in enumerate(Q[part]):
             if q["type"] == "slider":
                 cols[(part, j)] = [r[key][j] if r[key] and r[key][j] is not None else np.nan for r in rows]
@@ -143,7 +145,7 @@ def sliders(rows):
 def label(part, j):
     q = Q[part][j]
     ax = AXES[q["axis"]]["name"] if q["axis"] else "unscored"
-    return f"P{part[-1]}-{j + 1:02d} [{ax}] {q['text']}"
+    return f"{'P1' if part == 'part1' else 'P2'}-{j + 1:02d} [{ax}] {q['text']}"
 
 
 def varimax(L, iters=100, tol=1e-6):
@@ -179,8 +181,7 @@ def main():
     n = len(rows)
     scores, cats, sl = axis_scores(rows), categorical(rows), sliders(rows)
     html = [f"<h1>Shia Compass · patterns</h1><p>{n} shared results{' (made-up demo data)' if a.demo else ''}. "
-            f"Part 1 answered by {sum(r['p1'] is not None for r in rows)}, part 2 by {sum(r['p2'] is not None for r in rows)}, "
-            f"part 3 by {sum(r['p3'] is not None for r in rows)}. "
+            f"Part 1 answered by {sum(r['p1'] is not None for r in rows)}, part 2 by {sum(r['p2'] is not None for r in rows)}. "
             f"Groups under {a.min_group} people are not shown.</p>"]
 
     # 1. axis overview

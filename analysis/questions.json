@@ -1,6 +1,6 @@
 {
  "version": 2,
- "note": "Generated from index.html. Index order matches the answers, about, answers2 and answers3 arrays stored in the database.",
+ "note": "Generated from index.html. Index order matches the answers, about and answers2 arrays stored in the database. Part 2 indexes 42 onwards were added later; older rows may have 42 answers.",
  "axes": {
   "m": {
    "name": "Modern questions",
@@ -87,64 +87,64 @@
    "name": "Faith and doubt",
    "neg": "Certain",
    "pos": "Searching",
-   "part": 3,
+   "part": 2,
    "group": "Faith"
   },
   "kb": {
    "name": "What Karbala means",
    "neg": "Devotional",
    "pos": "Revolutionary",
-   "part": 3,
+   "part": 2,
    "group": "Faith"
   },
   "mh": {
    "name": "Waiting for the Mahdi",
    "neg": "Patient",
    "pos": "Active",
-   "part": 3,
+   "part": 2,
    "group": "Faith"
   },
   "io": {
    "name": "Inner and outer religion",
    "neg": "Spirit-centred",
    "pos": "Law-centred",
-   "part": 3,
+   "part": 2,
    "group": "Practice"
   },
   "rl": {
    "name": "Approach to rulings",
    "neg": "Lenient",
    "pos": "Cautious",
-   "part": 3,
+   "part": 2,
    "group": "Practice"
   },
   "mj": {
    "name": "Majority opinion",
    "neg": "Independent",
    "pos": "Mainstream",
-   "part": 3,
+   "part": 2,
    "group": "Practice"
   },
   "rb": {
    "name": "Money and riba",
    "neg": "Pragmatic",
    "pos": "Strict",
-   "part": 3,
-   "group": "Daily life"
+   "part": 2,
+   "group": "Practice"
   },
   "id": {
    "name": "Community identity",
    "neg": "Heritage",
    "pos": "Shared",
-   "part": 3,
-   "group": "Daily life"
+   "part": 2,
+   "group": "Society"
   },
   "sc": {
    "name": "Science and scripture",
    "neg": "Separate",
    "pos": "Reconciling",
-   "part": 3,
-   "group": "Daily life"
+   "part": 2,
+   "group": "Belief"
   }
  },
  "about": [
@@ -966,11 +966,9 @@
     "Ziyara in Najaf",
     "Sayyida Zaynab, Damascus"
    ]
-  }
- ],
- "part3": [
+  },
   {
-   "index": 0,
+   "index": 42,
    "id": "f1",
    "axis": "f",
    "key": 1,
@@ -979,7 +977,7 @@
    "scale": "frequency"
   },
   {
-   "index": 1,
+   "index": 43,
    "id": "kb1",
    "axis": "kb",
    "key": 1,
@@ -988,7 +986,7 @@
    "scale": "agreement"
   },
   {
-   "index": 2,
+   "index": 44,
    "id": "rb1",
    "axis": "rb",
    "key": -1,
@@ -997,16 +995,16 @@
    "scale": "agreement"
   },
   {
-   "index": 3,
+   "index": 45,
    "id": "io1",
    "axis": "io",
-   "key": 1,
-   "text": "Getting the rulings of prayer right matters more than feeling moved in it.",
+   "key": -1,
+   "text": "A sincere heart matters more to God than perfect observance of the rules.",
    "type": "slider",
    "scale": "agreement"
   },
   {
-   "index": 4,
+   "index": 46,
    "id": "mh1",
    "axis": "mh",
    "key": 1,
@@ -1015,7 +1013,7 @@
    "scale": "agreement"
   },
   {
-   "index": 5,
+   "index": 47,
    "id": "id1",
    "axis": "id",
    "key": 1,
@@ -1024,34 +1022,34 @@
    "scale": "agreement"
   },
   {
-   "index": 6,
+   "index": 48,
    "id": "rl1",
    "axis": "rl",
    "key": 1,
-   "text": "When scholars differ, you take the stricter view.",
+   "text": "If you're unsure whether something is halal, you avoid it.",
    "type": "slider",
    "scale": "agreement"
   },
   {
-   "index": 7,
+   "index": 49,
    "id": "sc1",
    "axis": "sc",
-   "key": 1,
-   "text": "The Quran contains scientific facts that were only discovered recently.",
+   "key": -1,
+   "text": "The Quran is a book of guidance, not science, so it shouldn't be read for scientific facts.",
    "type": "slider",
    "scale": "agreement"
   },
   {
-   "index": 8,
+   "index": 50,
    "id": "mj1",
    "axis": "mj",
    "key": -1,
-   "text": "You'd follow a ruling held by only a few jurists if your marja' gave it.",
+   "text": "A new ruling that breaks with centuries of opinion can still be correct.",
    "type": "slider",
    "scale": "agreement"
   },
   {
-   "index": 9,
+   "index": 51,
    "id": "f2",
    "axis": "f",
    "key": -1,
@@ -1060,34 +1058,34 @@
    "scale": "agreement"
   },
   {
-   "index": 10,
+   "index": 52,
    "id": "kb2",
    "axis": "kb",
-   "key": -1,
-   "text": "Weeping for Imam Husayn is valuable in itself, whatever lessons we draw from it.",
+   "key": 1,
+   "text": "A majlis that doesn't connect Karbala to injustice today has missed the point.",
    "type": "slider",
    "scale": "agreement"
   },
   {
-   "index": 11,
+   "index": 53,
    "id": "rb2",
    "axis": "rb",
-   "key": 1,
-   "text": "You'd turn down a better-paid job at a conventional bank.",
+   "key": -1,
+   "text": "You have no issue with taking out a loan for a mortgage.",
    "type": "slider",
    "scale": "agreement"
   },
   {
-   "index": 12,
+   "index": 54,
    "id": "io2",
    "axis": "io",
-   "key": -1,
-   "text": "A sincere heart matters more to God than perfect observance of the rules.",
+   "key": 1,
+   "text": "You look up rulings (on wudu or khums, say) more often than you read about spirituality or ethics.",
    "type": "slider",
    "scale": "agreement"
   },
   {
-   "index": 13,
+   "index": 55,
    "id": "mh2",
    "axis": "mh",
    "key": -1,
@@ -1096,7 +1094,7 @@
    "scale": "agreement"
   },
   {
-   "index": 14,
+   "index": 56,
    "id": "id2",
    "axis": "id",
    "key": -1,
@@ -1105,170 +1103,8 @@
    "scale": "agreement"
   },
   {
-   "index": 15,
+   "index": 57,
    "id": "rl2",
-   "axis": "rl",
-   "key": -1,
-   "text": "Religion is meant to be easy, so it's right to take the lighter ruling when you're allowed to.",
-   "type": "slider",
-   "scale": "agreement"
-  },
-  {
-   "index": 16,
-   "id": "sc2",
-   "axis": "sc",
-   "key": -1,
-   "text": "The Quran is a book of guidance, not science, so it shouldn't be read for scientific facts.",
-   "type": "slider",
-   "scale": "agreement"
-  },
-  {
-   "index": 17,
-   "id": "mj2",
-   "axis": "mj",
-   "key": 1,
-   "text": "If most jurists over the centuries agreed on something, it is very likely right.",
-   "type": "slider",
-   "scale": "agreement"
-  },
-  {
-   "index": 18,
-   "id": "f3",
-   "axis": "f",
-   "key": 1,
-   "text": "The problem of evil, why a good God allows suffering, unsettles you.",
-   "type": "slider",
-   "scale": "frequency"
-  },
-  {
-   "index": 19,
-   "id": "kb3",
-   "axis": "kb",
-   "key": 1,
-   "text": "A majlis that doesn't connect Karbala to injustice today has missed the point.",
-   "type": "slider",
-   "scale": "agreement"
-  },
-  {
-   "index": 20,
-   "id": "rb3",
-   "axis": "rb",
-   "key": 1,
-   "text": "Keeping savings in an interest-paying account is wrong, even if you give the interest away.",
-   "type": "slider",
-   "scale": "agreement"
-  },
-  {
-   "index": 21,
-   "id": "io3",
-   "axis": "io",
-   "key": 1,
-   "text": "You look up rulings (on wudu or khums, say) more often than you read about spirituality or ethics.",
-   "type": "slider",
-   "scale": "agreement"
-  },
-  {
-   "index": 22,
-   "id": "mh3",
-   "axis": "mh",
-   "key": 1,
-   "text": "You think about how your choices might help prepare for the Imam's return.",
-   "type": "slider",
-   "scale": "agreement"
-  },
-  {
-   "index": 23,
-   "id": "id3",
-   "axis": "id",
-   "key": 1,
-   "text": "Shia centres should be run as one community, not by ethnic group (Iraqi, Khoja, Pakistani, Iranian…).",
-   "type": "slider",
-   "scale": "agreement"
-  },
-  {
-   "index": 24,
-   "id": "rl3",
-   "axis": "rl",
-   "key": 1,
-   "text": "If you're unsure whether something is halal, you avoid it.",
-   "type": "slider",
-   "scale": "agreement"
-  },
-  {
-   "index": 25,
-   "id": "sc3",
-   "axis": "sc",
-   "key": 1,
-   "text": "Scientific discoveries often confirm what the Quran and the Imams taught.",
-   "type": "slider",
-   "scale": "agreement"
-  },
-  {
-   "index": 26,
-   "id": "mj3",
-   "axis": "mj",
-   "key": -1,
-   "text": "A new ruling that breaks with centuries of opinion can still be correct.",
-   "type": "slider",
-   "scale": "agreement"
-  },
-  {
-   "index": 27,
-   "id": "f4",
-   "axis": "f",
-   "key": -1,
-   "text": "You're certain your beliefs are true, and nothing could change that.",
-   "type": "slider",
-   "scale": "agreement"
-  },
-  {
-   "index": 28,
-   "id": "kb4",
-   "axis": "kb",
-   "key": -1,
-   "text": "Imam Husayn's intercession on the Day of Judgement is one of the main reasons to mourn him.",
-   "type": "slider",
-   "scale": "agreement"
-  },
-  {
-   "index": 29,
-   "id": "rb4",
-   "axis": "rb",
-   "key": -1,
-   "text": "Islamic finance is often conventional finance with different labels, so the difference matters less than people think.",
-   "type": "slider",
-   "scale": "agreement"
-  },
-  {
-   "index": 30,
-   "id": "io4",
-   "axis": "io",
-   "key": -1,
-   "text": "Someone can be close to God while being lax about some religious rules.",
-   "type": "slider",
-   "scale": "agreement"
-  },
-  {
-   "index": 31,
-   "id": "mh4",
-   "axis": "mh",
-   "key": -1,
-   "text": "Efforts to hasten the reappearance, or to read today's events as its signs, do more harm than good.",
-   "type": "slider",
-   "scale": "agreement"
-  },
-  {
-   "index": 32,
-   "id": "id4",
-   "axis": "id",
-   "key": -1,
-   "text": "You feel most at home at a centre of people from your own background.",
-   "type": "slider",
-   "scale": "agreement"
-  },
-  {
-   "index": 33,
-   "id": "rl4",
    "axis": "rl",
    "key": -1,
    "text": "You'd eat at a restaurant without checking every ingredient, if the food is probably halal.",
@@ -1276,8 +1112,8 @@
    "scale": "agreement"
   },
   {
-   "index": 34,
-   "id": "sc4",
+   "index": 58,
+   "id": "sc2",
    "axis": "sc",
    "key": -1,
    "text": "Science and religion answer different questions, so they can't truly conflict.",
@@ -1285,11 +1121,20 @@
    "scale": "agreement"
   },
   {
-   "index": 35,
-   "id": "mj4",
-   "axis": "mj",
-   "key": 1,
-   "text": "You'd be uneasy following a marja' known for unusual rulings.",
+   "index": 59,
+   "id": "io3",
+   "axis": "io",
+   "key": -1,
+   "text": "Someone can be close to God while being lax about some religious rules.",
+   "type": "slider",
+   "scale": "agreement"
+  },
+  {
+   "index": 60,
+   "id": "id3",
+   "axis": "id",
+   "key": -1,
+   "text": "You feel most at home at a centre of people from your own background.",
    "type": "slider",
    "scale": "agreement"
   }

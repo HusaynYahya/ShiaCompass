@@ -4,8 +4,7 @@
 --
 -- Design:
 --   * One row per browser that chooses to share, keyed by a random token kept in that browser.
---   * Part 1 (36 statements), part 2 (42 questions) and part 3 (36 statements) are all optional;
---     a row holds whichever were finished.
+--   * Part 1 (36 statements) and part 2 (61 questions) are both optional; a row holds whichever were finished.
 --   * The table is locked: the public (anon) key cannot read or write it directly.
 --   * The page can only call three functions:
 --       submit_result      add or update this browser's result (needs its token)
@@ -31,16 +30,12 @@ alter table public.results add column if not exists answers   smallint[] check (
 alter table public.results add column if not exists about     smallint[] check (
   about is null or (array_ndims(about) = 1 and cardinality(about) = 6 and 0 <= all (about) and 10 >= all (about)));
 alter table public.results add column if not exists answers2  smallint[] check (
-  answers2 is null or (array_ndims(answers2) = 1 and cardinality(answers2) = 42 and 0 <= all (answers2) and 100 >= all (answers2)));
+  answers2 is null or (array_ndims(answers2) = 1 and cardinality(answers2) = 61 and 0 <= all (answers2) and 100 >= all (answers2)));
 alter table public.results add column if not exists scores2   jsonb    check (scores2 is null or jsonb_typeof(scores2) = 'object');
 -- Keep the part 2 length check current if an older version of this script created it with a different length.
 alter table public.results drop constraint if exists results_answers2_check;
 alter table public.results add constraint results_answers2_check check (
-  answers2 is null or (array_ndims(answers2) = 1 and cardinality(answers2) = 42 and 0 <= all (answers2) and 100 >= all (answers2))) not valid;  -- not valid: rows saved under an older version are kept as they are
--- Part 3
-alter table public.results add column if not exists answers3  smallint[] check (
-  answers3 is null or (array_ndims(answers3) = 1 and cardinality(answers3) = 36 and 0 <= all (answers3) and 100 >= all (answers3)));
-alter table public.results add column if not exists scores3   jsonb    check (scores3 is null or jsonb_typeof(scores3) = 'object');
+  answers2 is null or (array_ndims(answers2) = 1 and cardinality(answers2) = 61 and 0 <= all (answers2) and 100 >= all (answers2))) not valid;  -- not valid: rows saved under the older 42-question version are kept as they are
 -- Older installs made these NOT NULL; part 1 is now optional.
 alter table public.results alter column m drop not null, alter column i drop not null, alter column e drop not null,
   alter column archetype drop not null, alter column answers drop not null;
@@ -50,40 +45,31 @@ alter table public.results enable row level security;
 revoke all on table public.results from anon, authenticated;
 
 drop function if exists public.submit_result(uuid, real, real, real, smallint[], text, text);
-drop function if exists public.submit_result(uuid, real, real, real, smallint[], text, text, smallint[], smallint[], jsonb);
 create or replace function public.submit_result(
   p_token uuid, p_m real, p_i real, p_e real, p_answers smallint[], p_archetype text, p_consent text,
-  p_about smallint[] default null, p_answers2 smallint[] default null, p_scores2 jsonb default null,
-  p_answers3 smallint[] default null, p_scores3 jsonb default null
+  p_about smallint[] default null, p_answers2 smallint[] default null, p_scores2 jsonb default null
 ) returns void
 language plpgsql
 security definer
 set search_path = public
 as $$
 begin
-  if p_answers is null and p_answers2 is null and p_answers3 is null then
+  if p_answers is null and p_answers2 is null then
     raise exception 'nothing to submit';
   end if;
   if p_scores2 is not null and (
-       (select count(*) from jsonb_object_keys(p_scores2)) > 12
+       (select count(*) from jsonb_object_keys(p_scores2)) > 20
     or exists (select 1 from jsonb_each(p_scores2) x
                where jsonb_typeof(x.value) <> 'number' or (x.value)::text::real not between -1 and 1)) then
     raise exception 'invalid scores2';
   end if;
-  if p_scores3 is not null and (
-       (select count(*) from jsonb_object_keys(p_scores3)) > 12
-    or exists (select 1 from jsonb_each(p_scores3) x
-               where jsonb_typeof(x.value) <> 'number' or (x.value)::text::real not between -1 and 1)) then
-    raise exception 'invalid scores3';
-  end if;
-  insert into public.results (token, m, i, e, answers, archetype, consent_version, about, answers2, scores2, answers3, scores3)
-  values (p_token, p_m, p_i, p_e, p_answers, p_archetype, p_consent, p_about, p_answers2, p_scores2, p_answers3, p_scores3)
+  insert into public.results (token, m, i, e, answers, archetype, consent_version, about, answers2, scores2)
+  values (p_token, p_m, p_i, p_e, p_answers, p_archetype, p_consent, p_about, p_answers2, p_scores2)
   on conflict (token) do update
     set m = excluded.m, i = excluded.i, e = excluded.e,
         answers = excluded.answers, archetype = excluded.archetype,
         consent_version = excluded.consent_version, about = excluded.about,
-        answers2 = excluded.answers2, scores2 = excluded.scores2,
-        answers3 = excluded.answers3, scores3 = excluded.scores3, updated_at = now();
+        answers2 = excluded.answers2, scores2 = excluded.scores2, updated_at = now();
 end;
 $$;
 
@@ -105,13 +91,12 @@ security definer
 set search_path = public
 as $$
 declare
-  total bigint; n1 bigint; n2 bigint; n3 bigint;
+  total bigint; n1 bigint; n2 bigint;
   bins  constant int := 20;
-  keys2 constant text[] := array['p','a','pl','u','c','r','w','s','g'];
-  keys3 constant text[] := array['f','kb','mh','io','rl','mj','rb','id','sc'];
-  part1 json := null; part2 json := null; part3 json := null;
+  keys2 constant text[] := array['p','a','pl','u','c','r','w','s','g','f','kb','mh','io','rl','mj','rb','id','sc'];
+  part1 json := null; part2 json := null;
 begin
-  select count(*), count(m), count(scores2), count(scores3) into total, n1, n2, n3 from public.results;
+  select count(*), count(m), count(scores2) into total, n1, n2 from public.results;
   if n1 >= 5 then
     part1 := json_build_object(
       'avg', (select json_build_object('m', round(avg(m)::numeric, 3), 'i', round(avg(i)::numeric, 3), 'e', round(avg(e)::numeric, 3))
@@ -128,19 +113,15 @@ begin
     part2 := (select json_object_agg(k, (select round(avg((scores2 ->> k)::numeric), 3) from public.results where scores2 ? k))
               from unnest(keys2) k);
   end if;
-  if n3 >= 5 then
-    part3 := (select json_object_agg(k, (select round(avg((scores3 ->> k)::numeric), 3) from public.results where scores3 ? k))
-              from unnest(keys3) k);
-  end if;
-  return json_build_object('n', total, 'n1', n1, 'n2', n2, 'n3', n3,
-    'avg', part1 -> 'avg', 'hist', part1 -> 'hist', 'avg2', part2, 'avg3', part3);
+  return json_build_object('n', total, 'n1', n1, 'n2', n2,
+    'avg', part1 -> 'avg', 'hist', part1 -> 'hist', 'avg2', part2);
 end;
 $$;
 
-revoke all on function public.submit_result(uuid, real, real, real, smallint[], text, text, smallint[], smallint[], jsonb, smallint[], jsonb) from public;
+revoke all on function public.submit_result(uuid, real, real, real, smallint[], text, text, smallint[], smallint[], jsonb) from public;
 revoke all on function public.delete_result(uuid) from public;
 revoke all on function public.community_summary() from public;
-grant execute on function public.submit_result(uuid, real, real, real, smallint[], text, text, smallint[], smallint[], jsonb, smallint[], jsonb) to anon, authenticated;
+grant execute on function public.submit_result(uuid, real, real, real, smallint[], text, text, smallint[], smallint[], jsonb) to anon, authenticated;
 grant execute on function public.delete_result(uuid) to anon, authenticated;
 grant execute on function public.community_summary() to anon, authenticated;
 
