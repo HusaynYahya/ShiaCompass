@@ -475,7 +475,7 @@ body.theme2 #tile .t1{fill:#1E7A55} body.theme2 #tile .t2{fill:#6E2B67} body.the
         <span class="eyebrow">Built on Zoheir Esmail's three spectrums</span>
         <h1>Take the <em>Shia Compass</em> Test</h1>
         <p class="sub">See where you align with traditional and contemporary scholars.</p>
-        <div class="facts"><span><b>2</b> parts, about <b>10–15</b> minutes each</span><span><b>21</b> axes</span><span><b>2</b> 3D compasses</span><span><b>104</b> scholars and figures, 10th century to today</span></div>
+        <div class="facts"><span><b>2</b> parts, about <b>10–15</b> minutes each</span><span><b>21</b> axes</span><span><b>2</b> 3D compasses</span><span><b>85</b> scholars and figures, 10th century to today</span></div>
         <div class="cta">
           <button class="btn" data-go="test">Start part 1 →</button>
           <button class="btn theme2" data-go="test2">Start part 2 →</button>
@@ -568,7 +568,7 @@ body.theme2 #tile .t1{fill:#1E7A55} body.theme2 #tile .t2{fill:#6E2B67} body.the
     <div class="method-note">
       <span class="eyebrow">How the placements were made</span>
       <p>The three spectrums come from Zoheir Esmail's post, which draws on Shaykh Dr Vinay Khetia's framing. The scholars' positions are approximate readings of what each is best known for in their published work and in the secondary literature; the post itself places no one. Every placement is contestable, since most scholars hold mixed positions and changed over a lifetime. A position says nothing about piety or correctness.</p>
-      <p>Part 2's axes are inspired by the 12Axes political test and adapted to questions Shia communities argue about. The society and politics compass places a wider cast than part 1: jurists and maraji', thinkers and academics, political and community leaders, and preachers. Each is placed only where their public positions are documented, and those placements are rougher than part 1's: they read public stances on politics, social life and philosophy, which few figures set out systematically. Where a figure has no documented view on philosophy, their dot is hollow and sits at the middle of that axis.</p>
+      <p>Part 2's axes are inspired by the 12Axes political test and adapted to questions Shia communities argue about. The society and politics compass places a wider cast than part 1: jurists and maraji', thinkers and academics, political and community leaders, and preachers. Each is placed only where their public positions are documented, and those placements are rougher than part 1's: they read public stances on politics, social life and philosophy, which few figures set out systematically. Only figures whose positions on all three of its questions are documented are shown on it. Figures with no documented view on philosophy still count in your closest matches, using the questions where their views are known.</p>
       <p>Your answers are stored only in your own browser on this device (its local storage), so the test resumes where you left off and your results are there when you come back. When you finish a part, your answers and scores are also recorded anonymously for research, as the notice before the test says (not for anyone who says they're under 18). A result code for each part lets you carry your answers to another device yourself. "Clear my data" on the insights page removes everything, including your recorded result.</p>
       <p>The test is a self-reflection tool, not a validated measure. The reading, activity and belief suggestions on the insights page describe tendencies among people with similar views, not predictions about you.</p>
     </div>
@@ -2042,16 +2042,16 @@ function stopHero(){ if(heroRaf){cancelAnimationFrame(heroRaf);heroRaf=null;} }
 const CS={yaw:-0.72,pitch:.46,K:262,CAM:10,cx:500,cy:420};
 const PRE={iso:[-0.72,.46],front:[0,0],side:[Math.PI/2,0],top:[0,-Math.PI/2]};
 const MODES={
- core:{keys:["m","i","e"], ax:k=>AX[k], list:()=>S1, pos:s=>s, me:()=>user,
+ core:{keys:["m","i","e"], ax:k=>AX[k], list:()=>S1M, pos:s=>s, me:()=>user,
    title:"Worldview and Methodology", lab:"Worldview and Methodology",
    desc:`Left to right is <b style="color:var(--text)">Modernist ↔ Traditionalist</b>, bottom to top is <b style="color:var(--text)">Minimalist ↔ Maximalist</b>, and front to back is <b style="color:var(--text)">Rationalist ↔ Scripturalist</b>. Click a gold axis label to see the method behind that viewpoint, or click a scholar to see why they sit there.`,
    legend:"Dot colour = region · dashed circle = mainstream Usuli centre (tap it to zoom in) · dotted saffron line = the deepest divide",
    chips:["Modern × Imamology","Method × Imamology","Modern × Method"],
    hint:{iso:"Drag to turn · arrow keys work too",front:"Front: modern questions across, Imamology up. Method is depth.",side:"Side: method across (rationalist left), Imamology up. Modern questions is depth.",top:"Top: modern questions across, method up (scripturalist top). Imamology is depth."}},
- soc:{keys:["c","w","p"], ax:k=>AX2[k], list:()=>ALLS.filter(s=>POL[s.id]), pos:s=>({m:POL[s.id].c,i:POL[s.id].w,e:POL[s.id].p===null?0:POL[s.id].p}), me:()=>user2&&{m:user2.c,i:user2.w,e:user2.p},
+ soc:{keys:["c","w","p"], ax:k=>AX2[k], list:()=>ALLS.filter(s=>POL[s.id]&&POL[s.id].p!==null&&!POL[s.id].lo), pos:s=>({m:POL[s.id].c,i:POL[s.id].w,e:POL[s.id].p}), me:()=>user2&&{m:user2.c,i:user2.w,e:user2.p},
    title:"Society and politics", lab:"Society and politics",
    desc:`The second compass. Left to right is <b style="color:var(--text)">Liberal ↔ Conservative</b> on social life, bottom to top is <b style="color:var(--text)">Quietist ↔ Activist</b> on religion and politics, and front to back is <b style="color:var(--text)">Philosophical ↔ Anti-philosophical</b> on philosophy and mysticism. Use Kind to show one group at a time. Placements are approximate readings of each figure's public positions.`,
-   legend:"Dot colour = region · hollow dot = no documented view on philosophy, so shown at the middle of that axis",
+   legend:"Dot colour = region · only figures whose positions on all three questions are documented are shown",
    chips:["Social life × Politics","Philosophy × Politics","Social life × Philosophy"],
    hint:{iso:"Drag to turn · arrow keys work too",front:"Front: social life across, religion and politics up. Philosophy is depth.",side:"Side: philosophy across (philosophical left), politics up. Social life is depth.",top:"Top: social life across, philosophy up (anti-philosophical top). Politics is depth."}}
 };
@@ -2165,7 +2165,7 @@ function renderDrawer(){
       ${bars(P,"var(--r-"+s.reg+")",ks,k=>AX2[k])}
       <span class="sec">Why here</span><p class="why">${P.why}</p>
       ${user2?`<span class="sec">Match with you on these questions</span><p>${match(dist2(s.id,user2))}%</p>`:""}
-      <p class="muted" style="font-size:13.5px">${P.t?KIND[P.t]+" · ":""}Placements on these axes are approximate readings of public positions.${P.p===null?" There's no documented view on philosophy and mysticism, so the hollow dot sits at the middle of that axis.":""}${P.lo?" Few of their public positions on these questions are documented, so this placement is rough, and they aren't counted in anyone's closest matches.":""}</p>`;
+      <p class="muted" style="font-size:13.5px">${P.t?KIND[P.t]+" · ":""}Placements on these axes are approximate readings of public positions.${P.p===null?" There's no documented view on philosophy and mysticism, so they aren't shown on the 3D compass; your match with them uses the other questions.":""}${P.lo?" Few of their public positions on these questions are documented, so they aren't shown on the compass or counted in anyone's closest matches.":""}</p>`;
     }
   } else if(drawer.type==="method"){const M=METHOD[drawer.a][drawer.p], opp=drawer.p==="neg"?"pos":"neg";
     h=`${back}
