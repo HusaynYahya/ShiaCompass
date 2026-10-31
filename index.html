@@ -303,6 +303,9 @@ input.ag::-moz-range-thumb{width:22px;height:22px;background:var(--saffron);bord
 .chk input{width:22px;height:22px;margin:1px 0 0;flex:none;accent-color:var(--cobalt)}
 .cmsg{font-size:14.5px;color:var(--ink2);min-height:1.2em}
 .notice summary{cursor:pointer;font-weight:600;color:var(--teal-d);font-size:15px;min-height:32px;display:flex;align-items:center}
+.disc{max-width:660px;margin:18px 0 4px;padding:14px 18px;background:var(--card);border:2px solid var(--line2);border-left:6px solid var(--saffron,#D69A2D);border-radius:12px;font-size:15px;line-height:1.5;color:var(--ink2)}
+.disc strong{color:var(--text)}
+.ins .disc{max-width:none;margin:0 0 18px}
 .recnote{max-width:660px;margin-top:16px;padding:12px 16px;background:var(--card);border:2px solid var(--line2);border-radius:12px;font-size:14.5px;color:var(--ink2)}
 .recnote p{margin:0 0 4px}
 .test .recnote{max-width:none;margin:0 0 14px}
@@ -509,6 +512,7 @@ body.theme2 #tile .t1{fill:#1E7A55} body.theme2 #tile .t2{fill:#6E2B67} body.the
           <button class="btn ghost" data-go="compass">Explore the compass first</button>
         </div>
         <div id="resume" class="resume" hidden></div>
+        <p class="disc" role="note"><strong>Please read first.</strong> The Shia Compass is for reflection and conversation only. It shouldn't be taken seriously, and it shouldn't change what you believe or practise. These are questions for qualified scholars: most of us, including whoever wrote this quiz, don't have the training in fiqh, usul, hadith and theology to reach sound conclusions on them. Your result is a rough snapshot of how you answered today, not a judgement on your faith, and the scholars' positions on the compass are approximate. For guidance on any of these questions, speak to a qualified scholar and follow your marja'.</p>
         <div class="spectra" aria-label="The three spectrums">
           <div class="spec"><span class="num" aria-hidden="true">١</span><h3>Modernist ↔ Traditionalist</h3><p>How far modern questions about women, minorities and rights should reshape religious conclusions.</p></div>
           <div class="spec"><span class="num" aria-hidden="true">٢</span><h3>Minimalist ↔ Maximalist</h3><p>What an Imam is: a divinely guided scholar and leader, or a cosmic intermediary with wilaya takwiniyya.</p></div>
@@ -600,7 +604,7 @@ body.theme2 #tile .t1{fill:#1E7A55} body.theme2 #tile .t2{fill:#6E2B67} body.the
       <p>The three spectrums come from Zoheir Esmail's post, which draws on Shaykh Dr Vinay Khetia's framing. The scholars' positions are approximate readings of what each is best known for in their published work and in the secondary literature; the post itself places no one. Every placement is contestable, since most scholars hold mixed positions and changed over a lifetime. A position says nothing about piety or correctness.</p>
       <p>Part 2's axes are inspired by the 12Axes political test and adapted to questions Shia communities argue about. The society and politics compass places a wider cast than part 1: jurists and maraji', thinkers and academics, political and community leaders, and preachers. Each is placed only where their public positions are documented, and those placements are rougher than part 1's: they read public stances on politics, social life and philosophy, which few figures set out systematically. Only figures whose positions on all three of its questions are documented are shown on it. Figures with no documented view on philosophy still count in your closest matches, using the questions where their views are known.</p>
       <p>Your answers are stored only in your own browser on this device (its local storage), so the test resumes where you left off and your results are there when you come back. When you finish a part, your answers and scores are also recorded anonymously for research, as the notice before the test says (not for anyone who says they're under 18). A result code for each part lets you carry your answers to another device yourself. "Clear my data" on the insights page removes everything, including your recorded result.</p>
-      <p>The test is a self-reflection tool, not a validated measure. The reading, activity and belief suggestions on the insights page describe tendencies among people with similar views, not predictions about you.</p>
+      <p>The test is a self-reflection tool, not a validated measure, and it is not religious guidance. It shouldn't be taken seriously or change anyone's beliefs: these questions need specialist training in fiqh, usul, hadith and theology that most people don't have, so take any real question to a qualified scholar. The reading, activity and belief suggestions on the insights page describe tendencies among people with similar views, not predictions about you.</p>
     </div>
   </section>
 </main>
@@ -1961,6 +1965,7 @@ async function drawCard(){
   const HF=Math.min(H,y+112), out=document.createElement("canvas"); out.width=W; out.height=HF;
   g=out.getContext("2d"); g.drawImage(cv,0,0);
   g.fillStyle="#F6F9FA"; g.fillRect(0,HF-112,W,112);
+  txt("For reflection only, not religious guidance.",PAD,HF-84,`500 19px ${F2}`,"#5A6B78");
   txt("Take the test: husaynyahya.github.io/ShiaCompass",PAD,HF-58,`700 24px ${F2}`,INK);
   band(HF-40,"#1E7A55","#6E2B67","#D8613A","#2B1630");
   return out;
@@ -1994,6 +1999,7 @@ function renderInsights(){
   const codes=[]; if(user) codes.push(["Part 1",encodeCode()]); if(user2) codes.push(["Part 2",encodeCode2()]);
   box.innerHTML=`
    <div class="ins">
+    <p class="disc" role="note"><strong>A reminder:</strong> this is for reflection only. Don't take it too seriously or let it change your beliefs: these questions need specialist scholarship that most of us don't have. Take any real question to a qualified scholar.</p>
     <section class="sharecard" aria-label="Share your result">
       <div class="shead"><span class="eyebrow">Share</span><h2>Your result card</h2>
         <p>An image of where you sit on part 1's three spectrums and part 2's four main leanings, with the scholars closest to you. Post it or send it to friends.</p>
