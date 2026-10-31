@@ -109,3 +109,4 @@ Any scholar without an image gets a tile with their initials in their region's c
 | `safi` | Ayatollah Lutfullah Safi Golpaygani |
 | `shubayri` | Ayatollah Sayyid Musa Shubayri Zanjani |
 | `tabrizi` | Mirza Javad Tabrizi |
+| `kamoonpuri` | Sayyid Ali Hurr Kamoonpuri |
