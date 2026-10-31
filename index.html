@@ -1704,15 +1704,32 @@ $("tNext").addEventListener("click",()=>{
   saveLocal(); autoShare();
   go("insights");
 });
+/* ---- Scoring: an ideal-point model ----
+   Each statement has a position on its spectrum (B1/B2): where someone who answers Neutral to it would stand.
+   Extreme statements sit near their own end, widely shared ones toward the other end. A person's position on a
+   spectrum is the point that best explains all their answers together, so disagreeing with an extreme statement
+   barely moves you, while agreeing with one is strong evidence. Positions are estimates for now; once enough people
+   have taken the test, analysis/patterns.py can estimate them from the real answers. */
+const B1={"0": 0.2, "3": 0, "6": -0.3, "9": -0.1, "12": 0, "15": -0.2, "18": -0.3, "21": -0.4, "24": 0.2, "27": 0.4, "30": 0.1, "33": 0, "36": 0.4, "39": 0.4, "42": 0.3, "45": 0.3, "48": 0.2, "49": 0.2, "1": -0.2, "4": 0.2, "7": -0.2, "10": -0.1, "13": -0.2, "16": 0.1, "22": -0.3, "25": 0, "28": -0.3, "31": -0.1, "34": 0.3, "37": -0.1, "40": 0.3, "43": 0.1, "46": 0.2, "50": -0.1, "2": 0.1, "5": 0.3, "8": 0.2, "11": -0.3, "14": 0.2, "17": 0.3, "20": -0.1, "23": 0.2, "26": 0, "29": 0.3, "32": 0.4, "35": 0.4, "38": 0.2, "44": 0.2, "47": -0.2};   // part 1, by stored answer index
+const B2={"0": 0.4, "10": 0.3, "21": -0.3, "31": 0.2, "68": 0.2, "1": 0.2, "11": 0, "22": 0.2, "32": 0, "63": 0.6, "2": 0, "12": 0.4, "23": 0.4, "33": -0.2, "3": 0, "14": 0.6, "35": 0.4, "4": 0, "15": 0, "25": 0.3, "36": 0.2, "61": 0.1, "62": -0.5, "5": 0.2, "16": 0.3, "26": 0.5, "37": 0.4, "7": -0.2, "17": 0, "28": 0.3, "38": 0.1, "65": -0.3, "8": 0.4, "18": 0.3, "29": 0.3, "39": 0.4, "64": 0.6, "9": -0.2, "19": -0.3, "30": 0.1, "40": 0.3, "42": 0.4, "51": 0, "43": -0.2, "46": 0, "55": 0, "47": 0, "56": 0, "60": 0.3, "71": 0.1, "48": -0.2, "57": 0, "70": 0.3, "49": 0, "67": 0.1, "50": 0, "53": 0, "45": 0.3, "54": 0, "59": 0};   // part 2, by stored answer index
+const IP_TAU=0.5, IP_PRIOR=0.25;   // how sharply answers flip around a statement's position; pull toward the centre when answers are few
+function idealPoint(items){
+  if(!items.length) return undefined;
+  let best=0,bestL=Infinity;
+  for(let t=-100;t<=100;t++){ const x=t/100; let L=IP_PRIOR*x*x;
+    for(const it of items){ const d=it.a-Math.tanh(it.k*(x-it.b)/IP_TAU); L+=d*d; }
+    if(L<bestL){ bestL=L; best=x; } }
+  return best;
+}
 function score(){
-  const sum={m:0,i:0,e:0},n={m:0,i:0,e:0};
-  QS.forEach((q,j)=>{ if(q.x||answers[j]===null) return; sum[q.a]+=q.k*((answers[j]-50)/50); n[q.a]++;});
-  user={m:sum.m/n.m,i:sum.i/n.i,e:sum.e/n.e};
+  const items={m:[],i:[],e:[]};
+  QS.forEach((q,j)=>{ if(q.x||answers[j]===null) return; items[q.a].push({a:(answers[j]-50)/50,k:q.k,b:B1[j]??0}); });
+  user={m:idealPoint(items.m),i:idealPoint(items.i),e:idealPoint(items.e)};
 }
 function score2(){
-  const sum={},n={};
-  Q2.forEach((q,j)=>{ const v=answers2[j]; if(!q.a||q.x||v===null) return; sum[q.a]=(sum[q.a]||0)+q.k*((v-50)/50); n[q.a]=(n[q.a]||0)+1; });
-  user2={}; K2.forEach(a=>{ if(n[a]) user2[a]=sum[a]/n[a]; });
+  const items={};
+  Q2.forEach((q,j)=>{ const v=answers2[j]; if(!q.a||q.x||q.o||v===null) return; (items[q.a]=items[q.a]||[]).push({a:(v-50)/50,k:q.k,b:B2[j]??0}); });
+  user2={}; K2.forEach(a=>{ if(items[a]&&items[a].length) user2[a]=idealPoint(items[a]); });
 }
 
 /* ================= INSIGHTS ================= */

@@ -61,6 +61,16 @@ def load(path):
     return rows
 
 
+def ideal_point(items, tau=0.5, prior=0.25):
+    """Same scoring as the site: the spectrum position that best explains all the answers, given each
+    statement's own position b (where a Neutral answer sits)."""
+    xs = np.linspace(-1, 1, 201)
+    loss = prior * xs ** 2
+    for a, k, b in items:
+        loss = loss + (a - np.tanh(k * (xs - b) / tau)) ** 2
+    return float(xs[int(np.argmin(loss))])
+
+
 def demo(n=600, seed=7):
     """Made-up respondents with a few planted links, so the report has something to find."""
     rng = np.random.default_rng(seed)
@@ -103,13 +113,12 @@ def axis_scores(rows):
             ans = r[key]
             if ans is None:
                 continue
-            tot, cnt = {}, {}
+            items = {}
             for q, v in zip(Q[part], ans):
-                if not q["axis"] or q["type"] != "slider" or v is None:
+                if not q["axis"] or q["type"] != "slider" or v is None or q.get("retired"):
                     continue
-                tot[q["axis"]] = tot.get(q["axis"], 0) + q["key"] * (v - 50) / 50
-                cnt[q["axis"]] = cnt.get(q["axis"], 0) + 1
-            s.update({a: tot[a] / cnt[a] for a in tot})
+                items.setdefault(q["axis"], []).append(((v - 50) / 50, q["key"], q.get("b", 0)))
+            s.update({a: ideal_point(it) for a, it in items.items()})
         recs.append(s)
     return pd.DataFrame(recs, columns=list(AXES))
 
