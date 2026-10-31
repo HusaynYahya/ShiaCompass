@@ -1,0 +1,18 @@
+# Only index.html is published. Everything below stays out of the public site.
+.git
+.gitignore
+.assetsignore
+.wrangler
+node_modules
+wrangler.jsonc
+LICENSE
+README.md
+analysis
+figs
+img
+supabase
+*.png
+*.md
+*.py
+*.sql
+*.json
