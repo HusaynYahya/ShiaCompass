@@ -2066,6 +2066,9 @@ const tf=c=>zoomed()?{m:(c.m-MAIN.m)*ZF,i:(c.i-MAIN.i)*ZF,e:(c.e-MAIN.e)*ZF}:c;
 const inCube=c=>Math.abs(c.m)<=1.02&&Math.abs(c.i)<=1.02&&Math.abs(c.e)<=1.02;
 const visible=s=>(!zoomed()||inCube(tf(cp(s))))&&(region==="all"||s.reg===region)&&(eraF==="all"||s.era===eraF)&&(mode!=="soc"||kindF==="all"||(POL[s.id]&&POL[s.id].t===kindF));
 let tipEl=null;
+/* Best-known figures get their name label first when labels would overlap; everyone else after, front to back. */
+const FAMOUS=["khomeini","sistani","khoei","tabatabai","sadra","majlisi","kulayni","saduq","mufid","tusi","sadr","mutahhari","khamenei","fadlallah","shariati","musasadr","hilli","ansari","astarabadi","ahsai","ntusi","shirazi","javadi","vahid","soroush","nasr","burqai","kadivar","borujerdi","muhsinhakim","nasrallah","montazeri","mesbahyazdi","haydari","khatami","bahjat","hurr","fayd","shahid1","shahid2","behbahani","mughniyya","kashifghita","sharafaldin","akhundkhorasani","naini","makaremshirazi","saidhakim","qabbanji"];
+const fame=id=>{const k=FAMOUS.indexOf(id); return k<0?999:k;};
 function placeLabels(items,g,reserved,bounds){
   const boxes=reserved.slice();
   items.forEach(p=>boxes.push({x:p.x-p.r,y:p.y-p.r,w:2*p.r,h:2*p.r,own:p.s.id}));
@@ -2076,7 +2079,8 @@ function placeLabels(items,g,reserved,bounds){
     for(const [x,y,a,bx,by] of cands){
       const b={x:bx,y:by,w:w,h:h};
       if(b.x<bounds[0]||b.x+b.w>bounds[2]||b.y<bounds[1]||b.y+b.h>bounds[3]) continue;
-      if(boxes.some(q=>q.own!==p.s.id&&b.x<q.x+q.w&&b.x+b.w>q.x&&b.y<q.y+q.h&&b.y+b.h>q.y)) continue;
+      const top=fame(p.s.id)<16;   // the best-known names may sit over other dots (never over other names)
+      if(boxes.some(q=>q.own!==p.s.id&&!(top&&q.own)&&b.x<q.x+q.w&&b.x+b.w>q.x&&b.y<q.y+q.h&&b.y+b.h>q.y)) continue;
       boxes.push(b); const t=el("text",{x:x,y:y,"text-anchor":a,class:"lbl"},g); t.textContent=p.s.s;
       t.addEventListener("pointerdown",e=>e.stopPropagation());   // a tap on a name opens that scholar, like a tap on their dot
       t.addEventListener("click",e=>{e.stopPropagation();drawer={type:"scholar",id:p.s.id};renderCube();renderDrawer();});
@@ -2117,7 +2121,7 @@ function renderCube(){
     const x=Math.min(Math.max(L.x,w/2+6),1000-w/2-6), y=Math.min(Math.max(L.y,h/2+6),820-h/2-6);
     reserved.push({x:x-w/2,y:y-h/2,w:w,h:h}); poles.push({a,sg,name,x,y,w,h});}));
   if(U) reserved.push({x:U.x-16,y:U.y-52,w:32,h:52});
-  const items=[...pts].sort((a,b)=>{const fa=near.some(o=>o.s.id===a.s.id)||a.s.id===selId, fb=near.some(o=>o.s.id===b.s.id)||b.s.id===selId; return (fb-fa)||(b.z-a.z);}).map(p=>({s:p.s,x:p.x,y:p.y,r:p.r+1}));
+  const items=[...pts].sort((a,b)=>{const fa=near.some(o=>o.s.id===a.s.id)||a.s.id===selId, fb=near.some(o=>o.s.id===b.s.id)||b.s.id===selId; return (fb-fa)||(fame(a.s.id)-fame(b.s.id))||(b.z-a.z);}).map(p=>({s:p.s,x:p.x,y:p.y,r:p.r+1}));
   placeLabels(items,svg,reserved,[6,6,994,814]);
   if(U) pinShape(svg,U.x,U.y,1.15);
   tipEl=el("text",{class:"tip",visibility:"hidden"},svg);
