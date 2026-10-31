@@ -913,7 +913,7 @@ const METHOD={
 
 const QS=[
  {a:"m",k:1,t:"We should stay as close as possible to the rulings in the classical books of fiqh."},
- {a:"i",k:1,t:"The Imams know the unseen, including future events, by God's permission."},
+ {a:"i",k:1,x:1,t:"The Imams know the unseen, including future events, by God's permission."},
  {a:"e",k:1,t:"If a reliable hadith seems to conflict with reason, we should accept the hadith and assume our understanding is limited."},
  {a:"m",k:-1,t:"Modern ideas such as human rights and gender equality are good reasons to look again at classical rulings."},
  {a:"i",k:1,t:"God has given the Imams authority to act within the created world (wilaya takwiniyya)."},
@@ -933,46 +933,52 @@ const QS=[
  {a:"m",k:1,t:"Following a living marja' (taqlid) in matters of practice is essential for most believers."},
  {a:"i",k:-1,x:1,t:"Imam Husayn's journey to Karbala is best understood through its political and historical circumstances, rather than through his foreknowledge of the outcome."},
  {a:"e",k:1,t:"The Four Books of hadith are broadly reliable as a whole."},
- {a:"m",k:-1,t:"Women should be able to become maraji' and judges."},
+ {a:"m",k:-1,x:1,t:"Women should be able to become maraji' and judges."},
  {a:"i",k:1,t:"Commemorations such as Muharram majalis and Fatimiyya are central to faith, not just cultural tradition."},
  {a:"e",k:-1,t:"Every hadith should be checked for its chain and its content before being used, even in the famous collections."},
  {a:"m",k:1,t:"Islam already contains everything a just society needs, so we don't need to borrow ethical frameworks from outside it."},
  {a:"i",k:-1,t:"Accusations of ghuluww against some popular devotional practices are often justified."},
  {a:"e",k:1,t:"When in doubt, it is better to follow the texts cautiously than to reason your way to a new conclusion."},
- {a:"m",k:-1,t:"Some established practices in our communities are cultural rather than religious, and should be reformed."},
+ {a:"m",k:-1,x:1,t:"Some established practices in our communities are cultural rather than religious, and should be reformed."},
  {a:"i",k:1,t:"The Imams hear us and can respond when we visit their shrines or address them."},
- {a:"e",k:-1,t:"The foundations of faith, such as God's existence and justice, should be reached through your own reasoning, not simply accepted from scripture or scholars."},
+ {a:"e",k:-1,t:"The foundations of faith, such as God's existence and justice, should be reached through your own reasoning rather than taken from scripture or scholars."},
  {a:"m",k:1,t:"Changes in religious rulings should come only from senior jurists, not from public debate."},
  {a:"i",k:-1,t:"Beliefs about the Imams should rest only on the Quran and on reports that give certainty, not on single narrations."},
  {a:"e",k:1,t:"Ordinary believers can understand religion directly from the Imams' words, without specialised legal theory."},
  {a:"m",k:-1,t:"Religious knowledge develops over time as human knowledge grows."},
- {a:"i",k:1,t:"Ziyarat al-Jami'a al-Kabira describes the Imams' station accurately and should be taken at face value."},
+ {a:"i",k:1,x:1,t:"Ziyarat al-Jami'a al-Kabira describes the Imams' station accurately and should be taken at face value."},
  {a:"e",k:-1,t:"Usul al-fiqh, the theory of jurisprudence, is necessary to derive rulings correctly."},
  /* Added later, after the original 36, so earlier answers and result codes still line up.
     These ask indirectly, about habits and tastes that tend to go with each spectrum. f:1 = "Not at all" to "Always". */
  {a:"m",k:-1,t:"You enjoy reading Muslim writers who aren't clerics, such as academics, doctors and journalists."},
  {a:"i",k:1,f:1,t:"You ask the Imams by name to intercede for you in your du'as."},
  {a:"e",k:-1,t:"You enjoy debates and thought experiments about God and ethics."},
- {a:"m",k:1,t:"Old customs at weddings and funerals should be kept, even when they feel out of date."},
+ {a:"m",k:1,t:"Traditional customs at weddings and funerals are worth keeping as they are."},
  {a:"i",k:-1,t:"You find the Imams' sayings on ethics more moving than accounts of their miracles."},
  {a:"e",k:1,x:1,t:"You'd rather memorise a hadith than read a book of philosophy."},
  {a:"m",k:-1,t:"A good Muharram talk should take on current issues such as mental health or gender."},
  {a:"i",k:1,t:"You'd travel a long way, at real cost, to visit an Imam's shrine."},
  {a:"e",k:1,f:1,t:"You read from hadith collections such as al-Kafi or Bihar al-Anwar."},
- {a:"m",k:1,t:"On a religious question, you'd sooner trust an elderly scholar than a young, university-educated one."},
+ {a:"m",k:1,t:"On a religious question, you'd sooner trust an older scholar than a younger one."},
  {a:"i",k:-1,t:"Given the choice, you'd rather read the Quran than recite Ziyarat Ashura."},
  {a:"e",k:-1,t:"You'd read a Western philosopher to help you think through a religious question."},
  /* Approaches to ijtihad in the two great seminaries. */
- {a:"m",k:-1,t:"Ijtihad must take account of time and place, as Ayatollah Khomeini argued, even when that changes a ruling."},
+ {a:"m",k:-1,x:1,t:"Ijtihad must take account of time and place, as Ayatollah Khomeini argued, even when that changes a ruling."},
  {a:"m",k:1,t:"When deriving rulings, scholars should stay close to the texts rather than weigh how a ruling will affect society."},
   /* Added 30 Oct 2026: replaces the retired Karbala question (shown in its place, as question 20). */
-  {a:"i",k:1,at:19,t:"Imam Husayn's journey to Karbala is best seen as an act of submission to a destiny he knew in advance."}
+  {a:"i",k:1,at:19,t:"Imam Husayn's journey to Karbala is best seen as an act of submission to a destiny he knew in advance."},
+  /* Added 31 Oct 2026: neutral rewordings that change the meaning, so the old versions are retired and these are shown in their places. */
+  {a:"i",k:1,at:1,t:"The Imams know everything that will happen, including the details of the future."},
+  {a:"m",k:-1,at:21,t:"Women should be able to become maraji'."},
+  {a:"m",k:-1,at:27,t:"Practices in our communities that are cultural rather than religious should be reformed."},
+  {a:"i",k:1,at:34,t:"Ziyarat al-Jami'a al-Kabira should be taken at face value as a description of the Imams' station."},
+  {a:"m",k:-1,at:48,t:"Ijtihad must take account of time and place, even when that changes a ruling."}
 ];
-const QS_OLD=[36,50];   // lengths of earlier versions of part 1
+const QS_OLD=[36,50,51];   // lengths of earlier versions of part 1
 /* Retired questions (x:1) keep their slot so saved answers and codes still line up, but are no longer shown or scored.
    ORD1 = the questions shown, in display order (an added question can take a retired one's place with at:). */
-const ORD1=(()=>{ const o=[]; QS.forEach((q,j)=>{ if(!q.x&&q.at===undefined) o.push(j); });
-  QS.forEach((q,j)=>{ if(q.at!==undefined){ const k=o.findIndex(i=>i>q.at); o.splice(k<0?o.length:k,0,j); } }); return o; })();
+const ordBy=L=>L.map((q,j)=>({j,key:q.at!==undefined?q.at+0.5:j,x:q.x})).filter(o=>!o.x).sort((a,b)=>a.key-b.key).map(o=>o.j);
+const ORD1=ordBy(QS);
 const LEVELS=[[12.5,"Strongly disagree"],[37.5,"Disagree"],[62.5,"Neutral"],[87.5,"Agree"],[101,"Strongly agree"]];
 const levelOf=x=>LEVELS.find(([t])=>x<t)[1];
 const FLEVELS=[[12.5,"Not at all"],[37.5,"Rarely"],[62.5,"Sometimes"],[87.5,"Often"],[101,"Always"]];
@@ -1199,8 +1205,8 @@ const Q2BANK={
  w:[[1,"A qualified jurist has the right to lead the Muslim community politically while the Imam is in occultation."],
     [-1,"The seminary should stay out of politics and focus on teaching."],
     [1,"A Friday sermon is the right place to urge people to join a political protest."],
-    [-1,"Political movements that use the Imams' names often end up harming religion."]],
- pl:[[-1,"Your kind, sincere Christian neighbour, who never becomes Muslim, can still reach Paradise."],
+    [-1,"Political movements that claim to act in the Imams' name often end up harming religion."]],
+ pl:[[-1,"A sincere Christian who never becomes Muslim can still reach Paradise."],
     [1,"You'd rather not attend a religious service at a friend's church, even for their wedding."],
     [-1,"Other religions hold real wisdom you could learn from."],
     [1,"Only one religious path is fully true; the others are mistaken."]],
@@ -1211,7 +1217,7 @@ const Q2BANK={
  r:[[1,"On a wafat night, you'd rather be at a packed majlis with latmiyya and matam than at a quiet talk."],
     [-1,"Some Muharram practices damage how others see Shia Islam and should be dropped."],
     [1,"The main purpose of a majlis should be to move people to tears."],
-    [-1,"Money spent on lavish commemorations would do more good given to charity."]],
+    [-1,"Money spent on large-scale commemorations would do more good given to charity."]],
  s:[[1,"The ideal country would make Islamic law the law of the land."],
     [-1,"A state should treat all citizens equally, whatever their religion."],
     [1,"In a Muslim-majority country, eating in public during the day in Ramadan should be punishable by law."],
@@ -1219,7 +1225,7 @@ const Q2BANK={
  p:[[-1,"Existence is one reality that comes in degrees, from God, who is pure existence, down to the smallest speck of dust."],
     [1,"Questions like 'What is existence?' or 'How can an unchanging God act in time?' do little to help a believer's faith."],
     [-1,"Wrestling with hard questions, such as why God allows suffering, makes your faith stronger."],
-    [1,"Saying the world is a manifestation of God's names goes too far: it's safer to say only that God created it."]],
+    [1,"It's better to say only that God created the world than to call it a manifestation of God's names."]],
  g:[[-1,"Shia living in the West should be active in local politics and civic life."],
     [1,"You'd choose a Shia school for your child, even if it were academically weaker than the alternatives."],
     [-1,"You'd encourage a talented young person to build a career in mainstream media or government."],
@@ -1244,8 +1250,8 @@ const HABITS=[
 const Q2MORE={
  f:[[1,"You question the existence of God.",1],[-1,"Your faith has never seriously been shaken."]],
  kb:[[1,"Ashura is primarily a call to stand against injustice."],[1,"A majlis that doesn't connect Karbala to injustice today has missed the point."]],
- rb:[[-1,"Taking a conventional mortgage is acceptable if there's no Islamic alternative."],[-1,"You have no issue with taking out a loan for a mortgage."]],
- io:[[-1,"A sincere heart matters more to God than perfect observance of the rules."],[1,"You look up rulings (on wudu or khums, say) more often than you read about spirituality or ethics."],[-1,"Someone can be close to God while being lax about some religious rules."]],
+ rb:[[-1,"Taking a conventional mortgage is acceptable if there's no Islamic alternative."],[-1,"You'd take out an interest-bearing mortgage."]],
+ io:[[-1,"A sincere heart matters more to God than perfect observance of the rules."],[1,"You look up rulings (on wudu or khums, say) more often than you read about spirituality or ethics."],[-1,"Someone can be close to God without strictly keeping every religious rule."]],
  mh:[[1,"Waiting for the Imam means working to change society now."],[-1,"Until the Imam returns, believers should focus on their own piety rather than trying to change the world."]],
  id:[[1,"Majalis should be in English (or the local language), even if older members lose out."],[-1,"Keeping your family's language and customs at the centre is part of keeping the faith."],[-1,"You feel most at home at a centre of people from your own background."]],
  rl:[[1,"If you're unsure whether something is halal, you avoid it."],[-1,"You'd eat at a restaurant without checking every ingredient, if the food is probably halal."]],
@@ -1262,12 +1268,14 @@ const Q2LATER=[
  [null,0,"You'd see a therapist or counsellor if you were struggling with your mental health.",0,"therapy"],
  ["sc",1,"Scientific discoveries, such as the expanding universe, can be found foretold in the Quran."],
  ["c",-1,"Hijab is a journey: it's fine for a woman to grow into wearing it at her own pace."],
- [null,0,"'Dawah bro' culture, with its online debates and confrontational street preaching, goes against the spirit of Islam.",0,"dawahbro"],
+ [null,0,"'Dawah bro' culture, with its online debates and street preaching, goes against the spirit of Islam.",0,"dawahbro"],
  ["rl",1,"I am very black and white when it comes to not listening to music."],
- ["id",-1,"I would prefer to marry within my culture."]
+ ["id",-1,"I would prefer to marry within my culture."],
+ /* Added 31 Oct 2026: replaces r2 (retired), shown in its place. */
+ ["r",-1,"Muharram practices that damage how others see Shia Islam should be dropped.",0,"r_muh",15]
 ];
 const Q2_V1=42;   // length of part 2 before Q2MORE was added
-const Q2_OLD=[42,61,62,63,64,65,68,69,70,71];   // lengths of earlier versions of part 2
+const Q2_OLD=[42,61,62,63,64,65,68,69,70,71,72];   // lengths of earlier versions of part 2
 const Q2=(()=>{
   const order=["c","w","pl","u","r","s","p","g","a"], out=[], seen={};
   const rounds=Math.max(...order.map(a=>Q2BANK[a].length));
@@ -1275,7 +1283,7 @@ const Q2=(()=>{
   HABITS.forEach((h,j)=>out.splice(Math.min(out.length,(j+1)*7-1),0,{a:null,k:0,t:h.t,id:h.id,o:h.o||null,f:h.f||0}));
   const more=["f","kb","rb","io","mh","id","rl","sc","mj"], seen2={};
   for(let r=0;r<3;r++) more.forEach(a=>{const q=Q2MORE[a][r]; if(q){seen2[a]=(seen2[a]||0)+1; out.push({a:q[3]?null:a,k:q[3]?0:q[0],t:q[1],f:q[2]||0,id:a+seen2[a]});}});
-  Q2LATER.forEach(([a,k,t,f,id])=>{ const n=out.filter(q=>q.a===a).length+1; out.push({a,k,t,f:f||0,id:id||a+n}); });
+  Q2LATER.forEach(([a,k,t,f,id,at])=>{ const n=out.filter(q=>q.a===a).length+1; const q={a,k,t,f:f||0,id:id||a+n}; if(at!==undefined) q.at=at; out.push(q); });
   return out;
 })();
 /*P2-END*/
@@ -1384,8 +1392,8 @@ document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest
 /* ================= TEST ================= */
 /* Part 2 questions retired on 30 Oct 2026 as near-duplicates (Q25 Sunni marriage, Q45 mortgage, Q53 Karbala).
    Like part 1's, they keep their stored slot but are no longer shown or scored. */
-["u3","rb1","kb2"].forEach(id=>{ const q=Q2.find(x=>x.id===id); if(q) q.x=1; });
-const ORD2=Q2.map((_,j)=>j).filter(j=>!Q2[j].x);
+["u3","rb1","kb2","r2"].forEach(id=>{ const q=Q2.find(x=>x.id===id); if(q) q.x=1; });
+const ORD2=ordBy(Q2);
 const PER=6, PAGES=Math.ceil(ORD1.length/PER), PAGES2=Math.ceil(ORD2.length/PER);
 const gap2=()=>ORD2.findIndex(j=>answers2[j]===null&&!Q2[j].o);   // display position of the first unanswered part 2 question (multiple choice may be skipped)
 const gap1=()=>ORD1.findIndex(j=>answers[j]===null);   // display position of the first unanswered part 1 question
@@ -1740,8 +1748,8 @@ $("tNext").addEventListener("click",()=>{
    spectrum is the point that best explains all their answers together, so disagreeing with an extreme statement
    barely moves you, while agreeing with one is strong evidence. Positions are estimates for now; once enough people
    have taken the test, analysis/patterns.py can estimate them from the real answers. */
-const B1={"0": 0.2, "3": 0, "6": -0.3, "9": -0.1, "12": 0, "15": -0.2, "18": -0.3, "21": -0.4, "24": 0.2, "27": 0.4, "30": 0.1, "33": 0, "36": 0.4, "39": 0.4, "42": 0.3, "45": 0.3, "48": 0.2, "49": 0.2, "1": -0.2, "4": 0.2, "7": -0.2, "10": -0.1, "13": -0.2, "16": 0.1, "22": -0.3, "25": 0, "28": -0.3, "31": -0.1, "34": 0.3, "37": -0.1, "40": 0.3, "43": 0.1, "46": 0.2, "50": -0.1, "2": 0.1, "5": 0.3, "8": 0.2, "11": -0.3, "14": 0.2, "17": 0.3, "20": -0.1, "23": 0.2, "26": 0, "29": 0.3, "32": 0.4, "35": 0.4, "38": 0.2, "44": 0.2, "47": -0.2};   // part 1, by stored answer index
-const B2={"0": 0.4, "10": 0.3, "21": -0.3, "31": 0.2, "68": 0.2, "1": 0.2, "11": 0, "22": 0.2, "32": 0, "63": 0.6, "2": 0, "12": 0.4, "23": 0.4, "33": -0.2, "3": 0, "14": 0.6, "35": 0.4, "4": 0, "15": 0, "25": 0.3, "36": 0.2, "61": 0.1, "62": -0.5, "5": 0.2, "16": 0.3, "26": 0.5, "37": 0.4, "7": -0.2, "17": 0, "28": 0.3, "38": 0.1, "65": -0.3, "8": 0.4, "18": 0.3, "29": 0.3, "39": 0.4, "64": 0.6, "9": -0.2, "19": -0.3, "30": 0.1, "40": 0.3, "42": 0.4, "51": 0, "43": -0.2, "46": 0, "55": 0, "47": 0, "56": 0, "60": 0.3, "71": 0.1, "48": -0.2, "57": 0, "70": 0.3, "49": 0, "67": 0.1, "50": 0, "53": 0, "45": 0.3, "54": 0, "59": 0};   // part 2, by stored answer index
+const B1={"0": 0.2, "3": 0, "6": -0.3, "9": -0.1, "12": 0, "15": -0.2, "18": -0.3, "21": -0.4, "24": 0.2, "27": 0.4, "30": 0.1, "33": 0, "36": 0.4, "39": 0.4, "42": 0.3, "45": 0.3, "48": 0.2, "49": 0.2, "1": -0.2, "4": 0.2, "7": -0.2, "10": -0.1, "13": -0.2, "16": 0.1, "22": -0.3, "25": 0, "28": -0.3, "31": -0.1, "34": 0.3, "37": -0.1, "40": 0.3, "43": 0.1, "46": 0.2, "50": -0.1, "2": 0.1, "5": 0.3, "8": 0.2, "11": -0.3, "14": 0.2, "17": 0.3, "20": -0.1, "23": 0.2, "26": 0, "29": 0.3, "32": 0.4, "35": 0.4, "38": 0.2, "44": 0.2, "47": -0.2, "51": 0.4, "52": -0.4, "53": 0.3, "54": 0.3, "55": 0.2};   // part 1, by stored answer index
+const B2={"0": 0.4, "10": 0.3, "21": -0.3, "31": 0.2, "68": 0.2, "1": 0.2, "11": 0, "22": 0.2, "32": 0, "63": 0.6, "2": 0, "12": 0.4, "23": 0.4, "33": -0.2, "3": 0, "14": 0.6, "35": 0.4, "4": 0, "15": 0, "25": 0.3, "36": 0.2, "61": 0.1, "62": -0.5, "5": 0.2, "16": 0.3, "26": 0.5, "37": 0.4, "7": -0.2, "17": 0, "28": 0.3, "38": 0.1, "65": -0.3, "8": 0.4, "18": 0.3, "29": 0.3, "39": 0.4, "64": 0.6, "9": -0.2, "19": -0.3, "30": 0.1, "40": 0.3, "42": 0.4, "51": 0, "43": -0.2, "46": 0, "55": 0, "47": 0, "56": 0, "60": 0.3, "71": 0.1, "48": -0.2, "57": 0, "70": 0.3, "49": 0, "67": 0.1, "50": 0, "53": 0, "45": 0.3, "54": 0, "59": 0, "72": 0};   // part 2, by stored answer index
 const IP_TAU=0.5, IP_PRIOR=0.25;   // how sharply answers flip around a statement's position; pull toward the centre when answers are few
 function idealPoint(items){
   if(!items.length) return undefined;
