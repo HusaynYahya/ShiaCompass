@@ -1,5 +1,5 @@
 {
- "version": 8,
+ "version": 9,
  "note": "Generated from index.html. Index order matches the answers, about and answers2 arrays stored in the database. Part 1 grew from 36 to 50 to 51 stored answers; on 30 Oct 2026 questions 20 and 42 were retired (still stored as null, not asked or scored) and a new Karbala question was added at index 50, shown to people as question 20. Part 2 grew from 42 to 61 to 63 to 64 to 65 to 68 to 69 to 70; question 59 became unscored on 30 Oct 2026 when it was reworded; older rows are shorter. On 30 Oct 2026 part 2 questions 25, 45 and 53 (ids u3, rb1, kb2) were retired as near-duplicates: still stored, not asked or scored. 'b' is each statement's position: where a Neutral answer sits on its spectrum (used by the ideal-point scoring). On 31 Oct 2026 several questions were reworded to be more neutral. Light rewordings kept their slot; questions whose meaning changed (part 1 indexes 1, 21, 27, 34, 48; part 2 index 15) were retired and replaced by new ones at part 1 indexes 51-55 and part 2 index 72, shown in the old places (replaces = the retired index). Part 1 now stores 56 answers and part 2 73.",
  "axes": {
   "m": {
@@ -515,7 +515,7 @@
    "text": "Accusations of ghuluww against some popular devotional practices are often justified.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0,
+   "b": 0.2,
    "shown_at": 26
   },
   {
@@ -581,7 +581,7 @@
    "text": "Beliefs about the Imams should rest only on the Quran and on reports that give certainty, not on single narrations.",
    "type": "slider",
    "scale": "agreement",
-   "b": -0.1,
+   "b": 0.1,
    "shown_at": 32
   },
   {
@@ -680,7 +680,7 @@
    "text": "You find the Imams' sayings on ethics more moving than accounts of their miracles.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0.3,
+   "b": 0.4,
    "shown_at": 41
   },
   {
@@ -745,7 +745,7 @@
    "text": "Given the choice, you'd rather read the Quran than recite Ziyarat Ashura.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0.2,
+   "b": 0.4,
    "shown_at": 46
   },
   {
@@ -1273,7 +1273,7 @@
    "id": "r4",
    "axis": "r",
    "key": -1,
-   "text": "Money spent on large-scale commemorations would do more good given to charity.",
+   "text": "Money spent on large-scale events would do more good given to charity.",
    "type": "slider",
    "scale": "agreement",
    "b": 0.2,
