@@ -346,6 +346,32 @@ input.ag::-moz-range-thumb{width:22px;height:22px;background:var(--saffron);bord
 .csel,.cseg{display:flex;align-items:center;gap:10px}
 .zoomb{min-height:40px;font-size:15px}
 .zoomb[aria-pressed="true"]{background:var(--text);color:#fff}
+.cbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:-4px 0 14px;padding:10px 12px;background:var(--teal-t);border-radius:10px}
+.cbar .lab{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--teal-d);font-weight:700;margin-right:2px}
+.cchip{display:inline-flex;align-items:center;gap:6px;min-height:32px;padding:0 10px;border:2px solid var(--line2);border-radius:999px;background:#fff;color:var(--text);font:inherit;font-size:14px;font-weight:600;cursor:pointer}
+.cchip span{color:var(--muted);font-weight:500}
+.cchip:hover{border-color:var(--text)}
+.cchip.off{opacity:.55}
+.clink{border:0;background:none;color:var(--teal-d);font:inherit;font-size:14px;font-weight:600;text-decoration:underline;cursor:pointer;min-height:32px}
+.cnote{font-size:14px;color:var(--ink2)}
+.ctable{margin:18px 0 6px;background:#fff;border:2px solid var(--line2);border-radius:12px;padding:14px;overflow-x:auto}
+.ctable h3{font-size:17px;margin:0 0 10px}
+.ctable table{width:100%;border-collapse:collapse;font-size:14px;min-width:520px}
+.ctable th{text-align:left;font-weight:700;padding:6px 8px;border-bottom:2px solid var(--line2);vertical-align:bottom}
+.ctable th small{display:block;font-weight:500;color:var(--muted);font-size:12px}
+.ctable td{padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
+.ctable td.nm{font-weight:600;white-space:nowrap}
+.ctable td.nm button{border:0;background:none;padding:0;font:inherit;color:inherit;cursor:pointer;text-align:left}
+.ctable td.nm button:hover{color:var(--teal-d);text-decoration:underline}
+.ctable tr.you td.nm{color:var(--rubric,#B4442A)}
+.ctrk{position:relative;flex:1;height:8px;background:var(--line);border-radius:4px;min-width:90px;max-width:220px}
+.ctrk::after{content:"";position:absolute;left:50%;top:-3px;bottom:-3px;width:1px;background:var(--line2)}
+.ctrk b{position:absolute;top:50%;width:12px;height:12px;border-radius:50%;transform:translate(-50%,-50%);border:2px solid #fff;box-shadow:0 0 0 1px var(--line2)}
+.cval{display:flex;align-items:center;gap:8px}.cval em{font-style:normal;font-family:var(--f-mono);font-size:12.5px;color:var(--muted);min-width:3.2em;text-align:right}
+.rgrp li .ck{display:inline-flex;align-items:center;margin-right:6px}
+.rgrp li .ck input{width:18px;height:18px;accent-color:var(--teal-d);cursor:pointer}
+.rgrp li .lft{display:flex;align-items:center;min-width:0}
+.dcmp{margin:6px 0 2px}
 .csel{min-width:0}
 .controls .lab{min-width:0}
 .csel select{min-height:40px;border:2px solid var(--line2);border-radius:8px;background:#fff;color:var(--text);font:inherit;font-size:15px;font-weight:600;padding:0 32px 0 12px;max-width:260px}
@@ -545,7 +571,9 @@ body.theme2 #tile .t1{fill:#1E7A55} body.theme2 #tile .t2{fill:#6E2B67} body.the
         <span class="segs"><button data-pre="iso" aria-pressed="true">Angled</button><button data-pre="front" aria-pressed="false">Front</button><button data-pre="side" aria-pressed="false">Side</button><button data-pre="top" aria-pressed="false">Top</button></span>
       </div>
       <button class="btn ghost small zoomb" id="zoomBtn" type="button" aria-pressed="false">Zoom into the mainstream</button>
+      <button class="btn ghost small zoomb" id="cmpBtn" type="button" aria-pressed="false">Compare scholars</button>
     </div>
+    <div class="cbar" id="cbar" hidden></div>
     <div class="cmp">
       <div class="cubewrap">
         <svg id="cube" viewBox="0 0 1000 820" tabindex="0" role="img" aria-label="3D compass of scholars. Drag or use arrow keys to turn it."></svg>
@@ -554,6 +582,7 @@ body.theme2 #tile .t1{fill:#1E7A55} body.theme2 #tile .t2{fill:#6E2B67} body.the
       </div>
       <aside class="drawer" id="drawer" aria-live="polite"></aside>
     </div>
+    <div class="ctable" id="ctab" hidden></div>
     <div class="shown"><span class="eyebrow" id="shownT">Showing all scholars</span><div class="list" id="shownL"></div></div>
   </section>
 
@@ -2076,12 +2105,14 @@ let mode="core";
 const MD=()=>MODES[mode], cp=s=>MD().pos(s), me=()=>MD().me();
 const slotAx=slot=>MD().keys[AXK.indexOf(slot)];
 let region="all", eraF="all", drawer={type:"you"}, turnRaf=null;
-let kindF="all", zoomOn=false;
+let kindF="all", zoomOn=false, cmpOn=false;
+const CMPK="shia-compass:compare", cmp=new Set((()=>{try{return JSON.parse(localStorage.getItem(CMPK)||"[]")}catch(_){return []}})().filter(id=>SID[id]));
+const saveCmp=()=>{try{localStorage.setItem(CMPK,JSON.stringify([...cmp]))}catch(_){}};
 const ZF=2.6;   // zoom factor: the area within about 0.38 of the mainstream centre fills the cube
 const zoomed=()=>zoomOn&&mode==="core";
 const tf=c=>zoomed()?{m:(c.m-MAIN.m)*ZF,i:(c.i-MAIN.i)*ZF,e:(c.e-MAIN.e)*ZF}:c;
 const inCube=c=>Math.abs(c.m)<=1.02&&Math.abs(c.i)<=1.02&&Math.abs(c.e)<=1.02;
-const visible=s=>(!zoomed()||inCube(tf(cp(s))))&&(region==="all"||s.reg===region)&&(eraF==="all"||s.era===eraF)&&(mode!=="soc"||kindF==="all"||(POL[s.id]&&POL[s.id].t===kindF));
+const visible=s=>cmpOn&&cmp.size?cmp.has(s.id)&&(!zoomed()||inCube(tf(cp(s)))):(!zoomed()||inCube(tf(cp(s))))&&(region==="all"||s.reg===region)&&(eraF==="all"||s.era===eraF)&&(mode!=="soc"||kindF==="all"||(POL[s.id]&&POL[s.id].t===kindF));
 let tipEl=null;
 /* Best-known figures get their name label first when labels would overlap; everyone else after, front to back. */
 const FAMOUS=["khomeini","sistani","khoei","tabatabai","sadra","majlisi","kulayni","saduq","mufid","tusi","sadr","mutahhari","khamenei","fadlallah","shariati","musasadr","hilli","ansari","astarabadi","ahsai","ntusi","shirazi","javadi","vahid","soroush","nasr","burqai","kadivar","borujerdi","muhsinhakim","nasrallah","montazeri","mesbahyazdi","haydari","khatami","bahjat","hurr","fayd","shahid1","shahid2","behbahani","mughniyya","kashifghita","sharafaldin","akhundkhorasani","naini","makaremshirazi","saidhakim","qabbanji"];
@@ -2159,7 +2190,7 @@ function renderCube(){
     g.addEventListener("click",open);
     g.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();open();}});
   });
-  renderShown();
+  renderShown(); renderCmp();
 }
 function bars(o,color,keys,axf){keys=keys||AXK;axf=axf||(k=>AX[k]);return `<div class="mini">${keys.map(a=>`<div class="mbar"><div class="ends"><span>${axf(a).neg}</span><span>${axf(a).pos}</span></div><div class="tr"><b style="left:${(o[a]+1)*50}%;background:${color}"></b></div></div>`).join("")}</div>`}
 function renderDrawer(){
@@ -2169,7 +2200,7 @@ function renderDrawer(){
       const leans=AXK.filter(a=>Math.abs(s[a])>=.45).map(a=>`<button data-meth="${a}:${s[a]<0?"neg":"pos"}">${s[a]<0?AX[a].neg:AX[a].pos} method</button>`).join("");
       h=`${back}
       <span class="eyebrow"><i class="dot" style="background:var(--r-${s.reg})"></i>${REG[s.reg].n} · ${s.city}</span>
-      <h3>${nameLink(s)}</h3><span class="meta">${s.d} · ${ERA[s.era]} · ${s.role}</span>${readMore(s)}
+      <h3>${nameLink(s)}</h3><span class="meta">${s.d} · ${ERA[s.era]} · ${s.role}</span>${readMore(s)}<div class="dcmp"><button class="btn ghost small" type="button" data-cmpt="${s.id}" aria-pressed="${cmp.has(s.id)}">${cmp.has(s.id)?"Remove from comparison":"Add to comparison"}</button></div>
       ${bars(s,"var(--r-"+s.reg+")")}
       <p>${s.k}</p><span class="sec">Why here</span><p class="why">${s.w}</p>
       ${user?`<span class="sec">Match with you</span><p>${match(dist(s,user))}%</p>`:""}
@@ -2178,7 +2209,7 @@ function renderDrawer(){
       const P=POL[s.id], ks=["c","w","p","pl"].filter(k=>P[k]!==null);
       h=`${back}
       <span class="eyebrow"><i class="dot" style="background:var(--r-${s.reg})"></i>${REG[s.reg].n} · ${s.city}</span>
-      <h3>${nameLink(s)}</h3><span class="meta">${s.d} · ${ERA[s.era]} · ${s.role}</span>${readMore(s)}
+      <h3>${nameLink(s)}</h3><span class="meta">${s.d} · ${ERA[s.era]} · ${s.role}</span>${readMore(s)}<div class="dcmp"><button class="btn ghost small" type="button" data-cmpt="${s.id}" aria-pressed="${cmp.has(s.id)}">${cmp.has(s.id)?"Remove from comparison":"Add to comparison"}</button></div>
       ${bars(P,"var(--r-"+s.reg+")",ks,k=>AX2[k])}
       <span class="sec">Why here</span><p class="why">${P.why}</p>
       ${user2?`<span class="sec">Match with you on these questions</span><p>${match(dist2(s.id,user2))}%</p>`:""}
@@ -2234,18 +2265,43 @@ function renderDrawer(){
   d.querySelectorAll("p").forEach(linkify);
 }
 function renderShown(){
-  const all=MD().list(), vis=all.filter(visible);
-  if(zoomed()){ const u0=me(), out=u0&&!inCube(tf(u0)); $("shownT").textContent=`Zoomed into the mainstream: ${vis.length} of ${all.length} scholars${out?" · your pin is outside this area":""}`; }
+  const all=MD().list(), vis=cmpOn?all.filter(s=>(region==="all"||s.reg===region)&&(eraF==="all"||s.era===eraF)&&(mode!=="soc"||kindF==="all"||(POL[s.id]&&POL[s.id].t===kindF))):all.filter(visible);
+  if(cmpOn) $("shownT").textContent=`Tick the scholars you want to compare · ${[...cmp].filter(id=>all.some(s=>s.id===id)).length} picked on this compass`;
+  else if(zoomed()){ const u0=me(), out=u0&&!inCube(tf(u0)); $("shownT").textContent=`Zoomed into the mainstream: ${vis.length} of ${all.length} scholars${out?" · your pin is outside this area":""}`; }
   else $("shownT").textContent=region==="all"&&eraF==="all"&&(mode!=="soc"||kindF==="all")?`All ${vis.length} ${mode==="soc"?"figures on this compass":"scholars"}`:`Showing ${vis.length} of ${all.length} ${mode==="soc"?"figures":"scholars"}`;
   const selId=drawer.type==="scholar"?drawer.id:null;
   const groups=Object.keys(REG).map(k=>({k,list:vis.filter(s=>s.reg===k)})).filter(g=>g.list.length);
   const ncol=Math.min(3,groups.length), cols=Array.from({length:ncol},()=>({h:0,html:""}));
   groups.forEach(g=>{ const c=cols.reduce((a,b)=>b.h<a.h?b:a); c.h+=g.list.length+2;   // balance columns by height
     c.html+=`<div class="rgrp"><h4><i class="dot" style="background:var(--r-${g.k})"></i>${REG[g.k].n}<span>${g.list.length}</span></h4>
-      <ul>${g.list.map(s=>`<li><button data-sch="${s.id}" aria-current="${s.id===selId}" title="${s.n}">${s.s}</button><span>${s.d}</span></li>`).join("")}</ul></div>`; });
+      <ul>${g.list.map(s=>`<li><span class="lft">${cmpOn?`<label class="ck"><input type="checkbox" data-cmp="${s.id}" ${cmp.has(s.id)?"checked":""} aria-label="Compare ${s.n}"></label>`:""}<button data-sch="${s.id}" aria-current="${s.id===selId}" title="${s.n}">${s.s}</button></span><span>${s.d}</span></li>`).join("")}</ul></div>`; });
   $("shownL").innerHTML=cols.map(c=>`<div class="rcol">${c.html}</div>`).join("");
+  $("shownL").querySelectorAll("[data-cmp]").forEach(b=>b.addEventListener("change",()=>toggleCmp(b.dataset.cmp,b.checked)));
   $("shownL").querySelectorAll("[data-sch]").forEach(b=>b.addEventListener("click",()=>{drawer={type:"scholar",id:b.dataset.sch};renderCube();renderDrawer();window.scrollTo({top:$("cube").getBoundingClientRect().top+window.scrollY-90,behavior:reduce?"auto":"smooth"});}));
 }
+function toggleCmp(id,on){ if(on) cmp.add(id); else cmp.delete(id); saveCmp(); renderCube(); if(drawer.type==="scholar") renderDrawer(); }
+function setCmp(v){ cmpOn=v; const b=$("cmpBtn"); b.setAttribute("aria-pressed",String(cmpOn)); b.textContent=cmpOn?"Stop comparing":"Compare scholars"; renderCube(); }
+function cval(v,color){ return v===null||v===undefined?`<span class="cnote">Not placed</span>`:`<div class="cval"><div class="ctrk"><b style="left:${(v+1)*50}%;background:${color}"></b></div><em>${v>0?"+":""}${v.toFixed(2)}</em></div>`; }
+function renderCmp(){
+  const bar=$("cbar"), tab=$("ctab");
+  bar.hidden=!cmpOn; tab.hidden=!(cmpOn&&cmp.size);
+  if(!cmpOn){ bar.innerHTML=""; tab.innerHTML=""; return; }
+  const core=mode==="core", L=MD().list(), ids=[...cmp], on=ids.filter(id=>L.some(s=>s.id===id)), off=ids.filter(id=>!on.includes(id));
+  bar.innerHTML=cmp.size?`<span class="lab">Comparing</span>${ids.map(id=>`<button class="cchip${off.includes(id)?" off":""}" type="button" data-unc="${id}" title="Remove ${SID[id].n}"><i class="dot" style="background:var(--r-${SID[id].reg})"></i>${SID[id].s}<span aria-hidden="true">×</span></button>`).join("")}<button class="clink" type="button" id="cclear">Clear all</button>${off.length?`<span class="cnote">${off.map(id=>SID[id].s).join(", ")} ${off.length>1?"aren't":"isn't"} on this compass.</span>`:""}`
+    :`<span class="cnote">Tick scholars in the list below the compass, or open a scholar and choose “Add to comparison”. Only the ones you pick will show on the compass.</span>`;
+  bar.querySelectorAll("[data-unc]").forEach(b=>b.addEventListener("click",()=>toggleCmp(b.dataset.unc,false)));
+  const cl=$("cclear"); if(cl) cl.addEventListener("click",()=>{cmp.clear(); saveCmp(); renderCube(); if(drawer.type==="scholar") renderDrawer();});
+  if(!cmp.size){ tab.innerHTML=""; return; }
+  const keys=core?AXK:["c","w","p","pl"], axf=core?(k=>AX[k]):(k=>AX2[k]);
+  const val=(id,k)=>core?SID[id][k]:(POL[id]?POL[id][k]:null);
+  const u=core?user:user2;
+  const rows=(u?[`<tr class="you"><td class="nm">You</td>${keys.map(k=>`<td>${cval(u[k],"var(--rubric,#B4442A)")}</td>`).join("")}</tr>`]:[])
+    .concat(on.map(id=>`<tr><td class="nm"><button type="button" data-sch2="${id}"><i class="dot" style="background:var(--r-${SID[id].reg})"></i> ${SID[id].s}</button></td>${keys.map(k=>`<td>${cval(val(id,k),`var(--r-${SID[id].reg})`)}</td>`).join("")}</tr>`));
+  tab.innerHTML=`<h3>Side by side</h3>${on.length?"":`<p class="cnote">None of the scholars you picked are on this compass.</p>`}<table><thead><tr><th>Scholar</th>${keys.map(k=>`<th>${axf(k).name}<small>${axf(k).neg} ↔ ${axf(k).pos}</small></th>`).join("")}</tr></thead><tbody>${rows.join("")}</tbody></table>`;
+  tab.querySelectorAll("[data-sch2]").forEach(b=>b.addEventListener("click",()=>{drawer={type:"scholar",id:b.dataset.sch2};renderCube();renderDrawer();window.scrollTo({top:$("cube").getBoundingClientRect().top+window.scrollY-90,behavior:reduce?"auto":"smooth"});}));
+}
+$("cmpBtn").addEventListener("click",()=>setCmp(!cmpOn));
+$("drawer").addEventListener("click",e=>{const b=e.target.closest("[data-cmpt]"); if(!b) return; const id=b.dataset.cmpt, add=!cmp.has(id); if(add&&!cmpOn){ cmpOn=true; const cb=$("cmpBtn"); cb.setAttribute("aria-pressed","true"); cb.textContent="Stop comparing"; } toggleCmp(id,add);});
 function applyMode(){
   const M=MD();
   $("cTitle").textContent=M.title; $("cDesc").innerHTML=M.desc; $("cLegend").textContent=M.legend;
