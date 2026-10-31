@@ -250,7 +250,8 @@ input.ag::-moz-range-thumb{width:22px;height:22px;background:var(--saffron);bord
 .sdot{stroke:#fff;stroke-width:2.2}
 .sdot.hol{stroke-width:3.4}
 .sel{fill:none;stroke:var(--text);stroke-width:3}
-.lbl{font-family:var(--f-body);font-size:15px;font-weight:600;fill:var(--text);paint-order:stroke;stroke:#fff;stroke-width:5px;stroke-linejoin:round;pointer-events:none}
+.lbl{font-family:var(--f-body);font-size:15px;font-weight:600;fill:var(--text);paint-order:stroke;stroke:#fff;stroke-width:5px;stroke-linejoin:round;cursor:pointer}
+.lbl:hover{fill:var(--cobalt);text-decoration:underline}
 .hit{fill:transparent;cursor:pointer}
 .tip{font-family:var(--f-display);font-size:16px;font-weight:800;fill:var(--text);paint-order:stroke;stroke:#fff;stroke-width:6px;stroke-linejoin:round;pointer-events:none}
 .poleb{cursor:pointer}
@@ -2076,7 +2077,10 @@ function placeLabels(items,g,reserved,bounds){
       const b={x:bx,y:by,w:w,h:h};
       if(b.x<bounds[0]||b.x+b.w>bounds[2]||b.y<bounds[1]||b.y+b.h>bounds[3]) continue;
       if(boxes.some(q=>q.own!==p.s.id&&b.x<q.x+q.w&&b.x+b.w>q.x&&b.y<q.y+q.h&&b.y+b.h>q.y)) continue;
-      boxes.push(b); const t=el("text",{x:x,y:y,"text-anchor":a,class:"lbl"},g); t.textContent=p.s.s; break;
+      boxes.push(b); const t=el("text",{x:x,y:y,"text-anchor":a,class:"lbl"},g); t.textContent=p.s.s;
+      t.addEventListener("pointerdown",e=>e.stopPropagation());   // a tap on a name opens that scholar, like a tap on their dot
+      t.addEventListener("click",e=>{e.stopPropagation();drawer={type:"scholar",id:p.s.id};renderCube();renderDrawer();});
+      break;
     }
   });
 }
