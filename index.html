@@ -371,6 +371,7 @@ input.ag::-moz-range-thumb{width:22px;height:22px;background:var(--saffron);bord
 .rgrp li .ck{display:inline-flex;align-items:center;margin-right:6px}
 .rgrp li .ck input{width:18px;height:18px;accent-color:var(--teal-d);cursor:pointer}
 .rgrp li .lft{display:flex;align-items:center;min-width:0}
+.rgrp li button.cpick[aria-pressed="true"]{color:var(--teal-d)}
 .dcmp{margin:6px 0 2px}
 .csel{min-width:0}
 .controls .lab{min-width:0}
@@ -2266,7 +2267,7 @@ function renderDrawer(){
 }
 function renderShown(){
   const all=MD().list(), vis=cmpOn?all.filter(s=>(region==="all"||s.reg===region)&&(eraF==="all"||s.era===eraF)&&(mode!=="soc"||kindF==="all"||(POL[s.id]&&POL[s.id].t===kindF))):all.filter(visible);
-  if(cmpOn) $("shownT").textContent=`Tick the scholars you want to compare · ${[...cmp].filter(id=>all.some(s=>s.id===id)).length} picked on this compass`;
+  if(cmpOn) $("shownT").textContent=`Tick or click the scholars you want to compare · ${[...cmp].filter(id=>all.some(s=>s.id===id)).length} picked on this compass`;
   else if(zoomed()){ const u0=me(), out=u0&&!inCube(tf(u0)); $("shownT").textContent=`Zoomed into the mainstream: ${vis.length} of ${all.length} scholars${out?" · your pin is outside this area":""}`; }
   else $("shownT").textContent=region==="all"&&eraF==="all"&&(mode!=="soc"||kindF==="all")?`All ${vis.length} ${mode==="soc"?"figures on this compass":"scholars"}`:`Showing ${vis.length} of ${all.length} ${mode==="soc"?"figures":"scholars"}`;
   const selId=drawer.type==="scholar"?drawer.id:null;
@@ -2274,10 +2275,10 @@ function renderShown(){
   const ncol=Math.min(3,groups.length), cols=Array.from({length:ncol},()=>({h:0,html:""}));
   groups.forEach(g=>{ const c=cols.reduce((a,b)=>b.h<a.h?b:a); c.h+=g.list.length+2;   // balance columns by height
     c.html+=`<div class="rgrp"><h4><i class="dot" style="background:var(--r-${g.k})"></i>${REG[g.k].n}<span>${g.list.length}</span></h4>
-      <ul>${g.list.map(s=>`<li><span class="lft">${cmpOn?`<label class="ck"><input type="checkbox" data-cmp="${s.id}" ${cmp.has(s.id)?"checked":""} aria-label="Compare ${s.n}"></label>`:""}<button data-sch="${s.id}" aria-current="${s.id===selId}" title="${s.n}">${s.s}</button></span><span>${s.d}</span></li>`).join("")}</ul></div>`; });
+      <ul>${g.list.map(s=>`<li><span class="lft">${cmpOn?`<label class="ck"><input type="checkbox" data-cmp="${s.id}" ${cmp.has(s.id)?"checked":""} aria-label="Compare ${s.n}"></label>`:""}<button data-sch="${s.id}" aria-current="${s.id===selId}" ${cmpOn?`aria-pressed="${cmp.has(s.id)}" class="cpick"`:""} title="${cmpOn?(cmp.has(s.id)?"Remove "+s.n+" from the comparison":"Add "+s.n+" to the comparison"):s.n}">${s.s}</button></span><span>${s.d}</span></li>`).join("")}</ul></div>`; });
   $("shownL").innerHTML=cols.map(c=>`<div class="rcol">${c.html}</div>`).join("");
   $("shownL").querySelectorAll("[data-cmp]").forEach(b=>b.addEventListener("change",()=>toggleCmp(b.dataset.cmp,b.checked)));
-  $("shownL").querySelectorAll("[data-sch]").forEach(b=>b.addEventListener("click",()=>{drawer={type:"scholar",id:b.dataset.sch};renderCube();renderDrawer();window.scrollTo({top:$("cube").getBoundingClientRect().top+window.scrollY-90,behavior:reduce?"auto":"smooth"});}));
+  $("shownL").querySelectorAll("[data-sch]").forEach(b=>b.addEventListener("click",()=>{ if(cmpOn){ toggleCmp(b.dataset.sch,!cmp.has(b.dataset.sch)); return; }drawer={type:"scholar",id:b.dataset.sch};renderCube();renderDrawer();window.scrollTo({top:$("cube").getBoundingClientRect().top+window.scrollY-90,behavior:reduce?"auto":"smooth"});}));
 }
 function toggleCmp(id,on){ if(on) cmp.add(id); else cmp.delete(id); saveCmp(); renderCube(); if(drawer.type==="scholar") renderDrawer(); }
 function setCmp(v){ cmpOn=v; const b=$("cmpBtn"); b.setAttribute("aria-pressed",String(cmpOn)); b.textContent=cmpOn?"Stop comparing":"Compare scholars"; renderCube(); }
