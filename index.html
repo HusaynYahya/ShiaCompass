@@ -2036,7 +2036,7 @@ async function drawCard(){
   g=out.getContext("2d"); g.drawImage(cv,0,0);
   g.fillStyle="#F6F9FA"; g.fillRect(0,HF-112,W,112);
   txt("For reflection only, not religious guidance.",PAD,HF-84,`500 19px ${F2}`,"#5A6B78");
-  txt("Take the test: shiacompass.hymerali786-425.workers.dev",PAD,HF-58,`700 24px ${F2}`,INK);
+  txt("Take the test: shiacompass.shiacompass.workers.dev",PAD,HF-58,`700 24px ${F2}`,INK);
   band(HF-40,"#1E7A55","#6E2B67","#D8613A","#2B1630");
   return out;
 }
@@ -2061,7 +2061,7 @@ async function renderShareCard(){
     }
     const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="shia-compass.png"; document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},1000); };
   if(sh){ const can=!!(file&&navigator.canShare&&navigator.canShare({files:[file]})); sh.hidden=!can;
-    sh.onclick=async()=>{ try{ await navigator.share({files:[file],title:"My Shia Compass",text:"Where I sit on the Shia Compass. Take the test: https://shiacompass.hymerali786-425.workers.dev/"}); }catch(_){} }; }
+    sh.onclick=async()=>{ try{ await navigator.share({files:[file],title:"My Shia Compass",text:"Where I sit on the Shia Compass. Take the test: https://shiacompass.shiacompass.workers.dev/"}); }catch(_){} }; }
 }
 function renderInsights(){
   const box=$("v-insights");
