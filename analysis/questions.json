@@ -1,6 +1,6 @@
 {
- "version": 10,
- "note": "Generated from index.html. Index order matches the answers, about and answers2 arrays stored in the database. Part 1 grew from 36 to 50 to 51 stored answers; on 30 Oct 2026 questions 20 and 42 were retired (still stored as null, not asked or scored) and a new Karbala question was added at index 50, shown to people as question 20. Part 2 grew from 42 to 61 to 63 to 64 to 65 to 68 to 69 to 70; question 59 became unscored on 30 Oct 2026 when it was reworded; older rows are shorter. On 30 Oct 2026 part 2 questions 25, 45 and 53 (ids u3, rb1, kb2) were retired as near-duplicates: still stored, not asked or scored. 'b' is each statement's position: where a Neutral answer sits on its spectrum (used by the ideal-point scoring). On 31 Oct 2026 several questions were reworded to be more neutral. Light rewordings kept their slot; questions whose meaning changed (part 1 indexes 1, 21, 27, 34, 48; part 2 index 15) were retired and replaced by new ones at part 1 indexes 51-55 and part 2 index 72, shown in the old places (replaces = the retired index). Part 1 now stores 56 answers and part 2 73.",
+ "version": 11,
+ "note": "Generated from index.html. Index order matches the answers, about and answers2 arrays stored in the database. Part 1 grew from 36 to 50 to 51 stored answers; on 30 Oct 2026 questions 20 and 42 were retired (still stored as null, not asked or scored) and a new Karbala question was added at index 50, shown to people as question 20. Part 2 grew from 42 to 61 to 63 to 64 to 65 to 68 to 69 to 70; question 59 became unscored on 30 Oct 2026 when it was reworded; older rows are shorter. On 30 Oct 2026 part 2 questions 25, 45 and 53 (ids u3, rb1, kb2) were retired as near-duplicates: still stored, not asked or scored. 'b' is each statement's position: where a Neutral answer sits on its spectrum (used by the ideal-point scoring). On 31 Oct 2026 several questions were reworded to be more neutral. Light rewordings kept their slot; questions whose meaning changed (part 1 indexes 1, 21, 27, 34, 48; part 2 index 15) were retired and replaced by new ones at part 1 indexes 51-55 and part 2 index 72, shown in the old places (replaces = the retired index). Part 1 now stores 56 answers and part 2 73. On 1 Nov 2026 part 1 switched to mainstream-anchored scoring: each part 1 question has a 'mainstream' answer (0-100), what a mainstream Usuli scholar in the line of Sayyid al-Sistani would give; answers above or below it move a person away from the mainstream point (m .55, i .3, e -.2), as a share of the room on that side, averaged over the spectrum. Part 2 grew to 74 with c_wife (women who said so see text_women).",
  "axes": {
   "m": {
    "name": "Modern questions",
@@ -241,8 +241,9 @@
    "text": "We should stay as close as possible to the rulings in the classical books of fiqh.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0.2,
-   "shown_at": 1
+   "shown_at": 1,
+   "mainstream": 75,
+   "mainstream_why": "Najaf jurists keep close to the classical rulings, while still doing ijtihad."
   },
   {
    "index": 1,
@@ -252,7 +253,6 @@
    "text": "The Imams know the unseen, including future events, by God's permission.",
    "type": "slider",
    "scale": "agreement",
-   "b": -0.2,
    "retired": true
   },
   {
@@ -263,8 +263,9 @@
    "text": "If a reliable hadith seems to conflict with reason, we should accept the hadith and assume our understanding is limited.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0.1,
-   "shown_at": 3
+   "shown_at": 3,
+   "mainstream": 35,
+   "mainstream_why": "Usuli jurists hold that certain reason can override a single report, but are cautious about calling a conflict certain."
   },
   {
    "index": 3,
@@ -274,8 +275,9 @@
    "text": "Modern ideas such as human rights and gender equality are good reasons to look again at classical rulings.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0,
-   "shown_at": 4
+   "shown_at": 4,
+   "mainstream": 15,
+   "mainstream_why": "Rulings are not revised because of human-rights frameworks, though jurists engage the questions."
   },
   {
    "index": 4,
@@ -285,8 +287,9 @@
    "text": "God has given the Imams authority to act within the created world (wilaya takwiniyya).",
    "type": "slider",
    "scale": "agreement",
-   "b": 0.2,
-   "shown_at": 5
+   "shown_at": 5,
+   "mainstream": 70,
+   "mainstream_why": "Wilaya takwiniyya by God's permission is affirmed in mainstream Najaf teaching (e.g. al-Khoei)."
   },
   {
    "index": 5,
@@ -296,8 +299,9 @@
    "text": "Reason can tell us what is just and unjust, independently of revelation.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0.3,
-   "shown_at": 6
+   "shown_at": 6,
+   "mainstream": 85,
+   "mainstream_why": "Rational good and evil (husn wa qubh 'aqli) is core Usuli and Adliyya doctrine."
   },
   {
    "index": 6,
@@ -307,8 +311,9 @@
    "text": "A daughter inheriting half of a son's share is a fixed ruling that should not change with social conditions.",
    "type": "slider",
    "scale": "agreement",
-   "b": -0.3,
-   "shown_at": 7
+   "shown_at": 7,
+   "mainstream": 95,
+   "mainstream_why": "Inheritance shares are treated as fixed Quranic rulings."
   },
   {
    "index": 7,
@@ -318,8 +323,9 @@
    "text": "The Imams are best understood as supremely pious, divinely guided scholars and leaders, without powers over creation.",
    "type": "slider",
    "scale": "agreement",
-   "b": -0.2,
-   "shown_at": 8
+   "shown_at": 8,
+   "mainstream": 10,
+   "mainstream_why": "Mainstream teaching affirms more than scholarly leadership."
   },
   {
    "index": 8,
@@ -329,8 +335,9 @@
    "text": "A hadith with one reliable chain of narrators is enough to base a belief on.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0.2,
-   "shown_at": 9
+   "shown_at": 9,
+   "mainstream": 20,
+   "mainstream_why": "For beliefs, Usuli jurists such as al-Khoei require certainty, not a single report."
   },
   {
    "index": 9,
@@ -340,8 +347,9 @@
    "text": "Many classical rulings reflected the society they were made in, so their purpose matters more than their exact wording.",
    "type": "slider",
    "scale": "agreement",
-   "b": -0.1,
-   "shown_at": 10
+   "shown_at": 10,
+   "mainstream": 10,
+   "mainstream_why": "Rulings follow the texts, not reconstructed purposes."
   },
   {
    "index": 10,
@@ -351,8 +359,9 @@
    "text": "Calling directly on an Imam for help, as in 'Ya Ali madad', is legitimate.",
    "type": "slider",
    "scale": "agreement",
-   "b": -0.1,
-   "shown_at": 11
+   "shown_at": 11,
+   "mainstream": 80,
+   "mainstream_why": "Tawassul and calling on the Imams is affirmed as legitimate."
   },
   {
    "index": 11,
@@ -362,8 +371,9 @@
    "text": "Philosophy and rational theology are essential tools for understanding religion properly.",
    "type": "slider",
    "scale": "agreement",
-   "b": -0.3,
-   "shown_at": 12
+   "shown_at": 12,
+   "mainstream": 55,
+   "mainstream_why": "Kalam is valued in the seminary; philosophy is accepted with reservations in Najaf."
   },
   {
    "index": 12,
@@ -373,8 +383,9 @@
    "text": "The hawza's traditional way of deriving rulings can answer today's new questions, such as IVF, organ donation or cryptocurrency, without changing its method.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0,
-   "shown_at": 13
+   "shown_at": 13,
+   "mainstream": 90,
+   "mainstream_why": "The seminary method is held to answer new questions without changing it."
   },
   {
    "index": 13,
@@ -384,8 +395,9 @@
    "text": "Many narrations describing the Imams' extraordinary powers are probably later exaggerations.",
    "type": "slider",
    "scale": "agreement",
-   "b": -0.2,
-   "shown_at": 14
+   "shown_at": 14,
+   "mainstream": 15,
+   "mainstream_why": "Extraordinary reports are not dismissed wholesale, though chains are examined."
   },
   {
    "index": 14,
@@ -395,8 +407,9 @@
    "text": "Ideas from mysticism, such as the unity of existence (wahdat al-wujud), have distorted Shia teachings.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0.2,
-   "shown_at": 15
+   "shown_at": 15,
+   "mainstream": 40,
+   "mainstream_why": "Najaf's mainstream is wary of wahdat al-wujud; Qum is more open to it."
   },
   {
    "index": 15,
@@ -406,8 +419,9 @@
    "text": "Academic research from universities, including by non-Muslim scholars, should shape how we understand our tradition.",
    "type": "slider",
    "scale": "agreement",
-   "b": -0.2,
-   "shown_at": 16
+   "shown_at": 16,
+   "mainstream": 10,
+   "mainstream_why": "Academic study is used, but does not set how the tradition is understood."
   },
   {
    "index": 16,
@@ -417,8 +431,9 @@
    "text": "The Imams were created as lights before the creation of the world.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0.1,
-   "shown_at": 17
+   "shown_at": 17,
+   "mainstream": 80,
+   "mainstream_why": "The Imams' primordial light is widely affirmed."
   },
   {
    "index": 17,
@@ -428,8 +443,9 @@
    "text": "A hadith that contradicts clear scientific knowledge should be reinterpreted or set aside.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0.3,
-   "shown_at": 18
+   "shown_at": 18,
+   "mainstream": 80,
+   "mainstream_why": "Reports that clash with certain knowledge are reinterpreted, an Usuli principle."
   },
   {
    "index": 18,
@@ -439,8 +455,9 @@
    "text": "Following a living marja' (taqlid) in matters of practice is essential for most believers.",
    "type": "slider",
    "scale": "agreement",
-   "b": -0.3,
-   "shown_at": 19
+   "shown_at": 19,
+   "mainstream": 95,
+   "mainstream_why": "Taqlid is required for anyone who is not a mujtahid or acting on caution."
   },
   {
    "index": 19,
@@ -460,8 +477,9 @@
    "text": "The Four Books of hadith are broadly reliable as a whole.",
    "type": "slider",
    "scale": "agreement",
-   "b": -0.1,
-   "shown_at": 21
+   "shown_at": 21,
+   "mainstream": 45,
+   "mainstream_why": "The al-Khoei school does not accept every report in the Four Books as reliable."
   },
   {
    "index": 21,
@@ -471,7 +489,6 @@
    "text": "Women should be able to become maraji' and judges.",
    "type": "slider",
    "scale": "agreement",
-   "b": -0.4,
    "retired": true
   },
   {
@@ -482,8 +499,9 @@
    "text": "Commemorations such as Muharram majalis and Fatimiyya are central to faith, not just cultural tradition.",
    "type": "slider",
    "scale": "agreement",
-   "b": -0.3,
-   "shown_at": 23
+   "shown_at": 23,
+   "mainstream": 90,
+   "mainstream_why": "The maraji' strongly support the majalis as religious, not merely cultural."
   },
   {
    "index": 23,
@@ -493,8 +511,9 @@
    "text": "Every hadith should be checked for its chain and its content before being used, even in the famous collections.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0.2,
-   "shown_at": 24
+   "shown_at": 24,
+   "mainstream": 80,
+   "mainstream_why": "Checking every chain is the al-Khoei school's method."
   },
   {
    "index": 24,
@@ -504,8 +523,9 @@
    "text": "Islam already contains everything a just society needs, so we don't need to borrow ethical frameworks from outside it.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0.2,
-   "shown_at": 25
+   "shown_at": 25,
+   "mainstream": 70,
+   "mainstream_why": "Islam's own sources are held sufficient, while outside knowledge can still inform."
   },
   {
    "index": 25,
@@ -515,8 +535,9 @@
    "text": "Accusations of ghuluww against some popular devotional practices are often justified.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0.2,
-   "shown_at": 26
+   "shown_at": 26,
+   "mainstream": 35,
+   "mainstream_why": "Excesses are warned against, but popular devotion is generally defended."
   },
   {
    "index": 26,
@@ -526,8 +547,9 @@
    "text": "When in doubt, it is better to follow the texts cautiously than to reason your way to a new conclusion.",
    "type": "slider",
    "scale": "agreement",
-   "b": -0.3,
-   "shown_at": 27
+   "shown_at": 27,
+   "mainstream": 65,
+   "mainstream_why": "Caution (ihtiyat) is a standard recourse when the evidence is unclear."
   },
   {
    "index": 27,
@@ -537,7 +559,6 @@
    "text": "Some established practices in our communities are cultural rather than religious, and should be reformed.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0.4,
    "retired": true
   },
   {
@@ -548,8 +569,9 @@
    "text": "The Imams hear us and can respond when we visit their shrines or address them.",
    "type": "slider",
    "scale": "agreement",
-   "b": -0.3,
-   "shown_at": 29
+   "shown_at": 29,
+   "mainstream": 95,
+   "mainstream_why": "That the Imams hear visitors is standard belief."
   },
   {
    "index": 29,
@@ -559,8 +581,9 @@
    "text": "The foundations of faith, such as God's existence and justice, should be reached through your own reasoning rather than taken from scripture or scholars.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0.3,
-   "shown_at": 30
+   "shown_at": 30,
+   "mainstream": 90,
+   "mainstream_why": "No taqlid in the foundations of faith is a standard opening ruling of the risalas."
   },
   {
    "index": 30,
@@ -570,8 +593,9 @@
    "text": "Changes in religious rulings should come only from senior jurists, not from public debate.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0.1,
-   "shown_at": 31
+   "shown_at": 31,
+   "mainstream": 85,
+   "mainstream_why": "Rulings change through the ijtihad of qualified jurists."
   },
   {
    "index": 31,
@@ -581,8 +605,9 @@
    "text": "Beliefs about the Imams should rest only on the Quran and on reports that give certainty, not on single narrations.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0.1,
-   "shown_at": 32
+   "shown_at": 32,
+   "mainstream": 55,
+   "mainstream_why": "Usuli method asks for certainty in doctrine, though it is applied flexibly."
   },
   {
    "index": 32,
@@ -592,8 +617,9 @@
    "text": "Ordinary believers can understand religion directly from the Imams' words, without specialised legal theory.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0.4,
-   "shown_at": 33
+   "shown_at": 33,
+   "mainstream": 10,
+   "mainstream_why": "Understanding the texts for law needs specialised training."
   },
   {
    "index": 33,
@@ -603,8 +629,9 @@
    "text": "Religious knowledge develops over time as human knowledge grows.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0.5,
-   "shown_at": 34
+   "shown_at": 34,
+   "mainstream": 45,
+   "mainstream_why": "Fiqh develops through ijtihad, but not simply with human knowledge."
   },
   {
    "index": 34,
@@ -614,7 +641,6 @@
    "text": "Ziyarat al-Jami'a al-Kabira describes the Imams' station accurately and should be taken at face value.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0.3,
    "retired": true
   },
   {
@@ -625,8 +651,9 @@
    "text": "Usul al-fiqh, the theory of jurisprudence, is necessary to derive rulings correctly.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0.4,
-   "shown_at": 36
+   "shown_at": 36,
+   "mainstream": 95,
+   "mainstream_why": "Usul al-fiqh is the backbone of the seminary method."
   },
   {
    "index": 36,
@@ -636,8 +663,9 @@
    "text": "You enjoy reading Muslim writers who aren't clerics, such as academics, doctors and journalists.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0.7,
-   "shown_at": 37
+   "shown_at": 37,
+   "mainstream": 60,
+   "mainstream_why": "A mainstream believer would read such writers, without treating them as authorities."
   },
   {
    "index": 37,
@@ -647,8 +675,9 @@
    "text": "You ask the Imams by name to intercede for you in your du'as.",
    "type": "slider",
    "scale": "frequency",
-   "b": -0.1,
-   "shown_at": 38
+   "shown_at": 38,
+   "mainstream": 85,
+   "mainstream_why": "Asking the Imams to intercede is standard practice."
   },
   {
    "index": 38,
@@ -658,8 +687,9 @@
    "text": "You enjoy debates and thought experiments about God and ethics.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0.2,
-   "shown_at": 39
+   "shown_at": 39,
+   "mainstream": 70,
+   "mainstream_why": "Kalam debate is a seminary tradition."
   },
   {
    "index": 39,
@@ -669,8 +699,9 @@
    "text": "Traditional customs at weddings and funerals are worth keeping as they are.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0.4,
-   "shown_at": 40
+   "shown_at": 40,
+   "mainstream": 50,
+   "mainstream_why": "The maraji' criticise extravagant or un-Islamic customs, while many customs are harmless."
   },
   {
    "index": 40,
@@ -680,8 +711,9 @@
    "text": "You find the Imams' sayings on ethics more moving than accounts of their miracles.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0.4,
-   "shown_at": 41
+   "shown_at": 41,
+   "mainstream": 55,
+   "mainstream_why": "Both are valued; ethics is central to the Imams' legacy."
   },
   {
    "index": 41,
@@ -701,8 +733,9 @@
    "text": "A good Muharram talk should take on current issues such as mental health or gender.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0.3,
-   "shown_at": 42
+   "shown_at": 42,
+   "mainstream": 55,
+   "mainstream_why": "The maraji' have urged Muharram speakers to address the problems of the day."
   },
   {
    "index": 43,
@@ -712,8 +745,9 @@
    "text": "You'd travel a long way, at real cost, to visit an Imam's shrine.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0.1,
-   "shown_at": 43
+   "shown_at": 43,
+   "mainstream": 75,
+   "mainstream_why": "Ziyara is strongly encouraged, including at real cost."
   },
   {
    "index": 44,
@@ -723,8 +757,9 @@
    "text": "You read from hadith collections such as al-Kafi or Bihar al-Anwar.",
    "type": "slider",
    "scale": "frequency",
-   "b": -0.4,
-   "shown_at": 44
+   "shown_at": 44,
+   "mainstream": 70,
+   "mainstream_why": "Reading the hadith collections is normal devotional and scholarly practice."
   },
   {
    "index": 45,
@@ -734,8 +769,9 @@
    "text": "On a religious question, you'd sooner trust an older scholar than a younger one.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0.3,
-   "shown_at": 45
+   "shown_at": 45,
+   "mainstream": 65,
+   "mainstream_why": "Seniority and established learning (a'lamiyya) weigh heavily."
   },
   {
    "index": 46,
@@ -745,8 +781,9 @@
    "text": "Given the choice, you'd rather read the Quran than recite Ziyarat Ashura.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0.4,
-   "shown_at": 46
+   "shown_at": 46,
+   "mainstream": 45,
+   "mainstream_why": "Both are recommended; Ziyarat Ashura is highly valued."
   },
   {
    "index": 47,
@@ -756,8 +793,9 @@
    "text": "You'd read a Western philosopher to help you think through a religious question.",
    "type": "slider",
    "scale": "agreement",
-   "b": -0.2,
-   "shown_at": 47
+   "shown_at": 47,
+   "mainstream": 35,
+   "mainstream_why": "Western philosophy is not a usual resource, though some scholars engage it."
   },
   {
    "index": 48,
@@ -767,7 +805,6 @@
    "text": "Ijtihad must take account of time and place, as Ayatollah Khomeini argued, even when that changes a ruling.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0.2,
    "retired": true
   },
   {
@@ -778,8 +815,9 @@
    "text": "When deriving rulings, scholars should stay close to the texts rather than weigh how a ruling will affect society.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0.2,
-   "shown_at": 49
+   "shown_at": 49,
+   "mainstream": 70,
+   "mainstream_why": "Jurists derive rulings from the texts, with limited room for weighing social effects."
   },
   {
    "index": 50,
@@ -789,8 +827,9 @@
    "text": "Imam Husayn's journey to Karbala is best seen as an act of submission to a destiny he knew in advance.",
    "type": "slider",
    "scale": "agreement",
-   "b": -0.1,
-   "shown_at": 20
+   "shown_at": 20,
+   "mainstream": 70,
+   "mainstream_why": "The Imam's foreknowledge of Karbala is widely affirmed."
   },
   {
    "index": 51,
@@ -801,8 +840,9 @@
    "type": "slider",
    "scale": "agreement",
    "replaces": 1,
-   "b": 0.4,
-   "shown_at": 2
+   "shown_at": 2,
+   "mainstream": 45,
+   "mainstream_why": "Common view: the Imams know what they will to know, by God's leave, not everything at all times."
   },
   {
    "index": 52,
@@ -813,8 +853,9 @@
    "type": "slider",
    "scale": "agreement",
    "replaces": 21,
-   "b": -0.4,
-   "shown_at": 22
+   "shown_at": 22,
+   "mainstream": 5,
+   "mainstream_why": "Mainstream jurists hold that a marja' must be male."
   },
   {
    "index": 53,
@@ -825,8 +866,9 @@
    "type": "slider",
    "scale": "agreement",
    "replaces": 27,
-   "b": 0.7,
-   "shown_at": 28
+   "shown_at": 28,
+   "mainstream": 65,
+   "mainstream_why": "The maraji' distinguish religion from custom and criticise harmful customs."
   },
   {
    "index": 54,
@@ -837,8 +879,9 @@
    "type": "slider",
    "scale": "agreement",
    "replaces": 34,
-   "b": 0.3,
-   "shown_at": 35
+   "shown_at": 35,
+   "mainstream": 60,
+   "mainstream_why": "The Jami'a Kabira is endorsed and widely recited; its claims are read with some interpretation."
   },
   {
    "index": 55,
@@ -849,8 +892,9 @@
    "type": "slider",
    "scale": "agreement",
    "replaces": 48,
-   "b": 0.45,
-   "shown_at": 48
+   "shown_at": 48,
+   "mainstream": 40,
+   "mainstream_why": "Changes in circumstance change a ruling's subject, not the ruling itself; time and place matter only in that sense."
   }
  ],
  "part2": [
@@ -1675,6 +1719,18 @@
    "replaces": 15,
    "b": 0,
    "shown_at": 16
+  },
+  {
+   "index": 73,
+   "id": "c_wife",
+   "axis": "c",
+   "key": -1,
+   "text": "As a man, I would support my wife if she intended to pursue a career, such as being a doctor or a lawyer.",
+   "text_women": "As a woman, I would want my husband to support me if I pursued a career, such as being a doctor or a lawyer.",
+   "type": "slider",
+   "scale": "agreement",
+   "b": 0.5,
+   "shown_at": 74
   }
  ]
 }
