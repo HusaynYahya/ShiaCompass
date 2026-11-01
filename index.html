@@ -204,7 +204,12 @@ input.ag::-moz-range-thumb{width:22px;height:22px;background:var(--saffron);bord
 .chip small{font-size:12.5px;font-weight:400;opacity:.8}
 .cmp{display:grid;grid-template-columns:minmax(0,1fr) 370px;gap:24px;align-items:start;margin-top:18px}
 @media (max-width:1180px){.cmp{grid-template-columns:minmax(0,1fr)}}
-.cubewrap{min-width:0;display:flex;flex-direction:column;gap:8px}
+.cubewrap{min-width:0;display:flex;flex-direction:column;gap:8px;position:relative}
+.zctl{display:flex;gap:8px;align-items:center;justify-content:flex-end;margin-top:-2px}
+.zctl button{width:44px;height:38px;border:2px solid var(--text);border-radius:10px;background:#fff;font:800 22px/1 var(--f-display);color:var(--text);cursor:pointer;display:grid;place-items:center}
+.zctl button:hover,.zctl button:focus-visible{background:var(--cobalt);color:#fff}
+.zctl button[hidden]{display:none}
+.zctl button:disabled{opacity:.35;cursor:default;background:#fff;color:var(--text)}
 #cube{display:block;width:100%;height:auto;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab;background:#fff;border:2px solid var(--text);border-radius:16px}
 #cube:active{cursor:grabbing}
 .hintrow{display:flex;justify-content:space-between;gap:8px 18px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
@@ -244,25 +249,25 @@ input.ag::-moz-range-thumb{width:22px;height:22px;background:var(--saffron);bord
 .nlink:hover{text-decoration-color:currentColor}
 .rmore{display:block;font-size:14px;color:var(--muted);margin-top:2px}
 .rmore a{color:var(--teal-d);font-weight:600}
-.zonel{font-family:var(--f-body);font-size:12px;font-weight:700;fill:var(--cobalt)}
+.zonel{font-family:var(--f-body);font-size:calc(12px*var(--us,1));font-weight:700;fill:var(--cobalt)}
 .drop{stroke:rgba(11,34,51,.22);stroke-width:1.2}
 .foot{fill:rgba(11,34,51,.35)}
 .sdot{stroke:#fff;stroke-width:2.2}
 .sdot.hol{stroke-width:3.4}
 .sel{fill:none;stroke:var(--text);stroke-width:3}
-.lbl{font-family:var(--f-body);font-size:15px;font-weight:600;fill:var(--text);paint-order:stroke;stroke:#fff;stroke-width:5px;stroke-linejoin:round;cursor:pointer}
+.lbl{font-family:var(--f-body);font-size:calc(15px*var(--us,1));font-weight:600;fill:var(--text);paint-order:stroke;stroke:#fff;stroke-width:calc(5px*var(--us,1));stroke-linejoin:round;cursor:pointer}
 .lbl:hover{fill:var(--cobalt);text-decoration:underline}
 .hit{fill:transparent;cursor:pointer}
-.tip{font-family:var(--f-display);font-size:16px;font-weight:800;fill:var(--text);paint-order:stroke;stroke:#fff;stroke-width:6px;stroke-linejoin:round;pointer-events:none}
+.tip{font-family:var(--f-display);font-size:calc(16px*var(--us,1));font-weight:800;fill:var(--text);paint-order:stroke;stroke:#fff;stroke-width:calc(6px*var(--us,1));stroke-linejoin:round;pointer-events:none}
 .poleb{cursor:pointer}
-.poleb rect{fill:#fff;stroke:var(--text);stroke-width:2}
-.poleb text{font-family:var(--f-display);font-size:13.5px;font-weight:800;letter-spacing:.06em;fill:var(--text)}
+.poleb rect{fill:#fff;stroke:var(--text);stroke-width:calc(2px*var(--us,1))}
+.poleb text{font-family:var(--f-display);font-size:calc(13.5px*var(--us,1));font-weight:800;letter-spacing:.06em;fill:var(--text)}
 .poleb:hover rect,.poleb:focus rect,.poleb.on rect{fill:var(--cobalt);stroke:var(--text)}
 .poleb:hover text,.poleb:focus text,.poleb.on text{fill:#fff}
 .poleb:focus{outline:none}
 .pin{fill:var(--rubric);stroke:var(--text);stroke-width:2.2;stroke-linejoin:round}
 .pinc{fill:#fff}
-.pinl{font-family:var(--f-display);font-size:15px;font-weight:800;fill:var(--text);paint-order:stroke;stroke:#fff;stroke-width:5px;pointer-events:none}
+.pinl{font-family:var(--f-display);font-size:calc(15px*var(--us,1));font-weight:800;fill:var(--text);paint-order:stroke;stroke:#fff;stroke-width:calc(5px*var(--us,1));pointer-events:none}
 .pulse{fill:none;stroke:var(--rubric);stroke-width:2.4;transform-box:fill-box;transform-origin:center;animation:pulse 2.2s ease-out infinite}
 @keyframes pulse{0%{transform:scale(.4);opacity:.9}100%{transform:scale(2.4);opacity:0}}
 .link{stroke:var(--rubric);stroke-width:1.6;stroke-dasharray:4 4;opacity:.8}
@@ -594,8 +599,9 @@ body.theme2 #tile .t1{fill:#1E7A55} body.theme2 #tile .t2{fill:#6E2B67} body.the
     <div class="cmp">
       <div class="cubewrap">
         <svg id="cube" viewBox="0 0 1000 820" tabindex="0" role="img" aria-label="3D compass of scholars. Drag or use arrow keys to turn it."></svg>
+        <div class="zctl" role="group" aria-label="Zoom the compass"><button type="button" id="zout" aria-label="Zoom out">−</button><button type="button" id="zin" aria-label="Zoom in">+</button><button type="button" id="zfit" aria-label="Show the whole compass" title="Show the whole compass" hidden>⤢</button></div>
         <div class="rlegend" id="rLegend" aria-label="Dot colours by region"></div>
-        <div class="hintrow"><span id="cubeHint">Drag to turn · arrow keys work too</span><span id="cLegend">Dot colour = region · dashed circle = mainstream Usuli centre · dotted saffron line = the deepest divide</span></div>
+        <div class="hintrow"><span id="cubeHint">Drag to turn · pinch or use + and − to zoom</span><span id="cLegend">Dot colour = region · dashed circle = mainstream Usuli centre · dotted saffron line = the deepest divide</span></div>
       </div>
       <aside class="drawer" id="drawer" aria-live="polite"></aside>
     </div>
@@ -2187,13 +2193,13 @@ const MODES={
    desc:`Left to right is <b style="color:var(--text)">Modernist ↔ Traditionalist</b>, bottom to top is <b style="color:var(--text)">Minimalist ↔ Maximalist</b>, and front to back is <b style="color:var(--text)">Rationalist ↔ Scripturalist</b>. Click a gold axis label to see the method behind that viewpoint, or click a scholar to see why they sit there.`,
    legend:"Dot colour = region · dashed circle = mainstream Usuli centre (tap it to zoom in) · dotted saffron line = the deepest divide",
    chips:["Modern × Imamology","Method × Imamology","Modern × Method"],
-   hint:{iso:"Drag to turn · arrow keys work too",front:"Front: modern questions across, Imamology up. Method is depth.",side:"Side: method across (rationalist left), Imamology up. Modern questions is depth.",top:"Top: modern questions across, method up (scripturalist top). Imamology is depth."}},
+   hint:{iso:"Drag to turn · pinch, or + and −, to zoom · two fingers (or Shift + drag) to move",front:"Front: modern questions across, Imamology up. Method is depth.",side:"Side: method across (rationalist left), Imamology up. Modern questions is depth.",top:"Top: modern questions across, method up (scripturalist top). Imamology is depth."}},
  soc:{keys:["c","w","p"], ax:k=>AX2[k], list:()=>ALLS.filter(s=>POL[s.id]&&POL[s.id].p!==null&&!POL[s.id].lo), pos:s=>({m:POL[s.id].c,i:POL[s.id].w,e:POL[s.id].p}), me:()=>user2&&{m:user2.c,i:user2.w,e:user2.p},
    title:"Society and politics", lab:"Society and politics",
    desc:`The second compass. Left to right is <b style="color:var(--text)">Liberal ↔ Conservative</b> on social life, bottom to top is <b style="color:var(--text)">Quietist ↔ Activist</b> on religion and politics, and front to back is <b style="color:var(--text)">Philosophical ↔ Anti-philosophical</b> on philosophy and mysticism. Use Kind to show one group at a time. Placements are approximate readings of each figure's public positions.`,
    legend:"Dot colour = region · only figures whose positions on all three questions are documented are shown",
    chips:["Social life × Politics","Philosophy × Politics","Social life × Philosophy"],
-   hint:{iso:"Drag to turn · arrow keys work too",front:"Front: social life across, religion and politics up. Philosophy is depth.",side:"Side: philosophy across (philosophical left), politics up. Social life is depth.",top:"Top: social life across, philosophy up (anti-philosophical top). Politics is depth."}}
+   hint:{iso:"Drag to turn · pinch, or + and −, to zoom · two fingers (or Shift + drag) to move",front:"Front: social life across, religion and politics up. Philosophy is depth.",side:"Side: philosophy across (philosophical left), politics up. Social life is depth.",top:"Top: social life across, philosophy up (anti-philosophical top). Politics is depth."}}
 };
 let mode="core";
 const MD=()=>MODES[mode], cp=s=>MD().pos(s), me=()=>MD().me();
@@ -2211,13 +2217,25 @@ let tipEl=null;
 /* Best-known figures get their name label first when labels would overlap; everyone else after, front to back. */
 const FAMOUS=["khomeini","sistani","khoei","tabatabai","sadra","majlisi","kulayni","saduq","mufid","tusi","sadr","mutahhari","khamenei","fadlallah","shariati","musasadr","hilli","ansari","astarabadi","ahsai","ntusi","shirazi","javadi","vahid","soroush","nasr","burqai","kadivar","borujerdi","muhsinhakim","nasrallah","montazeri","mesbahyazdi","haydari","khatami","bahjat","hurr","fayd","shahid1","shahid2","behbahani","mughniyya","kashifghita","sharafaldin","akhundkhorasani","naini","makaremshirazi","saidhakim","qabbanji"];
 const fame=id=>{const k=FAMOUS.indexOf(id); return k<0?999:k;};
-function placeLabels(items,g,reserved,bounds){
+/* Zoom and pan of the drawing (not the same as "Zoom into the mainstream", which rescales the data).
+   VZ.z magnifies the view; text, dots and buttons are drawn larger when the cube is small on screen (phones). */
+const VZ={z:1,cx:500,cy:410,auto:true}; let dotMid={x:500,y:410};
+const vbox=()=>{const w=1000/VZ.z,h=820/VZ.z;return {x:VZ.cx-w/2,y:VZ.cy-h/2,w,h};};
+function clampVZ(){ VZ.z=Math.max(1,Math.min(4,VZ.z)); const w=1000/VZ.z,h=820/VZ.z;
+  VZ.cx=Math.max(w/2,Math.min(1000-w/2,VZ.cx)); VZ.cy=Math.max(h/2,Math.min(820-h/2,VZ.cy)); }
+function uiScale(){ const px=$("cube").getBoundingClientRect().width||1000; return Math.max(1,Math.min(2.4,(1000/VZ.z)/px*.85)); }
+function phoneDefault(){ if(!VZ.auto) return; const px=$("cube").getBoundingClientRect().width||1000;
+  if(px<640){ VZ.z=1.25; VZ.cx=515; VZ.cy=445; } else { VZ.z=1; VZ.cx=500; VZ.cy=410; } clampVZ(); }
+function zoomBy(f,px,py){ const b=vbox(), ax=px===undefined?VZ.cx:px, ay=py===undefined?VZ.cy:py;
+  VZ.auto=false; const z0=VZ.z; VZ.z*=f; clampVZ(); const k=z0/VZ.z; VZ.cx=ax+(VZ.cx-ax)*k; VZ.cy=ay+(VZ.cy-ay)*k; clampVZ(); renderCube(); }
+function placeLabels(items,g,reserved,bounds,us){
+  us=us||1;
   const boxes=reserved.slice();
   items.forEach(p=>boxes.push({x:p.x-p.r,y:p.y-p.r,w:2*p.r,h:2*p.r,own:p.s.id}));
   items.forEach(p=>{
-    const w=p.s.s.length*8.1, h=16, o=p.r+5;
-    const cands=[[p.x+o,p.y+5,"start",p.x+o,p.y-10],[p.x-o,p.y+5,"end",p.x-o-w,p.y-10],[p.x,p.y-o-4,"middle",p.x-w/2,p.y-o-19],[p.x,p.y+o+14,"middle",p.x-w/2,p.y+o],
-      [p.x+o-2,p.y-o+2,"start",p.x+o-2,p.y-o-13],[p.x-o+2,p.y-o+2,"end",p.x-o+2-w,p.y-o-13],[p.x+o-2,p.y+o+10,"start",p.x+o-2,p.y+o-5],[p.x-o+2,p.y+o+10,"end",p.x-o+2-w,p.y+o-5]];
+    const w=p.s.s.length*8.1*us, h=16*us, o=p.r+5*us;
+    const u=us, cands=[[p.x+o,p.y+5*u,"start",p.x+o,p.y-10*u],[p.x-o,p.y+5*u,"end",p.x-o-w,p.y-10*u],[p.x,p.y-o-4*u,"middle",p.x-w/2,p.y-o-19*u],[p.x,p.y+o+14*u,"middle",p.x-w/2,p.y+o],
+      [p.x+o-2*u,p.y-o+2*u,"start",p.x+o-2*u,p.y-o-13*u],[p.x-o+2*u,p.y-o+2*u,"end",p.x-o+2*u-w,p.y-o-13*u],[p.x+o-2*u,p.y+o+10*u,"start",p.x+o-2*u,p.y+o-5*u],[p.x-o+2*u,p.y+o+10*u,"end",p.x-o+2*u-w,p.y+o-5*u]];
     for(const [x,y,a,bx,by] of cands){
       const b={x:bx,y:by,w:w,h:h};
       if(b.x<bounds[0]||b.x+b.w>bounds[2]||b.y<bounds[1]||b.y+b.h>bounds[3]) continue;
@@ -2232,6 +2250,9 @@ function placeLabels(items,g,reserved,bounds){
 }
 function renderCube(){
   const svg=$("cube"); svg.innerHTML=""; const st=CS, P=(m,i,e)=>project(st,m,i,e), core=mode==="core";
+  phoneDefault(); const VB=vbox(), us=uiScale(), ds=Math.sqrt(us);
+  svg.setAttribute("viewBox",`${VB.x} ${VB.y} ${VB.w} ${VB.h}`); svg.style.setProperty("--us",us);
+  $("zout").disabled=VZ.z<=1.001; $("zfit").hidden=VZ.z<=1.001;
   svg.setAttribute("aria-label",core?"3D compass of scholars on worldview and methodology. Drag or use arrow keys to turn it.":"3D compass of scholars on society and politics. Drag or use arrow keys to turn it.");
   drawWalls(st,svg,"wall","wg","wg0");
   drawEdges(st,svg,"edge");
@@ -2241,7 +2262,8 @@ function renderCube(){
   } else if(core){ const Z=P(0,0,0); el("title",{},el("circle",{cx:Z.x,cy:Z.y,r:MAINR*ZF*st.K*Z.s,class:"zone"},svg)).textContent="Click to show the whole compass"; }
   const vis=MD().list().filter(visible);
   const floorBack=at(st,{i:-1}).z<-0.02;
-  const pts=vis.map(s=>{const c=tf(cp(s)),p=P(c.m,c.i,c.e);return {s,c,x:p.x,y:p.y,z:p.z,r:8.4*p.s}}).sort((a,b)=>a.z-b.z);
+  const pts=vis.map(s=>{const c=tf(cp(s)),p=P(c.m,c.i,c.e);return {s,c,x:p.x,y:p.y,z:p.z,r:8.4*p.s*ds}}).sort((a,b)=>a.z-b.z);
+  if(pts.length){ const xs=pts.map(p=>p.x).sort((a,b)=>a-b), ys=pts.map(p=>p.y).sort((a,b)=>a-b); dotMid={x:xs[xs.length>>1],y:ys[ys.length>>1]}; }
   if(floorBack) pts.forEach(p=>{const F=P(p.c.m,-1,p.c.e); el("line",{x1:p.x,y1:p.y,x2:F.x,y2:F.y,class:"drop"},svg); el("circle",{cx:F.x,cy:F.y,r:2.2,class:"foot"},svg);});
   let U=null, near=[]; const u0=me(), u=u0&&tf(u0), uIn=u&&(!zoomed()||inCube(u));
   if(u&&uIn){ U=P(u.m,u.i,u.e); near=pts.filter(p=>core?!p.s.lo1:!POL[p.s.id].lo).map(p=>({s:p.s,c:p.c,d:core?dist(p.c,u):dist2(p.s.id,user2)})).sort((a,b)=>a.d-b.d).slice(0,3);
@@ -2259,17 +2281,17 @@ function renderCube(){
   const O=P(0,0,0);
   AXK.forEach(slot=>[-1,1].forEach(sg=>{const o={};o[slot]=sg*1.3;const L=at(st,o);
     if(Math.hypot(L.x-O.x,L.y-O.y)<90) return;
-    const a=slotAx(slot), A=MD().ax(a), name=(sg<0?A.neg:A.pos).toUpperCase(), w=name.length*10+30, h=30;
-    const x=Math.min(Math.max(L.x,w/2+6),1000-w/2-6), y=Math.min(Math.max(L.y,h/2+6),820-h/2-6);
+    const a=slotAx(slot), A=MD().ax(a), name=(sg<0?A.neg:A.pos).toUpperCase(), w=(name.length*10+30)*us, h=30*us;
+    const x=Math.min(Math.max(L.x,VB.x+w/2+6),VB.x+VB.w-w/2-6), y=Math.min(Math.max(L.y,VB.y+h/2+6),VB.y+VB.h-h/2-6);
     reserved.push({x:x-w/2,y:y-h/2,w:w,h:h}); poles.push({a,sg,name,x,y,w,h});}));
-  if(U) reserved.push({x:U.x-16,y:U.y-52,w:32,h:52});
+  if(U) reserved.push({x:U.x-16*us,y:U.y-52*us,w:32*us,h:52*us});
   const items=[...pts].sort((a,b)=>{const fa=near.some(o=>o.s.id===a.s.id)||a.s.id===selId, fb=near.some(o=>o.s.id===b.s.id)||b.s.id===selId; return (fb-fa)||(fame(a.s.id)-fame(b.s.id))||(b.z-a.z);}).map(p=>({s:p.s,x:p.x,y:p.y,r:p.r+1}));
-  placeLabels(items,svg,reserved,[6,6,994,814]);
-  if(U) pinShape(svg,U.x,U.y,1.15);
+  placeLabels(items,svg,reserved,[VB.x+6,VB.y+6,VB.x+VB.w-6,VB.y+VB.h-6],us);
+  if(U) pinShape(svg,U.x,U.y,1.15*us);
   tipEl=el("text",{class:"tip",visibility:"hidden"},svg);
-  pts.forEach(p=>{const h=el("circle",{cx:p.x,cy:p.y,r:Math.max(14,p.r+6),class:"hit"},svg);
+  pts.forEach(p=>{const h=el("circle",{cx:p.x,cy:p.y,r:Math.max(14*us,p.r+6*us),class:"hit"},svg);
     const tt=el("title",{},h); tt.textContent=`${p.s.n} (${p.s.d}) · ${REG[p.s.reg].n}`;
-    h.addEventListener("pointerenter",()=>{tipEl.textContent=p.s.n;const right=p.x>760;tipEl.setAttribute("x",right?p.x-14:p.x+14);tipEl.setAttribute("y",p.y-16);tipEl.setAttribute("text-anchor",right?"end":"start");tipEl.setAttribute("visibility","visible");});
+    h.addEventListener("pointerenter",()=>{tipEl.textContent=p.s.n;const right=p.x>VB.x+VB.w*.76;tipEl.setAttribute("x",right?p.x-14*us:p.x+14*us);tipEl.setAttribute("y",p.y-16*us);tipEl.setAttribute("text-anchor",right?"end":"start");tipEl.setAttribute("visibility","visible");});
     h.addEventListener("pointerleave",()=>tipEl.setAttribute("visibility","hidden"));
     h.addEventListener("pointerdown",e=>e.stopPropagation());
     h.addEventListener("click",e=>{e.stopPropagation();drawer={type:"scholar",id:p.s.id};renderCube();renderDrawer();});});
@@ -2278,7 +2300,7 @@ function renderCube(){
     const on=drawer.type===dtype&&drawer.a===pb.a&&((drawer.p==="neg")===(pb.sg<0));
     const g=el("g",{class:"poleb"+(on?" on":""),tabindex:0,role:"button","aria-label":`What does ${pb.name.toLowerCase()} mean? ${core?"Show the method":"Explain this position"}`},svg);
     el("rect",{x:pb.x-pb.w/2,y:pb.y-pb.h/2,width:pb.w,height:pb.h,rx:pb.h/2},g);
-    const t=el("text",{x:pb.x,y:pb.y+4.5,"text-anchor":"middle"},g); t.textContent=pb.name+"  ⓘ";
+    const t=el("text",{x:pb.x,y:pb.y+4.5*us,"text-anchor":"middle"},g); t.textContent=pb.name+"  ⓘ";
     const open=()=>{drawer={type:dtype,a:pb.a,p:pb.sg<0?"neg":"pos"};renderCube();renderDrawer();};
     g.addEventListener("pointerdown",e=>e.stopPropagation());
     g.addEventListener("click",open);
@@ -2430,12 +2452,28 @@ function turnTo(k){
 document.querySelectorAll("[data-pre]").forEach(b=>b.addEventListener("click",()=>turnTo(b.dataset.pre)));
 /* drag + keys */
 const cube=$("cube"); let drag=null;
-cube.addEventListener("pointerdown",e=>{drag={x:e.clientX,y:e.clientY,sx:e.clientX,sy:e.clientY,t:e.target};try{cube.setPointerCapture(e.pointerId)}catch(_){}} );
-cube.addEventListener("pointermove",e=>{if(!drag)return;const dx=e.clientX-drag.x,dy=e.clientY-drag.y;drag.x=e.clientX;drag.y=e.clientY;
+const ptrs=new Map(); let pinch=null;
+const toSvg=(cx,cy)=>{const r=cube.getBoundingClientRect(), b=vbox(); return {x:b.x+(cx-r.left)/r.width*b.w, y:b.y+(cy-r.top)/r.height*b.h};};
+const pinchState=()=>{const [a,b]=[...ptrs.values()]; return {d:Math.hypot(a.x-b.x,a.y-b.y)||1, mx:(a.x+b.x)/2, my:(a.y+b.y)/2};};
+cube.addEventListener("pointerdown",e=>{ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  if(ptrs.size===2){ drag=null; pinch=pinchState(); }
+  else if(ptrs.size===1) drag={x:e.clientX,y:e.clientY,sx:e.clientX,sy:e.clientY,t:e.target};
+  try{cube.setPointerCapture(e.pointerId)}catch(_){}} );
+cube.addEventListener("pointermove",e=>{ if(ptrs.has(e.pointerId)) ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  if(pinch&&ptrs.size===2){ const n=pinchState(), r=cube.getBoundingClientRect(), b=vbox();
+    VZ.cx-=(n.mx-pinch.mx)/r.width*b.w; VZ.cy-=(n.my-pinch.my)/r.height*b.h;   // two fingers move the view
+    VZ.auto=false; clampVZ(); const c=toSvg(n.mx,n.my), f=n.d/pinch.d; pinch=n; zoomBy(f,c.x,c.y); return; }
+  if(!drag)return;const dx=e.clientX-drag.x,dy=e.clientY-drag.y;drag.x=e.clientX;drag.y=e.clientY;
+  if(e.shiftKey&&VZ.z>1){ const r=cube.getBoundingClientRect(), b=vbox(); VZ.cx-=dx/r.width*b.w; VZ.cy-=dy/r.height*b.h; VZ.auto=false; clampVZ(); renderCube(); return; }
   CS.yaw+=dx*.008;CS.pitch=Math.max(-Math.PI/2,Math.min(Math.PI/2,CS.pitch+dy*.008));markPre(null);renderCube();});
+const endPtr=e=>{ptrs.delete(e.pointerId); if(ptrs.size<2) pinch=null; if(!ptrs.size) drag=null; else if(ptrs.size===1&&!drag){ const [p]=[...ptrs.values()]; drag={x:p.x,y:p.y,sx:p.x,sy:p.y,t:null}; }};
 cube.addEventListener("pointerup",e=>{ // a tap (not a drag) on the dashed mainstream circle zooms in or out
-  if(drag&&mode==="core"&&drag.t&&drag.t.classList&&drag.t.classList.contains("zone")&&Math.hypot(e.clientX-drag.sx,e.clientY-drag.sy)<6) setZoom(!zoomOn);
-  drag=null;}); cube.addEventListener("pointercancel",()=>drag=null);
+  if(drag&&ptrs.size===1&&mode==="core"&&drag.t&&drag.t.classList&&drag.t.classList.contains("zone")&&Math.hypot(e.clientX-drag.sx,e.clientY-drag.sy)<6) setZoom(!zoomOn);
+  endPtr(e);}); cube.addEventListener("pointercancel",endPtr);
+cube.addEventListener("wheel",e=>{ if(!e.ctrlKey&&!e.metaKey) return; e.preventDefault(); const c=toSvg(e.clientX,e.clientY); zoomBy(Math.exp(-e.deltaY*.01),c.x,c.y); },{passive:false});   // trackpad pinch or ctrl + scroll
+$("zin").addEventListener("click",()=>{ VZ.cx+=(dotMid.x-VZ.cx)*.5; VZ.cy+=(dotMid.y-VZ.cy)*.5; zoomBy(1.4); });   // drift towards the middle of the scholars on show $("zout").addEventListener("click",()=>zoomBy(1/1.4));
+$("zfit").addEventListener("click",()=>{VZ.z=1;VZ.cx=500;VZ.cy=410;VZ.auto=false;renderCube();});
+let rzT=null; window.addEventListener("resize",()=>{clearTimeout(rzT); rzT=setTimeout(()=>{ if(route()==="compass") renderCube(); },150);});
 cube.addEventListener("keydown",e=>{const m={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1]}[e.key];if(!m)return;e.preventDefault();
   CS.yaw+=m[0]*.12;CS.pitch=Math.max(-Math.PI/2,Math.min(Math.PI/2,CS.pitch+m[1]*.12));markPre(null);renderCube();});
 
