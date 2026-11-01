@@ -2,7 +2,7 @@
 
 **Take the Shia Compass Test: see where you align with traditional and contemporary scholars.**
 
-A single-page web app based on Shaykh Zoheir Esmail's article of 14 October 2026 and its three spectrums:
+A single-page web app inspired by Shaykh Zoheir Esmail's article of 14 October 2026 and its three spectrums:
 
 1. **Modernist ↔ Traditionalist**: how far modern questions should reshape religious conclusions
 2. **Minimalist ↔ Maximalist**: what an Imam is (Imamology)
@@ -28,7 +28,7 @@ It's one self-contained file. Open `index.html` in a browser, or serve the folde
 
 **On the person's own device (always on).** Answers save to the browser's local storage as they're given, so the test resumes where it was left and the result is still there on return. A result code carries the answers to another device (`SC1-…` for part 1, `SC2-…` for part 2 plus the About-you answers), and on a hosted copy a `?r=…&r2=…` link opens results directly. "Clear my data" deletes everything.
 
-**Community results (optional, opt-in).** If you connect a Supabase database, the insights page offers an "Add my result" option behind a consent tick-box. People who agree add their answers to whichever parts they've finished (including the optional About-you answers), their scores, result name, date and a random sharing ID, with no name, email or account. Anyone who says they're under 18 isn't offered sharing. In return they see how they compare with everyone who has shared, and the community average appears on each spectrum. They can remove their result at any time. Totals stay hidden until at least 5 people have shared.
+**Community results (recorded automatically).** If you connect a Supabase database, each part's answers are recorded when it is finished, under the notice shown before the test: the answers to whichever parts are finished (including the optional About-you answers), the scores, result name, date and time, and a random sharing ID, with no name, email or account. Nothing is recorded for anyone who says they're under 18. People can remove their result from the insights page at any time, and once removed it isn't recorded again from that browser unless they choose "Add it back". The site owner can read individual rows; anything shown on the site is a total of at least 5 people. (Before 30 Oct 2026 this was opt-in, behind a tick-box; rows carry the consent version, c1 for opt-in and n1 for automatic.)
 
 The public key can't read or change the table directly. The page can only call three database functions: add or update this browser's result, remove it, and fetch anonymous totals.
 
