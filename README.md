@@ -2,7 +2,7 @@
 
 **Take the Shia Compass Test: see where you align with traditional and contemporary scholars.**
 
-A single-page web app built on the three spectrums Zoheir Esmail set out in his post of 14 October 2026 (after a framing by Shaykh Dr Vinay Khetia on the Shia Research Institute podcast):
+A single-page web app based on Shaykh Zoheir Esmail's article of 14 October 2026 and its three spectrums:
 
 1. **Modernist ↔ Traditionalist**: how far modern questions should reshape religious conclusions
 2. **Minimalist ↔ Maximalist**: what an Imam is (Imamology)
