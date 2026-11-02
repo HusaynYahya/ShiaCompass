@@ -1,6 +1,6 @@
 {
- "version": 11,
- "note": "Generated from index.html. Index order matches the answers, about and answers2 arrays stored in the database. Part 1 grew from 36 to 50 to 51 stored answers; on 30 Oct 2026 questions 20 and 42 were retired (still stored as null, not asked or scored) and a new Karbala question was added at index 50, shown to people as question 20. Part 2 grew from 42 to 61 to 63 to 64 to 65 to 68 to 69 to 70; question 59 became unscored on 30 Oct 2026 when it was reworded; older rows are shorter. On 30 Oct 2026 part 2 questions 25, 45 and 53 (ids u3, rb1, kb2) were retired as near-duplicates: still stored, not asked or scored. 'b' is each statement's position: where a Neutral answer sits on its spectrum (used by the ideal-point scoring). On 31 Oct 2026 several questions were reworded to be more neutral. Light rewordings kept their slot; questions whose meaning changed (part 1 indexes 1, 21, 27, 34, 48; part 2 index 15) were retired and replaced by new ones at part 1 indexes 51-55 and part 2 index 72, shown in the old places (replaces = the retired index). Part 1 now stores 56 answers and part 2 73. On 1 Nov 2026 part 1 switched to mainstream-anchored scoring: each part 1 question has a 'mainstream' answer (0-100), what a mainstream Usuli scholar in the line of Sayyid al-Sistani would give; answers above or below it move a person away from the mainstream point (m .55, i .3, e -.2), as a share of the room on that side, averaged over the spectrum. Part 2 grew to 74 with c_wife (women who said so see text_women).",
+ "version": 12,
+ "note": "Generated from index.html. Index order matches the answers, about and answers2 arrays stored in the database. Part 1 grew from 36 to 50 to 51 stored answers; on 30 Oct 2026 questions 20 and 42 were retired (still stored as null, not asked or scored) and a new Karbala question was added at index 50, shown to people as question 20. Part 2 grew from 42 to 61 to 63 to 64 to 65 to 68 to 69 to 70; question 59 became unscored on 30 Oct 2026 when it was reworded; older rows are shorter. On 30 Oct 2026 part 2 questions 25, 45 and 53 (ids u3, rb1, kb2) were retired as near-duplicates: still stored, not asked or scored. 'b' is each statement's position: where a Neutral answer sits on its spectrum (used by the ideal-point scoring). On 31 Oct 2026 several questions were reworded to be more neutral. Light rewordings kept their slot; questions whose meaning changed (part 1 indexes 1, 21, 27, 34, 48; part 2 index 15) were retired and replaced by new ones at part 1 indexes 51-55 and part 2 index 72, shown in the old places (replaces = the retired index). Part 1 now stores 56 answers and part 2 73. On 1 Nov 2026 part 1 switched to mainstream-anchored scoring: each part 1 question has a 'mainstream' answer (0-100), what a mainstream Usuli scholar in the line of Sayyid al-Sistani would give; answers above or below it move a person away from the mainstream point (m .55, i .3, e -.2), as a share of the room on that side, averaged over the spectrum. Part 2 grew to 74 with c_wife (women who said so see text_women). On 2 Nov 2026, with Hy's approval, 10 mainstream answers were corrected after a source check (indexes 9, 13, 15, 39, 42, 44, 45, 46, 47, 49).",
  "axes": {
   "m": {
    "name": "Modern questions",
@@ -348,8 +348,8 @@
    "type": "slider",
    "scale": "agreement",
    "shown_at": 10,
-   "mainstream": 10,
-   "mainstream_why": "Rulings follow the texts, not reconstructed purposes."
+   "mainstream": 20,
+   "mainstream_why": "Najaf jurists weigh the context of narrations, but don't let an inferred purpose override the text."
   },
   {
    "index": 10,
@@ -396,8 +396,8 @@
    "type": "slider",
    "scale": "agreement",
    "shown_at": 14,
-   "mainstream": 15,
-   "mainstream_why": "Extraordinary reports are not dismissed wholesale, though chains are examined."
+   "mainstream": 25,
+   "mainstream_why": "Rijal scholarship accepts that the ghulat forged some reports, while affirming the Imams' God-given gifts."
   },
   {
    "index": 14,
@@ -420,8 +420,8 @@
    "type": "slider",
    "scale": "agreement",
    "shown_at": 16,
-   "mainstream": 10,
-   "mainstream_why": "Academic study is used, but does not set how the tradition is understood."
+   "mainstream": 25,
+   "mainstream_why": "Academic research has a supporting role, but does not set doctrine."
   },
   {
    "index": 16,
@@ -700,8 +700,8 @@
    "type": "slider",
    "scale": "agreement",
    "shown_at": 40,
-   "mainstream": 50,
-   "mainstream_why": "The maraji' criticise extravagant or un-Islamic customs, while many customs are harmless."
+   "mainstream": 40,
+   "mainstream_why": "Customs are allowed only where they don't break Islamic teachings, so not 'as they are'."
   },
   {
    "index": 40,
@@ -734,8 +734,8 @@
    "type": "slider",
    "scale": "agreement",
    "shown_at": 42,
-   "mainstream": 55,
-   "mainstream_why": "The maraji' have urged Muharram speakers to address the problems of the day."
+   "mainstream": 70,
+   "mainstream_why": "Sistani's Muharram guidelines ask speakers to address the social problems of the day."
   },
   {
    "index": 43,
@@ -758,8 +758,8 @@
    "type": "slider",
    "scale": "frequency",
    "shown_at": 44,
-   "mainstream": 70,
-   "mainstream_why": "Reading the hadith collections is normal devotional and scholarly practice."
+   "mainstream": 85,
+   "mainstream_why": "Mainstream scholars read al-Kafi and consult Bihar as part of their work."
   },
   {
    "index": 45,
@@ -770,8 +770,8 @@
    "type": "slider",
    "scale": "agreement",
    "shown_at": 45,
-   "mainstream": 65,
-   "mainstream_why": "Seniority and established learning (a'lamiyya) weigh heavily."
+   "mainstream": 50,
+   "mainstream_why": "Age as such doesn't decide whom to trust; learning (a'lamiyya) does."
   },
   {
    "index": 46,
@@ -782,8 +782,8 @@
    "type": "slider",
    "scale": "agreement",
    "shown_at": 46,
-   "mainstream": 45,
-   "mainstream_why": "Both are recommended; Ziyarat Ashura is highly valued."
+   "mainstream": 60,
+   "mainstream_why": "The Quran is the greater weight, though Ziyarat Ashura is strongly encouraged."
   },
   {
    "index": 47,
@@ -794,8 +794,8 @@
    "type": "slider",
    "scale": "agreement",
    "shown_at": 47,
-   "mainstream": 35,
-   "mainstream_why": "Western philosophy is not a usual resource, though some scholars engage it."
+   "mainstream": 50,
+   "mainstream_why": "Sistani himself draws on modern Western thought in usul, though Najaf is cautious about philosophy."
   },
   {
    "index": 48,
@@ -816,8 +816,8 @@
    "type": "slider",
    "scale": "agreement",
    "shown_at": 49,
-   "mainstream": 70,
-   "mainstream_why": "Jurists derive rulings from the texts, with limited room for weighing social effects."
+   "mainstream": 60,
+   "mainstream_why": "Jurists stay with the texts but do weigh the Sharia's aims and social effects in places."
   },
   {
    "index": 50,
