@@ -1555,7 +1555,7 @@ function renderRecNotes(){
 }
 let pendingShare=null;
 function autoShare(){
-  if(!communityOn||about[1]===0) return;
+  if(!communityOn||about[1]===0||optedOut()) return;   // never re-record someone who removed their result
   pendingShare=submitShare().catch(()=>{}).finally(()=>{ pendingShare=null; if(current==="insights") renderCommunity(); });
 }
 function renderCommunity(){
@@ -1579,7 +1579,7 @@ function renderCommunity(){
     ub.addEventListener("click",async()=>{
       if(ub.dataset.armed!=="1"){ub.dataset.armed="1";ub.textContent="Tap again to remove it";setTimeout(()=>{ub.dataset.armed="";ub.textContent="Remove my result";},4000);return;}
       ub.disabled=true; $("cmsg").textContent="Removing…";
-      try{ await removeShare(); renderCommunity(); }
+      try{ await removeShare(); setOptOut(true); renderCommunity(); }
       catch(_){ ub.disabled=false; $("cmsg").textContent="Couldn't reach the community database. Please try again in a moment."; }
     });
   } else {
