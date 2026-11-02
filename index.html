@@ -1258,7 +1258,7 @@ const Q2LATER=[
  ["g",1,"Evading tax is acceptable when the government is one you see as taghuti."],
  ["p",-1,"Ideas from Jungian psychology, such as archetypes and the shadow self, can deepen how we understand Islamic spirituality."],
  [null,0,"You'd see a therapist or counsellor if you were struggling with your mental health.",0,"therapy"],
- ["sc",1,"Scientific discoveries, such as the expanding universe, can be found foretold in the Quran."],
+ ["sc",1,"Scientific discoveries, such as the expanding universe, can be found foretold in the Quran.",0,"sc_quran"],
  ["c",-1,"Hijab is a journey: it's fine for a woman to grow into wearing it at her own pace."],
  [null,0,"'Dawah bro' culture, with its online debates and street preaching, goes against the spirit of Islam.",0,"dawahbro"],
  ["rl",1,"I am very black and white when it comes to not listening to music."],
@@ -1807,7 +1807,7 @@ $("tNext").addEventListener("click",()=>{
    explains all your answers together. */
 const MQ={"0": 75, "2": 35, "3": 15, "4": 70, "5": 85, "6": 95, "7": 10, "8": 20, "9": 20, "10": 80, "11": 55, "12": 90, "13": 25, "14": 40, "15": 25, "16": 80, "17": 80, "18": 95, "20": 45, "22": 90, "23": 80, "24": 70, "25": 35, "26": 65, "28": 95, "29": 90, "30": 85, "31": 55, "32": 10, "33": 45, "35": 95, "36": 60, "37": 85, "38": 70, "39": 40, "40": 55, "42": 70, "43": 75, "44": 85, "45": 50, "46": 60, "47": 50, "49": 60, "50": 70, "51": 45, "52": 5, "53": 65, "54": 60, "55": 40};   // part 1, by stored answer index
 const B2={"73": 0.5, "0": 0.4, "10": 0.3, "21": -0.3, "31": 0.2, "68": 0.2, "1": 0.2, "11": 0, "22": 0.2, "32": 0, "63": 0.6, "2": 0, "12": 0.4, "23": 0.4, "33": -0.2, "3": 0, "14": 0.6, "35": 0.4, "4": 0, "15": 0, "25": 0.3, "36": 0.2, "61": 0.1, "62": -0.5, "5": 0.2, "16": 0.3, "26": 0.5, "37": 0.4, "7": -0.2, "17": 0, "28": 0.3, "38": 0.1, "65": -0.3, "8": 0.4, "18": 0.3, "29": 0.3, "39": 0.4, "64": 0.6, "9": -0.2, "19": -0.3, "30": 0.1, "40": 0.3, "42": 0.4, "51": 0, "43": -0.2, "46": 0, "55": 0, "47": 0, "56": 0, "60": 0.3, "71": 0.1, "48": -0.2, "57": 0, "70": 0.3, "49": 0, "67": 0.1, "50": 0, "53": 0, "45": 0.3, "54": 0, "59": 0, "72": 0};   // part 2, by stored answer index
-const IP_TAU=0.5, IP_PRIOR=0.25;   // how sharply answers flip around a statement's position; pull toward the centre when answers are few
+const IP_TAU=0.8, IP_PRIOR=0.25;   // how sharply answers flip around a statement's position; pull toward the centre when answers are few
 function idealPoint(items){
   if(!items.length) return undefined;
   let best=0,bestL=Infinity;
