@@ -2462,13 +2462,13 @@ const pinchState=()=>{const [a,b]=[...ptrs.values()]; return {d:Math.hypot(a.x-b
 cube.addEventListener("pointerdown",e=>{ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY});
   if(ptrs.size===2){ drag=null; pinch=pinchState(); }
   else if(ptrs.size===1) drag={x:e.clientX,y:e.clientY,sx:e.clientX,sy:e.clientY,t:e.target,moving:false};
-  try{cube.setPointerCapture(e.pointerId)}catch(_){}} );
+  if(e.pointerType!=="mouse"){ try{cube.setPointerCapture(e.pointerId)}catch(_){} } } );   // a mouse or trackpad is captured only once it starts dragging, so clicks still reach the scholar under it
 cube.addEventListener("pointermove",e=>{ if(ptrs.has(e.pointerId)) ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY});
   if(pinch&&ptrs.size===2){ const n=pinchState(), r=cube.getBoundingClientRect(), b=vbox();
     VZ.cx-=(n.mx-pinch.mx)/r.width*b.w; VZ.cy-=(n.my-pinch.my)/r.height*b.h;   // two fingers move the view
     VZ.auto=false; clampVZ(); const c=toSvg(n.mx,n.my), f=n.d/pinch.d; pinch=n; lastGesture=Date.now(); zoomBy(f,c.x,c.y); return; }
   if(!drag)return;
-  if(!drag.moving){ if(Math.hypot(e.clientX-drag.sx,e.clientY-drag.sy)<6) return; drag.moving=true; }   // small finger wobble is still a tap
+  if(!drag.moving){ if(Math.hypot(e.clientX-drag.sx,e.clientY-drag.sy)<6) return; drag.moving=true; if(e.pointerType==="mouse"){ try{cube.setPointerCapture(e.pointerId)}catch(_){} } }   // small finger wobble is still a tap
   lastGesture=Date.now(); const dx=e.clientX-drag.x,dy=e.clientY-drag.y;drag.x=e.clientX;drag.y=e.clientY;
   if(e.shiftKey&&VZ.z>1){ const r=cube.getBoundingClientRect(), b=vbox(); VZ.cx-=dx/r.width*b.w; VZ.cy-=dy/r.height*b.h; VZ.auto=false; clampVZ(); renderCube(); return; }
   CS.yaw+=dx*.008;CS.pitch=Math.max(-Math.PI/2,Math.min(Math.PI/2,CS.pitch+dy*.008));markPre(null);renderCube();});
