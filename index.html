@@ -1690,7 +1690,7 @@ function wordsHTML(set,j){
     <label class="vh" for="wt${uid}">Your answer in your own words</label>
     <textarea id="wt${uid}" class="wrt" maxlength="800" rows="3" data-set="${set}" data-j="${j}" placeholder="Explain your view in a sentence or two, and Claude will set your answer from it.">${hx(w.t||"")}</textarea>
     <div class="wrrow"><button type="button" class="btn small ghost wrgo" data-set="${set}" data-j="${j}">Read my answer</button><span class="wrmsg" id="wm${uid}" role="status">${w.r?hx(w.r):""}</span></div>
-    <p class="wrnote">Claude reads this using your own Claude account. Your words stay in this browser; only the answer it sets is used and recorded. Check it, and move the slider if it's not right.</p></details>`;
+    </details>`;
 }
 async function readWords(b){
   const set=b.dataset.set, j=+b.dataset.j, uid=set+"_"+j, q=(set==="p1"?QS:Q2)[j], arr=arrOf(set);
