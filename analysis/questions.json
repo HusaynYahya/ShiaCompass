@@ -1,6 +1,6 @@
 {
- "version": 12,
- "note": "Generated from index.html. Index order matches the answers, about and answers2 arrays stored in the database. Part 1 grew from 36 to 50 to 51 stored answers; on 30 Oct 2026 questions 20 and 42 were retired (still stored as null, not asked or scored) and a new Karbala question was added at index 50, shown to people as question 20. Part 2 grew from 42 to 61 to 63 to 64 to 65 to 68 to 69 to 70; question 59 became unscored on 30 Oct 2026 when it was reworded; older rows are shorter. On 30 Oct 2026 part 2 questions 25, 45 and 53 (ids u3, rb1, kb2) were retired as near-duplicates: still stored, not asked or scored. 'b' is each statement's position: where a Neutral answer sits on its spectrum (used by the ideal-point scoring). On 31 Oct 2026 several questions were reworded to be more neutral. Light rewordings kept their slot; questions whose meaning changed (part 1 indexes 1, 21, 27, 34, 48; part 2 index 15) were retired and replaced by new ones at part 1 indexes 51-55 and part 2 index 72, shown in the old places (replaces = the retired index). Part 1 now stores 56 answers and part 2 73. On 1 Nov 2026 part 1 switched to mainstream-anchored scoring: each part 1 question has a 'mainstream' answer (0-100), what a mainstream Usuli scholar in the line of Sayyid al-Sistani would give; answers above or below it move a person away from the mainstream point (m .55, i .3, e -.2), as a share of the room on that side, averaged over the spectrum. Part 2 grew to 74 with c_wife (women who said so see text_women). On 2 Nov 2026, with Hy's approval, 10 mainstream answers were corrected after a source check (indexes 9, 13, 15, 39, 42, 44, 45, 46, 47, 49). Also on 2 Nov 2026 (approved by Hy): part 2 scoring uses tau 0.8 instead of 0.5, so consistent answers reach both ends of each spectrum; the 'Quran foretells discoveries' question has its own id sc_quran (it had shared sc2).",
+ "version": 13,
+ "note": "Generated from index.html. Index order matches the answers, about and answers2 arrays stored in the database. Part 1 grew from 36 to 50 to 51 stored answers; on 30 Oct 2026 questions 20 and 42 were retired (still stored as null, not asked or scored) and a new Karbala question was added at index 50, shown to people as question 20. Part 2 grew from 42 to 61 to 63 to 64 to 65 to 68 to 69 to 70; question 59 became unscored on 30 Oct 2026 when it was reworded; older rows are shorter. On 30 Oct 2026 part 2 questions 25, 45 and 53 (ids u3, rb1, kb2) were retired as near-duplicates: still stored, not asked or scored. 'b' is each statement's position: where a Neutral answer sits on its spectrum (used by the ideal-point scoring). On 31 Oct 2026 several questions were reworded to be more neutral. Light rewordings kept their slot; questions whose meaning changed (part 1 indexes 1, 21, 27, 34, 48; part 2 index 15) were retired and replaced by new ones at part 1 indexes 51-55 and part 2 index 72, shown in the old places (replaces = the retired index). Part 1 now stores 56 answers and part 2 73. On 1 Nov 2026 part 1 switched to mainstream-anchored scoring: each part 1 question has a 'mainstream' answer (0-100), what a mainstream Usuli scholar in the line of Sayyid al-Sistani would give; answers above or below it move a person away from the mainstream point (m .55, i .3, e -.2), as a share of the room on that side, averaged over the spectrum. Part 2 grew to 74 with c_wife (women who said so see text_women). On 2 Nov 2026, with Hy's approval, 10 mainstream answers were corrected after a source check (indexes 9, 13, 15, 39, 42, 44, 45, 46, 47, 49). Also on 2 Nov 2026 (approved by Hy): part 2 scoring uses tau 0.8 instead of 0.5, so consistent answers reach both ends of each spectrum; the 'Quran foretells discoveries' question has its own id sc_quran (it had shared sc2). Also on 2 Nov 2026 (approved by Hy, scoring only, no wording changes): 16 part 2 statement positions (b) corrected; part 1 mainstream answers for indexes 7, 22, 31 and 33 corrected; and a part 1 answer within 8 points of the mainstream answer now counts as the mainstream answer.",
  "axes": {
   "m": {
    "name": "Modern questions",
@@ -324,8 +324,8 @@
    "type": "slider",
    "scale": "agreement",
    "shown_at": 8,
-   "mainstream": 10,
-   "mainstream_why": "Mainstream teaching affirms more than scholarly leadership."
+   "mainstream": 25,
+   "mainstream_why": "Najaf and Qum jurists generally accept some God-given authority of the Imams within creation (Q5 is 70), so they would disagree, though not totally."
   },
   {
    "index": 8,
@@ -500,8 +500,8 @@
    "type": "slider",
    "scale": "agreement",
    "shown_at": 23,
-   "mainstream": 90,
-   "mainstream_why": "The maraji' strongly support the majalis as religious, not merely cultural."
+   "mainstream": 85,
+   "mainstream_why": "Sistani strongly backs the commemorations but treats them as emphasised rites rather than a pillar of faith."
   },
   {
    "index": 23,
@@ -606,8 +606,8 @@
    "type": "slider",
    "scale": "agreement",
    "shown_at": 32,
-   "mainstream": 55,
-   "mainstream_why": "Usuli method asks for certainty in doctrine, though it is applied flexibly."
+   "mainstream": 75,
+   "mainstream_why": "The prevailing Usuli view (al-Mufid, al-Murtada, the Khoei school) is that a single report does not establish belief; this matches Q9."
   },
   {
    "index": 32,
@@ -630,8 +630,8 @@
    "type": "slider",
    "scale": "agreement",
    "shown_at": 34,
-   "mainstream": 45,
-   "mainstream_why": "Fiqh develops through ijtihad, but not simply with human knowledge."
+   "mainstream": 50,
+   "mainstream_why": "Sistani accepts that ijtihad and usul develop and draw on history and the human sciences, while the sources stay fixed."
   },
   {
    "index": 34,
@@ -928,7 +928,7 @@
    "text": "A sincere Christian who never becomes Muslim can still reach Paradise.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0,
+   "b": 0.3,
    "shown_at": 3
   },
   {
@@ -939,7 +939,7 @@
    "text": "You'd happily join a Sunni congregational prayer and count it as your own.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0,
+   "b": 0.2,
    "shown_at": 4
   },
   {
@@ -1092,7 +1092,7 @@
    "text": "A state should treat all citizens equally, whatever their religion.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0.3,
+   "b": 0.5,
    "shown_at": 17
   },
   {
@@ -1227,7 +1227,7 @@
    "text": "Wrestling with hard questions, such as why God allows suffering, makes your faith stronger.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0.3,
+   "b": 0.7,
    "shown_at": 28
   },
   {
@@ -1331,7 +1331,7 @@
    "text": "Faith is stronger when it is chosen freely than when the state enforces it.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0.4,
+   "b": 0.6,
    "shown_at": 37
   },
   {
@@ -1364,7 +1364,7 @@
    "text": "Ordinary believers should be encouraged to read Quran commentaries and form their own understanding.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0.3,
+   "b": 0.5,
    "shown_at": 40
   },
   {
@@ -1445,7 +1445,7 @@
    "text": "Majalis should be in English (or the local language), even if older members lose out.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0,
+   "b": 0.2,
    "shown_at": 46
   },
   {
@@ -1478,7 +1478,7 @@
    "text": "A new ruling that breaks with centuries of opinion can still be correct.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0,
+   "b": 0.35,
    "shown_at": 49
   },
   {
@@ -1510,7 +1510,7 @@
    "text": "You'd take out an interest-bearing mortgage.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0,
+   "b": 0.3,
    "shown_at": 51
   },
   {
@@ -1532,7 +1532,7 @@
    "text": "Until the Imam returns, believers should focus on their own piety rather than trying to change the world.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0,
+   "b": -0.25,
    "shown_at": 53
   },
   {
@@ -1554,7 +1554,7 @@
    "text": "You'd eat at a restaurant without checking every ingredient, if the food is probably halal.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0,
+   "b": 0.3,
    "shown_at": 55
   },
   {
@@ -1575,7 +1575,7 @@
    "text": "Someone can be close to God without strictly keeping every religious rule.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0,
+   "b": 0.3,
    "shown_at": 57
   },
   {
@@ -1619,7 +1619,7 @@
    "text": "You wouldn't go on Umrah, or on ziyara to Medina, while Saudi Arabia is ruled by what you see as a taghuti regime.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0.6,
+   "b": 0.8,
    "shown_at": 61
   },
   {
@@ -1630,7 +1630,7 @@
    "text": "Evading tax is acceptable when the government is one you see as taghuti.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0.6,
+   "b": 0.9,
    "shown_at": 62
   },
   {
@@ -1717,7 +1717,7 @@
    "type": "slider",
    "scale": "agreement",
    "replaces": 15,
-   "b": 0,
+   "b": 0.3,
    "shown_at": 16
   },
   {
@@ -1729,7 +1729,7 @@
    "text_women": "As a woman, I would want my husband to support me if I pursued a career, such as being a doctor or a lawyer.",
    "type": "slider",
    "scale": "agreement",
-   "b": 0.5,
+   "b": 0.65,
    "shown_at": 74
   }
  ]
